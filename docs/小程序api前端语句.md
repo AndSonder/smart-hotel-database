@@ -1,3 +1,5 @@
+> response里的data里的数据到时会转化成json格式再发送
+
 # 用户权限
 
 ## 用户预订
@@ -8,13 +10,29 @@
 
 **request**
 
- url: https://www.supremeproger.com/user_post
+url: "https://www.supremeproger.com/user_post",
 
-| 字段 | 备注 |
-| ---- | ---- |
-|      |      |
+data: {
 
+​	"user_ord_num": that.data.ord_num,
 
+​    "user_wecharid": that.data.openid,
+
+​	"user_sex": that.data.user_sex，
+
+​	"user_phone": that.data.user_phone,
+
+​	"user_ID_card": that.data.user_ID_card,
+
+ },
+
+header: {
+
+​	"Content-Type": "application/x-www-form-urlencoded"
+
+},
+
+method:"POST",
 
 **response**
 
