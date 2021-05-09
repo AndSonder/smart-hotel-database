@@ -69,7 +69,7 @@ url: "https://www.supremeproger.com/img",
 
 **request**
 
-url: "https://www.supremeproger.com/unsubscribe",
+url: "https://www.supremeproger.com/unsubscribe"
 
 | 字段     | 数据类型 | 备注                           |
 | -------- | -------- | ------------------------------ |
@@ -342,6 +342,31 @@ url: "https://www.supremeproger.com/door_record",
 
 | 字段        | 数据类型 | 备注                     |
 | ----------- | -------- | ------------------------ |
+| table_prove | VARCHAR  | 表验证，MD5(表名+时间戳) |
+
+## 查询订单信息
+
+**request**
+
+url: "https://www.supremeproger.com/order_inf",
+
+| 字段     | 数据类型 | 备注                           |
+| -------- | -------- | ------------------------------ |
+| wecharid | VARCHAR  | 微信id，微信用户的唯一标识；   |
+| room_id  | INT      | 房间号                         |
+| prove    | VARCHAR  | 身份验证，MD5(wecharid+时间戳) |
+
+**response**
+
+| 字段        | 数据类型 | 备注                     |
+| ----------- | -------- | ------------------------ |
+| room_id     | INT      | 房间号                   |
+| id          | INT      | 订单编号                 |
+| pmoney      | INT      | 订单应付金额             |
+| scid        | DATETIME | 预定入住日期             |
+| sgo         | DATETIME | 预计离开日期             |
+| cid         | DATETIME | 实际入住日期             |
+| go          | DATETIME | 结账离开日期             |
 | table_prove | VARCHAR  | 表验证，MD5(表名+时间戳) |
 
 ## 查询房间信息
