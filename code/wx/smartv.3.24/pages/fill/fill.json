@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "modalView": "/pages/pop-up/pop-up",
+    "navigation": "/pages/navigation/navigation"
+  },
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "black"
+}

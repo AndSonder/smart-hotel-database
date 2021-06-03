@@ -1,0 +1,54 @@
+<!--pages/fill/fill.wxml-->
+<view class=" total_framework" bindtouchstart="tap_start" bindtouchmove="tap_move" bindtouchend="tap_end">
+	<image class="total_img" src="/images/fill.jpg" mode="scaleToFill"></image>
+	<image class="btn_img" bindtap="tap_ch" src="/images/btn.png"></image>
+	<navigation>
+		<view class="current-date">
+			<image class="current-image" src="/images/back.png" mode:="scaleToFill" bindtap="navigation_back"></image>
+		</view>
+	</navigation>
+	<view class="total">
+		<view class="btn_total" class="btn_total_1">
+			<view class="btn_title"><text> 确认身份：</text></view><button bindtap="confirm" class="btn" hover-class="btn-hover"><text>确认</text></button>
+		</view>
+		<view class="btn_total" class="btn_total_2">
+			<view class="btn_title"><text> 提交照片：</text></view><button bindtap="submitImage" class="btn" hover-class="btn-hover"><text>提交</text></button>
+		</view>
+		<view class="picker_total">
+			<view class="picker_time_title"><text>预订起始:</text></view>
+			<picker mode="multiSelector" value="{{dateTime}}" bindchange="changeDateTime_" range="{{dateTimeArray}}" class="picker_time ">
+				<view class="picker-detail ">
+					{{dateTimeArray_[0][dateTime_[0]]}}-{{dateTimeArray_[1][dateTime_[1]]}}-{{dateTimeArray_[2][dateTime_[2]]}} {{dateTimeArray_[3][dateTime_[3]]}}:{{dateTimeArray_[4][dateTime_[4]]}}:{{dateTimeArray_[5][dateTime_[5]]}}
+				</view>
+			</picker>
+		</view>
+		<view class="picker_total">
+			<view class="picker_time_title"><text>预订结束:</text></view>
+			<picker mode="multiSelector" value="{{dateTime}}" bindchange="changeDateTime" range="{{dateTimeArray}}" class="picker_time ">
+				<view class="picker-detail ">
+					{{dateTimeArray[0][dateTime[0]]}}-{{dateTimeArray[1][dateTime[1]]}}-{{dateTimeArray[2][dateTime[2]]}} {{dateTimeArray[3][dateTime[3]]}}:{{dateTimeArray[4][dateTime[4]]}}:{{dateTimeArray[5][dateTime[5]]}}
+				</view>
+			</picker>
+		</view>
+		<view class="btn_total">
+			<button bindtap="submit" class="btn_" hover-class="btn-hover">提交</button>
+		</view>
+	</view>
+</view>
+<!-- <view class="mask {{open?'mask_1':''}}" bindtouchstart="tap_start_1" bindtouchmove="tap_move_1" bindtouchend="tap_end_1"></view> -->
+<scroll-view scroll-y="true" class="schedule {{open?'dis':''}}">
+		<view class="bookedTime">
+			<text class="bookedTime_word">已预订时间段</text>
+		</view>
+		<block wx:for="{{disTime}}" wx:for-item="time" wx:key="booked_StartTime">
+		<view class="total_Time">
+			<view class="booked_StartTime">
+				<text class="bs_word">{{time.StartTime}}</text>
+			</view>
+			<view class="bar">↓</view>
+			<view class="booked_EndTime">
+				<text class="be_word">{{time.EndTime}}</text>
+			</view>
+			</view>
+		</block>
+</scroll-view>
