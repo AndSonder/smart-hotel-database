@@ -439,7 +439,7 @@ url: "https://www.supremeproger.com/admin_room_inf",
 
 *response*
 
-{"code":200,"room_id":101,"rtype":"单人房","money":1314,"temperature":23.4,"humidity":50,"stamp":"2021/5/21","table_prove":"xxxxxxxxxx"}
+{"code":200,"room_id":101,"rtype":"单人房","money":1314,"temperature":23.4,"humidity":50,"stamp":"2021/5/21","table_prove":"xxxxxxxxx"}
 
 ## 开门
 
