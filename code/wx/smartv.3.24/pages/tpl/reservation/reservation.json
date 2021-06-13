@@ -1,8 +1,0 @@
-{
-  "usingComponents": {
-    "modalView": "/pages/pop-up/pop-up",
-    "van-stepper": "../../../miniprogram_npm/vant-weapp/button/index"
-  },
-  "navigationStyle": "custom",
-  "navigationBarTextStyle": "white"
-}
