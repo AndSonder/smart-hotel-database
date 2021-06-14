@@ -13,7 +13,6 @@
         <introspection-scope>
           <node kind="schema">
             <name qname="@" />
-            <name qname="helloworld" />
             <name qname="smarthotel" />
           </node>
         </introspection-scope>
@@ -23,6 +22,20 @@
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
       <secret-storage>master_key</secret-storage>
       <schema-mapping />
+    </data-source>
+    <data-source name="out_smart_hotel@106.52.105.247" uuid="06b3523c-1723-42f1-9d22-57972770285e">
+      <database-info product="MySQL" version="5.5.62-log" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-java-8.0.21 (Revision: 33f65445a1bcc544eb0120491926484da168f199)" dbms="MYSQL" exact-version="5.5.62" exact-driver-version="8.0">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema" qname="@" />
+        </introspection-scope>
+      </schema-mapping>
     </data-source>
   </component>
 </project>
