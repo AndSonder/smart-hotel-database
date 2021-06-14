@@ -1,4 +1,5 @@
 ./web
 .DS_Store
 ./code/models/db_config.py
+.idea
 node_modules
