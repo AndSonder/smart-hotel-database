@@ -3,8 +3,8 @@
     <el-form-item label="Name">
       <el-input v-model.trim="user.name" />
     </el-form-item>
-    <el-form-item label="Email">
-      <el-input v-model.trim="user.email" />
+    <el-form-item label="Introduction">
+      <el-input v-model.trim="user.introduction" />
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="submit">Update</el-button>
@@ -20,7 +20,7 @@ export default {
       default: () => {
         return {
           name: '',
-          email: ''
+          introduction: ''
         }
       }
     }
