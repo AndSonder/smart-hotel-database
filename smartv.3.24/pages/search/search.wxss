@@ -1,0 +1,172 @@
+.search_bar {
+  position: relative;
+  padding: 8px 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  box-sizing: border-box;
+  background-color: #EFEFF4;
+  border-top: 1rpx solid #D7D6DC;
+  border-bottom: 1rpx solid #D7D6DC;
+   
+ }
+
+ .search_icon_in_box {
+  position: absolute;
+  left: 10px;
+  top: 7px;
+ }
+
+ .search_bar_form {
+  position: relative;
+  -webkit-box-flex: 1;
+  -webkit-flex: auto;
+   flex: auto;
+  border-radius: 5px;
+  background: #FFFFFF;
+  border: 1rpx solid #E6E6EA;
+ }
+ .search_bar_box {
+  position: relative;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1;
+ }
+ .search_bar_input {
+  height: 28px;
+  line-height: 28px;
+  font-size: 14px;
+ }
+ .clear_icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 7px 8px;
+  font-size: 0;
+ }
+
+ .search_bar_cancel_btn {
+  margin-left: 10px;
+  line-height: 28px;
+  color: #09BB07;
+  white-space: nowrap;
+  font-size: 30rpx;
+ }
+
+ room_overall {
+  width: 100%;
+  top: 80%;
+  z-index: 20;
+  position: absolute;
+}
+
+.room_overall .room_excerpt {
+  display: flex;
+  width: 700rpx;
+  height: 450rpx;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: white;
+  box-sizing: border-box;
+  margin-top: 1em;
+  margin-left: 25rpx;
+  border-radius: 30rpx;
+}
+
+.room_excerpt .roomImage_section {
+  padding-left: 1rpx;
+  display: flex;
+  width: 696rpx;
+  height: 400rpx;
+  margin-top: 1em;
+}
+
+.roomImage_section .room_image {
+  width: 100%;
+  height: 100%
+}
+
+.room_excerpt .word_section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  height: 145rpx;
+  margin-left: 48rpx;
+  margin-bottom: 15rpx;
+}
+
+.word_section .info_piece {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-family: "KaiTi";
+  font-weight: 500;
+}
+
+.info_piece .roomID_group {
+  display: flex;
+  width: 350rpx;
+  height: 50rpx;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.info_piece .price_group {
+  display: flex;
+  width: 350rpx;
+  height: 50rpx;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.roomID_group .people_number {
+  color: #bbbec4;
+  font-size: medium;
+}
+
+.price_group .time_amount {
+  color: #bbbec4;
+  font-size: medium;
+}
+
+.word_section .orderButton_piece {
+  margin-top: 30rpx;
+  height: 120rpx;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.orderButton_piece .btn {
+  background-color: rgb(19, 194, 194);
+  border-radius: 30rpx;
+  line-height: 70rpx;
+  margin-top: 8rpx;
+  font-size: medium;
+  font-family: "KaiTi";
+  width: 60%;
+  color: white;
+  text-align: center;
+}
+
+.btn-hover {
+  position: relative;
+  top: 3rpx;
+  box-shadow: 0px 0px 10rpx #bbbec4 inset;
+}
+
+.btn::after {
+  border-radius: 30rpx;
+  border: 0;
+}
+
+.divider {
+  width: 90%;
+  height: 5rpx;
+  background-color: #f7f7f7;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1em;
+}

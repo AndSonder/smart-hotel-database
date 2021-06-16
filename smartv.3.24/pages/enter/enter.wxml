@@ -1,0 +1,10 @@
+<!--pages/enter/enter.wxml-->
+  <!-- modal弹窗-->
+  <modalView show="{{showModal}}" bindcancel="modalCancel" bindconfirm='modalConfirm' single='{{single}}'>
+    <view class='modal-content'>
+      <scroll-view scroll-y class='main-content'>
+        <image src="{{friroomID}}"></image>
+        <text>您的好友来访，申请进入</text>
+      </scroll-view>
+    </view>
+  </modalView>
