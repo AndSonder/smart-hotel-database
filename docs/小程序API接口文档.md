@@ -28,7 +28,7 @@ API：`/userpush`
 
 | 字段        | 数据类型 | 备注                        |
 | ----------- | -------- | --------------------------- |
-| result      | bool     | 提交个人信息是否成功        |
+| result      | tinyint  | 提交个人信息是否成功        |
 | stamp       | string   | 时间戳                      |
 | table_prove | string   | 表验证，MD5(表名+时间戳+盐) |
 
@@ -52,7 +52,7 @@ API：`/userpush`
 
 ```json
 {
-    "result":true,
+    "result":1,
     "stamp":"2020-05-21 18:55:49",
     "table_prove":"xxxxxxxxxxx",
 }
@@ -86,7 +86,7 @@ API：`/orderpush`
 
 | 字段        | 数据类型 | 备注                        |
 | ----------- | -------- | --------------------------- |
-| result      | bool     | 提交订单是否成功            |
+| result      | tinyint  | 提交订单是否成功            |
 | stamp       | string   | 时间戳                      |
 | table_prove | string   | 表验证，MD5(表名+时间戳+盐) |
 
@@ -108,7 +108,7 @@ API：`/orderpush`
 
 ```json
 {
-    "result":true,
+    "result":1,
     "stamp":"2020-05-21 18:55:49",
     "table_prove":"xxxxxxxxxxx",
 }
@@ -141,7 +141,7 @@ API：`/chargeback_user`
 
 | 字段        | 数据类型 | 备注                        |
 | ----------- | -------- | --------------------------- |
-| result      | bool     | 退单是否成功                |
+| result      | tinyint  | 退单是否成功                |
 | stamp       | string   | 时间戳                      |
 | table_prove | string   | 表验证，MD5(表名+时间戳+盐) |
 
@@ -160,7 +160,7 @@ API：`/chargeback_user`
 
 ```json
 {
-    "result":true,
+    "result":1,
     "stamp":"2020-05-21 18:55:49",
     "table_prove":"xxxxxxxxxxx",
 }
@@ -194,7 +194,7 @@ API：`/checkout_user`
 
 | 字段        | 数据类型 | 备注                        |
 | ----------- | -------- | --------------------------- |
-| result      | bool     | 退房是否成功                |
+| result      | tinyint  | 退房是否成功                |
 | stamp       | string   | 时间戳                      |
 | table_prove | string   | 表验证，MD5(表名+时间戳+盐) |
 
@@ -214,7 +214,7 @@ API：`/checkout_user`
 
 ```json
 {
-    "result":true,
+    "result":1,
     "stamp":"2020-05-21 18:55:49",
     "table_prove":"xxxxxxxxxxx",
 }
@@ -248,7 +248,7 @@ API：`/userinf_admin`
 
 | 字段        | 数据类型 | 备注                       |
 | ----------- | -------- | -------------------------- |
-| result      | bool     | 所有用户信息是否查询成功   |
+| result      | tinyint  | 所有用户信息是否查询成功   |
 | name        | string   | 用户姓名                   |
 | img         | jpg/png  | 用户的人脸图像             |
 | stamp       | string   | 时间戳                     |
@@ -271,7 +271,7 @@ API：`/userinf_admin`
 
 ```json
 {
-    "result":true,
+    "result":1,
     "name":"张三",
     "stamp":"2020-05-21 18:55:49",
     "table_prove":"xxxxxxxxxxx",
@@ -306,7 +306,7 @@ API：`/markuserinf_admin`
 
 | 字段        | 数据类型 | 备注                        |
 | ----------- | -------- | --------------------------- |
-| result      | bool     | 用户信息是否查询成功        |
+| result      | tinyint  | 用户信息是否查询成功        |
 | name        | string   | 用户姓名                    |
 | sex         | int      | 用户性别                    |
 | id_card     | string   | 用户身份证号                |
@@ -332,7 +332,7 @@ API：`/markuserinf_admin`
 
 ```json
 {
-    "result":true,
+    "result":1,
     "name":"张三",
     "sex":1,
     "id_card":"230xxxxxxxxxxxxxxx",
@@ -373,7 +373,7 @@ API：`/markuserinfmod_admin`
 
 | 字段        | 数据类型 | 备注                        |
 | ----------- | -------- | --------------------------- |
-| result      | bool     | 用户信息是否修改成功        |
+| result      | tinyint  | 用户信息是否修改成功        |
 | stamp       | string   | 时间戳                      |
 | table_prove | string   | 表验证，MD5(表名+时间戳+盐) |
 
@@ -396,7 +396,7 @@ API：`/markuserinfmod_admin`
 
 ```json
 {
-    "result":true,
+    "result":1,
     "stamp":"2020-05-21 18:55:49",
     "table_prove":"xxxxxxxxxxx",
 }
@@ -430,7 +430,7 @@ API：`/orderinf_admin`
 
 | 字段        | 数据类型 | 备注                        |
 | ----------- | -------- | --------------------------- |
-| result      | bool     | 订单价格是否修改成功        |
+| result      | tinyint  | 订单价格是否修改成功        |
 | pmoney      | int      | 订单应付金额                |
 | scid        | string   | 预定入住日期                |
 | sgo         | string   | 预计离开日期                |
@@ -458,7 +458,7 @@ API：`/orderinf_admin`
 
 ```json
 {
-    "result":true,
+    "result":1,
     "pmoney":400,
     "scid":"2020-05-16 18:55:49",
     "sgo":"2020-05-25 18:55:49",
@@ -503,7 +503,7 @@ API：`/orderinfmod_admin`
 
 | 字段        | 数据类型 | 备注                        |
 | ----------- | -------- | --------------------------- |
-| result      | bool     | 入住时间是否修改成功        |
+| result      | tinyint  | 入住时间是否修改成功        |
 | stamp       | string   | 时间戳                      |
 | table_prove | string   | 表验证，MD5(表名+时间戳+盐) |
 
@@ -530,7 +530,7 @@ API：`/orderinfmod_admin`
 
 ```json
 {
-    "result":true,
+    "result":1,
     "stamp":"2020-05-21 18:55:49",
     "table_prove":"xxxxxxxxxxx",
 }
@@ -563,13 +563,13 @@ API：`/roominf_admin`
 
 | 字段        | 数据类型 | 备注                        |
 | ----------- | -------- | --------------------------- |
-| result      | bool     | 查询此房间信息是否成功      |
+| result      | tinyint  | 查询此房间信息是否成功      |
 | room_id     | int      | 房间号                      |
 | rname       | string   | 房间名                      |
 | rtype       | string   | 房间类型                    |
 | maxnum      | int      | 房间居住人数上限            |
 | area        | int      | 房间面积                    |
-| window      | bool     | 房间是否有窗                |
+| rin         | tinyint  | 房间是否有窗                |
 | money       | int      | 房间金额/日                 |
 | temperature | int      | 房间当前温度                |
 | humidity    | int      | 房间当前湿度                |
@@ -593,13 +593,13 @@ API：`/roominf_admin`
 
 ```json
 {
-    "result":true,
+    "result":1,
     "room_id":101,
     "rname":"温馨大床房"
     "rtype":"特大床",
     "maxnum":3,
     "area":30,
-    "window":true,
+    "rin":1,
     "money":300,
     "temperature":27,
     "humidity":38,
@@ -632,7 +632,7 @@ API：`/roominfmod_admin`
 | rtype       | string   | 房间类型                          |
 | maxnum      | int      | 房间居住人数上限                  |
 | area        | int      | 房间面积                          |
-| window      | bool     | 房间是否有窗                      |
+| rin         | tinyint  | 房间是否有窗                      |
 | money       | int      | 房间金额/日                       |
 | temperature | int      | 房间当前温度                      |
 | humidity    | int      | 房间当前湿度                      |
@@ -643,7 +643,7 @@ API：`/roominfmod_admin`
 
 | 字段        | 数据类型 | 备注                        |
 | ----------- | -------- | --------------------------- |
-| result      | bool     | 房间信息是否修改成功        |
+| result      | tinyint  | 房间信息是否修改成功        |
 | stamp       | string   | 时间戳                      |
 | table_prove | string   | 表验证，MD5(表名+时间戳+盐) |
 
@@ -659,7 +659,7 @@ API：`/roominfmod_admin`
     "rtype":"特大床",
     "maxnum":3,
     "area":30,
-    "window":true,
+    "rin":true,
     "money":300,
     "temperature":27,
     "humidity":38,
@@ -672,7 +672,7 @@ API：`/roominfmod_admin`
 
 ```json
 {
-    "result":true,
+    "result":1,
     "stamp":"2020-05-21 18:55:49",
     "table_prove":"xxxxxxxxxxx",
 }
@@ -707,7 +707,7 @@ API：`/doorinf_admin`
 
 | 字段        | 数据类型 | 备注                         |
 | ----------- | -------- | ---------------------------- |
-| result      | bool     | 查询此房间的开门信息是否成功 |
+| result      | tinyint  | 查询此房间的开门信息是否成功 |
 | wecharid    | string   | 用户的身份标识               |
 | identity    | int      | 开门人身份                   |
 | opentime    | string   | 开门时间                     |
@@ -734,7 +734,7 @@ API：`/doorinf_admin`
 
 ```json
 {
-    "result":true,
+    "result":1,
     "wecharid":"1c054ecb0e947af1661e9f4ae63053c6",
     "identity":[1,0.1,0],
     "opentime":["2020-05-21 18:55:29","2020-05-11 18:55:29","2020-05-31 18:55:29","2020-05-01 18:55:29"],
@@ -765,10 +765,10 @@ API：`/login`
 
 **返回参数：**
 
-| 参数名称 | 类型   | 说明               |
-| -------- | ------ | ------------------ |
-| result   | bool   | openid是否获取成功 |
-| wecharid | string | 用户的身份标识     |
+| 参数名称 | 类型    | 说明               |
+| -------- | ------- | ------------------ |
+| result   | tinyint | openid是否获取成功 |
+| wecharid | string  | 用户的身份标识     |
 
 请求示例：
 
@@ -784,7 +784,7 @@ API：`/login`
 
 ```json
 {
-    "result":true,
+    "result":1,
     "stamp":"2020-05-21 18:55:49"
     "openid":"1c054ecb0e947af1661e9f4ae63053c5",
 }
@@ -812,7 +812,7 @@ API：`/userconf`
 
 | 字段        | 数据类型 | 备注                        |
 | ----------- | -------- | --------------------------- |
-| result      | bool     | 身份是否确认成功            |
+| result      | tinyint  | 身份是否确认成功            |
 | identity    | int      | 用户身份                    |
 | stamp       | string   | 时间戳                      |
 | table_prove | string   | 表验证，MD5(表名+时间戳+盐) |
@@ -831,7 +831,7 @@ API：`/userconf`
 
 ```json
 {
-    "result":true,
+    "result":1,
     "identity":1,
     "stamp":"2020-05-21 18:55:49",
     "table_prove":"xxxxxxxxxxx",
@@ -864,7 +864,7 @@ API：`/recdoor`
 
 | 字段        | 数据类型 | 备注                        |
 | ----------- | -------- | --------------------------- |
-| result      | bool     | 开门信息是否被记录          |
+| result      | tinyint  | 开门信息是否被记录          |
 | stamp       | string   | 时间戳                      |
 | table_prove | string   | 表验证，MD5(表名+时间戳+盐) |
 
@@ -886,7 +886,7 @@ API：`/recdoor`
 
 ```json
 {
-    "result":true,
+    "result":1,
     "stamp":"2020-05-21 18:55:49",
     "table_prove":"xxxxxxxxxxx"
 }
@@ -919,7 +919,7 @@ API：`/orderinf`
 
 | 字段        | 数据类型 | 备注                        |
 | ----------- | -------- | --------------------------- |
-| result      | bool     | 订单信息是否查询成功        |
+| result      | tinyint  | 订单信息是否查询成功        |
 | room_id     | int      | 房间号                      |
 | orderid     | int      | 订单编号                    |
 | pmoney      | int      | 订单应付金额                |
@@ -947,7 +947,7 @@ API：`/orderinf`
 
 ```json
 {
-    "result":true,
+    "result":1,
     "room_id":101,
     "orderid":1,
     "pmoney":300,
@@ -987,13 +987,13 @@ API：`/roominf`
 
 | 字段        | 数据类型 | 备注                        |
 | ----------- | -------- | --------------------------- |
-| result      | bool     | 房间信息是否查询成功        |
+| result      | tinyint  | 房间信息是否查询成功        |
 | room_id     | int      | 房间号                      |
 | rname       | string   | 房间名                      |
 | rtype       | string   | 房间类型                    |
 | maxnum      | int      | 房间居住人数上限            |
 | area        | int      | 房间面积                    |
-| window      | bool     | 房间是否有窗                |
+| rin         | tinyint  | 房间是否有窗                |
 | money       | int      | 房间金额/日                 |
 | temperature | int      | 房间当前温度                |
 | humidity    | int      | 房间当前湿度                |
@@ -1017,13 +1017,13 @@ API：`/roominf`
 
 ```json
 {
-    "result":true,
+    "result":1,
     "room_id":101,
     "rname":"温馨大床房"
     "rtype":"特大床",
     "maxnum":3,
     "area":30,
-    "window":true,
+    "rin":true,
     "money":300,
     "temperature":27,
     "humidity":38,
@@ -1053,7 +1053,7 @@ API：`/roominf_visitor"`
 
 | 字段        | 数据类型 | 备注                        |
 | ----------- | -------- | --------------------------- |
-| result      | bool     | 房间信息是否查询成功        |
+| result      | tinyint  | 房间信息是否查询成功        |
 | room_id     | int      | 房间号                      |
 | stamp       | string   | 时间戳                      |
 | table_prove | string   | 表验证，MD5(表名+时间戳+盐) |
@@ -1075,7 +1075,7 @@ API：`/roominf_visitor"`
 
 ```json
 {
-    "result":true,
+    "result":1,
     "room_id":101,
     "stamp":"2020-05-21 18:55:49",
     "table_prove":"xxxxxxxxxxx",
@@ -1107,11 +1107,11 @@ API：`/hardwareinf`
 
 | 字段         | 数据类型 | 备注                        |
 | ------------ | -------- | --------------------------- |
-| result       | bool     | 房间信息是否查询成功        |
-| air_status   | bool     | 空调开关状态                |
+| result       | tinyint  | 房间信息是否查询成功        |
+| air_status   | tinyint  | 空调开关状态                |
 | air_tmp      | int      | 空调当前温度                |
 | light_status | int      | 灯开关状态                  |
-| light_value  | bool     | 灯当前的亮度                |
+| light_value  | int      | 灯当前的亮度                |
 | room_id      | int      | 房间号                      |
 | stamp        | string   | 时间戳                      |
 | table_prove  | string   | 表验证，MD5(表名+时间戳+盐) |
@@ -1133,7 +1133,7 @@ API：`/hardwareinf`
 
 ```json
 {
-    "result":true,
+    "result":1,
     "air_status":true,
     "air_tmp":27,
     "light_status":true,
