@@ -78,7 +78,7 @@ API：`/orderpush`
 | scid     | string   | 预定入住日期                      |
 | sgo      | string   | 预定入住日期                      |
 | pmoney   | int      | 订单应付金额                      |
-| room_id  | int      | 房间号                            |
+| room_id  | int      | 房间编号                          |
 | stamp    | string   | 时间戳                            |
 | prove    | string   | 身份验证，MD5(wecharid+时间戳+盐) |
 
@@ -555,26 +555,26 @@ API：`/roominf_admin`
 | 字段     | 数据类型 | 备注                              |
 | -------- | -------- | --------------------------------- |
 | wecharid | string   | 用户的身份标识                    |
-| room_id  | int      | 房间号                            |
+| room_id  | int      | 房间编号                          |
 | stamp    | string   | 时间戳                            |
 | prove    | string   | 身份验证，MD5(wecharid+时间戳+盐) |
 
 **返回参数：**
 
-| 字段        | 数据类型 | 备注                        |
-| ----------- | -------- | --------------------------- |
-| result      | tinyint  | 查询此房间信息是否成功      |
-| room_id     | int      | 房间号                      |
-| rname       | string   | 房间名                      |
-| rtype       | string   | 房间类型                    |
-| maxnum      | int      | 房间居住人数上限            |
-| area        | int      | 房间面积                    |
-| rin         | tinyint  | 房间是否有窗                |
-| money       | int      | 房间金额/日                 |
-| temperature | int      | 房间当前温度                |
-| humidity    | int      | 房间当前湿度                |
-| stamp       | string   | 时间戳                      |
-| table_prove | string   | 表验证，MD5(表名+时间戳+盐) |
+| 字段        | 数据类型    | 备注                        |
+| ----------- | ----------- | --------------------------- |
+| result      | tinyint     | 查询此房间信息是否成功      |
+| room_id     | int         | 房间编号                    |
+| rname       | string      | 房间名                      |
+| rtype       | string      | 房间类型                    |
+| maxnum      | int         | 房间居住人数上限            |
+| area        | VARCHAR(50) | 房间面积                    |
+| rin         | tinyint     | 房间是否有窗                |
+| money       | int         | 房间金额/日                 |
+| temperature | int         | 房间当前温度                |
+| humidity    | int         | 房间当前湿度                |
+| stamp       | string      | 时间戳                      |
+| table_prove | string      | 表验证，MD5(表名+时间戳+盐) |
 
 请求示例：
 
@@ -598,7 +598,7 @@ API：`/roominf_admin`
     "rname":"温馨大床房"
     "rtype":"特大床",
     "maxnum":3,
-    "area":30,
+    "area":"25-30",
     "rin":1,
     "money":300,
     "temperature":27,
@@ -624,20 +624,20 @@ API：`/roominfmod_admin`
 
 **请求参数：**
 
-| 字段        | 数据类型 | 备注                              |
-| ----------- | -------- | --------------------------------- |
-| wecharid    | string   | 用户的身份标识                    |
-| room_id     | int      | 房间号                            |
-| rname       | string   | 房间名                            |
-| rtype       | string   | 房间类型                          |
-| maxnum      | int      | 房间居住人数上限                  |
-| area        | int      | 房间面积                          |
-| rin         | tinyint  | 房间是否有窗                      |
-| money       | int      | 房间金额/日                       |
-| temperature | int      | 房间当前温度                      |
-| humidity    | int      | 房间当前湿度                      |
-| stamp       | string   | 时间戳                            |
-| prove       | string   | 身份验证，MD5(wecharid+时间戳+盐) |
+| 字段        | 数据类型    | 备注                              |
+| ----------- | ----------- | --------------------------------- |
+| wecharid    | string      | 用户的身份标识                    |
+| room_id     | int         | 房间编号                          |
+| rname       | string      | 房间名                            |
+| rtype       | string      | 房间类型                          |
+| maxnum      | int         | 房间居住人数上限                  |
+| area        | VARCHAR(50) | 房间面积                          |
+| rin         | tinyint     | 房间是否有窗                      |
+| money       | int         | 房间金额/日                       |
+| temperature | int         | 房间当前温度                      |
+| humidity    | int         | 房间当前湿度                      |
+| stamp       | string      | 时间戳                            |
+| prove       | string      | 身份验证，MD5(wecharid+时间戳+盐) |
 
 **返回参数：**
 
@@ -658,7 +658,7 @@ API：`/roominfmod_admin`
     "rname":"温馨大床房"
     "rtype":"特大床",
     "maxnum":3,
-    "area":30,
+    "area":"30",
     "rin":true,
     "money":300,
     "temperature":27,
@@ -697,7 +697,7 @@ API：`/doorinf_admin`
 | 字段      | 数据类型 | 备注                              |
 | --------- | -------- | --------------------------------- |
 | wecharid  | string   | 用户的身份标识                    |
-| room_id   | int      | 房间号                            |
+| room_id   | int      | 房间编号                          |
 | starttime | string   | 查询时间范围的起始时间            |
 | endtime   | string   | 查询时间范围的结束时间            |
 | stamp     | string   | 时间戳                            |
@@ -842,7 +842,7 @@ API：`/userconf`
 
 功能描述：**记录开门信息**。
 
-用来记录开门的信息，后端要记录开门者的身份、房间号和开门时间。
+用来记录开门的信息，后端要记录开门者的身份、房间编号和开门时间。
 
 API：`/recdoor`
 
@@ -855,7 +855,7 @@ API：`/recdoor`
 | 字段      | 数据类型 | 备注                              |
 | --------- | -------- | --------------------------------- |
 | wecharid  | string   | 用户的身份标识                    |
-| room_id   | int      | 房间号                            |
+| room_id   | int      | 房间编号                          |
 | open_time | string   | 开门的时间                        |
 | stamp     | string   | 时间戳                            |
 | prove     | string   | 身份验证，MD5(wecharid+时间戳+盐) |
@@ -911,7 +911,7 @@ API：`/orderinf`
 | 字段     | 数据类型 | 备注                              |
 | -------- | -------- | --------------------------------- |
 | wecharid | string   | 用户的身份标识                    |
-| room_id  | int      | 房间号                            |
+| room_id  | int      | 房间编号                          |
 | stamp    | string   | 时间戳                            |
 | prove    | string   | 身份验证，MD5(wecharid+时间戳+盐) |
 
@@ -920,7 +920,7 @@ API：`/orderinf`
 | 字段        | 数据类型 | 备注                        |
 | ----------- | -------- | --------------------------- |
 | result      | tinyint  | 订单信息是否查询成功        |
-| room_id     | int      | 房间号                      |
+| room_id     | int      | 房间编号                    |
 | orderid     | int      | 订单编号                    |
 | pmoney      | int      | 订单应付金额                |
 | scid        | string   | 预定入住时间                |
@@ -979,26 +979,26 @@ API：`/roominf`
 | 字段     | 数据类型 | 备注                              |
 | -------- | -------- | --------------------------------- |
 | wecharid | string   | 用户的身份标识                    |
-| room_id  | int      | 房间号                            |
+| room_id  | int      | 房间编号                          |
 | stamp    | string   | 时间戳                            |
 | prove    | string   | 身份验证，MD5(wecharid+时间戳+盐) |
 
 **返回参数：**
 
-| 字段        | 数据类型 | 备注                        |
-| ----------- | -------- | --------------------------- |
-| result      | tinyint  | 房间信息是否查询成功        |
-| room_id     | int      | 房间号                      |
-| rname       | string   | 房间名                      |
-| rtype       | string   | 房间类型                    |
-| maxnum      | int      | 房间居住人数上限            |
-| area        | int      | 房间面积                    |
-| rin         | tinyint  | 房间是否有窗                |
-| money       | int      | 房间金额/日                 |
-| temperature | int      | 房间当前温度                |
-| humidity    | int      | 房间当前湿度                |
-| stamp       | string   | 时间戳                      |
-| table_prove | string   | 表验证，MD5(表名+时间戳+盐) |
+| 字段        | 数据类型    | 备注                        |
+| ----------- | ----------- | --------------------------- |
+| result      | tinyint     | 房间信息是否查询成功        |
+| room_id     | int         | 房间编号                    |
+| rname       | string      | 房间名                      |
+| rtype       | string      | 房间类型                    |
+| maxnum      | int         | 房间居住人数上限            |
+| area        | VARCHAR(50) | 房间面积                    |
+| rin         | tinyint     | 房间是否有窗                |
+| money       | int         | 房间金额/日                 |
+| temperature | int         | 房间当前温度                |
+| humidity    | int         | 房间当前湿度                |
+| stamp       | string      | 时间戳                      |
+| table_prove | string      | 表验证，MD5(表名+时间戳+盐) |
 
 请求示例：
 
@@ -1022,7 +1022,7 @@ API：`/roominf`
     "rname":"温馨大床房"
     "rtype":"特大床",
     "maxnum":3,
-    "area":30,
+    "area":"30",
     "rin":true,
     "money":300,
     "temperature":27,
@@ -1045,7 +1045,7 @@ API：`/roominf_visitor"`
 | 字段     | 数据类型 | 备注                              |
 | -------- | -------- | --------------------------------- |
 | wecharid | string   | 用户的身份标识                    |
-| room_id  | int      | 房间号                            |
+| room_id  | int      | 房间编号                          |
 | stamp    | string   | 时间戳                            |
 | prove    | string   | 身份验证，MD5(wecharid+时间戳+盐) |
 
@@ -1054,7 +1054,7 @@ API：`/roominf_visitor"`
 | 字段        | 数据类型 | 备注                        |
 | ----------- | -------- | --------------------------- |
 | result      | tinyint  | 房间信息是否查询成功        |
-| room_id     | int      | 房间号                      |
+| room_id     | int      | 房间编号                    |
 | stamp       | string   | 时间戳                      |
 | table_prove | string   | 表验证，MD5(表名+时间戳+盐) |
 
@@ -1099,7 +1099,7 @@ API：`/hardwareinf`
 | 字段     | 数据类型 | 备注                              |
 | -------- | -------- | --------------------------------- |
 | wecharid | string   | 用户的身份标识                    |
-| room_id  | int      | 房间号                            |
+| room_id  | int      | 房间编号                          |
 | stamp    | string   | 时间戳                            |
 | prove    | string   | 身份验证，MD5(wecharid+时间戳+盐) |
 
@@ -1112,7 +1112,7 @@ API：`/hardwareinf`
 | air_tmp      | int      | 空调当前温度                |
 | light_status | int      | 灯开关状态                  |
 | light_value  | int      | 灯当前的亮度                |
-| room_id      | int      | 房间号                      |
+| room_id      | int      | 房间编号                    |
 | stamp        | string   | 时间戳                      |
 | table_prove  | string   | 表验证，MD5(表名+时间戳+盐) |
 
