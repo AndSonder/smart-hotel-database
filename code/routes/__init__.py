@@ -1,7 +1,11 @@
 import os
+import glob
 
 # auto import route
-routes = os.listdir('./routes')[2:]
+routes = glob.glob(r"./routes/*.py")
+routes = [i.split('/')[-1] for i in routes]
+routes.remove('__init__.py')
+
 for route in routes:
     route = route[:-3]
     exec(f'from .{route} import {route}')

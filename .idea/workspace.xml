@@ -11,26 +11,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6c7053a4-bf8e-4346-935f-20ad2fb405eb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/06b3523c-1723-42f1-9d22-57972770285e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/06b3523c-1723-42f1-9d22-57972770285e.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code/routes/get_hotel_info.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webcode/src/api/hote.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webcode/src/store/modules/hote.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/models/db_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/models/db_config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/models/get_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/models/get_info.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/models/login_check.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/models/login_check.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/routes/admin_login.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/routes/admin_login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/routes/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/routes/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/routes/user_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/routes/user_info.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/数据库课设文档.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/数据库课设文档.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/网页端API接口文档.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/网页端API接口文档.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webcode/src/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/webcode/src/api/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webcode/src/store/modules/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/webcode/src/store/modules/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webcode/src/views/profile/components/Account.vue" beforeDir="false" afterPath="$PROJECT_DIR$/webcode/src/views/profile/components/Account.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webcode/src/views/profile/components/UserCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/webcode/src/views/profile/components/UserCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webcode/src/views/profile/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/webcode/src/views/profile/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/2-系统数据库设计.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/2-系统数据库设计.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcode/src/views/dashboard/admin/components/PanelGroup.vue" beforeDir="false" afterPath="$PROJECT_DIR$/webcode/src/views/dashboard/admin/components/PanelGroup.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -56,6 +68,10 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager" selected="Python.modles">
     <configuration name="SmartHotel@&amp;at;127.0.0.1.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
@@ -110,6 +126,9 @@
       <workItem from="1623572358103" duration="27000" />
       <workItem from="1623572387511" duration="8351000" />
       <workItem from="1623637596977" duration="2021000" />
+      <workItem from="1623757365949" duration="6104000" />
+      <workItem from="1623808644579" duration="931000" />
+      <workItem from="1623893249937" duration="11000" />
     </task>
     <servers />
   </component>
@@ -133,26 +152,30 @@
       <screen x="0" y="25" width="2560" height="1415" />
     </state>
     <state x="880" y="395" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623639824205" />
-    <state width="1684" height="447" key="GridCell.Tab.0.bottom" timestamp="1623674585020">
+    <state width="1740" height="400" key="GridCell.Tab.0.bottom" timestamp="1623808692997">
       <screen x="0" y="25" width="2560" height="1415" />
     </state>
-    <state width="1684" height="447" key="GridCell.Tab.0.bottom/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623674585020" />
-    <state width="1684" height="447" key="GridCell.Tab.0.center" timestamp="1623674585019">
+    <state width="1740" height="400" key="GridCell.Tab.0.bottom/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623808692997" />
+    <state width="1740" height="400" key="GridCell.Tab.0.center" timestamp="1623808692997">
       <screen x="0" y="25" width="2560" height="1415" />
     </state>
-    <state width="1684" height="447" key="GridCell.Tab.0.center/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623674585019" />
-    <state width="1684" height="447" key="GridCell.Tab.0.left" timestamp="1623674585019">
+    <state width="1740" height="400" key="GridCell.Tab.0.center/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623808692997" />
+    <state width="1740" height="400" key="GridCell.Tab.0.left" timestamp="1623808692996">
       <screen x="0" y="25" width="2560" height="1415" />
     </state>
-    <state width="1684" height="447" key="GridCell.Tab.0.left/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623674585019" />
-    <state width="1684" height="447" key="GridCell.Tab.0.right" timestamp="1623674585019">
+    <state width="1740" height="400" key="GridCell.Tab.0.left/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623808692996" />
+    <state width="1740" height="400" key="GridCell.Tab.0.right" timestamp="1623808692997">
       <screen x="0" y="25" width="2560" height="1415" />
     </state>
-    <state width="1684" height="447" key="GridCell.Tab.0.right/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623674585019" />
+    <state width="1740" height="400" key="GridCell.Tab.0.right/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623808692997" />
     <state width="237" height="539" key="HiddenNamespacesPopup" timestamp="1623639794881">
       <screen x="0" y="25" width="2560" height="1415" />
     </state>
     <state width="237" height="539" key="HiddenNamespacesPopup/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623639794881" />
+    <state x="789" y="368" key="SettingsEditor" timestamp="1623808578523">
+      <screen x="0" y="25" width="2560" height="1415" />
+    </state>
+    <state x="789" y="368" key="SettingsEditor/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623808578523" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/smart_hotel_database$__init____1_.coverage" NAME="__init__ (1) Coverage Results" MODIFIED="1623635458394" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code/routes" />

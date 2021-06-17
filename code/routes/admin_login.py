@@ -25,3 +25,4 @@ def index():
         return json.dumps({"code": 20000, "data": {"token": token}})
     else:
         return json.dumps({"code": 20002, "message": "用户名或密码错误"})
+

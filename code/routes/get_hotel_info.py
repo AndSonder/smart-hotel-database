@@ -3,32 +3,22 @@ from flask import request
 from ..models.get_info import GetInfo
 import json
 
-user_info = Blueprint('user_info', __name__)
-
-role_dict = {
-    1: 'admin',
-}
-
-# 自定义一些头像地址
-avatars = {
-    '卢畅': 'https://blog.keter.top/img/touxiang.png'
-}
+get_hotel_info = Blueprint('get_hotel_info', __name__)
 
 
-@user_info.route('/user/info', methods=['GET'])
+@get_hotel_info.route('/hotel/info', methods=['GET'])
 def index():
     """
-    获取管理员信息
-    e.g. {"code":20000,"data":{"roles":["admin"],"introduction":"I am a super administrator", "avatar":"https://xxxx","name":"Super Admin"}}
+    获取酒店盈利信息
     """
     token = request.args.get("token")
     if token is None:
-        return json.dumps({"code": 20003, "message": "token为空"})
+        return json.dumps({"code": 20003})
     db = GetInfo()
     data = db.search(token)
     # 用户不存在
     if data is None:
-        return json.dumps({"code": 20002, "message": "用户名或密码错误"})
+        return json.dumps({"code": 20002})
     name, sex, phone, level = data
     # 构建所需数据
     roles = [role_dict[level]]
