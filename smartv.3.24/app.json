@@ -1,0 +1,43 @@
+{
+  "pages": [
+    "pages/guidePage/guidePage",
+    "pages/tpl/reservation/reservation",
+    "pages/fill/fill",
+    "pages/tpl/own-room/own-room",
+    "pages/tpl/administrator/administrator",
+    "pages/enter/enter",
+    "pages/index/index",
+    "pages/pop-up/pop-up",
+    "pages/navigation/navigation",
+    "pages/search/search"
+  ],
+  "tabBar": {
+    "color":"#000000",
+    "selectedColor":"#13c2c2",
+    "list": [
+      {
+        "pagePath": "pages/tpl/reservation/reservation",
+        "text": "预订",
+        "iconPath": "/images/reservation.png",
+        "selectedIconPath": "/images/reservation_1.png"
+      },
+      {
+        "pagePath": "pages/tpl/own-room/own-room",
+        "text": "房间",
+        "iconPath": "/images/rooms.png",
+        "selectedIconPath": "/images/rooms_1.png"
+      },
+      {
+        "pagePath": "pages/tpl/administrator/administrator",
+        "text": "预览",
+        "iconPath": "/images/administrator.png",
+        "selectedIconPath": "/images/administrator_1.png"
+      }
+    ]
+    
+  },
+  "networkTimeout": {
+    "request": 20000
+  },
+  "sitemapLocation": "sitemap17.json"
+}

@@ -1,0 +1,13 @@
+
+{
+  "usingComponents": {
+    "modalView": "/pages/pop-up/pop-up"
+  },
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black",
+  "backgroundColor":"#eeeeee",
+  "backgroundTextStyle": "dark",
+  "enablePullDownRefresh": true,
+  "disableScroll": false,
+  "navigationBarTitleText": "智慧酒店"
+}

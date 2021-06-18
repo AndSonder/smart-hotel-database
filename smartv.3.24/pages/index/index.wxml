@@ -1,0 +1,76 @@
+<view class="total-framework">
+	<image class="total-img" src="/images/control.jpg" mode="scaleToFill"></image>
+	<view class="total-group">
+		<view class="title-group">
+			<view class="text-title">
+				<text class="title-text">{{roomID}}</text>
+			</view>
+		</view>
+		<view class="status-total">
+			<view class="status-on-group">
+				<view class="pho-group">
+					<image src="{{value.temlogo}}" class='pho-logo'></image>
+				</view>
+				<view class="pho-group">
+					<image src="{{value.humlogo}}" class='pho-logo'></image>
+				</view>
+			</view>
+			<view class="status-down-group">
+				<view class="temperature-group">
+					<text class="temperature">温度：{{roomTemperature}}℃</text>
+				</view>
+				<view class="humidity-group">
+					<text class="humidity">湿度：{{roomHumidity}}%</text>
+				</view>
+			</view>
+		</view>
+		<view class="air-group">
+			<view class="logo-group" bindtap="AirControl">
+				<image src="{{AirValue[0].Airlogo}}" class='logo'></image>
+			</view>
+			<view class="choAirStatus">
+				<view class="AirStatus">
+					<button class="choCoolAir" hover-class="choCoolAir-hover" bindtap="clickCoolAir">
+						<text class="choAirStatus_text">制冷模式</text>
+					</button>
+				</view>
+				<view class="AirStatus">
+					<button class="choNatureAir" hover-class="choNatureAir-hover" bindtap="clickNatureAir">
+						<text class="choAirStatus_text">正常模式</text>
+					</button>
+				</view>
+				<view class="AirStatus">
+					<button class="choWarmAir" hover-class="choWarmAir-hover" bindtap="clickWarmAir">
+						<text class="choAirStatus_text">制热模式</text>
+					</button>
+				</view>
+			</view>
+			<view class="AirStepper">
+				<van-stepper value="{{airTemperature}}" bind:change="onAir" step="1" long-press="{{ false }}" class="stepper-group">
+					<view class="custom-button">
+						<!-- {{airTemperature}} -->
+					</view>
+				</van-stepper>
+			</view>
+		</view>
+		<view class="lamp-group">
+			<view class="logo-group" bindtap="LampControl">
+				<image src="{{LampValue[0].Lamplogo}}" class='logo'></image>
+			</view>
+			<view class="slider-group">
+				<van-slider value="{{ledLight}}" bind:change="onLamp" step="1" min="1" max="5" bar-height="4px" class="slider-group">
+					<view class="custom-button" slot="button">
+						<!-- {{ledLight}} -->
+					</view>
+				</van-slider>
+			</view>
+		</view>
+		<view class="Check-group">
+    <view class="CheckCheck">
+			<button class="Check-button" hover-class="CheckButton-hover" bindtap="clickCheck">
+				<text class="Check_text">退  房</text>
+			</button>
+      </view>
+		</view>
+	</view>
+</view>

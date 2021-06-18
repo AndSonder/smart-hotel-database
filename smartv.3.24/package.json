@@ -1,0 +1,21 @@
+{
+    "name": "demo3",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "connect-favicons": "git://github.com/theworkers/connect-favicons.git",
+        "express": "^4.17.1",
+        "mysql": "^2.18.1",
+        "request": "^2.88.2",
+        "vant-weapp": "^0.5.27"
+    },
+    "private": true
+}

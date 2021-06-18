@@ -1,0 +1,13 @@
+
+<view class="nav" style="height:{{navBarHeight}}px;">
+ <view class="nav-main">
+ <!-- 胶囊区域 -->
+ <view 
+  class="capsule-box"
+  style="height:{{menuHeight}}px; min-height:{{menuHeight}}px; line-height:{{menuHeight}}px; bottom:{{menuBotton}}px;left:{{menuRight}}px;"
+ >
+ <!-- 导航内容区域 -->
+  <slot></slot>
+ </view>
+ </view>
+</view>

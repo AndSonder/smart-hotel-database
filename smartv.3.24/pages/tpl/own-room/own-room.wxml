@@ -1,0 +1,26 @@
+<!--pages/tpl/own-room/own-room.wxml-->
+<view class="all-group" hidden="{{hiddenName}}">
+<block wx:for="{{roomInfo}}" wx:for-item="own" wx:key="num">
+  <view class="rooms-group" bindtap="onroomClick" data-id="{{own.id}}" data-Ledstatus="{{own.Ledstatus}}" data-roomtemperature="{{own.roomTemperature}}" data-roomhumidity="{{own.roomHumidity}}" data-airtemperature="{{own.airTemperature}}" data-airstatus="{{own.airStatus}}" data-airpattern="{{own.airPattern}}" data-bright="{{own.bright}}" data-ledstatus="{{own.ledStatus}}">
+    <view class="on-group">
+      <text class="on-text">{{own.id}}</text>
+    </view>
+    <view class="center-group">
+      <view class="pho-group"><image src="{{value.temlogo}}" class='pho-logo'></image></view>
+      <view class="pho-group"><image src="{{value.humlogo}}" class='pho-logo'></image></view>
+      <view class="pho-group"><image src="{{value.airlogo}}" class='pho-logo'></image></view>
+    </view>
+    <view class="down-group">
+      <view class="temperature-group">
+        <text class="temperature">温度：{{own.roomTemperature}}℃</text>
+      </view>
+      <view class="humidity-group">
+        <text class="humidity">湿度：{{own.roomHumidity}}%</text>
+      </view>
+      <view class="air-conditioned-group">
+        <text class="air-conditioned">空调状态：{{own.airStatus}}</text>
+      </view>
+    </view>
+   </view> 
+</block>
+</view>

@@ -1,8 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="6c7053a4-bf8e-4346-935f-20ad2fb405eb" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/06b3523c-1723-42f1-9d22-57972770285e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/06b3523c-1723-42f1-9d22-57972770285e.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/models/db_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/models/db_config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/models/get_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/models/get_info.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/models/login_check.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/models/login_check.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/routes/admin_login.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/routes/admin_login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/routes/user_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/routes/user_info.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/数据库课设文档.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/数据库课设文档.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/网页端API接口文档.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/网页端API接口文档.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcode/src/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/webcode/src/api/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcode/src/store/modules/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/webcode/src/store/modules/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcode/src/views/profile/components/Account.vue" beforeDir="false" afterPath="$PROJECT_DIR$/webcode/src/views/profile/components/Account.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcode/src/views/profile/components/UserCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/webcode/src/views/profile/components/UserCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcode/src/views/profile/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/webcode/src/views/profile/index.vue" afterDir="false" />
+>>>>>>> e6653a7c97b6c0fdc127dbcaef41a9f2f2b5f080
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +51,7 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+<<<<<<< HEAD
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/main/main.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/webcode/.eslintignore" root0="FORCE_HIGHLIGHTING" />
@@ -35,8 +63,13 @@
     <setting file="file://$PROJECT_DIR$/code/models/get_info.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/webcode/.eslintrc.js" root0="FORCE_HIGHLIGHTING" />
   </component>
+=======
+  <component name="JupyterTrust" id="9c0efad5-d669-4350-9095-0d1919a533f1" />
+>>>>>>> e6653a7c97b6c0fdc127dbcaef41a9f2f2b5f080
   <component name="ProjectId" id="1tLATkPtZSEmEuQVd1Gu6pZ2lJf" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -125,7 +158,37 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="WindowStateProjectService">
+    <state x="880" y="395" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1623639824205">
+      <screen x="0" y="25" width="2560" height="1415" />
+    </state>
+    <state x="880" y="395" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623639824205" />
+    <state width="1684" height="447" key="GridCell.Tab.0.bottom" timestamp="1623674585020">
+      <screen x="0" y="25" width="2560" height="1415" />
+    </state>
+    <state width="1684" height="447" key="GridCell.Tab.0.bottom/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623674585020" />
+    <state width="1684" height="447" key="GridCell.Tab.0.center" timestamp="1623674585019">
+      <screen x="0" y="25" width="2560" height="1415" />
+    </state>
+    <state width="1684" height="447" key="GridCell.Tab.0.center/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623674585019" />
+    <state width="1684" height="447" key="GridCell.Tab.0.left" timestamp="1623674585019">
+      <screen x="0" y="25" width="2560" height="1415" />
+    </state>
+    <state width="1684" height="447" key="GridCell.Tab.0.left/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623674585019" />
+    <state width="1684" height="447" key="GridCell.Tab.0.right" timestamp="1623674585019">
+      <screen x="0" y="25" width="2560" height="1415" />
+    </state>
+    <state width="1684" height="447" key="GridCell.Tab.0.right/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623674585019" />
+    <state width="237" height="539" key="HiddenNamespacesPopup" timestamp="1623639794881">
+      <screen x="0" y="25" width="2560" height="1415" />
+    </state>
+    <state width="237" height="539" key="HiddenNamespacesPopup/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623639794881" />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/smart_hotel_database$__init____1_.coverage" NAME="__init__ (1) Coverage Results" MODIFIED="1623635458394" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code/routes" />
+    <SUITE FILE_PATH="coverage/smart_hotel_database$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1623557265994" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
     <SUITE FILE_PATH="coverage/smart_hotel_database$modles.coverage" NAME="modles Coverage Results" MODIFIED="1622538320842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main" />
+    <SUITE FILE_PATH="coverage/smart_hotel_database$login_check.coverage" NAME="login_check Coverage Results" MODIFIED="1623573458987" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code/models" />
+    <SUITE FILE_PATH="coverage/smart_hotel_database$app.coverage" NAME="app Coverage Results" MODIFIED="1623568652636" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
   </component>
 </project>
