@@ -11,15 +11,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6c7053a4-bf8e-4346-935f-20ad2fb405eb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/code/routes/get_hotel_info.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webcode/src/api/hote.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webcode/src/store/modules/hote.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/06b3523c-1723-42f1-9d22-57972770285e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/06b3523c-1723-42f1-9d22-57972770285e.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/models/get_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/models/get_info.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/routes/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/routes/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/routes/get_hotel_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/routes/get_hotel_info.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/routes/user_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/routes/user_info.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/2-系统数据库设计.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/2-系统数据库设计.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/数据库建表代码.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/数据库建表代码.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/网页端API接口文档.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/网页端API接口文档.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcode/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/webcode/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcode/src/store/getters.js" beforeDir="false" afterPath="$PROJECT_DIR$/webcode/src/store/getters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcode/src/store/modules/hote.js" beforeDir="false" afterPath="$PROJECT_DIR$/webcode/src/store/modules/hote.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webcode/src/views/dashboard/admin/components/PanelGroup.vue" beforeDir="false" afterPath="$PROJECT_DIR$/webcode/src/views/dashboard/admin/components/PanelGroup.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcode/src/views/dashboard/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/webcode/src/views/dashboard/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +131,8 @@
       <workItem from="1623637596977" duration="2021000" />
       <workItem from="1623757365949" duration="6104000" />
       <workItem from="1623808644579" duration="931000" />
-      <workItem from="1623893249937" duration="11000" />
+      <workItem from="1623893249937" duration="2400000" />
+      <workItem from="1623924621417" duration="7591000" />
     </task>
     <servers />
   </component>
@@ -152,22 +156,22 @@
       <screen x="0" y="25" width="2560" height="1415" />
     </state>
     <state x="880" y="395" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623639824205" />
-    <state width="1740" height="400" key="GridCell.Tab.0.bottom" timestamp="1623808692997">
+    <state width="1205" height="400" key="GridCell.Tab.0.bottom" timestamp="1623932943392">
       <screen x="0" y="25" width="2560" height="1415" />
     </state>
-    <state width="1740" height="400" key="GridCell.Tab.0.bottom/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623808692997" />
-    <state width="1740" height="400" key="GridCell.Tab.0.center" timestamp="1623808692997">
+    <state width="1205" height="400" key="GridCell.Tab.0.bottom/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623932943392" />
+    <state width="1205" height="400" key="GridCell.Tab.0.center" timestamp="1623932943392">
       <screen x="0" y="25" width="2560" height="1415" />
     </state>
-    <state width="1740" height="400" key="GridCell.Tab.0.center/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623808692997" />
-    <state width="1740" height="400" key="GridCell.Tab.0.left" timestamp="1623808692996">
+    <state width="1205" height="400" key="GridCell.Tab.0.center/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623932943392" />
+    <state width="1205" height="400" key="GridCell.Tab.0.left" timestamp="1623932943392">
       <screen x="0" y="25" width="2560" height="1415" />
     </state>
-    <state width="1740" height="400" key="GridCell.Tab.0.left/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623808692996" />
-    <state width="1740" height="400" key="GridCell.Tab.0.right" timestamp="1623808692997">
+    <state width="1205" height="400" key="GridCell.Tab.0.left/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623932943392" />
+    <state width="1205" height="400" key="GridCell.Tab.0.right" timestamp="1623932943392">
       <screen x="0" y="25" width="2560" height="1415" />
     </state>
-    <state width="1740" height="400" key="GridCell.Tab.0.right/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623808692997" />
+    <state width="1205" height="400" key="GridCell.Tab.0.right/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623932943392" />
     <state width="237" height="539" key="HiddenNamespacesPopup" timestamp="1623639794881">
       <screen x="0" y="25" width="2560" height="1415" />
     </state>
@@ -176,6 +180,14 @@
       <screen x="0" y="25" width="2560" height="1415" />
     </state>
     <state x="789" y="368" key="SettingsEditor/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623808578523" />
+    <state x="1150" y="596" width="329" height="272" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1623894055848">
+      <screen x="0" y="25" width="2560" height="1415" />
+    </state>
+    <state x="1150" y="596" width="329" height="272" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623894055848" />
+    <state x="1126" y="596" width="327" height="272" key="com.intellij.database.actions.ToolActions$ScriptingActionBase$MyDatabaseScriptDialog" timestamp="1623893728050">
+      <screen x="0" y="25" width="2560" height="1415" />
+    </state>
+    <state x="1126" y="596" width="327" height="272" key="com.intellij.database.actions.ToolActions$ScriptingActionBase$MyDatabaseScriptDialog/-1792.484.1792.1095/0.25.2560.1415@0.25.2560.1415" timestamp="1623893728050" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/smart_hotel_database$__init____1_.coverage" NAME="__init__ (1) Coverage Results" MODIFIED="1623635458394" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code/routes" />

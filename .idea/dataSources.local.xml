@@ -19,7 +19,11 @@
       <user-name>root</user-name>
       <schema-mapping>
         <introspection-scope>
-          <node kind="schema" qname="out_smart_hotel" />
+          <node kind="schema">
+            <name qname="out_smart_hotel" />
+            <name qname="SmartHotel" />
+            <name qname="smarthotel" />
+          </node>
         </introspection-scope>
       </schema-mapping>
     </data-source>

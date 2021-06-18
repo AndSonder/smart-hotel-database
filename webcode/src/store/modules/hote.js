@@ -1,4 +1,4 @@
-import { getHotelInfo } from '@/api/hote'
+import {getHotelInfo} from '@/api/hote'
 import {getToken, setToken, removeToken} from '@/utils/auth'
 import router, {resetRouter} from '@/router'
 
@@ -31,19 +31,13 @@ const actions = {
   getHotelInfo({commit, state}) {
     return new Promise((resolve, reject) => {
       getHotelInfo(state.token).then(response => {
-        const { data } = response
+        const {data} = response
 
         if (!data) {
-          reject('Verification failed, please Login again.')
+          reject('认真失败, 请重新登录')
         }
 
-        const { people_num, question_num, order_num, order_money } = data
-
-        // roles must be a non-empty array
-        if (!roles || roles.length <= 0) {
-          reject('getInfo: roles must be a non-null array!')
-        }
-
+        const {people_num, question_num, order_num, order_money} = data
         commit('SET_PEOPLE', people_num)
         commit('SET_QUESTION', question_num)
         commit('SET_ORDER', order_num)
