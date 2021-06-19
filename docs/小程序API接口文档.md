@@ -43,7 +43,7 @@ API：`/userpush`
     "sex":1,
     "id_card":"230xxxxxxxxxxxxxxx",
     "phone":"181xxxx6924",
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "prove":"xxxxxxxxxx",
 }
 ```
@@ -53,7 +53,7 @@ API：`/userpush`
 ```json
 {
     "result":1,
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "table_prove":"xxxxxxxxxxx",
 }
 ```
@@ -95,11 +95,11 @@ API：`/orderpush`
 ```json
 {
     "wecharid":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
-    "scid":"2020-05-21 19:00:00",
-    "sgo":"2020-05-22 15:00:00",
+    "scid":"2020-05-21/19:00:00",
+    "sgo":"2020-05-22/15:00:00",
     "pmoney":300,
     "room_id":101,
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "prove":"xxxxxxxxxx",
 }
 ```
@@ -109,7 +109,7 @@ API：`/orderpush`
 ```json
 {
     "result":1,
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "table_prove":"xxxxxxxxxxx",
 }
 ```
@@ -151,7 +151,7 @@ API：`/chargeback_user`
 {
     "wecharid":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "id":000000123,
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "prove":"xxxxxxxxxx",
 }
 ```
@@ -161,7 +161,7 @@ API：`/chargeback_user`
 ```json
 {
     "result":1,
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "table_prove":"xxxxxxxxxxx",
 }
 ```
@@ -204,8 +204,8 @@ API：`/checkout_user`
 {
     "wecharid":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "id":000000123,
-    "go":"2020-05-21 18:55:49",
-    "stamp":"2020-05-21 18:55:49",
+    "go":"2020-05-21/18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "prove":"xxxxxxxxxx",
 }
 ```
@@ -215,7 +215,7 @@ API：`/checkout_user`
 ```json
 {
     "result":1,
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "table_prove":"xxxxxxxxxxx",
 }
 ```
@@ -261,8 +261,7 @@ API：`/userinf_admin`
 ```json
 {
     "wecharid_admin":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
-    "wecharid_user":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "prove":"xxxxxxxxxx",
 }
 ```
@@ -273,7 +272,7 @@ API：`/userinf_admin`
 {
     "result":1,
     "name":"张三",
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "table_prove":"xxxxxxxxxxx",
 }
 xxxx.jpg/xxxx.png
@@ -323,7 +322,7 @@ API：`/markuserinf_admin`
 {
     "wecharid_admin":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "wecharid_user":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "prove":"xxxxxxxxxx",
 }
 ```
@@ -337,7 +336,7 @@ API：`/markuserinf_admin`
     "sex":1,
     "id_card":"230xxxxxxxxxxxxxxx",
     "phone":"181xxxx6924",
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "table_prove":"xxxxxxxxxxx",
 }
 xxxx.jpg/xxxx.png
@@ -387,7 +386,7 @@ API：`/markuserinfmod_admin`
     "sex":1,
     "id_card":"230xxxxxxxxxxxxxxx",
     "phone":"181xxxx6924",
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "prove":"xxxxxxxxxx",
 }
 ```
@@ -397,7 +396,7 @@ API：`/markuserinfmod_admin`
 ```json
 {
     "result":1,
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "table_prove":"xxxxxxxxxxx",
 }
 ```
@@ -449,7 +448,7 @@ API：`/orderinf_admin`
     "wecharid":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "pmoney":1000,
     "id":000000123,
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "prove":"xxxxxxxxxx",
 }
 ```
@@ -460,12 +459,12 @@ API：`/orderinf_admin`
 {
     "result":1,
     "pmoney":400,
-    "scid":"2020-05-16 18:55:49",
-    "sgo":"2020-05-25 18:55:49",
-    "cid":"2020-05-17 18:55:49",
-    "go":"2020-05-26 18:55:49",
+    "scid":"2020-05-16/18:55:49",
+    "sgo":"2020-05-25/18:55:49",
+    "cid":"2020-05-17/18:55:49",
+    "go":"2020-05-26/18:55:49",
     "room_id":102,
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "table_prove":"xxxxxxxxxxx",
 }
 ```
@@ -521,7 +520,7 @@ API：`/orderinfmod_admin`
     "cid":"2020-05-17 18:55:49",
     "go":"2020-05-26 18:55:49",
     "room_id":102,
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "prove":"xxxxxxxxxx",
 }
 ```
@@ -531,7 +530,7 @@ API：`/orderinfmod_admin`
 ```json
 {
     "result":1,
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "table_prove":"xxxxxxxxxxx",
 }
 ```
@@ -584,7 +583,7 @@ API：`/roominf_admin`
 {
     "wecharid":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "room_id":101,
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "prove":"xxxxxxxxxx",
 }
 ```
@@ -603,7 +602,7 @@ API：`/roominf_admin`
     "money":300,
     "temperature":27,
     "humidity":38,
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "table_prove":"xxxxxxxxxxx",
 }
 ```
@@ -663,7 +662,7 @@ API：`/roominfmod_admin`
     "money":300,
     "temperature":27,
     "humidity":38,
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "prove":"xxxxxxxxxx",
 }
 ```
@@ -673,7 +672,7 @@ API：`/roominfmod_admin`
 ```json
 {
     "result":1,
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "table_prove":"xxxxxxxxxxx",
 }
 ```
@@ -724,7 +723,7 @@ API：`/doorinf_admin`
     "room_id":101,
     "starttime":"2020-05-19 18:55:49",
     "endtime":"2020-05-19 20:55:49"
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "prove":"xxxxxxxxxx",
     
 }
@@ -738,7 +737,7 @@ API：`/doorinf_admin`
     "wecharid":"1c054ecb0e947af1661e9f4ae63053c6",
     "identity":[1,0.1,0],
     "opentime":["2020-05-21 18:55:29","2020-05-11 18:55:29","2020-05-31 18:55:29","2020-05-01 18:55:29"],
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "table_prove":"xxxxxxxxxxx",
 }
 ```
@@ -755,20 +754,24 @@ API：`/login`
 
 请求方法：GET
 
-支持格式：JSON
+支持格式：STRING
 
 **请求参数：**
 
-| 参数名称    | 类型   | 必填 | 说明           |
-| ----------- | ------ | ---- | -------------- |
-| openid_code | string | 是   | 获取openid必备 |
+| 参数名称    | 类型   | 说明                              |
+| ----------- | ------ | --------------------------------- |
+| openid_code | string | 获取openid必备                    |
+| stamp       | string | 时间戳                            |
+| prove       | string | 身份验证，MD5(wecharid+时间戳+盐) |
 
 **返回参数：**
 
-| 参数名称 | 类型    | 说明               |
-| -------- | ------- | ------------------ |
-| result   | tinyint | openid是否获取成功 |
-| wecharid | string  | 用户的身份标识     |
+| 参数名称    | 类型    | 说明                        |
+| ----------- | ------- | --------------------------- |
+| result      | tinyint | openid是否获取成功          |
+| wecharid    | string  | 用户的身份标识              |
+| stamp       | string  | 时间戳                      |
+| table_prove | string  | 表验证，MD5(表名+时间戳+盐) |
 
 请求示例：
 
@@ -777,6 +780,8 @@ API：`/login`
 ```json
 {
     "openid_code":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
+    "stamp":"2020-05-21/18:55:49",
+    "prove":"xxxxxxxxxx",
 }
 ```
 
@@ -785,8 +790,9 @@ API：`/login`
 ```json
 {
     "result":1,
-    "stamp":"2020-05-21 18:55:49"
     "openid":"1c054ecb0e947af1661e9f4ae63053c5",
+    "stamp":"2020-05-21/18:55:49",
+    "table_prove":"xxxxxxxxxxx",
 }
 ```
 
@@ -804,9 +810,11 @@ API：`/userconf`
 
 **请求参数：**
 
-| 字段     | 数据类型 | 备注           |
-| -------- | -------- | -------------- |
-| wecharid | string   | 用户的身份标识 |
+| 字段     | 数据类型 | 备注                              |
+| -------- | -------- | --------------------------------- |
+| wecharid | string   | 用户的身份标识                    |
+| stamp    | string   | 时间戳                            |
+| prove    | string   | 身份验证，MD5(wecharid+时间戳+盐) |
 
 **返回参数：**
 
@@ -823,7 +831,9 @@ API：`/userconf`
 
 ```json
 {
-    "wecharid":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls"
+    "wecharid":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
+    "stamp":"2020-05-21/18:55:49",
+    "prove":"xxxxxxxxxx",
 }
 ```
 
@@ -833,7 +843,7 @@ API：`/userconf`
 {
     "result":1,
     "identity":1,
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "table_prove":"xxxxxxxxxxx",
 }
 ```
@@ -876,8 +886,8 @@ API：`/recdoor`
 {
     "wecharid":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "room_id":101,
-    "open_time":"2021-05-21 18:55:49",
-    "stamp":"2020-05-21 18:55:49",
+    "open_time":"2021-05-21/18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "prove":"xxxxxxxxxx",
 }
 ```
@@ -887,7 +897,7 @@ API：`/recdoor`
 ```json
 {
     "result":1,
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "table_prove":"xxxxxxxxxxx"
 }
 ```
@@ -938,7 +948,7 @@ API：`/orderinf`
 {
     "wecharid":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "room_id":101,
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "prove":"xxxxxxxxxx",
 }
 ```
@@ -951,11 +961,11 @@ API：`/orderinf`
     "room_id":101,
     "orderid":1,
     "pmoney":300,
-    "scid":"2020-05-21 18:00:00",
-    "sgo":"2020-05-22 19:00:00",
-    "cid":"2020-05-21 19:00:00",
-    "go":"2020-05-22 15:00:00",
-    "stamp":"2020-05-21 18:55:49",
+    "scid":"2020-05-21/18:00:00",
+    "sgo":"2020-05-22/19:00:00",
+    "cid":"2020-05-21/19:00:00",
+    "go":"2020-05-22/15:00:00",
+    "stamp":"2020-05-21/18:55:49",
     "table_prove":"xxxxxxxxxxx"
 }
 ```
@@ -1008,7 +1018,7 @@ API：`/roominf`
 {
     "wecharid":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "room_id":101,
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "prove":"xxxxxxxxxx",
 }
 ```
@@ -1027,7 +1037,7 @@ API：`/roominf`
     "money":300,
     "temperature":27,
     "humidity":38,
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "table_prove":"xxxxxxxxxxx",
 }
 ```
@@ -1066,7 +1076,7 @@ API：`/roominf_visitor"`
 {
     "wecharid":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "room_id":101,
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "prove":"xxxxxxxxxx",
 }
 ```
@@ -1077,7 +1087,7 @@ API：`/roominf_visitor"`
 {
     "result":1,
     "room_id":101,
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "table_prove":"xxxxxxxxxxx",
 }
 ```
@@ -1124,7 +1134,7 @@ API：`/hardwareinf`
 {
     "wecharid":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "room_id":101,
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "prove":"xxxxxxxxxx",
 }
 ```
@@ -1139,7 +1149,7 @@ API：`/hardwareinf`
     "light_status":true,
     "light_value":50,
     "room_id":101,
-    "stamp":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21/18:55:49",
     "table_prove":"xxxxxxxxxxx",
 }
 ```
