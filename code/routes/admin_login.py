@@ -6,7 +6,6 @@ from ..models.login_check import LoginCheck
 
 admin_login = Blueprint('admin_login', __name__)
 
-
 @admin_login.route('/user/login', methods=['POST'])
 def index():
     data = request.get_data()
@@ -26,3 +25,7 @@ def index():
         return json.dumps({"code": 20000, "data": {"token": token}})
     else:
         return json.dumps({"code": 20002, "message": "用户名或密码错误"})
+<<<<<<< HEAD
+
+=======
+>>>>>>> e6653a7c97b6c0fdc127dbcaef41a9f2f2b5f080

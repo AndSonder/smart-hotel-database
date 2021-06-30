@@ -14,8 +14,6 @@ avatars = {
     '卢畅': 'https://blog.keter.top/img/touxiang.png'
 }
 
-
-
 @user_info.route('/user/info', methods=['GET'])
 def index():
     """

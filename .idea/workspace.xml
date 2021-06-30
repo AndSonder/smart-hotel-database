@@ -11,6 +11,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6c7053a4-bf8e-4346-935f-20ad2fb405eb" name="Default Changelist" comment="">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/06b3523c-1723-42f1-9d22-57972770285e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/06b3523c-1723-42f1-9d22-57972770285e.xml" afterDir="false" />
+>>>>>>> refs/remotes/origin/master
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/models/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/models/db_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/models/db_config.py" afterDir="false" />
@@ -19,7 +27,17 @@
       <change beforePath="$PROJECT_DIR$/code/routes/admin_login.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/routes/admin_login.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/routes/user_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/routes/user_info.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/数据库课设文档.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/数据库课设文档.md" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/webcode/src/views/table/complex-table.vue" beforeDir="false" afterPath="$PROJECT_DIR$/webcode/src/views/table/complex-table.vue" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/docs/网页端API接口文档.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/网页端API接口文档.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcode/src/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/webcode/src/api/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcode/src/store/modules/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/webcode/src/store/modules/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcode/src/views/profile/components/Account.vue" beforeDir="false" afterPath="$PROJECT_DIR$/webcode/src/views/profile/components/Account.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcode/src/views/profile/components/UserCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/webcode/src/views/profile/components/UserCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcode/src/views/profile/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/webcode/src/views/profile/index.vue" afterDir="false" />
+>>>>>>> e6653a7c97b6c0fdc127dbcaef41a9f2f2b5f080
+>>>>>>> refs/remotes/origin/master
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +51,7 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
     <envs>
       <env key="FLASK_APP" value="app" />
@@ -44,6 +63,8 @@
       </map>
     </option>
   </component>
+=======
+>>>>>>> refs/remotes/origin/master
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -52,7 +73,21 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+<<<<<<< HEAD
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/main/main.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/webcode/.eslintignore" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/code/routes/admin_login.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/main/modles.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/main/__init__.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/code/models/db_config.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/code/routes/ide_confirm.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/code/models/get_info.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/webcode/.eslintrc.js" root0="FORCE_HIGHLIGHTING" />
+  </component>
+=======
   <component name="JupyterTrust" id="9c0efad5-d669-4350-9095-0d1919a533f1" />
+>>>>>>> e6653a7c97b6c0fdc127dbcaef41a9f2f2b5f080
   <component name="ProjectId" id="1tLATkPtZSEmEuQVd1Gu6pZ2lJf" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -66,6 +101,7 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+<<<<<<< HEAD
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
@@ -75,6 +111,11 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
+=======
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="node.js.detected.package.eslint" value="true" />
+>>>>>>> refs/remotes/origin/master
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
@@ -130,6 +171,7 @@
       <workItem from="1623572299121" duration="48000" />
       <workItem from="1623572358103" duration="27000" />
       <workItem from="1623572387511" duration="8351000" />
+<<<<<<< HEAD
       <workItem from="1623637596977" duration="2021000" />
       <workItem from="1623757365949" duration="6104000" />
       <workItem from="1623808644579" duration="931000" />
@@ -140,6 +182,11 @@
       <workItem from="1624026055104" duration="8751000" />
       <workItem from="1624948317817" duration="813000" />
       <workItem from="1624969987257" duration="2397000" />
+=======
+      <workItem from="1623637596977" duration="2885000" />
+      <workItem from="1623998601877" duration="1358000" />
+      <workItem from="1623999978840" duration="13000" />
+>>>>>>> refs/remotes/origin/master
     </task>
     <servers />
   </component>
