@@ -10,7 +10,7 @@ class LoginCheck(Model):
         data = self.cursor.fetchone()
         return data
 
-1
+
 if __name__ == '__main__':
     l = LoginCheck()
     l.search('admin')

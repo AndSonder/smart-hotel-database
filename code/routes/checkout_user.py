@@ -4,10 +4,10 @@ from flask import Blueprint
 from flask import request
 import json
 
-#https://www.supremeproger.com/orderpush
-orderpush = Blueprint('orderpush', __name__)
+#https://www.supremeproger.com/checkout_user
+checkout_user = Blueprint('checkout_user', __name__)
 
-@orderpush.route('/orderpush', methods=['POST'])
+@checkout_user.route('/checkout_user', methods=['POST'])
 def index():
     data = request.get_data()
     data = json.loads(data)

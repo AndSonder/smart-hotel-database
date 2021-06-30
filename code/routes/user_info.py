@@ -23,20 +23,12 @@ def index():
     """
     token = request.args.get("token")
     if token is None:
-<<<<<<< HEAD
         return json.dumps({"code": 20003, "message": "token为空"})
-=======
-        return json.dumps({"code": 20003})
->>>>>>> e6653a7c97b6c0fdc127dbcaef41a9f2f2b5f080
     db = GetInfo()
     data = db.search(token)
     # 用户不存在
     if data is None:
-<<<<<<< HEAD
         return json.dumps({"code": 20002, "message": "用户名或密码错误"})
-=======
-        return json.dumps({"code": 20002})
->>>>>>> e6653a7c97b6c0fdc127dbcaef41a9f2f2b5f080
     name, sex, phone, level = data
     # 构建所需数据
     roles = [role_dict[level]]
@@ -56,7 +48,4 @@ def index():
     }
     return json.dumps(data)
 
-<<<<<<< HEAD
 
-=======
->>>>>>> e6653a7c97b6c0fdc127dbcaef41a9f2f2b5f080

@@ -2,16 +2,21 @@
 # time:2021/6/18
 from . import Model
 
-class Db_link(Model):
+class UserPush(Model):
     def __init__(self):
-        super(Db_link, self).__init__()
+        super(UserPush, self).__init__()
 
-    def search(self, word):
-        self.cursor.execute(f"SELECT wecharid FROM user WHERE token='{word}'")
-        data = self.cursor.fetchone()
-        if data is not None:
-            return data
-        else:
-            #data = 666表示不是管理员
-            data = 666
-            return data
+    def insert(self, csv_file):
+        sql = f"INSERT INTO user (wecharid, name, sex, id_card, phone, level) \
+        VALUES ({csv_file['wecharid']},{csv_file['name']},{csv_file['sex']},{csv_file['id_card']},{csv_file['phone']},{csv_file['level']})"
+        #传参
+        try:
+            self.cursor.execute(sql)
+            self.db.commit()
+            return 1
+        except:
+            # 发生错误时回滚
+            self.db.rollback()
+            return 0
+
+
