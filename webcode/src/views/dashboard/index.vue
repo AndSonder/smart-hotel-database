@@ -19,7 +19,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'roles'
+      'roles',
     ])
   },
   created() {

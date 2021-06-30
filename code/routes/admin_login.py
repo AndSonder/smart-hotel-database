@@ -1,7 +1,8 @@
+import json
 from flask import Blueprint
 from flask import request
+
 from ..models.login_check import LoginCheck
-import json
 
 admin_login = Blueprint('admin_login', __name__)
 

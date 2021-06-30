@@ -5,10 +5,9 @@ class GetInfo(Model):
     def __init__(self):
         super(GetInfo, self).__init__()
 
-    def search(self, token):
-        self.cursor.execute(f"select name,sex,phone,level from user where wecharid='{token}';")
+    def search(self, word):
+        self.cursor.execute(f"SELECT name, sex, phone, level FROM user WHERE wecharid='{word}'")
         data = self.cursor.fetchone()
-        print(data)
         return data
 
 
