@@ -5,19 +5,10 @@ class GetInfo(Model):
     def __init__(self):
         super(GetInfo, self).__init__()
 
-    def search(self, token):
-        self.cursor.execute(f"select name,sex,phone,level from user where wecharid='{token}';")
+    def search(self, word):
+        self.cursor.execute(f"SELECT name, sex, phone, level FROM user WHERE wecharid='{word}'")
         data = self.cursor.fetchone()
-        print(data)
         return data
-
-
-class GetHotelInfo(GetInfo):
-    def __init__(self):
-        super(GetHotelInfo, self).__init__()
-
-    def search_order_money(self):
-        self.cursor.execute(f"select COUNT(")
 
 
 if __name__ == '__main__':

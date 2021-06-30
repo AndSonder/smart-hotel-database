@@ -1,3 +1,5 @@
+# author:liuyang
+# time:2021/6/18
 from . import Model
 
 
@@ -14,6 +16,3 @@ class LoginCheck(Model):
 if __name__ == '__main__':
     l = LoginCheck()
     l.search('admin')
-
-
-

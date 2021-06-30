@@ -15,6 +15,7 @@ avatars = {
 }
 
 
+
 @user_info.route('/user/info', methods=['GET'])
 def index():
     """
