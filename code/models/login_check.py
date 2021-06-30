@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from . import Model
 
 
@@ -17,8 +16,6 @@ if __name__ == '__main__':
     l.search('admin')
 
 
-
-=======
 from . import Model
 
 
@@ -37,5 +34,3 @@ if __name__ == '__main__':
     l.search('admin')
 
 
-
->>>>>>> ae1d36bd60697f5aa89d4186f1bd8170cd10dcda
