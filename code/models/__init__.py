@@ -1,6 +1,8 @@
 import pymysql
-from .db_config import *
+
 from . import *
+from .db_config import *
+
 
 class Model:
     def __init__(self):

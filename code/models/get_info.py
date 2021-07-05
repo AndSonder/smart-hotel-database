@@ -10,7 +10,19 @@ class GetInfo(Model):
         data = self.cursor.fetchone()
         return data
 
+    def search_order(self, page, limit, sort):
+        start = (page - 1) * limit
+        if sort == '+id':
+            self.cursor.execute(
+                f"SELECT id,pmoney,scid,sgo,cid,go,wecharid,room_id FROM `order` ORDER BY id LIMIT {start},{limit};")
+        else:
+            self.cursor.execute(
+                f"SELECT id,pmoney,scid,sgo,cid,go,wecharid,room_id FROM `order` ORDER BY id DESC LIMIT {start},{limit};")
+        data = self.cursor.fetchall()
+        return data
+
 
 if __name__ == '__main__':
     l = GetInfo()
-    l.search('admin')
+    data = l.search_order(1, 2, '+id')
+    print(data)
