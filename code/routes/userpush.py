@@ -12,14 +12,18 @@ userpush = Blueprint('userpush', __name__)
 def index():
     data = request.get_data()
     data = json.loads(data)
-    db = UserPush
+    db = UserPush()
+
+    sql = f"INSERT INTO user (wecharid, name, sex, id_card, phone, level) VALUES ({data['wecharid']},'{data['name']}','{data['sex']}',{data['id_card']},{data['phone']},{data['level']})"
+    print(sql)
     if data is None:
         return json.dumps({"result": 0,"message": "获取数据失败！"})
     else:
-
+        print(data)
+        print(type(data))
         flag = db.insert(data)
         if flag == 1:
-            datas = {"result": 1, "stamp": data["stamp"], "table_prove": data["prove"]}
+            datas = {"result": 1, "stamp": data["name"], "table_prove": data["sex"]}
             return json.dumps(datas)
         else:
             return json.dumps({"result": 0,"message": "数据提交失败！"})
