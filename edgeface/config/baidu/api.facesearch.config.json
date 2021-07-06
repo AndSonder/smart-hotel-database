@@ -1,0 +1,11 @@
+{
+  "app_id": "22877537",
+  "api_key": "8VgEDPeilRL07xEAbZXnRD1y",
+  "api_secret": "6t5OdL5GY6DYSXkWW31BmrMD3qElwaKD",
+  "group_id_list": "creativeAI",
+  "options.max_face_num": 1,
+  "options.max_user_num": 1,
+  "options.match_threshold": 70,
+  "options.quality_control": "NORMAL",
+  "options.liveness_control": "NONE"
+}

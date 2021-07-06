@@ -3,3 +3,4 @@
 ./code/models/db_config.py
 .idea
 node_modules
+test_codes

@@ -111,7 +111,54 @@
 | code |   int    |             响应字段             |
 | data |   dict   | 数据字典，包含多个订单的详细信息 |
 
-例如：{"code": 20000,  "data": { "people_num": 2002, "question_num": 10, "order_num": 50, "order_money": 2000}}
+请求示例：
+
+request:
+
+```json
+{
+  "token": "asdasduoasudjoasjlalsdjl"
+}
+```
+
+response:
+
+```json
+{
+  "code": 20000,
+  "data": {
+    "total": 100,
+    "items": [
+      {
+        "id": 1,
+        "timestamp": 1356023838231,
+        "pmoney": 300,
+        "scid": 1356023838231,
+        "sgo": 1356023838234,
+        "cid": 1356023838231,
+        "go": 1356023838234,
+        "wecharid": "asdasdaxqewqdasasdd",
+        "room_id": 1
+      },
+      {
+        "id": 2,
+        "timestamp": 1356023838236,
+        "pmoney": 300,
+        "scid": 1356023838236,
+        "sgo": 1356023838250,
+        "cid": 1356023838236,
+        "go": 1356023838250,
+        "wecharid": "asdasdaxqewqdasasdd",
+        "room_id": 2
+      }
+    ]
+  }
+}
+```
+
+
+
+
 
 ## 错误码说明
 

@@ -1,0 +1,44 @@
+{
+  "threshold": 0.04,
+  "input_width": 640,
+  "input_height": 480,
+  "camera": "/dev/video2",
+  "camera_buffer_size": 1,
+  "image": "/home/root/workspace/helmet/data/test.png",
+  "mean": [
+    123,
+    117,
+    104
+  ],
+  "std": [
+    1,
+    1,
+    1
+  ],
+  "thread_num": 4,
+  "label": [
+    "background",
+    "hat"
+  ],
+  "model_dir": "/home/root/workspace/helmet/data/model",
+  "param_dir": "/home/root/workspace/helmet/data/params",
+  "serial_port": "/dev/ttyPS1",
+  "baudrate": 115200,
+  "serial_timeout": 5,
+  "mqtt_server_addr": "mqtt.visualdust.com",
+  "mqtt_server_port": 1883,
+  "mqtt_keepalive": 60,
+  "mqtt_client_name": "smartroom-02ebf9",
+  "mqtt_loop_mode": "None",
+  "client_id": "02ebf9fe-23bd-11eb-8e58-c809a8b58e20",
+  "capture_api_path": "/home/root/workspace/tools/*",
+  "capture_api_output_path": "/home/root/workspace/tools/*",
+  "face_search_api_success_flag": "success",
+  "command_open_door": "",
+  "command_light_up": "",
+  "command_light_off": "",
+  "command_open_willow": "",
+  "command_close_willow": "",
+  "command_light_+": "",
+  "command_light_-": ""
+}
