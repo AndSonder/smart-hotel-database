@@ -1,0 +1,10 @@
+{
+  "device": "/dev/video2",
+  "device_index": 2,
+  "capture_width": 640,
+  "capture_height": 480,
+  "face_cascade_file": "config/cvlib/front_face_default.xml",
+  "capture_api_path": "/home/root/workspace/tools/video",
+  "capture_api_command": "/home/root/workspace/tools/video/v4l2demo -i /dev/video2 -n 1 -j",
+  "capture_api_output_path": "image-0.jpg"
+}

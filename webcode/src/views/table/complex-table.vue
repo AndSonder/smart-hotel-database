@@ -1,11 +1,12 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.title" placeholder="姓名" style="width: 180px;" class="filter-item"
+      <el-input v-model="listQuery.name" placeholder="姓名" style="width: 180px;" class="filter-item"
                 @keyup.enter.native="handleFilter"/>
-      <el-input v-model="listQuery.title" placeholder="订单号" style="width: 180px; margin-left: 10px;" class="filter-item"
+      <el-input v-model="listQuery.id" placeholder="订单号" style="width: 180px; margin-left: 10px;" class="filter-item"
                 @keyup.enter.native="handleFilter"/>
-      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter" style="margin-left: 10px;">
+      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter"
+                 style="margin-left: 10px;">
         搜索
       </el-button>
       <el-button class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit"
@@ -36,42 +37,62 @@
       </el-table-column>
       <el-table-column label="应付金额" prop="pmoney" align="center" width="80">
         <template slot-scope="{row}">
-          <span>{{ row.id }}</span>
+          <span>{{ row.pmoney }}</span>
         </template>
       </el-table-column>
       <el-table-column label="预定入住日期" prop="scid" width="150px" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+          <div v-if="row.scid !== 0">
+            <span>{{ row.scid | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+          </div>
+          <div v-else>
+            <span></span>
+          </div>
         </template>
       </el-table-column>
       <el-table-column label="预定离开日期" width="150px" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+          <div v-if="row.sgo !== 0">
+            <span>{{ row.sgo | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+          </div>
+          <div v-else>
+            <span></span>
+          </div>
         </template>
       </el-table-column>
       <el-table-column label="实际入住时间" width="150px" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+          <div v-if="row.cid !== 0">
+            <span>{{ row.cid | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+          </div>
+          <div v-else>
+            <span></span>
+          </div>
         </template>
       </el-table-column>
       <el-table-column label="结账离开日期" width="150px" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+          <div v-if="row.go !== 0">
+            <span>{{ row.go | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+          </div>
+          <div v-else>
+            <span></span>
+          </div>
         </template>
       </el-table-column>
       <el-table-column label="住户姓名" width="110px" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.author }}</span>
+          <span>{{ row.name }}</span>
         </template>
       </el-table-column>
       <el-table-column label="住户微信id" width="200px" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.author }}</span>
+          <span>{{ row.wecharid }}</span>
         </template>
       </el-table-column>
       <el-table-column label="房间号" width="110px" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.author }}</span>
+          <span>{{ row.room_id }}</span>
         </template>
       </el-table-column>
       <el-table-column label="状态" class-name="status-col" width="100">
@@ -200,11 +221,10 @@ export default {
       listQuery: {
         page: 1,
         limit: 20,
-        importance: undefined,
-        title: undefined,
-        type: undefined,
         sort: '+id',
         token: getToken(),
+        title: undefined,
+        name: undefined
       },
       importanceOptions: [1, 2, 3],
       calendarTypeOptions,
@@ -249,14 +269,14 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      fetchList(this.listQuery).then(response => {
+      fetchOrderList(this.listQuery).then(response => {
         this.list = response.data.items
         this.total = response.data.total
 
         // Just to simulate the time of the request
         setTimeout(() => {
           this.listLoading = false
-        }, 1.5 * 1000)
+        }, 1.5 * 3000)
       })
     },
     handleFilter() {

@@ -1,0 +1,21 @@
+{
+  "serial_port": "/dev/ttyPS1",
+  "baudrate": 115200,
+  "serial_timeout": 5,
+  "mqtt_server_addr": "mqtt.visualdust.com",
+  "mqtt_server_port": 1883,
+  "mqtt_keepalive": 60,
+  "mqtt_client_name": "smartroom-02ebf9",
+  "mqtt_loop_mode": "None",
+  "client_id": "02ebf9fe-23bd-11eb-8e58-c809a8b58e20",
+  "capture_api_path": "/home/root/workspace/tools/video/v4l2demo",
+  "capture_api_output_path": "/home/root/workspace/tools/video/image-0.jpg",
+  "command_topic": "_sr_command",
+  "command_open_door": "D",
+  "command_light_up": "o",
+  "command_light_off": "f",
+  "command_open_willow": "w",
+  "command_close_willow": "w",
+  "command_light_+": "",
+  "command_light_-": ""
+}
