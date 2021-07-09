@@ -10,8 +10,8 @@ userpush = Blueprint('userpush', __name__)
 
 @userpush.route('/userpush', methods=['POST'])
 def index():
-    data = request.get_data()000
-    data = json.loads(data)000000
+    data = request.get_data()
+    data = json.loads(data)
     db = UserPush()
 
     sql = f"INSERT INTO user (wecharid, name, sex, id_card, phone, level) VALUES ({data['wecharid']},'{data['name']}','{data['sex']}',{data['id_card']},{data['phone']},{data['level']})"
