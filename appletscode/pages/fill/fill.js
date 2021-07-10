@@ -120,7 +120,7 @@ Page({
             });
         }
     },
-  
+
     // 确认身份
     confirm: function (e) {
         wx.login({ //先调用 wx.login() 获取 临时登录凭证code 
@@ -134,7 +134,7 @@ Page({
                         console.log(openid_1);
                         this.setData({
                             openid: openid_1, //更新预订用户的openID（加密）
-                        })   
+                        })
                         app.globalData.wecharID = this.data.openid; //设置预订用户openID的全局变量
                         wx.setStorageSync("openid", openid)
                         wx.showToast({ //身份确认弹窗
@@ -278,6 +278,7 @@ Page({
 
     //选择终止时间
     changeDateTime: function (e) {
+        console.log(e)
         this.setData({
             dateTime: e.detail.value
         });

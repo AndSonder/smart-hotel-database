@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/fill/fill",
     "pages/guidePage/guidePage",
     "pages/tpl/reservation/reservation",
-    "pages/fill/fill",
     "pages/tpl/own-room/own-room",
     "pages/tpl/administrator/administrator",
     "pages/enter/enter",
