@@ -68,6 +68,7 @@ def index():
             "room_id": order[-2],
             "status": status,
             "name": order[-1]
+
         }
         data["data"]["items"].append(item)
     return json.dumps(data)
