@@ -7,9 +7,9 @@ from ..models.user_push_info import UserPush
 import json
 
 #https://www.supremeproger.com/userpush
-userpush = Blueprint('login', __name__)
+login = Blueprint('login', __name__)
 
-@userpush.route('/login', methods=['GET'])
+@login.route('/login', methods=['GET'])
 def index():
     get_info = request.get_data()
     get_info = json.loads(get_info)
