@@ -60,7 +60,7 @@ API：/user/resident/perinf/push
 
 ### 超级管理员
 
-#### 超级管理员查看指定住户个人详细信息
+#### 超级管理员查看住户个人详细信息
 
 功能描述：**查询指定住户的个人详细信息**。
 
@@ -97,7 +97,7 @@ API：/user/admin/superadmin/perinf/get
 ```json
 {
     "adminCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
-    "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
+    "cerCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "stamp":"2020-05-2118:55:49",
     "prove":"xxxxxxxxxx",
 }
@@ -119,7 +119,7 @@ API：/user/admin/superadmin/perinf/get
 
 ### 经理
 
-#### 经理查看指定住户个人详细信息
+#### 经理查看住户个人详细信息
 
 功能描述：**查询指定住户的个人详细信息**。
 
@@ -156,7 +156,7 @@ API：/user/admin/manager/perinf/get
 ```json
 {
     "adminCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
-    "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
+    "cerCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "stamp":"2020-05-2118:55:49",
     "prove":"xxxxxxxxxx",
 }
@@ -178,7 +178,7 @@ API：/user/admin/manager/perinf/get
 
 ### 前台
 
-#### 前台查看指定住户个人详细信息
+#### 前台查看住户个人详细信息
 
 功能描述：**查询指定住户的个人详细信息**。
 
@@ -215,7 +215,7 @@ API：/user/admin/reception/perinf/get
 ```json
 {
     "adminCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
-    "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
+    "cerCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "stamp":"2020-05-2118:55:49",
     "prove":"xxxxxxxxxx",
 }
@@ -239,7 +239,7 @@ API：/user/admin/reception/perinf/get
 
 ### 住户
 
-#### 住户查看所有个人订单简略信息
+#### 住户查看个人订单简略信息
 
 功能描述：**查询指定住户的所有订单简略信息**。
 
@@ -253,7 +253,7 @@ API：/user/admin/resident/orderinfs/get
 
 | 字段    | 数据类型 | 必填 | 备注                                                         |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
-| resCode | string   | 是   | 住户的登录凭证，后端借其获取openid，验证用户身份是否为住户   |
+| cerCode | string   | 是   | 住户的登录凭证，后端借其获取openid，验证用户身份是否为住户   |
 | stamp   | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
 | prove   | string   | 是   | 管理员的adminCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
 
@@ -264,13 +264,13 @@ API：/user/admin/resident/orderinfs/get
 | errcode     | int          | 是   | 状态标识。0表示成功查询，1表示订单不存在，2表示未知错误。    |
 | order_list  | string(json) | 是   | 订单简略信息（订单号、实际入住时间、实际离开时间）           |
 | stamp       | string       | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
-| table_prove | string       | 是   | 表验证，功能与用法和prove一致，只不过把adminCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
+| table_prove | string       | 是   | 表验证，功能与用法和prove一致，只不过把cerCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
 
 **request**
 
 ```json
 {
-    "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
+    "cerCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "stamp":"2020-05-2118:55:49",
     "prove":"xxxxxxxxxx",
 }
@@ -296,7 +296,7 @@ API：/user/admin/resident/orderinfs/get
 }
 ```
 
-#### 住户查看指定个人订单详细信息
+#### 住户查看个人订单详细信息
 
 功能描述：**查询指定住户的指定订单详细信息**。
 
@@ -310,7 +310,7 @@ API：/user/admin/resident/orderinf/get
 
 | 字段    | 数据类型 | 必填 | 备注                                                         |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
-| resCode | string   | 是   | 住户的登录凭证，后端借其获取openid，验证用户身份是否为住户   |
+| cerCode | string   | 是   | 住户的登录凭证，后端借其获取openid，验证用户身份是否为住户   |
 | id      | int      | 是   | 订单号                                                       |
 | stamp   | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
 | prove   | string   | 是   | 管理员的adminCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
@@ -334,7 +334,7 @@ API：/user/admin/resident/orderinf/get
 | cid         | string   | 是   | 实际入住时间                                                 |
 | go          | string   | 是   | 实际离开时间                                                 |
 | stamp       | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
-| table_prove | string   | 是   | 表验证，功能与用法和prove一致，只不过把adminCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
+| table_prove | string   | 是   | 表验证，功能与用法和prove一致，只不过把cerCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
 
 **request**
 
@@ -370,13 +370,76 @@ API：/user/admin/resident/orderinf/get
 }
 ```
 
-
-
 ### 超级管理员
+
+#### 超级管理员查看订单详细信息
+
+功能描述：**查询指定时间和房间号的订单详细信息**。
+
+API：/user/admin/superadmin/orderinf/get
+
+请求方法：POST
+
+支持格式：JSON
+
+**请求参数**
+
+| 字段         | 数据类型 | 必填 | 备注                                                         |
+| ------------ | -------- | ---- | ------------------------------------------------------------ |
+| adminCode    | string   | 是   | 住户的登录凭证，后端借其获取openid，验证用户身份是否为住户   |
+| room_id      | int      | 是   | 房间号                                                       |
+| current_time | string   | 是   | 时间戳，前端获取的当前日期和时间。配合房间号联合查询指定房间的当前订单。 |
+| stamp        | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
+| prove        | string   | 是   | 管理员的adminCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
+
+**返回参数**
+
+| 字段        | 数据类型 | 必填 | 备注                                                         |
+| ----------- | -------- | ---- | ------------------------------------------------------------ |
+| errcode     | int      | 是   | 状态标识。0表示成功查询，1表示当前时间该房间无进行中订单，2表示未知错误。 |
+| id          | string   | 是   | 订单号                                                       |
+| deposit     | int      | 是   | 订金                                                         |
+| pmoney      | int      | 是   | 应付金额                                                     |
+| scid        | string   | 是   | 预计入住时间                                                 |
+| sgo         | string   | 是   | 预计离开时间                                                 |
+| cid         | string   | 是   | 实际入住时间                                                 |
+| go          | string   | 是   | 实际离开时间                                                 |
+| stamp       | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
+| table_prove | string   | 是   | 表验证，功能与用法和prove一致，只不过把adminCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
+
+**request**
+
+```json
+{
+    "adminCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
+    "id":123,
+    "stamp":"2020-05-2118:55:49",
+    "prove":"xxxxxxxxxx",
+}
+```
+
+**responise**
+
+```json
+{
+    "errcode":0/1/2/,
+    "id":123,
+    "deposit":100,
+    "pmoney":400,
+    "scid":"2020-05-1618:55:49",
+    "sgo":"2020-05-2518:55:49",
+    "cid":"2020-05-1718:55:49",
+    "go":"2020-05-2618:55:49",
+    "stamp":"2020-05-2118:55:49",
+    "table_prove":"xxxxxxxxxxx",
+}
+```
+
+
 
 ### 经理
 
-### 前台
+### 前台sss
 
 ## 房间信息
 
