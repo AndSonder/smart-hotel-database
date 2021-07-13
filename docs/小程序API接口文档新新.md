@@ -28,7 +28,7 @@ API：/user/perinfo/resident/post
 
 | 字段       | 数据类型 | 必填 | 备注                                                         |
 | ---------- | -------- | ---- | ------------------------------------------------------------ |
-| errcode    | int      | 是   | 状态标识。0表示成功提交，1表示用户已存在，2表示未知错误。    |
+| errcode    | int      | 是   | 状态标识。0表示成功提交，1表示住户已存在，2表示未知错误。    |
 | stamp      | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve | string   | 是   | 表验证，功能与用法和prove一致，只不过把resCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
 
@@ -82,8 +82,7 @@ API：/user/perinfo/resident/get
 
 | 字段       | 数据类型 | 必填 | 备注                                                         |
 | ---------- | -------- | ---- | ------------------------------------------------------------ |
-| errcode    | int      | 是   | 状态标识。0表示成功查询、1表示没有该住户、2表示用户不存在、3表示未知错误。 |
-| wecharId   | string   | 是   | 用户的身份标识                                               |
+| errcode    | int      | 是   | 状态标识。0表示成功查询、1表示没有该住户、2表示未知错误。    |
 | name       | string   | 是   | 用户姓名                                                     |
 | sex        | int      | 是   | 用户性别                                                     |
 | phone      | string   | 是   | 用户电话号码                                                 |
@@ -104,7 +103,7 @@ API：/user/perinfo/resident/get
 
 ```json
 {
-    "errcode":0/1/2/3,
+    "errcode":0/1/2,
     "name":"张三",
     "sex":1,
     "phone":"181xxxx6924",
@@ -138,8 +137,7 @@ API：/user/admin/super_admin/perinf/get
 
 | 字段       | 数据类型 | 必填 | 备注                                                         |
 | ---------- | -------- | ---- | ------------------------------------------------------------ |
-| errcode    | int      | 是   | 状态标识。0表示成功查询、1表示没有该管理员、2表示没有该住户、3表示用户不存在、4表示未知错误。 |
-| identify   | string   | 是   | 用户的身份标识                                               |
+| errcode    | int      | 是   | 状态标识。0表示成功查询、1表示没有该管理员、2表示没有该住户、3表示未知错误。 |
 | name       | string   | 是   | 用户姓名                                                     |
 | sex        | int      | 是   | 用户性别                                                     |
 | idCard     | string   | 是   | 用户身份证号                                                 |
@@ -162,7 +160,7 @@ API：/user/admin/super_admin/perinf/get
 
 ```json
 {
-    "errcode":0/1/2/3/4,
+    "errcode":0/1/2/3,
     "name":"张三",
     "sex":1,
     "idCard":"230xxxxxxxxxxxxxxx",
@@ -319,7 +317,7 @@ API：/order/orderinf/resident/get
 
 | 字段        | 数据类型 | 必填 | 备注                                                         |
 | ----------- | -------- | ---- | ------------------------------------------------------------ |
-| errcode     | int      | 是   | 状态标识。0表示成功查询、1表示没有该住户、2表示订单不存在、3表示用户不存在、4表示未知错误。 |
+| errcode     | int      | 是   | 状态标识。0表示成功查询、1表示没有该住户、2表示订单不存在、3表示未知错误。 |
 | orderId     | string   | 是   | 订单号                                                       |
 | deposit     | int      | 是   | 订金                                                         |
 | amountsPay  | int      | 是   | 应付金额                                                     |
@@ -346,7 +344,7 @@ API：/order/orderinf/resident/get
 
 ```json
 {
-    "errcode":0/1/2/3/4,
+    "errcode":0/1/2/3,
     "orderId":123,
     "deposit":100,
     "amountsPay":400,
