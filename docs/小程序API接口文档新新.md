@@ -16,7 +16,7 @@ API：/user/perinfo/resident/post
 
 | 字段    | 数据类型 | 必填 | 备注                                                         |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
-| resCode | string   | 是   | 住户的登录凭证，后端借其获取openid，验证用户身份是否为住户   |
+| resCode | string   | 是   | 住户的登录凭证，后端借其获取openid，将openid录入用户数据表中 |
 | name    | string   | 是   | 用户姓名                                                     |
 | sex     | string   | 是   | 用户性别                                                     |
 | idCard  | string   | 是   | 用户身份证号                                                 |
@@ -44,7 +44,7 @@ API：/user/perinfo/resident/post
     "idCard":"230xxxxxxxxxxxxxxx",
     "phone":"181xxxx6924",
     "stamp":"2020-05-21 18:55:49",
-    "prove":"xxxxxxxxxx",
+    "prove":"xxxxxxxxxx"
 }
 ```
 
@@ -54,7 +54,7 @@ API：/user/perinfo/resident/post
 {
     "errcode":0/1/2,
     "stamp":"2020-05-21 18:55:49",
-    "tableProve":"xxxxxxxxxxx",
+    "tableProve":"xxxxxxxxxxx"
 }
 ```
 
@@ -82,7 +82,7 @@ API：/user/perinfo/resident/get
 
 | 字段       | 数据类型 | 必填 | 备注                                                         |
 | ---------- | -------- | ---- | ------------------------------------------------------------ |
-| errcode    | int      | 是   | 状态标识。0表示成功查询，1表示用户不存在，2表示未知错误。    |
+| errcode    | int      | 是   | 状态标识。0表示成功查询、1表示没有该住户、2表示用户不存在、3表示未知错误。 |
 | wecharId   | string   | 是   | 用户的身份标识                                               |
 | name       | string   | 是   | 用户姓名                                                     |
 | sex        | int      | 是   | 用户性别                                                     |
@@ -96,7 +96,7 @@ API：/user/perinfo/resident/get
 {
     "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "stamp":"2020-05-21 18:55:49",
-    "prove":"xxxxxxxxxx",
+    "prove":"xxxxxxxxxx"
 }
 ```
 
@@ -104,12 +104,12 @@ API：/user/perinfo/resident/get
 
 ```json
 {
-    "errcode":0/1/2,
+    "errcode":0/1/2/3,
     "name":"张三",
     "sex":1,
     "phone":"181xxxx6924",
     "stamp":"2020-05-21 18:55:49",
-    "tableProve":"xxxxxxxxxxx",
+    "tableProve":"xxxxxxxxxxx"
 }
 ```
 
@@ -138,8 +138,8 @@ API：/user/admin/super_admin/perinf/get
 
 | 字段       | 数据类型 | 必填 | 备注                                                         |
 | ---------- | -------- | ---- | ------------------------------------------------------------ |
-| errcode    | int      | 是   | 状态标识。0表示成功查询，1表示用户不存在，2表示未知错误。    |
-| wecharId   | string   | 是   | 用户的身份标识                                               |
+| errcode    | int      | 是   | 状态标识。0表示成功查询、1表示没有该管理员、2表示没有该住户、3表示用户不存在、4表示未知错误。 |
+| identify   | string   | 是   | 用户的身份标识                                               |
 | name       | string   | 是   | 用户姓名                                                     |
 | sex        | int      | 是   | 用户性别                                                     |
 | idCard     | string   | 是   | 用户身份证号                                                 |
@@ -154,7 +154,7 @@ API：/user/admin/super_admin/perinf/get
     "adminCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "stamp":"2020-05-21 18:55:49",
-    "prove":"xxxxxxxxxx",
+    "prove":"xxxxxxxxxx"
 }
 ```
 
@@ -162,13 +162,14 @@ API：/user/admin/super_admin/perinf/get
 
 ```json
 {
-    "errcode":0/1/2,
+    "errcode":0/1/2/3/4,
     "name":"张三",
     "sex":1,
     "idCard":"230xxxxxxxxxxxxxxx",
     "phone":"181xxxx6924",
+    "identify":4,
     "stamp":"2020-05-21 18:55:49",
-    "tableProve":"xxxxxxxxxxx",
+    "tableProve":"xxxxxxxxxxx"
 }
 ```
 
@@ -190,7 +191,7 @@ API：/order/perinfo/resident/post
 
 | 字段    | 数据类型 | 必填 | 备注                                                         |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
-| resCode | string   | 是   | 住户的登录凭证，后端借其获取openid，验证用户身份是否为住户   |
+| resCode | string   | 是   | 住户的登录凭证，后端借其获取openid，将openid录入订单数据表中 |
 | expLive | string   | 是   | 预计入住时间                                                 |
 | expAway | string   | 是   | 预计离开时间                                                 |
 | actLive | string   | 是   | 实际入住时间                                                 |
@@ -202,7 +203,7 @@ API：/order/perinfo/resident/post
 
 | 字段       | 数据类型 | 必填 | 备注                                                         |
 | ---------- | -------- | ---- | ------------------------------------------------------------ |
-| errcode    | int      | 是   | 状态标识。0表示成功提交，1表示订单已存在，2表示未知错误。    |
+| errcode    | int      | 是   | 状态标识。0表示成功提交、1表示订单已存在、2表示未知错误。    |
 | stamp      | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve | string   | 是   | 表验证，功能与用法和prove一致，只不过把resCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
 
@@ -218,7 +219,7 @@ API：/order/perinfo/resident/post
     "actLive":"2020-05-17 18:55:49",
     "actAway":"2020-05-26 18:55:49",
     "stamp":"2020-05-21 18:55:49",
-    "prove":"xxxxxxxxxx",
+    "prove":"xxxxxxxxxx"
 }
 ```
 
@@ -228,7 +229,7 @@ API：/order/perinfo/resident/post
 {
     "errcode":0/1/2,
     "stamp":"2020-05-21 18:55:49",
-    "tableProve":"xxxxxxxxxxx",
+    "tableProve":"xxxxxxxxxxx"
 }
 ```
 
@@ -256,7 +257,7 @@ API：/order/ordersinf/resident/get
 
 | 字段       | 数据类型     | 必填 | 备注                                                         |
 | ---------- | ------------ | ---- | ------------------------------------------------------------ |
-| errcode    | int          | 是   | 状态标识。0表示成功查询，1表示订单不存在，2表示未知错误。    |
+| errcode    | int          | 是   | 状态标识。0表示成功查询、1表示没有该住户、2表示订单不存在、3表示未知错误。 |
 | orderlist  | string(json) | 是   | 订单简略信息（订单号、房间号、实际入住时间、实际离开时间、订单状态） |
 | stamp      | string       | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve | string       | 是   | 表验证，功能与用法和prove一致，只不过把resCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
@@ -267,7 +268,7 @@ API：/order/ordersinf/resident/get
 {
     "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "stamp":"2020-05-21 18:55:49",
-    "prove":"xxxxxxxxxx",
+    "prove":"xxxxxxxxxx"
 }
 ```
 
@@ -291,7 +292,7 @@ API：/order/ordersinf/resident/get
   	},
     ],
     "stamp":"2020-05-21 18:55:49",
-    "tableProve":"xxxxxxxxxxx",
+    "tableProve":"xxxxxxxxxxx"
 }
 ```
 
@@ -318,7 +319,7 @@ API：/order/orderinf/resident/get
 
 | 字段        | 数据类型 | 必填 | 备注                                                         |
 | ----------- | -------- | ---- | ------------------------------------------------------------ |
-| errcode     | int      | 是   | 状态标识。0表示成功查询，1表示订单不存在，2表示用户不存在，3表示未知错误。 |
+| errcode     | int      | 是   | 状态标识。0表示成功查询、1表示没有该住户、2表示订单不存在、3表示用户不存在、4表示未知错误。 |
 | orderId     | string   | 是   | 订单号                                                       |
 | deposit     | int      | 是   | 订金                                                         |
 | amountsPay  | int      | 是   | 应付金额                                                     |
@@ -337,7 +338,7 @@ API：/order/orderinf/resident/get
     "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "orderId":123,
     "stamp":"2020-05-21 18:55:49",
-    "prove":"xxxxxxxxxx",
+    "prove":"xxxxxxxxxx"
 }
 ```
 
@@ -345,7 +346,7 @@ API：/order/orderinf/resident/get
 
 ```json
 {
-    "errcode":0/1/2/3,
+    "errcode":0/1/2/3/4,
     "orderId":123,
     "deposit":100,
     "amountsPay":400,
@@ -355,7 +356,7 @@ API：/order/orderinf/resident/get
     "actAway":"2020-05-26 18:55:49",
     "orderStatus":2,
     "stamp":"2020-05-21 18:55:49",
-    "tableProve":"xxxxxxxxxxx",
+    "tableProve":"xxxxxxxxxxx"
 }
 ```
 
@@ -382,7 +383,7 @@ API：/order/orderinf/admin/get
 
 | 字段       | 数据类型 | 必填 | 备注                                                         |
 | ---------- | -------- | ---- | ------------------------------------------------------------ |
-| errcode    | int      | 是   | 状态标识。0表示成功查询，1表示当前时间该房间无进行中订单，2表示未知错误。 |
+| errcode    | int      | 是   | 状态标识。0表示成功查询，1表示没有该管理员、2表示当前时间该房间无进行中订单，3表示未知错误。 |
 | id         | string   | 是   | 订单号                                                       |
 | deposit    | int      | 是   | 订金                                                         |
 | amountsPay | int      | 是   | 应付金额                                                     |
@@ -400,7 +401,7 @@ API：/order/orderinf/admin/get
     "adminCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "roomId":123,
     "stamp":"2020-05-21 18:55:49",
-    "prove":"xxxxxxxxxx",
+    "prove":"xxxxxxxxxx"
 }
 ```
 
@@ -408,7 +409,7 @@ API：/order/orderinf/admin/get
 
 ```json
 {
-    "errcode":0/1/2,
+    "errcode":0/1/2/3,
     "id":123,
     "deposit":100,
     "amountsPay":400,
@@ -417,7 +418,7 @@ API：/order/orderinf/admin/get
     "actLive":"2020-05-17 18:55:49",
     "actAway":"2020-05-26 18:55:49",
     "stamp":"2020-05-21 18:55:49",
-    "tableProve":"xxxxxxxxxxx",
+    "tableProve":"xxxxxxxxxxx"
 }
 ```
 
@@ -451,7 +452,7 @@ API：/order/orderinf/resident/push
 
 | 字段       | 数据类型 | 必填 | 备注                                                         |
 | ---------- | -------- | ---- | ------------------------------------------------------------ |
-| errcode    | int      | 是   | 状态标识。0表示成功修改，1表示管理员拒绝修改申请，2表示订单不存在，3表示未知错误。 |
+| errcode    | int      | 是   | 状态标识。0表示成功修改、1表示没有该住户、2表示管理员拒绝修改申请，3表示订单不存在，4表示未知错误。 |
 | stamp      | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve | string   | 是   | 表验证，功能与用法和prove一致，只不过把resCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
 
@@ -467,7 +468,7 @@ API：/order/orderinf/resident/push
     "actLive":"",
     "actAway":"",
     "stamp":"2020-05-21 18:55:49",
-    "prove":"xxxxxxxxxx",
+    "prove":"xxxxxxxxxx"
 }
 ```
 
@@ -475,9 +476,9 @@ API：/order/orderinf/resident/push
 
 ```json
 {
-    "errcode":0/1/2/3,
+    "errcode":0/1/2/3/4,
     "stamp":"2020-05-21 18:55:49",
-    "tableProve":"xxxxxxxxxxx",
+    "tableProve":"xxxxxxxxxxx"
 }
 ```
 
@@ -510,7 +511,7 @@ API：/room/roomsinf/resident/get
 
 | 字段       | 数据类型     | 必填 | 备注                                                         |
 | ---------- | ------------ | ---- | ------------------------------------------------------------ |
-| errcode    | int          | 是   | 状态标识。0表示成功查询，1表示无房间信息，2表示未知错误。    |
+| errcode    | int          | 是   | 状态标识。0表示成功查询、1表示没有该住户、2表示无房间信息、3表示未知错误。 |
 | roomList   | string(json) | 是   | 房间简略信息（房间类型、房间床型、限住人数、房间价格）       |
 | stamp      | string       | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve | string       | 是   | 表验证，功能与用法和prove一致，只不过把resCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
@@ -524,7 +525,7 @@ API：/room/roomsinf/resident/get
     "startTime":"2020-05-17 18:55:49",
     "endTime":"2020-05-26 18:55:49",
     "stamp":"2020-05-21 18:55:49",
-    "prove":"xxxxxxxxxx",
+    "prove":"xxxxxxxxxx"
 }
 ```
 
@@ -532,7 +533,7 @@ API：/room/roomsinf/resident/get
 
 ```json
 {
-    "errcode":0/1/2,
+    "errcode":0/1/2/3,
     "roomList":[{
         "roomType":"豪华大床房",
         "bedType":"特大床",
@@ -546,7 +547,7 @@ API：/room/roomsinf/resident/get
   	},
     ],
     "stamp":"2020-05-21 18:55:49",
-    "tableProve":"xxxxxxxxxxx",
+    "tableProve":"xxxxxxxxxxx"
 }
 ```
 
@@ -575,7 +576,7 @@ API：/user/resident/per_roomsinf/get
 
 | 字段        | 数据类型     | 必填 | 备注                                                         |
 | ----------- | ------------ | ---- | ------------------------------------------------------------ |
-| errcode     | int          | 是   | 状态标识。0表示成功查询，1表示无已预定状态和进行中状态的订单的房间，2表示未知错误。 |
+| errcode     | int          | 是   | 状态标识。0表示成功查询、1表示没有该住户、2表示无已预定状态和进行中状态的订单的房间、3表示未知错误。 |
 | perRoomList | string(json) | 是   | 进行中订单房间简略信息（房间号、房间类型、温湿度、门锁状态）。已预订订单房间简略信息房间号、房间类型） |
 | stamp       | string       | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve  | string       | 是   | 表验证，功能与用法和prove一致，只不过把resCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
@@ -587,7 +588,7 @@ API：/user/resident/per_roomsinf/get
     "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "currentTime":"2020-05-26 18:55:49",
     "stamp":"2020-05-21 18:55:49",
-    "prove":"xxxxxxxxxx",
+    "prove":"xxxxxxxxxx"
 }
 ```
 
@@ -595,7 +596,7 @@ API：/user/resident/per_roomsinf/get
 
 ```json
 {
-    "errcode":0/1/2,
+    "errcode":0/1/2/3,
     "perRoomListroomList":[{
         "romId":101,			//进行中订单房间简略信息
         "roomType":"豪华大床房",
@@ -609,7 +610,7 @@ API：/user/resident/per_roomsinf/get
   	},
     ],
     "stamp":"2020-05-21 18:55:49",
-    "tableProve":"xxxxxxxxxxx",
+    "tableProve":"xxxxxxxxxxx"
 }
 ```
 
@@ -635,7 +636,7 @@ API：/room/roomsinf/admin/get
 
 | 字段            | 数据类型     | 必填 | 备注                                                         |
 | --------------- | ------------ | ---- | ------------------------------------------------------------ |
-| errcode         | int          | 是   | 状态标识。0表示成功查询，1表示未知错误。                     |
+| errcode         | int          | 是   | 状态标识。0表示成功查询、1表示没有该管理员、2表示未知错误。  |
 | liveRoomList    | string(json) | 是   | 进行中状态订单的房间简略信息(房间号、温湿度、硬件状态)       |
 | notliveRoomList | string(json) | 是   | 非“进行中状态订单的房间”房间（剩余所有房间）简略信息(房间号、温湿度、硬件状态) |
 | stamp           | string       | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
@@ -647,7 +648,7 @@ API：/room/roomsinf/admin/get
 {
     "adminCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "stamp":"2020-05-21 18:55:49",
-    "prove":"xxxxxxxxxx",
+    "prove":"xxxxxxxxxx"
 }
 ```
 
@@ -655,7 +656,7 @@ API：/room/roomsinf/admin/get
 
 ```json
 {
-    "errcode":0/1,
+    "errcode":0/1/2,
     "perRoomListroomList":[{
         "romId":101,			//进行中订单房间简略信息
         "roomTemp":26,
@@ -673,11 +674,11 @@ API：/room/roomsinf/admin/get
   	},
     ],
     "stamp":"2020-05-21 18:55:49",
-    "tableProve":"xxxxxxxxxxx",
+    "tableProve":"xxxxxxxxxxx"
 }
 ```
 
-#### 超级管理员查询住户房间详细信息
+#### 管理员查询住户房间详细信息
 
 功能描述：**查询指定房间的进行中状态订单的房间详细信息**。
 
@@ -700,7 +701,7 @@ API：/room/roominf/admin/get
 
 | 字段       | 数据类型 | 必填 | 备注                                                         |
 | ---------- | -------- | ---- | ------------------------------------------------------------ |
-| errcode    | int      | 是   | 状态标识。0表示成功查询，1表示房间不存在，2表示订单不存在，3表示未知错误。 |
+| errcode    | int      | 是   | 状态标识。0表示成功查询，1表示没有该管理员、2表示房间不存在，3表示订单不存在，4表示未知错误。 |
 | roomId     | int      | 是   | 房间号                                                       |
 | roomType   | string   | 是   | 房间类型                                                     |
 | bedType    | string   | 是   | 房间床型                                                     |
@@ -720,7 +721,7 @@ API：/room/roominf/admin/get
     "adminCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "roomId":123,
     "stamp":"2020-05-21 18:55:49",
-    "prove":"xxxxxxxxxx",
+    "prove":"xxxxxxxxxx"
 }
 ```
 
@@ -728,7 +729,7 @@ API：/room/roominf/admin/get
 
 ```json
 {
-    "errcode":0/1/2/3,
+    "errcode":0/1/2/3/4,
     "id":123,
     "roomType":"豪华大床房",
     "bedType":"特大床",
@@ -739,7 +740,7 @@ API：/room/roominf/admin/get
     "roomTemp":26,
     "roomHum":40,
     "stamp":"2020-05-21 18:55:49",
-    "tableProve":"xxxxxxxxxxx",
+    "tableProve":"xxxxxxxxxxx"
 }
 ```
 
@@ -751,7 +752,7 @@ API：/room/roominf/admin/get
 
 功能描述：**查询指定房间的空调详细信息**。
 
-API：/hardware/hardwareinf/air_condition/resident/get
+API：/hardware/air_condition/resident/get
 
 请求方法：POST
 
@@ -770,7 +771,7 @@ API：/hardware/hardwareinf/air_condition/resident/get
 
 | 字段       | 数据类型 | 必填 | 备注                                                         |
 | ---------- | -------- | ---- | ------------------------------------------------------------ |
-| errcode    | int      | 是   | 状态标识。0表示成功查询，1表示房间不存在，2表示空调不存在，3表示未知错误。 |
+| errcode    | int      | 是   | 状态标识。0表示成功查询，1表示没有该住户，2表示房间不存在，3表示空调不存在、4表示未知错误。 |
 | airStatus  | int      | 否   | 空调状态                                                     |
 | airMode    | int      | 否   | 空调模式                                                     |
 | airValue   | int      | 否   | 空调数值                                                     |
@@ -784,7 +785,7 @@ API：/hardware/hardwareinf/air_condition/resident/get
     "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "roomId":101,
     "stamp":"2020-05-21 18:55:49",
-    "prove":"xxxxxxxxxx",
+    "prove":"xxxxxxxxxx"
 }
 ```
 
@@ -793,12 +794,12 @@ API：/hardware/hardwareinf/air_condition/resident/get
 ```json
 {
     
-    "errcode":0/1/2/3,
+    "errcode":0/1/2/3/4,
     "airStatus":1,
     "airMode":1,
     "airValue":25,
     "stamp":"2020-05-21 18:55:49",
-    "tableProve":"xxxxxxxxxxx",
+    "tableProve":"xxxxxxxxxxx"
 }
 ```
 
@@ -806,7 +807,7 @@ API：/hardware/hardwareinf/air_condition/resident/get
 
 功能描述：**查询指定房间的灯详细信息**。
 
-API：/hardware/hardwareinf/light/resident/get
+API：/hardware/light/resident/get
 
 请求方法：POST
 
@@ -825,7 +826,7 @@ API：/hardware/hardwareinf/light/resident/get
 
 | 字段        | 数据类型 | 必填 | 备注                                                         |
 | ----------- | -------- | ---- | ------------------------------------------------------------ |
-| errcode     | int      | 是   | 状态标识。0表示成功查询，1表示房间不存在，2表示灯不存在，3表示未知错误。 |
+| errcode     | int      | 是   | 状态标识。0表示成功查询，1表示没有该住户，2表示房间不存在，3表示灯不存在、4表示未知错误。 |
 | lightStatus | int      | 否   | 灯状态                                                       |
 | lightMode   | int      | 否   | 灯模式                                                       |
 | lightValue  | int      | 否   | 灯数值                                                       |
@@ -839,7 +840,7 @@ API：/hardware/hardwareinf/light/resident/get
     "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "roomId":101,
     "stamp":"2020-05-21 18:55:49",
-    "prove":"xxxxxxxxxx",
+    "prove":"xxxxxxxxxx"
 }
 ```
 
@@ -847,12 +848,12 @@ API：/hardware/hardwareinf/light/resident/get
 
 ```json
 {
-    "errcode":0/1/2/3,
+    "errcode":0/1/2/3/4,
 	"lightStatus":1,
     "lightMode":0,
     "lightValue":6,
     "stamp":"2020-05-21 18:55:49",
-    "tableProve":"xxxxxxxxxxx",
+    "tableProve":"xxxxxxxxxxx"
 }
 ```
 
@@ -860,7 +861,7 @@ API：/hardware/hardwareinf/light/resident/get
 
 功能描述：**查询指定房间的进行中状态订单的空调详细信息**。
 
-API：/hardware/hardwareinf/air_condition/admin/get
+API：/hardware/air_condition/admin/get
 
 请求方法：POST
 
@@ -879,7 +880,7 @@ API：/hardware/hardwareinf/air_condition/admin/get
 
 | 字段       | 数据类型 | 必填 | 备注                                                         |
 | ---------- | -------- | ---- | ------------------------------------------------------------ |
-| errcode    | int      | 是   | 状态标识。0表示成功查询，1表示房间不存在，2表示空调不存在，3表示未知错误。 |
+| errcode    | int      | 是   | 状态标识。0表示成功查询，1表示没有该管理员，2表示房间不存在，3表示空调不存在、4表示未知错误。 |
 | airId      | int      | 是   | 空调编号                                                     |
 | airStatus  | int      | 否   | 空调状态                                                     |
 | airMode    | int      | 否   | 空调模式                                                     |
@@ -894,7 +895,7 @@ API：/hardware/hardwareinf/air_condition/admin/get
     "adminCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "roomId":123,
     "stamp":"2020-05-21 18:55:49",
-    "prove":"xxxxxxxxxx",
+    "prove":"xxxxxxxxxx"
 }
 ```
 
@@ -902,21 +903,21 @@ API：/hardware/hardwareinf/air_condition/admin/get
 
 ```json
 {
-    "errcode":0/1/2/3,
+    "errcode":0/1/2/3/4,
     "airId":12,
     "airStatus":1,
     "airMode":1,
     "airValue":25,
     "stamp":"2020-05-21 18:55:49",
-    "tableProve":"xxxxxxxxxxx",
+    "tableProve":"xxxxxxxxxxx"
 }
 ```
 
-#### 超级管理员查看灯件详细信息
+#### 管理员查看灯件详细信息
 
 功能描述：**查询指定房间的进行中状态订单的灯详细信息**。
 
-API：/hardware/hardwareinf/light/admin/get
+API：/hardware/light/admin/get
 
 请求方法：POST
 
@@ -935,7 +936,7 @@ API：/hardware/hardwareinf/light/admin/get
 
 | 字段        | 数据类型 | 必填 | 备注                                                         |
 | ----------- | -------- | ---- | ------------------------------------------------------------ |
-| errcode     | int      | 是   | 状态标识。0表示成功查询，1表示房间不存在，2表示灯不存在，3表示未知错误。 |
+| errcode     | int      | 是   | 状态标识。0表示成功查询，1表示没有该管理员，2表示房间不存在，3表示灯不存在、4表示未知错误。 |
 | lightId     | int      | 是   | 灯编号                                                       |
 | lightStatus | int      | 否   | 灯状态                                                       |
 | lightMode   | int      | 否   | 灯模式                                                       |
@@ -950,7 +951,7 @@ API：/hardware/hardwareinf/light/admin/get
     "adminCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "roomId":123,
     "stamp":"2020-05-21 18:55:49",
-    "prove":"xxxxxxxxxx",
+    "prove":"xxxxxxxxxx"
 }
 ```
 
@@ -958,13 +959,13 @@ API：/hardware/hardwareinf/light/admin/get
 
 ```json
 {
-    "errcode":0/1/2/3,
+    "errcode":0/1/2/3/4,
     "lightId":12,
     "lightStatus":1,
     "lightMode":0,
     "lightValue":6,
     "stamp":"2020-05-21 18:55:49",
-    "tableProve":"xxxxxxxxxxx",
+    "tableProve":"xxxxxxxxxxx"
 }
 ```
 
@@ -994,7 +995,7 @@ API：/hardware/hardwareinf/lock/user/push
 
 | 字段       | 数据类型 | 必填 | 备注                                                         |
 | ---------- | -------- | ---- | ------------------------------------------------------------ |
-| errcode    | int      | 是   | 状态标识。0表示成功修改，1表示房间不存在，2表示门锁不存在，3表示未知错误。 |
+| errcode    | int      | 是   | 状态标识。0表示成功查询，1表示没有该用户，2表示房间不存在，3表示门锁不存在、4表示未知错误。 |
 | stamp      | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve | string   | 是   | 表验证，功能与用法和prove一致，只不过把cerCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
 
@@ -1006,7 +1007,7 @@ API：/hardware/hardwareinf/lock/user/push
     "roomId":101,
     "lockStatus":1,
     "stamp":"2020-05-21 18:55:49",
-    "prove":"xxxxxxxxxx",
+    "prove":"xxxxxxxxxx"
 }
 ```
 
@@ -1014,9 +1015,9 @@ API：/hardware/hardwareinf/lock/user/push
 
 ```json
 {
-    "errcode":0/1/2/3,
+    "errcode":0/1/2/3/4,
     "stamp":"2020-05-21 18:55:49",
-    "tableProve":"xxxxxxxxxxx",
+    "tableProve":"xxxxxxxxxxx"
 }
 ```
 
@@ -1048,7 +1049,7 @@ API：/record/unlock/user/post
 
 | 字段       | 数据类型 | 必填 | 备注                                                         |
 | :--------- | :------- | :--- | :----------------------------------------------------------- |
-| errcode    | int      | 是   | 状态标识。0表示成功记录，1表示未知错误                       |
+| errcode    | int      | 是   | 状态标识。0表示成功记录，1表示没有该用户，2表示未知错误      |
 | stamp      | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve | string   | 是   | 表验证，功能与用法和prove一致，只不过把cerCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
 
@@ -1060,7 +1061,7 @@ API：/record/unlock/user/post
     "roomId":101,
     "openTime":"2020-05-21 18:55:49",
     "stamp":"2020-05-21 18:55:49",
-    "prove":"xxxxxxxxxx",
+    "prove":"xxxxxxxxxx"
 }
 ```
 
@@ -1068,9 +1069,9 @@ API：/record/unlock/user/post
 
 ```json
 {
-    "errcode":0/1,
+    "errcode":0/1/2,
     "stamp":"2020-05-21 18:55:49",
-    "tableProve":"xxxxxxxxxxx",
+    "tableProve":"xxxxxxxxxxx"
 }
 ```
 
@@ -1101,7 +1102,7 @@ API：/server/call_cleaning/resident/post
 
 | 字段       | 数据类型 | 必填 | 备注                                                         |
 | :--------- | :------- | :--- | :----------------------------------------------------------- |
-| errcode    | int      | 是   | 状态标识。0表示成功呼叫，1表示无保洁人员，2表示保洁人员现无法提供服务，3表示意外错误 |
+| errcode    | int      | 是   | 状态标识。0表示成功呼叫，1表示没有该住户、2表示无保洁人员，3表示保洁人员现无法提供服务、4表示意外错误 |
 | stamp      | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve | string   | 是   | 表验证，功能与用法和prove一致，只不过把resCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
 
@@ -1112,7 +1113,7 @@ API：/server/call_cleaning/resident/post
     "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "roomId":101,
     "stamp":"2020-05-21 18:55:49",
-    "prove":"xxxxxxxxxx",
+    "prove":"xxxxxxxxxx"
 }
 ```
 
@@ -1120,9 +1121,9 @@ API：/server/call_cleaning/resident/post
 
 ```json
 {
-    "errcode":0/1/2/3,
+    "errcode":0/1/2/3/4,
     "stamp":"2020-05-21 18:55:49",
-    "tableProve":"xxxxxxxxxxx",
+    "tableProve":"xxxxxxxxxxx"
 }
 ```
 
@@ -1149,7 +1150,7 @@ API：/server/feedback/resident/post
 
 | 字段       | 数据类型 | 必填 | 备注                                                         |
 | :--------- | :------- | :--- | :----------------------------------------------------------- |
-| errcode    | int      | 是   | 状态标识。0表示成功留言，1表示意外错误                       |
+| errcode    | int      | 是   | 状态标识。0表示成功留言，1表示没有该住户、2表示意外错误      |
 | stamp      | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库     |
 | tableProve | string   | 是   | 表验证，功能与用法和prove一致，只不过把resCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
 
@@ -1160,7 +1161,7 @@ API：/server/feedback/resident/post
     "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "roomId":101,
     "stamp":"2020-05-21 18:55:49",
-    "prove":"xxxxxxxxxx",
+    "prove":"xxxxxxxxxx"
 }
 ```
 
@@ -1168,9 +1169,9 @@ API：/server/feedback/resident/post
 
 ```json
 {
-    "errcode":0/1/2/3,
+    "errcode":0/1/2,
     "stamp":"2020-05-21 18:55:49",
-    "tableProve":"xxxxxxxxxxx",
+    "tableProve":"xxxxxxxxxxx"
 }
 ```
 
@@ -1200,7 +1201,7 @@ API：/system/identity/user/get
 
 | 字段       | 数据类型 | 必填 | 备注                                                         |
 | :--------- | :------- | :--- | :----------------------------------------------------------- |
-| errcode    | int      | 是   | 状态标识。0表示成功查询，1表示不是用户                       |
+| errcode    | int      | 是   | 状态标识。0表示成功查询，1表示没有该用户、2表示不是用户      |
 | identity   | int      | 是   | 用户身份标识                                                 |
 | stamp      | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库     |
 | tableProve | string   | 是   | 表验证，功能与用法和prove一致，只不过把cerCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
@@ -1211,7 +1212,7 @@ API：/system/identity/user/get
 {
     "cerCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "stamp":"2020-05-21 18:55:49",
-    "prove":"xxxxxxxxxx",
+    "prove":"xxxxxxxxxx"
 }
 ```
 
@@ -1219,10 +1220,10 @@ API：/system/identity/user/get
 
 ```json
 {
-    "errcode":0/1/2/3,
+    "errcode":0/1/2,
     "identity":0/1/2/3/4/5,
     "stamp":"2020-05-21 18:55:49",
-    "tableProve":"xxxxxxxxxxx",
+    "tableProve":"xxxxxxxxxxx"
 }
 ```
 
