@@ -11,12 +11,23 @@
           </view>
           <van-action-sheet show="{{ rtypeShow }}" actions="{{ rtypeList }}" cancel-text="取消" bind:close="onClose"
             bind:select="onSelect" bind:cancel="onCancel" />
-          <view class="startTime_module" catchtap="choose_startTime"><text>{{start_currentDate}}</text>
+          <view class="startTime_module" catchtap="choose_startTime"><text>{{ startTimeContent }}</text>
           </view>
-          <van-action-sheet show="{{ startTimeShow }}" bind:close="onClose">
-            <van-datetime-picker type="datetime" value="{{ start_currentDate }}" min-date="{{ start_minDate }}"
-              max-date="{{ start_maxDate }}" bind:input="start_onInput" />
-          </van-action-sheet>
+          <van-popup show="{{ startTimeShow }}" position="bottom"  bind:close="onClose">
+          <van-datetime-picker type="datetime" value="{{ start_currentDate }}" min-date="{{start_minDate}}"
+            max-date="{{ start_maxDate }}" bind:confirm="startTime_onConfirm" bind:cancel="onCancel"/>
+          </van-popup>
+          <view class="endTime_module" catchtap="choose_endTime"><text>{{ endTimeContent }}</text>
+          </view>
+          <van-popup show="{{ endTimeShow }}" position="bottom"  bind:close="onClose">
+          <van-datetime-picker type="datetime" value="{{ end_currentDate }}" min-date="{{end_minDate}}"
+            max-date="{{ end_maxDate }}" bind:confirm="endTime_onConfirm" bind:cancel="onCancel"/>
+          </van-popup>
+        </view>
+        <view class="search_moudle">
+        <view class="search_button">
+          <button class="cu-btn round  bg-blue shadow">房间搜索</button>
+        </view>
         </view>
       </view>
     </view>

@@ -124,6 +124,7 @@ page {
   display: flex;
   width: 680rpx;
   height: 200rpx;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: white;
@@ -131,11 +132,10 @@ page {
 
 .filter_module{
   display: flex;
-  width: 500rpx;
+  width: 640rpx;
   height: 100rpx;
   align-items: center;
-  justify-content: center;
-  text-align: center;
+  justify-content: space-around;
 }
 
 .rtype_module{
@@ -143,6 +143,7 @@ page {
   width: 150rpx;
   height: 40rpx;
   align-items: center;
+  justify-content: center;
 }
 
 .startTime_module{
@@ -150,4 +151,13 @@ page {
   width: 260rpx;
   height: 40rpx;
   align-items: center;
+  justify-content: center;
+}
+
+.endTime_module{
+  display: flex;
+  width: 260rpx;
+  height: 40rpx;
+  align-items: center;
+  justify-content: center;
 }

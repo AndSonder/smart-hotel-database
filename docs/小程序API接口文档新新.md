@@ -440,7 +440,6 @@ API：/order/orderinf/resident/push
 | ------- | -------- | ---- | ------------------------------------------------------------ |
 | resCode | string   | 是   | 住户的登录凭证，后端借其获取openid，验证用户身份是否为住户   |
 | orderId | int      | 是   | 订单号                                                       |
-| phone   | string   | 否   | 住户手机号                                                   |
 | expLive | string   | 否   | 预计入住时间                                                 |
 | expAway | string   | 否   | 预计离开时间                                                 |
 | actLive | string   | 否   | 实际入住时间                                                 |
@@ -462,7 +461,6 @@ API：/order/orderinf/resident/push
 {
     "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "orderId":123,
-    "phone":"18178346924"
     "expLive":"2020-05-1618:55:49",
     "expAway":"2020-05-2518:55:49",
     "actLive":"",
@@ -663,14 +661,16 @@ API：/room/roomsinf/admin/get
 ```json
 {
     "errcode":0/1/2,
-    "perRoomListroomList":[{
+    "liveRoomList":[{
         "romId":101,			//进行中订单房间简略信息
         "roomTemp":26,
         "roomHum":40,
         "airStatus":0,
         "lightStatus":0,
         "lockStatus":0,
-    },{
+    },
+	],
+    "notliveRoomList":[{
         "romId":102,			//非“进行中状态订单的房间”房间简略信息
         "roomTemp":26,
         "roomHum":40,
