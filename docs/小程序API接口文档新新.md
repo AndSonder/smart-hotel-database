@@ -187,15 +187,16 @@ API：/order/perinfo/resident/post
 
 **请求参数**
 
-| 字段    | 数据类型 | 必填 | 备注                                                         |
-| ------- | -------- | ---- | ------------------------------------------------------------ |
-| resCode | string   | 是   | 住户的登录凭证，后端借其获取openid，将openid录入订单数据表中 |
-| expLive | string   | 是   | 预计入住时间                                                 |
-| expAway | string   | 是   | 预计离开时间                                                 |
-| actLive | string   | 是   | 实际入住时间                                                 |
-| actAway | string   | 是   | 实际离开时间                                                 |
-| stamp   | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
-| prove   | string   | 是   | 用户的resCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。验证用，不用加入数据库。 |
+| 字段     | 数据类型 | 必填 | 备注                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| resCode  | string   | 是   | 住户的登录凭证，后端借其获取openid，将openid录入订单数据表中 |
+| roomType | string   | 是   | 房间类型                                                     |
+| expLive  | string   | 是   | 预计入住时间                                                 |
+| expAway  | string   | 是   | 预计离开时间                                                 |
+| actLive  | string   | 是   | 实际入住时间                                                 |
+| actAway  | string   | 是   | 实际离开时间                                                 |
+| stamp    | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
+| prove    | string   | 是   | 用户的resCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。验证用，不用加入数据库。 |
 
 **返回参数**
 
@@ -212,6 +213,7 @@ API：/order/perinfo/resident/post
 ```json
 {
     "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
+    "roomType":"豪华大床房",
     "expLive":"2020-05-1618:55:49",
     "expAway":"2020-05-2518:55:49",
     "actLive":"2020-05-17 18:55:49",
@@ -614,7 +616,7 @@ API：/user/resident/per_roomsinf/get
 
 #### 管理员查询住户房间简略信息
 
-功能描述：**查询所有房间简略信息**。
+功能描述：**查询指定时间段的所有房间简略信息**。
 
 API：/room/roomsinf/admin/get
 
@@ -627,6 +629,8 @@ API：/room/roomsinf/admin/get
 | 字段      | 数据类型 | 必填 | 备注                                                         |
 | --------- | -------- | ---- | ------------------------------------------------------------ |
 | adminCode | string   | 是   | 管理员的登录凭证，后端借其获取openid，验证用户身份是否为超级管理员 |
+| startTime | string   | 是   | 查询的起始时间                                               |
+| endTime   | string   | 是   | 查询的结束时间                                               |
 | stamp     | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
 | prove     | string   | 是   | 管理员的adminCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
 
@@ -645,6 +649,8 @@ API：/room/roomsinf/admin/get
 ```json
 {
     "adminCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
+    "startTime":"2020-05-21 18:55:49",
+    "endTime":"2020-05-21 18:55:49",
     "stamp":"2020-05-21 18:55:49",
     "prove":"xxxxxxxxxx"
 }

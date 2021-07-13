@@ -1,14 +1,16 @@
 {
   "name": "smart-hotel_admin",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
-  "dependencies": {},
+  "dependencies": {
+    "@vant/weapp": "^1.7.1"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "description": ""
 }

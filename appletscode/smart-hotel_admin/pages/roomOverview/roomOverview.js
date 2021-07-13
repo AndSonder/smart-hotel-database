@@ -1,66 +1,88 @@
-// pages/roomOverview/roomOverview.js
+//index.js
+//获取应用实例
+const app = getApp()
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    StatusBar: app.globalData.StatusBar,
+    CustomBar: app.globalData.CustomBar,
+    Custom: app.globalData.Custom,
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    TabCur: 1,
+    scrollLeft: 0,
+    rtypeContent:'全选',
+    startTimeContent:'2021-07-13 18:30:00',
+    endTimeContent:'2021-07-13 18:30:00',
+    rtypeShow: false,
+    startTimeShow: false,
+    endTimeShow: false,
+    rtypeList: [
+      {
+        name: '无窗家庭房',
+      },
+      {
+        name: '温馨大床房',
+      },
+      {
+        name: '如意标准间',
+      },
+      {
+        name: '豪华大床房',
+      },
+      {
+        name: '如意三人房',
+      },
+      {
+        name: '团圆家庭房',
+      },
+      {
+        name: '商务套房',
+      },
+      {
+        name: '全选',
+      },
+    ],
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  choose_rtype(e){
+    this.setData({ rtypeShow: true });
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  choose_startTime(e){
+    this.setData({ startTimeShow: true });
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  onClose() {
+    this.setData({ rtypeShow: false });
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  onCancel(e){
+    this.setData({ rtypeShow: false });
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  onSelect(event) {
+    this.setData({ rtypeContent: event.detail.name });
+    console.log(event.detail);
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+  getUserInfo: function (e) {
+    console.log(e)
+    app.globalData.userInfo = e.detail.userInfo
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    })
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
+  showModal(e) {
+    this.setData({
+      modalName: e.currentTarget.dataset.target
+    })
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
+  tabSelect(e) {
+    console.log(e);
+    this.setData({
+      TabCur: e.currentTarget.dataset.id,
+      scrollLeft: (e.currentTarget.dataset.id - 1) * 60
+    })
+  },
 })
