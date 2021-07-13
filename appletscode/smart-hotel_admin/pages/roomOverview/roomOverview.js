@@ -1,5 +1,4 @@
-//index.js
-//获取应用实例
+const util = require('../../utils/util.js')
 const app = getApp()
 
 Page({
@@ -11,14 +10,11 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     TabCur: 1,
     scrollLeft: 0,
-    rtypeContent:'全选',
-    startTimeContent:'2021-07-13 18:30:00',
-    endTimeContent:'2021-07-13 18:30:00',
+    rtypeContent: '全选',
     rtypeShow: false,
     startTimeShow: false,
     endTimeShow: false,
-    rtypeList: [
-      {
+    rtypeList: [{
         name: '无窗家庭房',
       },
       {
@@ -43,22 +39,46 @@ Page({
         name: '全选',
       },
     ],
+    start_minDate: new Date().getTime(),
+    start_maxDate: new Date(2019, 10, 1).getTime(),
+    start_currentDate: '',
   },
-  choose_rtype(e){
-    this.setData({ rtypeShow: true });
+  onLoad(e) {
+    var DATE = util.formatTime(new Date());
+    this.setData({
+      start_currentDate:DATE
+    })
   },
-  choose_startTime(e){
-    this.setData({ startTimeShow: true });
+  choose_rtype(e) {
+    this.setData({
+      rtypeShow: true
+    });
+  },
+  choose_startTime(e) {
+    this.setData({
+      startTimeShow: true
+    });
   },
   onClose() {
-    this.setData({ rtypeShow: false });
+    this.setData({
+      rtypeShow: false
+    });
   },
-  onCancel(e){
-    this.setData({ rtypeShow: false });
+  onCancel(e) {
+    this.setData({
+      rtypeShow: false
+    });
   },
   onSelect(event) {
-    this.setData({ rtypeContent: event.detail.name });
+    this.setData({
+      rtypeContent: event.detail.name
+    });
     console.log(event.detail);
+  },
+  start_onInput(e) {
+    this.setData({
+      start_currentDate: e.detail,
+    });
   },
   getUserInfo: function (e) {
     console.log(e)

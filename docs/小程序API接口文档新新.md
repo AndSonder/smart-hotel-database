@@ -620,6 +620,8 @@ API：/user/resident/per_roomsinf/get
 
 API：/room/roomsinf/admin/get
 
+当查询起始时间和结束时间为空时返回所有。
+
 请求方法：POST
 
 支持格式：JSON
@@ -629,8 +631,8 @@ API：/room/roomsinf/admin/get
 | 字段      | 数据类型 | 必填 | 备注                                                         |
 | --------- | -------- | ---- | ------------------------------------------------------------ |
 | adminCode | string   | 是   | 管理员的登录凭证，后端借其获取openid，验证用户身份是否为超级管理员 |
-| startTime | string   | 是   | 查询的起始时间                                               |
-| endTime   | string   | 是   | 查询的结束时间                                               |
+| startTime | string   | 否   | 查询的起始时间                                               |
+| endTime   | string   | 否   | 查询的结束时间                                               |
 | stamp     | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
 | prove     | string   | 是   | 管理员的adminCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
 

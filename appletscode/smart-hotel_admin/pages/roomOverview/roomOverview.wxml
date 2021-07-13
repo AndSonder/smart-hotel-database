@@ -11,11 +11,12 @@
           </view>
           <van-action-sheet show="{{ rtypeShow }}" actions="{{ rtypeList }}" cancel-text="取消" bind:close="onClose"
             bind:select="onSelect" bind:cancel="onCancel" />
-          <view class="startTime_module" catchtap="choose_startTime"><text>{{startTimeContent}}</text>
+          <view class="startTime_module" catchtap="choose_startTime"><text>{{start_currentDate}}</text>
           </view>
           <van-action-sheet show="{{ startTimeShow }}" bind:close="onClose">
-          <view>内容</view>
-        </van-action-sheet>
+            <van-datetime-picker type="datetime" value="{{ start_currentDate }}" min-date="{{ start_minDate }}"
+              max-date="{{ start_maxDate }}" bind:input="start_onInput" />
+          </van-action-sheet>
         </view>
       </view>
     </view>
