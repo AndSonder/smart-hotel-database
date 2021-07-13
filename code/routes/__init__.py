@@ -15,3 +15,4 @@ def init_app(app):
     for route in routes:
         route = route[:-3]
         eval(f'app.register_blueprint({route})')
+

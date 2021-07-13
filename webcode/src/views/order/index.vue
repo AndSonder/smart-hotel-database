@@ -285,7 +285,7 @@ export default {
         // Just to simulate the time of the request
         setTimeout(() => {
           this.listLoading = false
-        }, 1.5 * 3000)
+        }, 500)
       })
     },
     handleFilter() {

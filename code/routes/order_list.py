@@ -11,13 +11,16 @@ order_list = Blueprint('order_list', __name__)
 
 
 def string2timestamp(str_value):
+    """
+    时间格式转化
+    """
     if str_value is None:
         return 0
     str_value = str(str_value)
     d = datetime.datetime.strptime(str_value, "%Y-%m-%d %H:%M:%S")
     t = d.timetuple()
     timeStamp = int(time.mktime(t))
-    timeStamp = float(str(timeStamp) + str("%06d" % d.microsecond)) / 1000000
+    timeStamp = float(str(timeStamp) + str("%06d" % d.microsecond)) / 1000
     return int(timeStamp)
 
 
@@ -37,9 +40,12 @@ def index():
     except:
         return json.dumps({"code": 20004, "message": "参数错误，请检查参数"})
     db = GetInfo()
-    user_ingo = db.search(token)
-    if user_ingo is None:
+    user_info = db.search(token)
+    if user_info is None:
         return json.dumps({"code": 20005, "message": "用户不存在"})
+    level = int(user_info[-1])
+    if level > 2:
+        return json.dumps({"code": 20006, "message": "权限不足，无法查看"})
     order_list, total_num = db.search_order(page, limit, sort, id, name)
     data = {
         "code": 20000,
@@ -55,8 +61,10 @@ def index():
         go = string2timestamp(order[5])
         if cid == 0:
             status = 'draft'
-        else:
+        elif go == 0:
             status = 'published'
+        else:
+            status = 'ended'
         item = {
             "id": order[0],
             "pmoney": order[1],
@@ -64,11 +72,11 @@ def index():
             "sgo": sgo,
             "cid": cid,
             "go": go,
-            "wecharid": order[-3],
-            "room_id": order[-2],
+            "wecharid": order[-4],
+            "room_id": order[-3],
             "status": status,
-            "name": order[-1]
-
+            "name": order[-1],
+            "id_status": order[-2]
         }
         data["data"]["items"].append(item)
     return json.dumps(data)

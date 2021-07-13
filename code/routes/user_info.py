@@ -6,7 +6,11 @@ import json
 user_info = Blueprint('user_info', __name__)
 
 role_dict = {
-    1: 'admin',
+    0: 'admin',
+    1: '经理',
+    2: '前台',
+    3: '安保',
+    4: '清洁'
 }
 
 # 自定义一些头像地址

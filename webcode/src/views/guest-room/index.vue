@@ -1,9 +1,10 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.name" placeholder="姓名" style="width: 180px;" class="filter-item"
+      <el-input v-model="listQuery.id" placeholder="房间号" style="width: 180px;" class="filter-item"
                 @keyup.enter.native="handleFilter"/>
-      <el-input v-model="listQuery.id" placeholder="订单号" style="width: 180px; margin-left: 10px;" class="filter-item"
+      <el-input v-model="listQuery.rtype" placeholder="房间类型" style="width: 180px; margin-left: 10px;"
+                class="filter-item"
                 @keyup.enter.native="handleFilter"/>
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter"
                  style="margin-left: 10px;">
@@ -29,99 +30,68 @@
       style="width: 100%;"
       @sort-change="sortChange"
     >
-      <el-table-column label="ID" prop="id" sortable="custom" align="center" width="80"
+      <el-table-column label="房间编号" prop="id" sortable="custom" align="center" width="80"
                        :class-name="getSortClass('id')">
         <template slot-scope="{row}">
           <span>{{ row.id }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="应付金额" prop="pmoney" align="center" width="80">
+      <el-table-column label="房间类型" prop="rtype" align="center" width="150">
         <template slot-scope="{row}">
-          <span>{{ row.pmoney }}</span>
+          <span>{{ row.rtype }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="预定入住日期" prop="scid" width="150px" align="center">
+      <el-table-column label="床型" prop="bedtype" width="150px" align="center">
         <template slot-scope="{row}">
-          <div v-if="row.scid !== 0">
-            <span>{{ row.scid | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
-          </div>
-          <div v-else>
-            <span></span>
-          </div>
+          <span>{{ row.bedtype }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="预定离开日期" prop="sgo" width="150px" align="center">
+      <el-table-column label="最大人数" prop="maxnum" width="150px" align="center">
         <template slot-scope="{row}">
-          <div v-if="row.sgo !== 0">
-            <span>{{ row.sgo | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
-          </div>
-          <div v-else>
-            <span></span>
-          </div>
+          <span>{{ row.maxnum }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="实际入住时间" prop="cid" width="150px" align="center">
+      <el-table-column label="房间面积" prop="area" width="150px" align="center">
         <template slot-scope="{row}">
-          <span v-if="row.cid !== 0">{{ row.cid | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
-          <span v-else></span>
+          <span>{{ row.area }} m<sup>2</sup></span>
         </template>
       </el-table-column>
-      <el-table-column label="结账离开日期" prop="go" width="150px" align="center">
+      <el-table-column label="是否有窗" prop="rwin" width="150px" align="center">
         <template slot-scope="{row}">
-          <div v-if="row.go !== 0">
-            <span>{{ row.go | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
-          </div>
-          <div v-else>
-            <span></span>
-          </div>
+          <span v-if="row.rwin===1">有</span>
+          <span v-if="row.rwin===0">无</span>
         </template>
       </el-table-column>
-      <el-table-column label="住户姓名" prop="name" width="110px" align="center">
+      <el-table-column label="房间锁状态" prop="rlock" width="110px" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.name }}</span>
+          <span v-if="row.rlock===0">已锁</span>
+          <span v-if="row.rlock===1">没锁</span>
+          <span v-if="row.rlock===2">锁损坏</span>
+          <span v-if="row.rlock===3">未锁</span>
         </template>
       </el-table-column>
-      <el-table-column label="住户微信id" prop="wecharid" width="200px" align="center">
+      <el-table-column label="房间金额/日" prop="money" width="200px" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.wecharid }}</span>
+          <span>{{ row.money }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="房间号" prop="room_id" width="110px" align="center">
+      <el-table-column label="房间当前温度" prop="temperature" width="110px" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.room_id }}</span>
+          <span>{{ row.temperature }} &#8451;</span>
         </template>
       </el-table-column>
-      <el-table-column label="订单状态" prop="id_status" width="110px" align="center">
+      <el-table-column label="房间当前湿度" prop="humidity" width="110px" align="center">
         <template slot-scope="{row}">
-          <span v-if="row.id_status===0">进行中</span>
-          <span v-if="row.id_status===1">已完成</span>
-          <span v-if="row.id_status===2">已取消</span>
+          <span>{{ row.humidity }} rh</span>
         </template>
       </el-table-column>
-      <el-table-column label="入住状态" class-name="status-col" width="100">
-        <template slot-scope="{row}">
-          <el-tag :type="row.status | statusFilter">
-            {{ row.status }}
-          </el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column label="操作" align="center" width="250" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="center" width="180" class-name="small-padding fixed-width">
         <template slot-scope="{row,$index}">
           <el-button type="primary" size="mini" @click="handleUpdate(row)">
             编辑信息
           </el-button>
-          <el-button v-if="row.status==='draft'" size="mini" type="success"
-                     @click="handleModifyStatus(row,'published',0)">
-            登记入住
-          </el-button>
-          <el-button v-if="row.status==='published'" size="mini" @click="handleModifyStatus(row,'ended',1)">
-            登记离开
-          </el-button>
-          <el-button v-if="row.status==='ended'" size="mini">
-            订单完成
-          </el-button>
-          <el-button size="mini" type="danger" @click="handleDelete(row)">
-            取消订单
+          <el-button size="mini" type="danger" @click="handleDelete(row,$index)">
+            删除房间
           </el-button>
         </template>
       </el-table-column>
@@ -131,33 +101,41 @@
                 @pagination="getList"/>
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="130px"
+      <el-form ref="dataForm" :rules="rules[dialogStatus]" :model="temp" label-position="left" label-width="130px"
                style="width: 400px; margin-left:50px;">
-        <el-form-item label="订单编号" prop="id">
+        <el-form-item v-if="dialogStatus==='update'" label="房间编号" prop="id">
           <el-input v-model="temp.id"/>
         </el-form-item>
-        <el-form-item label="应付金额" prop="pmoney">
-          <el-input v-model="temp.pmoney"/>
+        <el-form-item label="房间类型" prop="rtype">
+          <el-input v-model="temp.rtype"/>
         </el-form-item>
-        <el-form-item label="房间编号" prop="room_id">
-          <el-input v-model="temp.room_id"/>
+        <el-form-item label="房间床型" prop="bedtype">
+          <el-input v-model="temp.bedtype"/>
         </el-form-item>
-        <el-form-item label="预计入住时间" prop="scid">
-          <el-date-picker v-model="temp.scid" type="datetime" value-format="timestamp" placeholder="请选择一个日期"/>
+        <el-form-item label="最大人数" prop="maxnum">
+          <el-input v-model="temp.maxnum"/>
         </el-form-item>
-        <el-form-item label="预计离开时间" prop="sgo">
-          <el-date-picker v-model="temp.sgo" type="datetime" value-format="timestamp" placeholder="请选择一个日期"/>
+        <el-form-item label="房间面积" prop="area">
+          <el-input v-model="temp.area"/>
         </el-form-item>
-        <el-form-item label="实际入住时间" prop="cid">
-          <el-date-picker v-model="temp.cid" type="datetime" value-format="timestamp" placeholder="请选择一个日期"/>
-        </el-form-item>
-        <el-form-item label="实际离开时间" prop="go">
-          <el-date-picker v-model="temp.go" type="datetime" value-format="timestamp" placeholder="请选择一个日期"/>
-        </el-form-item>
-        <el-form-item label="订单状态" prop="id_status">
-          <el-select v-model="temp.id_status" class="filter-item" placeholder="请选择">
-            <el-option v-for="item in idStatus" :key="item.key" :label="item.display_name" :value="item.key"/>
+        <el-form-item label="是否有窗户" prop="rwin">
+          <el-select v-model="temp.rwin" class="filter-item" placeholder="请选择">
+            <el-option v-for="item in roomWin" :key="item.key" :label="item.display_name" :value="item.key"/>
           </el-select>
+        </el-form-item>
+        <el-form-item label="房间锁" prop="rlock">
+          <el-select v-model="temp.rlock" class="filter-item" placeholder="请选择">
+            <el-option v-for="item in roomLock" :key="item.key" :label="item.display_name" :value="item.key"/>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="房间金额/日" prop="money">
+          <el-input v-model="temp.money"/>
+        </el-form-item>
+        <el-form-item v-if="dialogStatus==='update'" label="房间当前温度" prop="temperature">
+          <el-input v-model="temp.temperature"/>
+        </el-form-item>
+        <el-form-item v-if="dialogStatus==='update'" label="房间当前湿度" prop="humidity">
+          <el-input v-model="temp.humidity"/>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -174,7 +152,7 @@
 
 <script>
 import {fetchList, fetchPv, createArticle, updateArticle} from '@/api/article'
-import {fetchOrderList, recordOrderCheck, updateOrder, deleteOrder} from '@/api/order'
+import {fetchRoomList, updateRoom, deleteRoom, createRoom} from '@/api/room'
 import {getToken} from '@/utils/auth'
 import waves from '@/directive/waves' // waves directive
 import {parseTime} from '@/utils'
@@ -187,10 +165,16 @@ const calendarTypeOptions = [
   {key: 'EU', display_name: 'Eurozone'}
 ]
 
-const idStatus = [
-  {key: 0, display_name: '进行中'},
-  {key: 1, display_name: '已完成'},
-  {key: 2, display_name: '已取消'}
+const roomWin = [
+  {key: 0, display_name: '有窗'},
+  {key: 1, display_name: '无窗'},
+]
+
+const roomLock = [
+  {key: 0, display_name: '已锁'},
+  {key: 1, display_name: '没锁'},
+  {key: 2, display_name: '锁损坏'},
+  {key: 3, display_name: '没锁'},
 ]
 
 // arr to obj, such as { CN : "China", US : "USA" }
@@ -227,27 +211,16 @@ export default {
         limit: 20,
         sort: '+id',
         token: getToken(),
-        title: undefined,
-        name: undefined
+        rtype: undefined,
       },
       importanceOptions: [1, 2, 3],
       calendarTypeOptions,
-      idStatus,
+      roomWin,
+      roomLock,
       sortOptions: [{label: 'ID Ascending', key: '+id'}, {label: 'ID Descending', key: '-id'}],
       statusOptions: ['published', 'draft', 'deleted'],
       showReviewer: false,
-      temp: {
-        id: undefined,
-        pmoney: undefined,
-        scid: new Date(),
-        sgo: new Date(),
-        cid: new Date(),
-        go: new Date(),
-        wecharid: undefined,
-        room_id: undefined,
-        status: 'published',
-        id_status: undefined
-      },
+      temp: {},
       dialogFormVisible: false,
       dialogStatus: '',
       textMap: {
@@ -262,12 +235,26 @@ export default {
         token: getToken()
       },
       rules: {
-        id: [{required: true, message: '订单编号不能为空', trigger: 'blur'}],
-        pmoney: [{required: true, message: '支付金额不能为空', trigger: 'blur'}],
-        scid: [{type: 'date', required: true, message: '预定入住日期不能为空', trigger: 'change'}],
-        sgo: [{type: 'date', required: true, message: '预定离开日期不能为空', trigger: 'change'}],
-        wecharid: [{type: 'date', required: true, message: '用户微信id不能为空', trigger: 'change'}],
-        room_id: [{required: true, message: '用户房间号不能为空', trigger: 'blur'}],
+        update: {
+          id: [{required: true, message: '该项不能为空', trigger: 'blur'}],
+          rtype: [{required: true, message: '该项不能为空', trigger: 'blur'}],
+          bedtype: [{required: true, message: '该项不能为空', trigger: 'blur'}],
+          maxnum: [{required: true, message: '该项不能为空', trigger: 'blur'}],
+          area: [{required: true, message: '该项不能为空', trigger: 'blur'}],
+          rwin: [{required: true, message: '该项不能为空', trigger: 'blur'}],
+          rlock: [{required: true, message: '该项不能为空', trigger: 'blur'}],
+          money: [{required: true, message: '该项不能为空', trigger: 'blur'}],
+          temperature: [{required: true, message: '该项不能为空', trigger: 'blur'}],
+          humidity: [{required: true, message: '该项不能为空', trigger: 'blur'}],
+        }, create: {
+          rtype: [{required: true, message: '该项不能为空', trigger: 'blur'}],
+          bedtype: [{required: true, message: '该项不能为空', trigger: 'blur'}],
+          maxnum: [{required: true, message: '该项不能为空', trigger: 'blur'}],
+          area: [{required: true, message: '该项不能为空', trigger: 'blur'}],
+          rwin: [{required: true, message: '该项不能为空', trigger: 'blur'}],
+          rlock: [{required: true, message: '该项不能为空', trigger: 'blur'}],
+          money: [{required: true, message: '该项不能为空', trigger: 'blur'}],
+        },
       },
       downloadLoading: false
     }
@@ -278,37 +265,20 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      fetchOrderList(this.listQuery).then(response => {
+      fetchRoomList(this.listQuery).then(response => {
         this.list = response.data.items
         this.total = response.data.total
-
         // Just to simulate the time of the request
         setTimeout(() => {
           this.listLoading = false
-        }, 1.5 * 3000)
+        }, 500)
       })
     },
     handleFilter() {
       this.listQuery.page = 1
       this.getList()
     },
-    handleModifyStatus(row, status, id_status) {
-      row.status = status
-      row.id_status = id_status
-      this.order_data.id = row.id
-      this.order_data.status = status
-      recordOrderCheck(this.order_data).then(response => {
-        this.$notify({
-          title: 'Success',
-          message: response.message,
-          type: 'success',
-          duration: 2000
-        })
-        setTimeout(() => {
-          this.listLoading = false
-        }, 1.5 * 3000)
-      })
-    },
+
     sortChange(data) {
       const {prop, order} = data
       if (prop === 'id') {
@@ -326,15 +296,15 @@ export default {
     resetTemp() {
       this.temp = {
         id: undefined,
-        pmoney: undefined,
-        scid: new Date(),
-        sgo: new Date(),
-        cid: new Date(),
-        go: new Date(),
-        wecharid: undefined,
-        room_id: undefined,
-        status: 'published',
-        id_status: undefined
+        rtype: undefined,
+        bedtype: undefined,
+        maxnum: undefined,
+        area: undefined,
+        rwin: undefined,
+        rlock: undefined,
+        money: undefined,
+        temperature: undefined,
+        humidity: undefined
       }
     },
     handleCreate() {
@@ -348,14 +318,25 @@ export default {
     createData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
-          this.temp.id = parseInt(Math.random() * 100) + 1024 // mock a id
-          this.temp.author = 'vue-element-admin'
-          createArticle(this.temp).then(() => {
+          var data = {
+            rtype: this.temp.rtype,
+            bedtype: this.temp.bedtype,
+            maxnum: this.temp.maxnum,
+            area: this.temp.area,
+            rwin: this.temp.rwin,
+            rlock: this.temp.rlock,
+            money: this.temp.money,
+            token: this.listQuery.token
+          }
+          createRoom(data).then((response) => {
+            this.temp.temperature = 20
+            this.temp.humidity = 20
+            this.temp.id = this.total + 1
             this.list.unshift(this.temp)
             this.dialogFormVisible = false
             this.$notify({
               title: 'Success',
-              message: '创建成功',
+              message: response.message,
               type: 'success',
               duration: 2000
             })
@@ -365,7 +346,6 @@ export default {
     },
     handleUpdate(row) {
       this.temp = Object.assign({}, row) // copy obj
-      this.temp.timestamp = new Date(this.temp.timestamp)
       this.dialogStatus = 'update'
       this.dialogFormVisible = true
       this.$nextTick(() => {
@@ -377,16 +357,18 @@ export default {
         if (valid) {
           const tempData = {
             id: this.temp.id,
-            cid: this.temp.cid,
-            go: this.temp.go,
-            sgo: this.temp.sgo,
-            scid: this.temp.scid,
-            pmoney: this.temp.pmoney,
-            id_status: this.temp.id_status,
-            room_id: this.temp.room_id,
+            rtype: this.temp.rtype,
+            bedtype: this.temp.bedtype,
+            maxnum: this.temp.maxnum,
+            area: this.temp.area,
+            rwin: this.temp.rwin,
+            rlock: this.temp.rlock,
+            money: this.temp.money,
+            temperature: this.temp.temperature,
+            humidity: this.temp.humidity,
             token: this.listQuery.token
           }
-          updateOrder(tempData).then((response) => {
+          updateRoom(tempData).then((response) => {
             const index = this.list.findIndex(v => v.id === this.temp.id)
             this.list.splice(index, 1, this.temp)
             this.dialogFormVisible = false
@@ -400,21 +382,35 @@ export default {
         }
       })
     },
-    handleDelete(row) {
+    handleDelete(row, index) {
       var data = {
         id: row.id,
         token: this.listQuery.token
       }
-      row.id_status = 2
-      row.status = 'ended'
-      deleteOrder(data).then((response) => {
-        this.$notify({
-          title: 'Success',
-          message: '删除成功',
-          type: 'success',
-          duration: 2000
+      var that = this
+      this.$confirm("是否确认删除房间信息", "提示", {
+        iconClass: "el-icon-question",
+        confirmButtonText: "确认",
+        cancelButtonText: "取消",
+        showClose: true,
+        type: "warning",
+      }).then(function () {
+        deleteRoom(data).then((response) => {
+          that.$notify({
+            title: 'Success',
+            message: response.message,
+            type: 'success',
+            duration: 2000
+          })
+          that.list.splice(index, 1)
         })
-      })
+
+      }).then((data) => {
+        //取消操作
+      }).catch(function (err) {
+        //捕获异常
+      });
+
     },
     handleFetchPv(pv) {
       fetchPv(pv).then(response => {
@@ -425,15 +421,15 @@ export default {
     handleDownload() {
       this.downloadLoading = true
       import('@/vendor/Export2Excel').then(excel => {
-        const tHeader = ['订单号', '应付金额', '预定入住日期', '预定离开日期', '实际入住日期', '结账离开日期', '住户姓名', '住户微信id', '房间号', '订单状态']
-        const filterVal = ['id', 'pmoney', 'scid', 'sgo', 'cid', 'go', 'name', 'wecharid', 'room_id', 'id_status']
+        const tHeader = ['房间编号', '房间类型', '床型', '最大人数', '房间面积', '是否有窗', '房间锁状态', '房间金额/日', '房间当前温度', '房间当前湿度']
+        const filterVal = ['id', 'rtype', 'bedtype', 'maxnum', 'area', 'rwin', 'rlock', 'money', 'temperature', 'humidity']
         const data = this.formatJson(filterVal)
         var now = new Date();
         var now_data = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
         excel.export_json_to_excel({
           header: tHeader,
           data,
-          filename: '订单导出表' + now_data
+          filename: '房间导出表' + now_data
         })
         this.downloadLoading = false
       })
