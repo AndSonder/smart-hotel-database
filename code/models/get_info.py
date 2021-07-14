@@ -10,6 +10,17 @@ class GetInfo(Model):
         data = self.cursor.fetchone()
         return data
 
+    def hotel_chart(self, num=7):
+        # 获取近一周的订单金额
+        self.cursor.execute(
+            f"SELECT DATE_FORMAT(go,'%Y%m%d') days,SUM(pmoney),COUNT(*) FROM `order` WHERE go<NOW() AND go > DATE_ADD(NOW(),INTERVAL -{num} DAY) AND id_status=1 group by days ORDER BY days DESC;")
+        hotel_info = self.cursor.fetchall()
+        self.cursor.execute(
+            f"SELECT DATE_FORMAT(message_time,'%Y%m%d') days,COUNT(*) FROM feedback WHERE message_time<NOW() AND message_time > DATE_ADD(NOW(),INTERVAL -{num} DAY) group by days ORDER BY days DESC;"
+        )
+        question_info = self.cursor.fetchall()
+        return hotel_info, question_info
+
     def search_order(self, page, limit, sort, id=None, name=None):
         start = (page - 1) * limit
         # 计算订单数量

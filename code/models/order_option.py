@@ -57,5 +57,5 @@ class OrderOption(Model):
 
 if __name__ == '__main__':
     l = OrderOption()
-    # data = l.search_order(1, 2, '+id')
+    # data = l.search_suggestion(1, 2, '+id')
     # print(data)
