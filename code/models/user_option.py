@@ -9,7 +9,7 @@ class UserOption(Model):
     def search_user(self, page, limit, level, name, phone, search_level):
         start = (page - 1) * limit
         # 获取用户数量
-        self.cursor.execute('SELECT count(*) FROM room;')
+        self.cursor.execute('SELECT MAX(id) FROM room;')
         total_num = self.cursor.fetchone()[0]
         if phone != None:
             self.cursor.execute(
@@ -77,5 +77,5 @@ class UserOption(Model):
 
 if __name__ == '__main__':
     l = UserOption()
-    # data = l.search_order(1, 2, '+id')
+    # data = l.search_suggestion(1, 2, '+id')
     # print(data)

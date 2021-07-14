@@ -3,20 +3,18 @@
     <div class="filter-container">
       <el-input v-model="listQuery.id" placeholder="房间号" style="width: 180px;" class="filter-item"
                 @keyup.enter.native="handleFilter"/>
-      <el-input v-model="listQuery.rtype" placeholder="房间类型" style="width: 180px; margin-left: 10px;"
-                class="filter-item"
-                @keyup.enter.native="handleFilter"/>
+      <el-select v-model="listQuery.bedtype" placeholder="房间类型" clearable style="width: 140px;padding-left: 10px" class="filter-item">
+        <el-option v-for="item in BedType" :key="item" :label="item" :value="item"/>
+      </el-select>
+      <el-date-picker v-model="listQuery.start_date" type="datetime" value-format="timestamp" placeholder="请选择开始时间"
+                      class="filter-item"
+                      style="width: 220px;padding-left: 10px"/>
+      <el-date-picker v-model="listQuery.end_date" type="datetime" value-format="timestamp" placeholder="请选择结束时间"
+                      class="filter-item"
+                      style="width: 220px;padding-left: 10px"/>
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter"
                  style="margin-left: 10px;">
         搜索
-      </el-button>
-      <el-button class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit"
-                 @click="handleCreate">
-        添加
-      </el-button>
-      <el-button v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download"
-                 @click="handleDownload">
-        导出
       </el-button>
     </div>
 
@@ -85,74 +83,16 @@
           <span>{{ row.humidity }} rh</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" width="180" class-name="small-padding fixed-width">
-        <template slot-scope="{row,$index}">
-          <el-button type="primary" size="mini" @click="handleUpdate(row)">
-            编辑信息
-          </el-button>
-          <el-button size="mini" type="danger" @click="handleDelete(row,$index)">
-            删除房间
-          </el-button>
-        </template>
-      </el-table-column>
     </el-table>
 
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit"
                 @pagination="getList"/>
-
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form ref="dataForm" :rules="rules[dialogStatus]" :model="temp" label-position="left" label-width="130px"
-               style="width: 400px; margin-left:50px;">
-        <el-form-item v-if="dialogStatus==='update'" label="房间编号" prop="id">
-          <el-input v-model="temp.id"/>
-        </el-form-item>
-        <el-form-item label="房间类型" prop="rtype">
-          <el-input v-model="temp.rtype"/>
-        </el-form-item>
-        <el-form-item label="房间床型" prop="bedtype">
-          <el-input v-model="temp.bedtype"/>
-        </el-form-item>
-        <el-form-item label="最大人数" prop="maxnum">
-          <el-input v-model="temp.maxnum"/>
-        </el-form-item>
-        <el-form-item label="房间面积" prop="area">
-          <el-input v-model="temp.area"/>
-        </el-form-item>
-        <el-form-item label="是否有窗户" prop="rwin">
-          <el-select v-model="temp.rwin" class="filter-item" placeholder="请选择">
-            <el-option v-for="item in roomWin" :key="item.key" :label="item.display_name" :value="item.key"/>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="房间锁" prop="rlock">
-          <el-select v-model="temp.rlock" class="filter-item" placeholder="请选择">
-            <el-option v-for="item in roomLock" :key="item.key" :label="item.display_name" :value="item.key"/>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="房间金额/日" prop="money">
-          <el-input v-model="temp.money"/>
-        </el-form-item>
-        <el-form-item v-if="dialogStatus==='update'" label="房间当前温度" prop="temperature">
-          <el-input v-model="temp.temperature"/>
-        </el-form-item>
-        <el-form-item v-if="dialogStatus==='update'" label="房间当前湿度" prop="humidity">
-          <el-input v-model="temp.humidity"/>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">
-          取消
-        </el-button>
-        <el-button type="primary" @click="dialogStatus==='create'?createData():updateData()">
-          提交
-        </el-button>
-      </div>
-    </el-dialog>
   </div>
 </template>
 
 <script>
 import {fetchList, fetchPv, createArticle, updateArticle} from '@/api/article'
-import {fetchRoomList, updateRoom, deleteRoom, createRoom} from '@/api/room'
+import {fetchRoomList, updateRoom, deleteRoom, createRoom, fetchRoomGuest} from '@/api/room'
 import {getToken} from '@/utils/auth'
 import waves from '@/directive/waves' // waves directive
 import {parseTime} from '@/utils'
@@ -176,6 +116,8 @@ const roomLock = [
   {key: 2, display_name: '锁损坏'},
   {key: 3, display_name: '没锁'},
 ]
+
+const BedType = ['大床', '单人床', '小型双床', '特大床', '三张床']
 
 // arr to obj, such as { CN : "China", US : "USA" }
 const calendarTypeKeyValue = calendarTypeOptions.reduce((acc, cur) => {
@@ -211,12 +153,16 @@ export default {
         limit: 20,
         sort: '+id',
         token: getToken(),
-        rtype: undefined,
+        bedtype: undefined,
+        id: undefined,
+        start_date: undefined,
+        end_date: undefined
       },
       importanceOptions: [1, 2, 3],
       calendarTypeOptions,
       roomWin,
       roomLock,
+      BedType,
       sortOptions: [{label: 'ID Ascending', key: '+id'}, {label: 'ID Descending', key: '-id'}],
       statusOptions: ['published', 'draft', 'deleted'],
       showReviewer: false,
@@ -234,28 +180,6 @@ export default {
         id_status: undefined,
         token: getToken()
       },
-      rules: {
-        update: {
-          id: [{required: true, message: '该项不能为空', trigger: 'blur'}],
-          rtype: [{required: true, message: '该项不能为空', trigger: 'blur'}],
-          bedtype: [{required: true, message: '该项不能为空', trigger: 'blur'}],
-          maxnum: [{required: true, message: '该项不能为空', trigger: 'blur'}],
-          area: [{required: true, message: '该项不能为空', trigger: 'blur'}],
-          rwin: [{required: true, message: '该项不能为空', trigger: 'blur'}],
-          rlock: [{required: true, message: '该项不能为空', trigger: 'blur'}],
-          money: [{required: true, message: '该项不能为空', trigger: 'blur'}],
-          temperature: [{required: true, message: '该项不能为空', trigger: 'blur'}],
-          humidity: [{required: true, message: '该项不能为空', trigger: 'blur'}],
-        }, create: {
-          rtype: [{required: true, message: '该项不能为空', trigger: 'blur'}],
-          bedtype: [{required: true, message: '该项不能为空', trigger: 'blur'}],
-          maxnum: [{required: true, message: '该项不能为空', trigger: 'blur'}],
-          area: [{required: true, message: '该项不能为空', trigger: 'blur'}],
-          rwin: [{required: true, message: '该项不能为空', trigger: 'blur'}],
-          rlock: [{required: true, message: '该项不能为空', trigger: 'blur'}],
-          money: [{required: true, message: '该项不能为空', trigger: 'blur'}],
-        },
-      },
       downloadLoading: false
     }
   },
@@ -265,7 +189,7 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      fetchRoomList(this.listQuery).then(response => {
+      fetchRoomGuest(this.listQuery).then(response => {
         this.list = response.data.items
         this.total = response.data.total
         // Just to simulate the time of the request

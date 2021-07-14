@@ -655,7 +655,7 @@ API：/room/roomsinf/admin/get
 | 字段            | 数据类型     | 必填 | 备注                                                         |
 | --------------- | ------------ | ---- | ------------------------------------------------------------ |
 | errcode         | int          | 是   | 状态标识。0表示成功查询、1表示没有该管理员、2表示未知错误。  |
-| liveRoomList    | string(json) | 是   | 进行中状态订单的房间简略信息(房间号、温湿度、硬件状态)       |
+| liveRoomList    | string(json) | 是   | 进行中状态订单的房间简略信息(订单号、住户姓名、房间号、温湿度、硬件状态) |
 | notliveRoomList | string(json) | 是   | 非“进行中状态订单的房间”房间（剩余所有房间）简略信息(房间号、温湿度、硬件状态) |
 | stamp           | string       | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve      | string       | 是   | 表验证，功能与用法和prove一致，只不过把adminCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
@@ -680,6 +680,8 @@ API：/room/roomsinf/admin/get
 {
     "errcode":0/1/2,
     "liveRoomList":[{
+        "orderId":1,
+        "wecharid":"wxid_ux57m1gafdh524",
         "romId":101,			//进行中订单房间简略信息
         "roomTemp":26,
         "roomHum":40,
@@ -689,6 +691,8 @@ API：/room/roomsinf/admin/get
     },
 	],
     "notliveRoomList":[{
+        "orderId":1,
+        "wecharid":"wxid_ux57m1gafdh524",
         "romId":102,			//非“进行中状态订单的房间”房间简略信息
         "roomTemp":26,
         "roomHum":40,
@@ -1201,7 +1205,7 @@ API：/server/feedback/resident/post
 ```json
 {
     "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
-    "roomId":101,
+    "message":"浴室需要改进",
     "stamp":"2020-05-21 18:55:49",
     "prove":"xxxxxxxxxx"
 }
@@ -1223,7 +1227,7 @@ API：/server/feedback/resident/post
 
 #### 用户查询身份
 
-功能描述：**住户提交对酒店的意见或建议**。
+功能描述：**查询用户身份**。
 
 API：/system/identity/user/get
 

@@ -78,7 +78,7 @@ export const constantRoutes = [
       {
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
-        name: '主面板',
+        name: 'dashboard',
         meta: {title: '主面板', icon: 'dashboard', affix: true}
       }
     ]
@@ -163,6 +163,16 @@ export const asyncRoutes = [
       component: () => import('@/views/user'),
       name: 'user',
       meta: {title: '用户管理', icon: 'user', roles: ['admin', '前台', '经理']}
+    }]
+  },
+  {
+    path: '/suggestion',
+    component: Layout,
+    children: [{
+      path: 'index',
+      component: () => import('@/views/suggestion'),
+      name: 'suggestion',
+      meta: {title: '建议管理', icon: 'suggestion', roles: ['admin', '前台', '经理']}
     }]
   },
 

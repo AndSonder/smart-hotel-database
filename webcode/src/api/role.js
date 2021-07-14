@@ -1,9 +1,11 @@
 import request from '@/utils/request'
+import base from '@/api/setting'
+
 
 export function getRoutes() {
   return request({
     url: '/vue-element-admin/routes',
-    method: 'get'
+    method: 'get',
   })
 }
 
