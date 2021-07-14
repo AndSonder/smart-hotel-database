@@ -96,6 +96,7 @@
           <span v-if="row.id_status===0">进行中</span>
           <span v-if="row.id_status===1">已完成</span>
           <span v-if="row.id_status===2">已取消</span>
+          <span v-if="row.id_status===3">已预定</span>
         </template>
       </el-table-column>
       <el-table-column label="入住状态" class-name="status-col" width="100">
@@ -190,7 +191,8 @@ const calendarTypeOptions = [
 const idStatus = [
   {key: 0, display_name: '进行中'},
   {key: 1, display_name: '已完成'},
-  {key: 2, display_name: '已取消'}
+  {key: 2, display_name: '已取消'},
+  {key: 3, display_name: '已预定'}
 ]
 
 // arr to obj, such as { CN : "China", US : "USA" }

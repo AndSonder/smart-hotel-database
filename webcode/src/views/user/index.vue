@@ -6,7 +6,7 @@
       <el-input v-model="listQuery.phone" placeholder="手机号" style="width: 180px; margin-left: 10px;"
                 class="filter-item"
                 @keyup.enter.native="handleFilter"/>
-      <el-select v-model="listQuery.level" class="filter-item" placeholder="权限" style="width: 180px;padding-left: 10px">
+      <el-select v-model="listQuery.level" class="filter-item" placeholder="权限" style="width: 200px;padding-left: 10px">
         <el-option v-for="item in userLevel" :key="item.key" :label="item.display_name" :value="item.key"/>
       </el-select>
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter"
@@ -139,6 +139,7 @@ const userLevel = [
   {key: 3, display_name: '安保人员权限'},
   {key: 4, display_name: '清洁人员权限'},
   {key: 5, display_name: '普通用户权限'},
+  {key: undefined, display_name: '全部'},
 ]
 
 export default {

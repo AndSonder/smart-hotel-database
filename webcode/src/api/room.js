@@ -1,33 +1,42 @@
 import request from '@/utils/request'
+import base from '@/api/setting'
 
 export function fetchRoomList(query) {
   return request({
-    url: 'http://127.0.0.1:5000/room/list',
-    method: 'get',
+    url: '/room/list',
+    method: 'get', baseURL: base['base'],
     params: query
   })
 }
 
 export function updateRoom(data) {
   return request({
-    url: 'http://127.0.0.1:5000/room/update',
-    method: 'post',
+    url: '/room/update',
+    method: 'post', baseURL: base['base'],
     data
   })
 }
 
 export function createRoom(data) {
   return request({
-    url: 'http://127.0.0.1:5000/room/create',
-    method: 'post',
+    url: '/room/create',
+    method: 'post', baseURL: base['base'],
     data
   })
 }
 
 export function deleteRoom(data) {
   return request({
-    url: 'http://127.0.0.1:5000/room/delete',
-    method: 'post',
+    url: '/room/delete',
+    method: 'post', baseURL: base['base'],
     data
+  })
+}
+
+export function fetchRoomGuest(query) {
+  return request({
+    url: '/room/guest',
+    method: 'get', baseURL: base['base'],
+    params: query
   })
 }

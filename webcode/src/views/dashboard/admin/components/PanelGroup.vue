@@ -58,7 +58,7 @@
 <script>
 import CountTo from 'vue-count-to'
 import {mapGetters} from 'vuex'
-import {getHotelInfo} from '@/api/hote'
+import {getHotelChart} from '@/api/hote'
 import {getToken} from '@/utils/auth'
 
 export default {
@@ -78,14 +78,14 @@ export default {
   methods: {
 
     getHotel() {
-      getHotelInfo(this.token).then(response => {
+      getHotelChart({token: this.token, num: 7}).then(response => {
         const {data} = response
-        const {people_num, question_num, order_num, order_money} = data
+        const {people_num_all, question_num_all, order_num_all, order_money_all} = data
         this.hotel = {
-          "people_num": people_num,
-          "question_num": question_num,
-          "order_num": order_num,
-          "order_money": order_money
+          "people_num": people_num_all,
+          "question_num": question_num_all,
+          "order_num": order_num_all,
+          "order_money": order_money_all
         }
       })
     },
