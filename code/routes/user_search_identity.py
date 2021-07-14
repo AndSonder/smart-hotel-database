@@ -1,18 +1,18 @@
 # author:liuyang
-# time:2021/7/13
+# time:2021/7/14
 
 from flask import Blueprint
 from flask import request
 import requests
 import json
-from ..models.UserPushInfo import *
+from ..models.UserSearchIdentity import *
 from ..models.MD5 import *
 import time
+import datetime
+#https://www.supremeproger.com/system/identity/user/get
+user_search_identity = Blueprint('user_search_identity', __name__)
 
-#https://www.supremeproger.com/user/perinfo/resident/post
-user_post_info = Blueprint('user_post_info', __name__)
-
-@user_post_info.route('/user/perinfo/resident/post', methods=['POST'])
+@user_search_identity.route('/system/identity/user/get', methods=['POST'])
 def index():
     get_info = request.get_data()
     get_info = json.loads(get_info)
@@ -32,19 +32,19 @@ def index():
         # }
         # wecharid = requests.post(url=url, data=data)
         # wecharid = wecharid.text
-        wecharid = 'wxid_ux57m1gafdh524'
+        wecharid = 'wxid_ux57m1gafdh523'
 
         print(wecharid)
         get_info['wecharid'] = wecharid
-        db = UserPush()
-        flag1 = db.search(wecharid)
+        db = ClientSearchIdentity()
+        data = db.search(get_info)
 
-        if flag1:
-            datas = {"errcode": 1, "stamp": stamp_h, "tableProve": table_prove}
+        if data:
+            datas = {"errcode": 0, "datalist ": data, "stamp": stamp_h, "tableProve": table_prove}
             return json.dumps(datas)
         else:
-            flag2 = db.insert(get_info)
-            datas = {"errcode": flag2, "stamp": stamp_h, "tableProve": table_prove}
+            datas = {"errcode": 2,  "message": "没有查询到数据", "stamp": stamp_h, "tableProve": table_prove}
             return json.dumps(datas)
     else:
-        return json.dumps({"errcode": 2,"message": "你不对劲！你是faker!", "stamp": stamp_h, "tableProve": table_prove})
+        return json.dumps({"errcode": 3,"message": "你不对劲！你是faker!", "stamp": stamp_h, "tableProve": table_prove}, cls=DateEncoder)
+

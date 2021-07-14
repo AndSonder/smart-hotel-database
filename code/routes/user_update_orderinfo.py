@@ -5,14 +5,14 @@ from flask import Blueprint
 from flask import request
 import requests
 import json
-from ..models.UserPushInfo import *
+from ..models.UserUpdateOrderInfo import *
 from ..models.MD5 import *
 import time
 
-#https://www.supremeproger.com/user/perinfo/resident/post
-user_post_info = Blueprint('user_post_info', __name__)
+#https://www.supremeproger.com/order/orderinf/resident/push
+user_update_orderinfo = Blueprint('user_update_orderinfo', __name__)
 
-@user_post_info.route('/user/perinfo/resident/post', methods=['POST'])
+@user_update_orderinfo.route('/order/orderinf/resident/push', methods=['POST'])
 def index():
     get_info = request.get_data()
     get_info = json.loads(get_info)
@@ -37,14 +37,12 @@ def index():
         print(wecharid)
         get_info['wecharid'] = wecharid
         db = UserPush()
-        flag1 = db.search(wecharid)
-
-        if flag1:
-            datas = {"errcode": 1, "stamp": stamp_h, "tableProve": table_prove}
+        flag = db.update(get_info)
+        if flag == 0:
+            datas = {"errcode": flag, "stamp": stamp_h, "tableProve": table_prove}
             return json.dumps(datas)
         else:
-            flag2 = db.insert(get_info)
-            datas = {"errcode": flag2, "stamp": stamp_h, "tableProve": table_prove}
+            datas = {"errcode": flag, "stamp": stamp_h, "tableProve": table_prove}
             return json.dumps(datas)
     else:
-        return json.dumps({"errcode": 2,"message": "你不对劲！你是faker!", "stamp": stamp_h, "tableProve": table_prove})
+        return json.dumps({"errcode": 4,"message": "你不对劲！你是faker!", "stamp": stamp_h, "tableProve": table_prove})
