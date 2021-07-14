@@ -1,6 +1,5 @@
 <scroll-view scroll-y class="DrawerPage {{modalName=='viewModal'?'show':''}}">
-  <cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
-    <view slot="backText">返回</view>
+  <cu-custom bgColor="bg-gradual-blue" isBack="{{false}}">
     <view slot="content">全屏抽屉</view>
   </cu-custom>
   <view class="total_box">
@@ -24,26 +23,33 @@
             max-date="{{ end_maxDate }}" bind:confirm="endTime_onConfirm" bind:cancel="onCancel"/>
           </van-popup>
         </view>
-        <view class="search_moudle">
+        <view class="search_module">
         <view class="search_button">
-          <button class="cu-btn round  bg-blue shadow">房间搜索</button>
+          <button class="cu-btn round  bg-blue shadow" bindtap="turn_search" data-rtype="{{rtypeContent}}" data-startTime="{{startTimeContent}}" data-endTime="{{endTimeContent}}" >房间搜索</button>
         </view>
         </view>
       </view>
     </view>
     <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
-      <view class="cu-item arrow" wx:for="{{20}}" wx:key="index">
+      <view class="cu-item arrow" wx:for="{{10}}" wx:key="index" bindtap="showModal" data-target="viewModal">
         <view class="content">
-          <text class="cuIcon-github text-grey"></text>
+          <text class="cuIcon-homefill text-grey"></text>
+          <text class="text-grey">{{index +1}}</text>
+        </view>
+      </view>
+      <view class="buffer_module"></view>
+      <view class="cu-item arrow" wx:for="{{10}}" wx:key="index" bindtap="showModal" data-target="viewModal">
+        <view class="content">
+          <text class="cuIcon-homefill text-grey"></text>
           <text class="text-grey">{{index +1}}</text>
         </view>
       </view>
     </view>
-    <view class='padding margin text-center'>
+    <!-- <view class='padding margin text-center'>
       <view class='cu-btn bg-green lg block shadow radius margin-xl' bindtap="showModal" data-target="viewModal">
         打开抽屉
       </view>
-    </view>
+    </view> -->
   </view>
 </scroll-view>
 <view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap="hideModal">
@@ -51,11 +57,85 @@
 </view>
 <scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
   <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
-    <view class="cu-item arrow" wx:for="{{20}}" wx:key="index">
-      <view class="content">
-        <text class="cuIcon-github text-grey"></text>
-        <text class="text-grey">{{index +1}}</text>
+    <view class="total_box">
+  <view class="first_box">
+    <view class="room_module">
+      <view class="roomId_module"><text>{{roomId}}</text></view>
+      <view class="rtype-btype_module">
+        <view class="rtype_module"><text>房间类型：{{roomType}}</text></view>
+        <view class="btype_module"><text>房间床型：{{bedType}}</text></view>
+      </view>
+      <view class="area-window_module">
+        <view class="area_module"><text>房间面积：{{roomArea}}</text></view>
+        <view class="window_module"><text>窗户有无：{{roomWindow}}</text></view>
+      </view>
+      <view class="maximum-price_module">
+        <view class="maximum_module"><text>限住人数：{{maximum}}</text></view>
+        <view class="price_module"><text>房间价格：{{roomPrice}}</text></view>
+      </view>
+      <view class="T-H_module">
+        <view class="T_module"><text>温度：{{roomTem}}</text></view>
+        <view class="H_module"><text>湿度：{{roomHumi}}</text></view>
       </view>
     </view>
+  </view>
+  <view class="second_box">
+    <view class="handware_module">
+      <view class="air_module">
+        <view class="status">
+          <text>{{air_status}}</text>
+        </view>
+        <view class="mode">
+          <text>{{air_mode}}</text>
+        </view>
+        <view class="value">
+          <text>{{air_value}}</text>
+        </view>
+      </view>
+      <view class="light_module">
+        <view class="status">
+          <text>{{light_status}}</text>
+        </view>
+        <view class="mode">
+          <text>{{light_mode}}</text>
+        </view>
+        <view class="value">
+          <text>{{light_value}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="third_box">
+    <view class="resident_module">
+      <view class="name-sex_module">
+        <view class="name_module">
+          <text>姓名：{{name}}</text>
+        </view>
+        <view class="sex_module">
+          <text>性别：{{sex}}</text>
+        </view>
+      </view>
+      <view class="phone_module">
+        <text>联系号码：{{phone}}</text>
+      </view>
+      <view class="idCard_module">
+        <text>身份证：{{idCard}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="fourth_box">
+    <view class="order_module">
+      <view class="orderId_module"><text>订单号：{{orderId}}</text></view>
+      <view class="deposit-amountsPay_module">
+        <view class="deposit_module"><text>订金：{{deposit}}</text></view>
+        <view class="amountsPay_module"><text>应付金额：{{amountsPay}}</text></view>
+      </view>
+      <view class="expLive_module"><text>预计入住时间：{{expLive}}</text></view>
+      <view class="expAway_module"><text>预计离开时间：{{expAway}}</text></view>
+      <view class="actLive_module"><text>实际入住时间：{{actLive}}</text></view>
+      <view class="actAway_module"><text>实际离开时间：{{actAway}}</text></view>
+    </view>
+  </view>
+</view>
   </view>
 </scroll-view>

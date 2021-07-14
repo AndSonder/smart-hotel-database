@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/roomOverview/roomOverview",
+    "pages/roomSearch/roomSearch",
     "pages/logs/logs"
   ],
   "window":{

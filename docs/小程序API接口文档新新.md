@@ -89,6 +89,8 @@ API：/user/perinfo/resident/get
 | stamp      | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve | string   | 是   | 表验证，功能与用法和prove一致，只不过把resCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
 
+请求示例：
+
 **request**
 
 ```json
@@ -144,6 +146,8 @@ API：/user/admin/super_admin/perinf/get
 | phone      | string   | 是   | 用户电话号码                                                 |
 | stamp      | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve | string   | 是   | 表验证，功能与用法和prove一致，只不过把adminCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
+
+请求示例：
 
 **request**
 
@@ -262,6 +266,8 @@ API：/order/ordersinf/resident/get
 | stamp      | string       | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve | string       | 是   | 表验证，功能与用法和prove一致，只不过把resCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
 
+请求示例：
+
 **request**
 
 ```json
@@ -331,6 +337,8 @@ API：/order/orderinf/resident/get
 | stamp       | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve  | string   | 是   | 表验证，功能与用法和prove一致，只不过把resCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
 
+请求示例：
+
 **request**
 
 ```json
@@ -394,6 +402,8 @@ API：/order/orderinf/admin/get
 | stamp      | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve | string   | 是   | 表验证，功能与用法和prove一致，只不过把adminCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
 
+请求示例：
+
 **request**
 
 ```json
@@ -455,6 +465,8 @@ API：/order/orderinf/resident/push
 | stamp      | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve | string   | 是   | 表验证，功能与用法和prove一致，只不过把resCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
 
+请求示例：
+
 **request**
 
 ```json
@@ -513,6 +525,8 @@ API：/room/roomsinf/resident/get
 | roomList   | string(json) | 是   | 房间简略信息（房间类型、房间床型、限住人数、房间价格）       |
 | stamp      | string       | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve | string       | 是   | 表验证，功能与用法和prove一致，只不过把resCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
+
+请求示例：
 
 **request**
 
@@ -579,6 +593,8 @@ API：/user/resident/per_roomsinf/get
 | stamp       | string       | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve  | string       | 是   | 表验证，功能与用法和prove一致，只不过把resCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
 
+请求示例：
+
 **request**
 
 ```json
@@ -643,6 +659,8 @@ API：/room/roomsinf/admin/get
 | notliveRoomList | string(json) | 是   | 非“进行中状态订单的房间”房间（剩余所有房间）简略信息(房间号、温湿度、硬件状态) |
 | stamp           | string       | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve      | string       | 是   | 表验证，功能与用法和prove一致，只不过把adminCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
+
+请求示例：
 
 **request**
 
@@ -720,6 +738,8 @@ API：/room/roominf/admin/get
 | stamp      | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve | string   | 是   | 表验证，功能与用法和prove一致，只不过把adminCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
 
+请求示例：
+
 **request**
 
 ```json
@@ -784,6 +804,8 @@ API：/hardware/air_condition/resident/get
 | stamp      | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve | string   | 是   | 表验证，功能与用法和prove一致，只不过把resCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
 
+请求示例：
+
 **request**
 
 ```json
@@ -839,6 +861,8 @@ API：/hardware/light/resident/get
 | stamp       | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve  | string   | 是   | 表验证，功能与用法和prove一致，只不过把resCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
 
+请求示例：
+
 **request**
 
 ```json
@@ -893,6 +917,8 @@ API：/hardware/air_condition/admin/get
 | airValue   | int      | 否   | 空调数值                                                     |
 | stamp      | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve | string   | 是   | 表验证，功能与用法和prove一致，只不过把adminCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
+
+请求示例：
 
 **request**
 
@@ -950,6 +976,8 @@ API：/hardware/light/admin/get
 | stamp       | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve  | string   | 是   | 表验证，功能与用法和prove一致，只不过把adminCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
 
+请求示例：
+
 **request**
 
 ```json
@@ -1005,6 +1033,8 @@ API：/hardware/hardwareinf/lock/user/push
 | stamp      | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve | string   | 是   | 表验证，功能与用法和prove一致，只不过把cerCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
 
+请求示例：
+
 **request**
 
 ```json
@@ -1059,6 +1089,8 @@ API：/record/unlock/user/post
 | stamp      | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve | string   | 是   | 表验证，功能与用法和prove一致，只不过把cerCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
 
+请求示例：
+
 **request**
 
 ```json
@@ -1112,6 +1144,8 @@ API：/server/call_cleaning/resident/post
 | stamp      | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve | string   | 是   | 表验证，功能与用法和prove一致，只不过把resCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
 
+请求示例：
+
 **request**
 
 ```json
@@ -1159,6 +1193,8 @@ API：/server/feedback/resident/post
 | errcode    | int      | 是   | 状态标识。0表示成功留言，1表示没有该住户、2表示意外错误      |
 | stamp      | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库     |
 | tableProve | string   | 是   | 表验证，功能与用法和prove一致，只不过把resCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
+
+请求示例：
 
 **request**
 
@@ -1211,6 +1247,8 @@ API：/system/identity/user/get
 | identity   | int      | 是   | 用户身份标识                                                 |
 | stamp      | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库     |
 | tableProve | string   | 是   | 表验证，功能与用法和prove一致，只不过把cerCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
+
+请求示例：
 
 **request**
 
