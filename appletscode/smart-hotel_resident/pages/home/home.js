@@ -1,11 +1,7 @@
-// pages/home/home.js
+const app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    backImage:'/images/reservation_backimg.png',
   },
 
   /**

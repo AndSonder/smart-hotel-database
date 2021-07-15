@@ -118,7 +118,7 @@ API：/user/perinfo/resident/get
 
 #### 管理员查询住户个人详细信息
 
-功能描述：**查询指定住户的个人详细信息**。
+功能描述：**根据订单号查询指定住户的个人详细信息**。
 
 API：/user/admin/super_admin/perinf/get
 
@@ -131,7 +131,7 @@ API：/user/admin/super_admin/perinf/get
 | 字段      | 数据类型 | 必填 | 备注                                                         |
 | --------- | -------- | ---- | ------------------------------------------------------------ |
 | adminCode | string   | 是   | 管理员的登录凭证，后端借其获取openid，验证用户身份是否为超级管理员 |
-| resCode   | string   | 是   | 住户的登录凭证，后端借其获取openid，验证用户身份是否为住户   |
+| orderId   | string   | 是   | 订单号                                                       |
 | stamp     | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
 | prove     | string   | 是   | 管理员的adminCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
 
@@ -154,7 +154,7 @@ API：/user/admin/super_admin/perinf/get
 ```json
 {
     "adminCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
-    "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
+    "orderId":123,
     "stamp":"2020-05-21 18:55:49",
     "prove":"xxxxxxxxxx"
 }
@@ -169,7 +169,6 @@ API：/user/admin/super_admin/perinf/get
     "sex":1,
     "idCard":"230xxxxxxxxxxxxxxx",
     "phone":"181xxxx6924",
-    "identify":4,
     "stamp":"2020-05-21 18:55:49",
     "tableProve":"xxxxxxxxxxx"
 }
@@ -191,16 +190,17 @@ API：/order/perinfo/resident/post
 
 **请求参数**
 
-| 字段     | 数据类型 | 必填 | 备注                                                         |
-| -------- | -------- | ---- | ------------------------------------------------------------ |
-| resCode  | string   | 是   | 住户的登录凭证，后端借其获取openid，将openid录入订单数据表中 |
-| roomType | string   | 是   | 房间类型                                                     |
-| expLive  | string   | 是   | 预计入住时间                                                 |
-| expAway  | string   | 是   | 预计离开时间                                                 |
-| actLive  | string   | 是   | 实际入住时间                                                 |
-| actAway  | string   | 是   | 实际离开时间                                                 |
-| stamp    | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
-| prove    | string   | 是   | 用户的resCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。验证用，不用加入数据库。 |
+| 字段       | 数据类型 | 必填 | 备注                                                         |
+| ---------- | -------- | ---- | ------------------------------------------------------------ |
+| resCode    | string   | 是   | 住户的登录凭证，后端借其获取openid，将openid录入订单数据表中 |
+| roomType   | string   | 是   | 房间类型                                                     |
+| expLive    | string   | 是   | 预计入住时间                                                 |
+| expAway    | string   | 是   | 预计离开时间                                                 |
+| actLive    | string   | 是   | 实际入住时间                                                 |
+| actAway    | string   | 是   | 实际离开时间                                                 |
+| order_time | string   | 是   | 订单下单时间                                                 |
+| stamp      | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
+| prove      | string   | 是   | 用户的resCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。验证用，不用加入数据库。 |
 
 **返回参数**
 
@@ -245,6 +245,8 @@ API：/order/perinfo/resident/post
 
 API：/order/ordersinf/resident/get
 
+订单列表元素按照时间由近及远的排序放入数组中。
+
 请求方法：POST
 
 支持格式：JSON
@@ -262,7 +264,7 @@ API：/order/ordersinf/resident/get
 | 字段       | 数据类型     | 必填 | 备注                                                         |
 | ---------- | ------------ | ---- | ------------------------------------------------------------ |
 | errcode    | int          | 是   | 状态标识。0表示成功查询、1表示没有该住户、2表示订单不存在、3表示未知错误。 |
-| orderlist  | string(json) | 是   | 订单简略信息（订单号、房间号、实际入住时间、实际离开时间、订单状态） |
+| orderlist  | string(json) | 是   | 订单简略信息（订单号、房间号、订单下单时间、订单状态）       |
 | stamp      | string       | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve | string       | 是   | 表验证，功能与用法和prove一致，只不过把resCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
 
@@ -286,14 +288,12 @@ API：/order/ordersinf/resident/get
     "orderlist":[{
         "orderId":123,
         "roomId":101,
-        "actLive":"2020-05-17 18:55:49",
-        "actAway":"2020-05-26 18:55:49",
+        "orderTime":"2020-05-17 18:55:49",
         "orderStatus":0,
     },{
         "orderId":123,
         "roomId":102,
-        "actLive":"2020-05-17 18:55:49",
-        "actAway":"2020-05-26 18:55:49",
+        "orderTime":"2020-05-17 18:55:49",
         "orderStatus":0,
   	},
     ],
@@ -333,6 +333,7 @@ API：/order/orderinf/resident/get
 | expAway     | string   | 是   | 预计离开时间                                                 |
 | actLive     | string   | 是   | 实际入住时间                                                 |
 | actAway     | string   | 是   | 实际离开时间                                                 |
+| order_time  | string   | 是   | 订单下单时间                                                 |
 | orderStatus | int      | 是   | 订单状态                                                     |
 | stamp       | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve  | string   | 是   | 表验证，功能与用法和prove一致，只不过把resCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
@@ -361,6 +362,7 @@ API：/order/orderinf/resident/get
     "expLive":"2020-05-16 18:55:49",
     "expAway":"2020-05-25 18:55:49",
     "actLive":"2020-05-17 18:55:49",
+    "orderTime":"2020-05-17 18:55:49",
     "actAway":"2020-05-26 18:55:49",
     "orderStatus":2,
     "stamp":"2020-05-21 18:55:49",
@@ -383,7 +385,7 @@ API：/order/orderinf/admin/get
 | 字段      | 数据类型 | 必填 | 备注                                                         |
 | --------- | -------- | ---- | ------------------------------------------------------------ |
 | adminCode | string   | 是   | 管理员的登录凭证，后端借其获取openid，验证用户身份是否为超级管理员 |
-| roomId    | int      | 是   | 房间号                                                       |
+| orderId   | int      | 是   | 订单号                                                       |
 | stamp     | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
 | prove     | string   | 是   | 管理员的adminCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
 
@@ -399,6 +401,7 @@ API：/order/orderinf/admin/get
 | expAway    | string   | 是   | 预计离开时间                                                 |
 | actLive    | string   | 是   | 实际入住时间                                                 |
 | actAway    | string   | 是   | 实际离开时间                                                 |
+| order_time | string   | 是   | 订单下单时间                                                 |
 | stamp      | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve | string   | 是   | 表验证，功能与用法和prove一致，只不过把adminCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
 
@@ -409,7 +412,7 @@ API：/order/orderinf/admin/get
 ```json
 {
     "adminCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
-    "roomId":123,
+    "orderId":123,
     "stamp":"2020-05-21 18:55:49",
     "prove":"xxxxxxxxxx"
 }
@@ -427,6 +430,7 @@ API：/order/orderinf/admin/get
     "expAway":"2020-05-2518:55:49",
     "actLive":"2020-05-17 18:55:49",
     "actAway":"2020-05-26 18:55:49",
+    "orderTime":"2020-05-17 18:55:49",
     "stamp":"2020-05-21 18:55:49",
     "tableProve":"xxxxxxxxxxx"
 }
@@ -681,7 +685,7 @@ API：/room/roomsinf/admin/get
     "errcode":0/1/2,
     "liveRoomList":[{
         "orderId":1,
-        "wecharid":"wxid_ux57m1gafdh524",
+        "name":"张三",
         "romId":101,			//进行中订单房间简略信息
         "roomTemp":26,
         "roomHum":40,
@@ -692,7 +696,7 @@ API：/room/roomsinf/admin/get
 	],
     "notliveRoomList":[{
         "orderId":1,
-        "wecharid":"wxid_ux57m1gafdh524",
+        "name":"李四",
         "romId":102,			//非“进行中状态订单的房间”房间简略信息
         "roomTemp":26,
         "roomHum":40,

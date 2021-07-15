@@ -8,3 +8,6 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+@import "colorui/main.wxss";
+@import "colorui/icon.wxss";
+@import "colorui/animation.wxss";

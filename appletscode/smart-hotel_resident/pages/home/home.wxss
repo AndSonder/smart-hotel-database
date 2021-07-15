@@ -1,1 +1,51 @@
-/* pages/home/home.wxss */
+.total_box {
+  display: flex;
+  width: 750rpx;
+  height: auto;
+  flex-direction: column;
+  align-items: center;
+}
+
+.back {
+  width: 100%;
+  height: 928rpx;
+  position:fixed; 
+  background-size:100% 100%;
+  z-index: -1;
+}
+
+.first_box{
+  display: flex;
+  width: 645rpx;
+  height: 280rpx;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  border-radius: 40rpx 40rpx ;
+  top:400rpx;
+  position: absolute;
+}
+
+.second_box{
+  display: flex;
+  width: 645rpx;
+  height: 580rpx;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  border-radius: 40rpx 40rpx ;
+  top:700rpx;
+  position: absolute;
+}
+
+.third_box{
+  display: flex;
+  width: 645rpx;
+  height: 100rpx;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  border-radius: 40rpx 40rpx ;
+  top:1300rpx;
+  position: absolute;
+}

@@ -1,2 +1,6 @@
-<!--pages/home/home.wxml-->
-<text>pages/home/home.wxml</text>
+<view class="total_box">
+	<image class='back' src="{{backImage}}" mode="aspectFill"></image>
+  <view class="first_box"></view>
+  <view class="second_box"></view>
+  <view class="third_box"></view>
+</view>
