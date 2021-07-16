@@ -127,9 +127,9 @@
     <view class="server_module">
       <view class="serverDetail_module">
         <view class="img_module">
-          <image class="serverImg" src="/images/continue_live.png"></image>
+          <image class="serverImg" src="/images/brokeup.png"></image>
         </view>
-        <view class="serverContent_module"><text class="serverContent">一键续住</text></view>
+        <view class="serverContent_module"><text class="serverContent">叫醒服务</text></view>
       </view>
       <view class="serverDetail_module">
         <view class="img_module">

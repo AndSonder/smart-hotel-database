@@ -1,7 +1,9 @@
 {
   "pages":[
-    "pages/booking/booking",
+    "pages/airCondition/airCondition",
     "pages/home/home",
+    "pages/orderInf/orderInf", 
+    "pages/booking/booking",
     "pages/roomlist/roomlist",
     "pages/room/room",
     "pages/order/order",

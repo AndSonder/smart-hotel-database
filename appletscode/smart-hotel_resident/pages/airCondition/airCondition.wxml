@@ -1,0 +1,13 @@
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">空调控制</view>
+</cu-custom>
+<view class="total_box">
+  <view class="first_box">
+  </view>
+  <view class="second_box">
+  </view>
+  <view class="third_box">
+  </view>
+</view>
+<van-circle value="{{ value }}" color="{{ gradientColor }}" clockwise="{{ false }}" stroke-width="6" text="{{airValue}}" />

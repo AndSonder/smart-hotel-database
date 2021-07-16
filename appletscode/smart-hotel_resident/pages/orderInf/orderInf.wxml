@@ -1,6 +1,6 @@
 <cu-custom bgColor="bg-white" isBack="{{true}}">
   <view slot="backText">返回</view>
-  <view slot="content">房间预订</view>
+  <view slot="content">订单详情</view>
 </cu-custom>
 <view class="total_box">
   <view class="first_box">
@@ -35,69 +35,46 @@
     </view>
   </view>
   <view class="third_box">
+
     <form>
       <view class="cu-form-group margin-top">
         <view class="title">姓名</view>
-        <input placeholder=""></input>
+        <view class="title titleContent">穆刘杨</view>
       </view>
       <view class="cu-form-group">
         <view class="title">性别</view>
-        <input placeholder=""></input>
+        <view class="title titleContent">女</view>
       </view>
       <view class="cu-form-group">
         <view class="title">手机号码</view>
-        <input placeholder=""></input>
-        <view class="cu-capsule radius">
-          <view class="cu-tag bg-blue">
-            +86
-          </view>
-          <view class="cu-tag line-blue">
-            中国大陆
-          </view>
-        </view>
+        <view class="title titleContent">18178346924</view>
       </view>
       <view class="cu-form-group">
-        <view class="title">身份证号</view>
-        <input placeholder=""></input>
+        <view class="title">预计入住时间</view>
+        <view class="title">{{time}}</view>
       </view>
       <view class="cu-form-group">
-        <view class="title">起始时间选择</view>
-        <view class="picker">
-          {{time}}
-        </view>
+        <view class="title">预计离开时间</view>
+        <view class="title">{{time}}</view>
       </view>
       <view class="cu-form-group">
-        <view class="title">结束时间选择</view>
-        <view class="picker">
-          {{time}}
-        </view>
-      </view>
-      <view class="cu-bar bg-white margin-top">
-        <view class="action">
-          图片上传
-        </view>
-        <view class="action">
-          {{imgList.length}}/1
-        </view>
+        <view class="title">实际入住时间</view>
+        <view class="title titleContent">{{time}}</view>
       </view>
       <view class="cu-form-group">
-        <view class="grid col-4 grid-square flex-sub">
-          <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage"
-            data-url="{{imgList[index]}}">
-            <image src='{{imgList[index]}}' mode='aspectFill'></image>
-            <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
-              <text class="cuIcon-close"></text>
-            </view>
-          </view>
-          <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<1}}">
-            <text class="cuIcon-cameraadd"></text>
-          </view>
-        </view>
+        <view class="title">实际离开时间</view>
+        <view class="title titleContent">{{time}}</view>
       </view>
     </form>
-    <view class="nothing_module"></view>
   </view>
   <view class="fourth_box">
-    <van-submit-bar price="{{ 3050 }}" button-text="提交订单" bind:submit="onSubmit" />
+    <view class="button_module">
+      <view class="change_button">
+        <button class="cu-btn lg round bg-green" style="width:250rpx">提交修改</button>
+      </view>
+      <view class="change_button">
+        <button class="cu-btn lg round bg-red" style="width:250rpx">放弃订单</button>
+      </view>
+    </view>
   </view>
 </view>
