@@ -1,0 +1,88 @@
+page {
+  height: 100%;
+}
+
+.total_framework {
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  font-family: "KaiTi";
+}
+
+/* .total_framework .total_img {
+  width: 100%;
+  height: 100%;
+} */
+.total_framework .ending{
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 10;
+}
+
+.total_framework .ending .ending_img{
+  width: 100%;
+  height: 100%;
+}
+
+.total_framework .word_0{
+  width: 290rpx;
+  height: 70rpx;
+  top: 22vh;
+  left: 12vw;
+  opacity: 0;
+  position: absolute;
+  z-index: 20;
+}
+
+.total_framework .word_0 .word_0_img {
+  width: 100%;
+  height: 100%;
+}
+
+.total_framework .word_1{
+  width: 290rpx;
+  height: 70rpx;
+  top: 37vh;
+  right: 11vw;
+  opacity: 0;
+  position: absolute; 
+  z-index: 20;
+}
+
+.total_framework .word_1 .word_1_img {
+  width: 100%;
+  height: 100%;
+}
+
+.total_framework .total_button{
+  width: 100%;
+  height: 100rpx;
+  bottom: 0;
+  left: auto;
+  opacity: 0;
+  position: absolute;
+  z-index: 30;
+}
+.total_button .btn{
+  background-color: rgb(19, 194, 194);
+  border-radius: 30rpx;
+  line-height: 80rpx;
+  margin-top: 8rpx;
+  font-size: medium;
+  font-family: "KaiTi";
+  width: 60%;
+  height: 80%;
+  color: white;
+  text-align: center;
+}
+.btn-hover {
+  position: relative;
+  top: 3rpx;
+  box-shadow: 0px 0px 10rpx #bbbec4 inset;
+}
+
+.btn::after {
+  border-radius: 30rpx;
+  border: 0;
+}

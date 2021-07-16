@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "van-circle": "/miniprogram_npm/@vant/weapp/circle/index",
+    "van-icon": "/miniprogram_npm/@vant/weapp/icon/index"
+  }
+}

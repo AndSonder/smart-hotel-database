@@ -128,6 +128,7 @@ page {
   justify-content: center;
   align-items: center;
   background-color: white;
+  border-radius: 50rpx;
 }
 
 .filter_module{
@@ -160,4 +161,124 @@ page {
   height: 40rpx;
   align-items: center;
   justify-content: center;
+}
+
+.total_module{
+  display: flex;
+  width: 100%;
+  height: auto;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.first_module{
+  display: flex;
+  width: 100%;
+  height: 680rpx;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+
+.room_module{
+  display: flex;
+  width: 100%;
+  height: 680rpx;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.roomId_module{
+  display: flex;
+  width: 100%;
+  height: 50rpx;
+  flex-direction: column-reverse;
+  justify-content: start;
+  align-items: center;
+}
+
+.roomIdContent_module{
+  width: auto;
+  height: auto;
+}
+
+.roomIdContent{
+  font-size: medium;
+  font-weight: 600;
+}
+
+.roomForm_module{
+  width: 100%;
+  height: 630rpx;
+}
+
+.second_module{
+  display: flex;
+  width: 100%;
+  height: 230rpx;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30rpx;
+}
+
+.handware_module{
+  display: flex;
+  width: 100%;
+  height: 100rpx;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border-radius: 20rpx;
+}
+
+.handwareInf_module{
+  display: flex;
+  width: 33%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.handwareInfContent_modul{
+  width: auto;
+  height: auto;
+}
+
+.third_module{
+  display: flex;
+  width: 100%;
+  height: 420rpx;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 20rpx;
+  overflow: hidden;
+  margin-top: 30rpx;
+}
+
+.userForm_module{
+  width: 100%;
+  height: 420rpx;
+}
+
+.fourth_module{
+  display: flex;
+  width: 100%;
+  height: 840rpx;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20rpx;
+  overflow: hidden;
+  margin-top: 30rpx;
+}
+
+.orderForm_module{
+  width: 100%;
+  height: 840rpx;
 }

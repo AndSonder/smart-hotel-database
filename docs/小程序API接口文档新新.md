@@ -190,15 +190,15 @@ API：/order/perinfo/resident/post
 
 **请求参数**
 
-| 字段       | 数据类型 | 必填 | 备注                                                         |
-| ---------- | -------- | ---- | ------------------------------------------------------------ |
-| resCode    | string   | 是   | 住户的登录凭证，后端借其获取openid，将openid录入订单数据表中 |
-| roomType   | string   | 是   | 房间类型                                                     |
-| expLive    | string   | 是   | 预计入住时间                                                 |
-| expAway    | string   | 是   | 预计离开时间                                                 |
-| order_time | string   | 是   | 订单下单时间                                                 |
-| stamp      | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
-| prove      | string   | 是   | 用户的resCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。验证用，不用加入数据库。 |
+| 字段      | 数据类型 | 必填 | 备注                                                         |
+| --------- | -------- | ---- | ------------------------------------------------------------ |
+| resCode   | string   | 是   | 住户的登录凭证，后端借其获取openid，将openid录入订单数据表中 |
+| roomType  | string   | 是   | 房间类型                                                     |
+| expLive   | string   | 是   | 预计入住时间                                                 |
+| expAway   | string   | 是   | 预计离开时间                                                 |
+| orderTime | string   | 是   | 订单下单时间                                                 |
+| stamp     | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
+| prove     | string   | 是   | 用户的resCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。验证用，不用加入数据库。 |
 
 **返回参数**
 
@@ -381,7 +381,7 @@ API：/order/orderinf/resident/get
 | expAway     | string   | 是   | 预计离开时间                                                 |
 | actLive     | string   | 是   | 实际入住时间                                                 |
 | actAway     | string   | 是   | 实际离开时间                                                 |
-| order_time  | string   | 是   | 订单下单时间                                                 |
+| orderTime   | string   | 是   | 订单下单时间                                                 |
 | orderStatus | int      | 是   | 订单状态                                                     |
 | stamp       | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve  | string   | 是   | 表验证，功能与用法和prove一致，只不过把resCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
@@ -451,7 +451,7 @@ API：/order/orderinf/admin/get
 | expAway    | string   | 是   | 预计离开时间                                                 |
 | actLive    | string   | 是   | 实际入住时间                                                 |
 | actAway    | string   | 是   | 实际离开时间                                                 |
-| order_time | string   | 是   | 订单下单时间                                                 |
+| orderTime  | string   | 是   | 订单下单时间                                                 |
 | stamp      | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve | string   | 是   | 表验证，功能与用法和prove一致，只不过把adminCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
 
@@ -590,6 +590,69 @@ API：/room/roomsinf/resident/get
     "roomType":"豪华大床房"/"roomType":"",
     "startTime":"2020-05-17 18:55:49",
     "endTime":"2020-05-26 18:55:49",
+    "stamp":"2020-05-21 18:55:49",
+    "prove":"xxxxxxxxxx"
+}
+```
+
+**response**
+
+```json
+{
+    "errcode":0/1/2/3,
+    "roomList":[{
+        "roomType":"豪华大床房",
+        "bedType":"特大床",
+        "maximum":3,
+        "roomPrice":400,
+        "roomWindow":1,
+    },{
+        "roomType":"豪华大床房",
+        "bedType":"特大床",
+        "maximum":3,
+        "roomPrice":400,
+        "roomWindow":0,
+  	},
+    ],
+    "stamp":"2020-05-21 18:55:49",
+    "tableProve":"xxxxxxxxxxx"
+}
+```
+
+#### 住户查询精品推荐房间简略信息
+
+功能描述：**查询系统推送的精品房间简略信息**。
+
+API：/room/roomsinf-boutique/resident/get
+
+请求方法：POST
+
+支持格式：JSON
+
+**请求参数**
+
+| 字段    | 数据类型 | 必填 | 备注                                                         |
+| ------- | -------- | ---- | ------------------------------------------------------------ |
+| resCode | string   | 是   | 住户的登录凭证，后端借其获取openid，验证用户身份是否为住户   |
+| stamp   | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
+| prove   | string   | 是   | 管理员的resCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
+
+**返回参数**
+
+| 字段       | 数据类型     | 必填 | 备注                                                         |
+| ---------- | ------------ | ---- | ------------------------------------------------------------ |
+| errcode    | int          | 是   | 状态标识。0表示成功查询、1表示没有该住户、2表示无房间信息、3表示未知错误。 |
+| datalist   | string(json) | 是   | 精品房间简略信息（房间类型、房间床型、限住人数、房间价格、窗户有无） |
+| stamp      | string       | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
+| tableProve | string       | 是   | 表验证，功能与用法和prove一致，只不过把resCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
+
+请求示例：
+
+**request**
+
+```json
+{
+    "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "stamp":"2020-05-21 18:55:49",
     "prove":"xxxxxxxxxx"
 }

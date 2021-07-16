@@ -1,0 +1,19 @@
+<!--引导页-->
+<view class="total_framework">
+	<!-- <image class="total_img" src="{{value[0].back_0}}" mode="scaleToFill" style="opacity:{{total_img_0}}"></image> -->
+	<!-- 首次进入第二阶段的背景图片 -->
+	<view class="ending" animation="{{display_0}}" style="display:{{display1}}">
+	<image class="ending_img" src="{{value[0].back_1}}"  ></image>
+	</view>
+	<!-- 智慧酒店 -->
+	<view class="word_0" animation="{{display_1}}">
+		<image class="word_0_img" src="{{value[0].back_2}}" ></image>
+	</view>
+	<!-- 带您回家 -->
+	<view class="word_1" animation="{{display_2}}">
+		<image class="word_1_img" src="{{value[0].back_3}}" ></image>
+	</view>
+	<view class="total_button" animation="{{slideupdisplay_0}}">
+		<button class="btn" hover-class="btn-hover" bindtap="skip">开始体验</button>
+	</view>
+</view>

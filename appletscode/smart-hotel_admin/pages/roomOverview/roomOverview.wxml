@@ -58,83 +58,132 @@
 </view>
 <scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
   <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
-    <view class="total_box">
-      <view class="first_box">
+    <view class="total_module">
+      <view class="first_module">
         <view class="room_module">
-          <view class="roomId_module"><text>{{roomId}}</text></view>
-          <view class="rtype-btype_module">
-            <view class="rtype_module"><text>房间类型：{{roomType}}</text></view>
-            <view class="btype_module"><text>房间床型：{{bedType}}</text></view>
+          <view class="roomId_module">
+            <view class="roomIdContent_module"><text class="roomIdContent">101</text></view>
           </view>
-          <view class="area-window_module">
-            <view class="area_module"><text>房间面积：{{roomArea}}</text></view>
-            <view class="window_module"><text>窗户有无：{{roomWindow}}</text></view>
-          </view>
-          <view class="maximum-price_module">
-            <view class="maximum_module"><text>限住人数：{{maximum}}</text></view>
-            <view class="price_module"><text>房间价格：{{roomPrice}}</text></view>
-          </view>
-          <view class="T-H_module">
-            <view class="T_module"><text>温度：{{roomTem}}</text></view>
-            <view class="H_module"><text>湿度：{{roomHumi}}</text></view>
+          <view class="roomForm_module">
+            <form>
+              <view class="cu-form-group margin-top">
+                <view class="title">房间类型</view>
+                <view class="title">主题特色大床房</view>
+              </view>
+              <view class="cu-form-group">
+                <view class="title">房间床型</view>
+                <view class="title">特大床</view>
+              </view>
+              <view class="cu-form-group">
+                <view class="title">房间面积</view>
+                <view class="title">25-30m²</view>
+              </view>
+              <view class="cu-form-group">
+                <view class="title">窗户有无</view>
+                <view class="title">有</view>
+              </view>
+              <view class="cu-form-group">
+                <view class="title">限住人数</view>
+                <view class="title">3人</view>
+              </view>
+              <view class="cu-form-group">
+                <view class="title">房间价格</view>
+                <view class="title">￥219</view>
+              </view>
+            </form>
           </view>
         </view>
       </view>
-      <view class="second_box">
+      <view class="second_module">
         <view class="handware_module">
-          <view class="air_module">
-            <view class="status">
-              <text>{{air_status}}</text>
-            </view>
-            <view class="mode">
-              <text>{{air_mode}}</text>
-            </view>
-            <view class="value">
-              <text>{{air_value}}</text>
+          <view class="handwareInf_module">
+            <view class="handwareInfContent_modul">
+              <text class="handwareInfContent">已开启{{air_status}}</text>
             </view>
           </view>
-          <view class="light_module">
-            <view class="status">
-              <text>{{light_status}}</text>
+          <view class="handwareInf_module">
+            <view class="handwareInfContent_modul">
+              <text class="handwareInfContent">制热{{air_mode}}</text>
             </view>
-            <view class="mode">
-              <text>{{light_mode}}</text>
+          </view>
+          <view class="handwareInf_module">
+            <view class="handwareInfContent_modul">
+              <text class="handwareInfContent">25{{air_value}}</text>
             </view>
-            <view class="value">
-              <text>{{light_value}}</text>
+          </view>
+        </view>
+        <view class="handware_module">
+          <view class="handwareInf_module">
+            <view class="handwareInfContent_modul">
+              <text class="handwareInfContent">已关闭{{light_status}}</text>
+            </view>
+          </view>
+          <view class="handwareInf_module">
+            <view class="handwareInfContent_modul">
+              <text class="handwareInfContent">夜间{{light_mode}}</text>
+            </view>
+          </view>
+          <view class="handwareInf_module">
+            <view class="handwareInfContent_modul">
+              <text class="handwareInfContent">1{{light_value}}</text>
             </view>
           </view>
         </view>
       </view>
-      <view class="third_box">
-        <view class="resident_module">
-          <view class="name-sex_module">
-            <view class="name_module">
-              <text>姓名：{{name}}</text>
+      <view class="third_module">
+        <view class="userForm_module">
+          <form>
+            <view class="cu-form-group">
+              <view class="title">姓名</view>
+              <view class="title">穆刘杨</view>
             </view>
-            <view class="sex_module">
-              <text>性别：{{sex}}</text>
+            <view class="cu-form-group">
+              <view class="title">性别</view>
+              <view class="title">女</view>
             </view>
-          </view>
-          <view class="phone_module">
-            <text>联系号码：{{phone}}</text>
-          </view>
-          <view class="idCard_module">
-            <text>身份证：{{idCard}}</text>
-          </view>
+            <view class="cu-form-group">
+              <view class="title">联系号码</view>
+              <view class="title">18178346924</view>
+            </view>
+            <view class="cu-form-group">
+              <view class="title">身份证号</view>
+              <view class="title">230120828276388491</view>
+            </view>
+          </form>
         </view>
       </view>
-      <view class="fourth_box">
-        <view class="order_module">
-          <view class="orderId_module"><text>订单号：{{orderId}}</text></view>
-          <view class="deposit-amountsPay_module">
-            <view class="deposit_module"><text>订金：{{deposit}}</text></view>
-            <view class="amountsPay_module"><text>应付金额：{{amountsPay}}</text></view>
-          </view>
-          <view class="expLive_module"><text>预计入住时间：{{expLive}}</text></view>
-          <view class="expAway_module"><text>预计离开时间：{{expAway}}</text></view>
-          <view class="actLive_module"><text>实际入住时间：{{actLive}}</text></view>
-          <view class="actAway_module"><text>实际离开时间：{{actAway}}</text></view>
+      <view class="fourth_module">
+        <view class="orderForm_module">
+          <form>
+            <view class="cu-form-group">
+              <view class="title">订单号</view>
+              <view class="title">123</view>
+            </view>
+            <view class="cu-form-group">
+              <view class="title">订金</view>
+              <view class="title">￥200</view>
+            </view>
+            <view class="cu-form-group">
+              <view class="title">预计入住时间</view>
+              <view class="title">2020-01-01 01:29</view>
+            </view>
+            <view class="cu-form-group">
+              <view class="title">预计离开时间</view>
+              <view class="title">2020-01-01 01:29</view>
+            </view>
+            <view class="cu-form-group">
+              <view class="title">实际入住时间</view>
+              <view class="title">2020-01-01 01:29</view>
+            </view>
+            <view class="cu-form-group">
+              <view class="title">实际离开时间</view>
+              <view class="title">2020-01-01 01:29</view>
+            </view>
+            <view class="cu-form-group">
+              <view class="title">订单下单时间</view>
+              <view class="title">2020-01-01 01:29</view>
+            </view>
+          </form>
         </view>
       </view>
     </view>

@@ -1,10 +1,11 @@
 {
   "pages":[
-    "pages/feedback/feedback",
+    "pages/guidePage/guidePage",
+    "pages/home/home",
     "pages/checkOut/checkOut",
+    "pages/feedback/feedback",
     "pages/light/light",
     "pages/airCondition/airCondition",
-    "pages/home/home",
     "pages/orderInf/orderInf", 
     "pages/booking/booking",
     "pages/roomlist/roomlist",
@@ -23,15 +24,21 @@
     "list": [
       {
         "pagePath": "pages/home/home",
-        "text": "首页"
+        "text": "首页",
+        "iconPath": "/images/home_.png",
+        "selectedIconPath": "/images/home.png"
       },
       {
         "pagePath": "pages/order/order",
-        "text": "订单"
+        "text": "订单",
+        "iconPath": "/images/order_.png",
+        "selectedIconPath": "/images/order.png"
       },
       {
         "pagePath": "pages/room/room",
-        "text": "在住"
+        "text": "在住",
+        "iconPath": "/images/live_.png",
+        "selectedIconPath": "/images/live.png"
       }
     ]
     
