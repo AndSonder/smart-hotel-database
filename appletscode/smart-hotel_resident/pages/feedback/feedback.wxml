@@ -1,0 +1,16 @@
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">意见反馈</view>
+</cu-custom>
+<view class="total_box">
+  <view class="first_box">
+    <form>
+      <view class="cu-form-group align-start">
+        <view class="title">留言</view>
+        <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaBInput"
+          placeholder="请留下您的宝贵意见" style="height:400rpx"></textarea>
+      </view>
+    </form>
+  </view>
+  <view class="second_box"></view>
+</view>

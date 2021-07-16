@@ -1,0 +1,48 @@
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">预约退房</view>
+</cu-custom>
+<view class="total_box">
+  <view class="first_box">
+    <view class="roomImg_module">
+      <image class="roomImg" src="/images/Double.png"></image>
+    </view>
+  </view>
+  <view class="second_box">
+    <view class="roomInf_module">
+      <view class="roomRtype_module">
+        <view class="roomRtypeContentShow_module">
+          <view class="roomRtypeContent_module"><text class="roomRtypeContent">主题特色大床房</text></view>
+        </view>
+      </view>
+      <view class="roomInfContent_module">
+        <view class="roomInfContentShow_module">
+          <view class="roomInfShow_module"><text class="roomInfShow">房间床型：特大床</text></view>
+        </view>
+      </view>
+      <view class="roomInfContent_module">
+        <view class="roomInfContentShow_module">
+          <view class="roomInfShow_module"><text class="roomInfShow">硬件种类：空调、灯</text></view>
+          <view class="roomInfShow_module"><text class="roomInfShow">限住人数：3人</text></view>
+        </view>
+      </view>
+      <view class="roomInfContent_module">
+        <view class="roomInfContentShow_module">
+          <view class="roomInfShow_module"><text class="roomInfShow">房间面积：20-25m²</text></view>
+          <view class="roomInfShow_module"><text class="roomInfShow">窗户有无：有</text></view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="third_box">
+    <van-cell title="消费明细" is-link value="" arrow-direction="down" />
+    <view class="price_module">
+    <view class="priceContent_module">
+    <text class="priceContent">订单本金 -------------------------------------------------- ￥219</text>
+    </view>
+    </view>
+  </view>
+  <view class="fourth_box">
+    <van-submit-bar price="{{ 3000 }}" button-text="退房&支付" bind:submit="onSubmit" />
+  </view>
+</view>

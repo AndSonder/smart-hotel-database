@@ -16,20 +16,20 @@
   align-items: center;
 }
 
-.airImg_module{
+.lightImg_module{
   display: flex;
   width: 500rpx;
-  height: 400rpx;
+  height: 435rpx;
   justify-content: center;
   align-items: center;
 }
 
-.airImgContent_module{
+.lightImgContent_module{
   width: 100%;
   height: 100%;
 }
 
-.airImgContent{
+.lightImgContent{
   width: 100%;
   height: 100%;
 }
@@ -42,7 +42,7 @@
   align-items: center;
 }
 
-.airStatus_module{
+.lightStatus_module{
   display: flex;
   width: 100%;
   height: 200rpx;
@@ -50,23 +50,23 @@
   align-items: center;
 }
 
-.airStatusContent_module{
+.lightStatusContent_module{
   display: flex;
-  width: 180rpx;
-  height: 180rpx;
-  border-radius: 90rpx;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
   background-color: #f7f7f7;
   justify-content: center;
   align-items: center;
 }
 
-.airStatusContentShow_module{
-  width: 120rpx;
-  height: 120rpx;
-  border-radius: 60rpx;
+.lightStatusContentShow_module{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
 }
 
-.airStatusContentShow{
+.lightStatusContentShow{
   width: 100%;
   height: 100%;
   overflow: hidden;

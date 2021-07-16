@@ -298,6 +298,58 @@ API：/order/ordersinf/resident/get
 }
 ```
 
+#### 住户查询个人订单消费明细
+
+功能描述：**查询指定住户的指定订单消费明细**。
+
+API：/order/orderinf_amountsPay/resident/get
+
+请求方法：POST
+
+支持格式：JSON
+
+**请求参数**
+
+| 字段    | 数据类型 | 必填 | 备注                                                         |
+| ------- | -------- | ---- | ------------------------------------------------------------ |
+| resCode | string   | 是   | 住户的登录凭证，后端借其获取openid，验证用户身份是否为住户   |
+| orderId | int      | 是   | 订单号                                                       |
+| stamp   | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
+| prove   | string   | 是   | 管理员的resCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
+
+**返回参数**
+
+| 字段       | 数据类型 | 必填 | 备注                                                         |
+| ---------- | -------- | ---- | ------------------------------------------------------------ |
+| errcode    | int      | 是   | 状态标识。0表示成功查询、1表示没有该住户、2表示订单不存在、3表示未知错误。 |
+| amountsPay | int      | 是   | 应付金额                                                     |
+| stamp      | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
+| tableProve | string   | 是   | 表验证，功能与用法和prove一致，只不过把resCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
+
+请求示例：
+
+**request**
+
+```json
+{
+    "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
+    "orderId":123,
+    "stamp":"2020-05-21 18:55:49",
+    "prove":"xxxxxxxxxx"
+}
+```
+
+**response**
+
+```json
+{
+    "errcode":0/1/2/3,
+    "amountsPay":400,
+    "stamp":"2020-05-21 18:55:49",
+    "tableProve":"xxxxxxxxxxx"
+}
+```
+
 #### 住户查询个人订单详细信息
 
 功能描述：**查询指定住户的指定订单详细信息**。
@@ -365,6 +417,8 @@ API：/order/orderinf/resident/get
     "tableProve":"xxxxxxxxxxx"
 }
 ```
+
+####
 
 #### 管理员查询订单详细信息
 

@@ -1,14 +1,15 @@
 {
   "pages":[
+    "pages/feedback/feedback",
+    "pages/checkOut/checkOut",
+    "pages/light/light",
     "pages/airCondition/airCondition",
     "pages/home/home",
     "pages/orderInf/orderInf", 
     "pages/booking/booking",
     "pages/roomlist/roomlist",
     "pages/room/room",
-    "pages/order/order",
-    "pages/index/index",
-    "pages/logs/logs"
+    "pages/order/order"
   ],
   "window":{
     "navigationBarBackgroundColor": "#39b54a",
