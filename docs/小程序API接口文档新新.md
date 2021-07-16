@@ -522,7 +522,7 @@ API：/room/roomsinf/resident/get
 | 字段       | 数据类型     | 必填 | 备注                                                         |
 | ---------- | ------------ | ---- | ------------------------------------------------------------ |
 | errcode    | int          | 是   | 状态标识。0表示成功查询、1表示没有该住户、2表示无房间信息、3表示未知错误。 |
-| roomList   | string(json) | 是   | 房间简略信息（房间类型、房间床型、限住人数、房间价格）       |
+| roomList   | string(json) | 是   | 房间简略信息（房间类型、房间床型、限住人数、房间价格、窗户有无） |
 | stamp      | string       | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve | string       | 是   | 表验证，功能与用法和prove一致，只不过把resCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
 
@@ -550,12 +550,14 @@ API：/room/roomsinf/resident/get
         "roomType":"豪华大床房",
         "bedType":"特大床",
         "maximum":3,
-        "roomPrice":400
+        "roomPrice":400,
+        "roomWindow":1,
     },{
         "roomType":"豪华大床房",
         "bedType":"特大床",
         "maximum":3,
         "roomPrice":400,
+        "roomWindow":0,
   	},
     ],
     "stamp":"2020-05-21 18:55:49",

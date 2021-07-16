@@ -1,1 +1,24 @@
-/* pages/booking/booking.wxss */
+.total_box{
+  display: flex;
+  width: 100%;
+  height: 1276rpx;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.first_box{
+  display: flex;
+  width: 100%;
+  height: 250rpx;
+}
+
+.roomImg_module{
+  width: 100%;
+  height: 100%;
+}
+
+.roomImg{
+  width: 100%;
+  height: 100%;
+}

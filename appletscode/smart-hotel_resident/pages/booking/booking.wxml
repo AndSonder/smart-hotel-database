@@ -1,2 +1,16 @@
-<!--pages/booking/booking.wxml-->
-<text>pages/booking/booking.wxml</text>
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">房间预订</view>
+</cu-custom>
+<view class="total_box">
+  <view class="first_box">
+  <view class="roomImg_module">
+  <image class="roomImg" src="/images/Double.png"></image>
+  </view>
+  </view>
+  <view class="second_box">
+  </view>
+  <view class="third_box">
+    <van-submit-bar price="{{ 3050 }}" button-text="提交订单" bind:submit="onSubmit" />
+  </view>
+</view>
