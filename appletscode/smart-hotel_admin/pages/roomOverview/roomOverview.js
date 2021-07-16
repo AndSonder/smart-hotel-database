@@ -124,13 +124,13 @@ Page({
   startTime_onConfirm(e) {
     this.setData({ 
       startTimeShow: false, 
-      startTimeContent: this.formatDate(new Date(e.detail)),
+      startTimeContent: this.msToDate(e.detail).hasTime,
     })
   },
   endTime_onConfirm(e) {
     this.setData({ 
       endTimeShow: false,
-      endTimeContent: this.formatDate(new Date(e.detail)),
+      endTimeContent: this.msToDate(e.detail).hasTime,
     })
   },
   getUserInfo: function (e) {
@@ -306,9 +306,9 @@ Page({
       ' ' +
       ((hour + 1) < 10 ? '0' + hour : hour) +
       ':' +
-      ((minute + 1) < 10 ? '0' + minute : minute) +
-      ':' +
-      ((second + 1) < 10 ? '0' + second : second);
+      ((minute + 1) < 10 ? '0' + minute : minute)
+      // ':' +
+      // ((second + 1) < 10 ? '0' + second : second);
     let result2 = year +
       '-' +
       ((month + 1) >= 10 ? (month + 1) : '0' + (month + 1)) +

@@ -1,56 +1,79 @@
-const util = require('../../utils/util.js');
-const md5 = require('../../utils/md5.js');
-const app = getApp()
+// pages/roomlist/roomlist.js
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    backImage: '/images/reservation_backimg.png',
-    startDate: '',
-    endData: '',
+    currentDate: '', //父页传值
     minDate: new Date(2021, 6, 16).getTime(),
     maxDate: new Date(2021, 7, 16).getTime(),
     show: false,
+    now: '07/17-08/18',
+    rtypeContent: '全选',
+    rtypeShow: false,
+    rtypeList: [{
+        name: '主题特色大床房',
+      },
+      {
+        name: '温馨大床房',
+      },
+      {
+        name: '如意标准间',
+      },
+      {
+        name: '豪华大床房',
+      },
+      {
+        name: '如意三人房',
+      },
+      {
+        name: '团圆家庭房',
+      },
+      {
+        name: '情侣套房',
+      },
+      {
+        name: '商务套房',
+      },
+      {
+        name: '全选',
+      },
+    ],
+    roomList: [{
+      "roomType": "豪华大床房",
+      "bedType": "特大床",
+      "maximum": 3,
+      "roomPrice": 400
+    }, {
+      "roomType": "豪华大床房",
+      "bedType": "特大床",
+      "maximum": 3,
+      "roomPrice": 400,
+    }, ],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      startDate: this.msToDate(new Date().getTime()).justData,
-      endData: this.msToDate(new Date().getTime()).justendData,
-    })
-    // var that = this
-    // var stamp = util.formatTime(new Date());
-    // wx.login({
-    //   success(res) {
-    //     if (res.code) {
-    //       var roomlist_jsonData = {
-    //         adminCode: res.code,
-    //         stamp: stamp,
-    //         prove: md5.hex_md5(res.code+stamp+'liuboge'),
-    //       };
-    //       wx.request({
-    //         method: 'POST',
-    //         url: '',
-    //         header: {
-    //           'content-type': 'application/json'
-    //         },
-    //         data: JSON.stringify(roomlist_jsonData),
-    //         success: function (res) {
-    //           console.log('roomlist---', res);
-    //           var roomlist_jsonStr = res.data;
-    //           var roomlist_errorcode = roomlist_jsonStr.errorcode;
-    //           switch (roomlist_errorcode){
-    //             case "0":
-    //               break;
-    //           }
-    //         }
-    //       })
-    //     }
-    //   }
-    // })
-  },
 
+  },
+  choose_rtype(e) {
+    this.setData({
+      rtypeShow: true
+    });
+  },
+  onCancel(e) {
+    this.setData({
+      rtypeShow: false,
+    });
+  },
+  rtype_onSelect(event) {
+    this.setData({
+      rtypeContent: event.detail.name
+    });
+  },
   onDisplay() {
     this.setData({
       show: true
@@ -58,15 +81,15 @@ Page({
   },
   onClose() {
     this.setData({
-      show: false
+      show: false,
+      rtypeShow: false,
     });
   },
   onConfirm(event) {
     const [start, end] = event.detail;
     this.setData({
       show: false,
-      startDate: this.msToDate(start).justData,
-      endData: this.msToDate(end).justData,
+      date: `${this.msToDate(start).justData} - ${this.msToDate(end).justData}`,
     });
   },
   msToDate(msec) {
@@ -94,11 +117,11 @@ Page({
       '-' +
       ((date + 1) < 10 ? '0' + date : date);
     let result3 = ((month + 1) >= 10 ? (month + 1) : '0' + (month + 1)) +
-      '月' +
-      ((date + 1) < 10 ? '0' + date : date) + '日';
+      '/' +
+      ((date + 1) < 10 ? '0' + date : date);
     let result4 = ((month + 1) >= 10 ? (month + 1) : '0' + (month + 1)) +
       '月' +
-      ((date + 1) < 10 ? '0' + (date + 1) : (date + 1) ) + '日';
+      ((date + 1) < 10 ? '0' + (date + 1) : (date + 1)) + '日';
     let result = {
       hasTime: result1,
       withoutTime: result2,

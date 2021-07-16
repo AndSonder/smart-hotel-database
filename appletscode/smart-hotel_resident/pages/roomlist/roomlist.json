@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "van-action-sheet": "/miniprogram_npm/@vant/weapp/action-sheet/index",
+    "van-calendar": "/miniprogram_npm/@vant/weapp/calendar/index",
+    "van-popup": "/miniprogram_npm/@vant/weapp/popup/index"
+  }
+}

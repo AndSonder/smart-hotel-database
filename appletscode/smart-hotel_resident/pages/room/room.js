@@ -5,7 +5,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    bookingShow:true,
+    roominfShow:false,
+    hardwareShow:false,
+    leftSwitchContent:'<',
+    rightSwitchContent:'>',
   },
 
   /**

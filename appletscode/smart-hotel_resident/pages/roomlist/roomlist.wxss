@@ -1,55 +1,68 @@
-.total_box {
-  display: flex;
-  width: 750rpx;
-  height: 1334rpx;
-  flex-direction: column;
-  align-items: center;
+page{
+  background-color: white;
 }
-
-.back {
+.total_box{
+  display: flex;
   width: 100%;
-  height: 928rpx;
-  position:fixed; 
-  background-size:100% 100%;
-  z-index: -1;
+  height: 1274rpx;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .first_box{
   display: flex;
-  width: 645rpx;
-  height: 280rpx;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-  border-radius: 40rpx 40rpx ;
-  top:400rpx;
-  position: absolute;
-}
-
-.firstShow_module{
-  display: flex;
-  width: 600rpx;
+  width: 100%;
   height: 200rpx;
   flex-direction: column;
   justify-content: start;
+}
+
+.chooseSearch_module{
+  display: flex;
+  width: 100%;
+  height: 120rpx;
+  justify-content: center;
   align-items: center;
-  background-color: #f1f1f1;
+}
+
+.chooseSearchContent_module{
+  display: flex;
+  width: 700rpx;
+  background-color: #F5F5F5;
+  border-radius: 50rpx;
+  justify-content: center;
+  align-items: center;
+}
+
+.show_module{
+  display: flex;
+  width: 680rpx;
+  height: 90rpx;
+  /* justify-content: space-between; */
+  align-items: center;
+}
+
+.rtypeChoose_module{
+  display: flex;
+  width: 220rpx;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.rtype_module{
+  width: auto;
+  height: auto;
+}
+
+.rtypeContent{
+  font-weight: 600;
 }
 
 .chooseTime_module{
   display: flex;
-  width: 100%;
-  height: 99rpx;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-  margin-top: 1rpx;
-}
-
-.chooseStartTime{
-  display: flex;
-  width: 250rpx;
+  width: 180rpx;
   height: 100%;
   justify-content: center;
   align-items: center;
@@ -61,92 +74,49 @@
 }
 
 .chooseTimeContent{
-  font-size: large;
   font-weight: 600;
 }
 
-.zhi_module{
+.searchContent_module{
   display: flex;
-  width: 100rpx;
+  width: 280rpx;
   height: 100%;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+  padding-left: 60rpx;
 }
 
-.zhiContent{
+.searchIcon_module{
   width: auto;
   height: auto;
 }
 
-.zhi{
-  color: #acabab;
-}
-
-.chooseEndTime{
-  display: flex;
-  width: 250rpx;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-}
-
-.search_module{
-  display: flex;
-  width: 100%;
-  height: 97rpx;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-  margin-top: 2rpx;
-}
-
-.search_button{
-  width: 400rpx;
+.searchInput_module{
+  width: 150rpx;
   height: auto;
 }
 
 .second_box{
   display: flex;
-  width: 645rpx;
-  height: 520rpx;
+  width: 100%;
+  height: 1076rpx;
   flex-direction: column;
   justify-content: center;
-  background-color: white;
-  border-radius: 40rpx 40rpx ;
-  top:720rpx;
-  position: absolute;
-}
-
-.title_module{
-  display: flex;
-  width: 100%;
-  height: 100rpx;
-  justify-content: center;
   align-items: center;
-}
-
-.titleContent_module{
-  width: 600rpx;
-  height: auto;
-}
-
-.titleContent{
-  font-size:medium;
-  font-weight: 600;
 }
 
 .roomInf_module{
   display: flex;
   width: 100%;
-  height: 200rpx;
+  height: 250rpx;
   justify-content: center;
   align-items: center;
 }
 
 .roomInfContent{
   display: flex;
-  width: 630rpx;
-  height: 200rpx;
+  width: 730rpx;
+  height: 250rpx;
   justify-content: center;
   align-items: center;
   border-bottom: 1rpx #f1f1f1 solid;
@@ -154,15 +124,15 @@
 
 .roomImg_module{
   display: flex;
-  width: 230rpx;
+  width: 280rpx;
   height: 100%;
   justify-content: center;
   align-items: center;
 }
 
 .roomImgContent_module{
-  width: 140rpx;
-  height: 190rpx;
+  width: 190rpx;
+  height: 220rpx;
   border-radius: 10rpx;
 }
 
@@ -176,8 +146,8 @@
 
 .roomContent_module{
   display: flex;
-  width: 400rpx;
-  height: 190rpx;
+  width: 450rpx;
+  height: 220rpx;
   flex-direction: column;
   align-items: start;
 }
@@ -185,7 +155,7 @@
 .roomTitle_module{
   display: flex;
   width: 100%;
-  height:50rpx;
+  height:60rpx;
   justify-content: start;
   align-items: center;
 }
@@ -203,7 +173,7 @@
 .roomSimpleInf_module{
   display: flex;
   width: 100%;
-  height:80rpx;
+  height:90rpx;
   justify-content: start;
   align-items: center;
 }
@@ -256,8 +226,8 @@
 
 .roomPrice_module{
   display: flex;
-  width: 350rpx;
-  height: 60rpx;
+  width: 400rpx;
+  height: 70rpx;
   flex-direction: row-reverse;
   justify-content: start;
   align-items: center;
@@ -272,18 +242,4 @@
   color: orange;
   font-size: large;
   font-weight: 600;
-}
-
-
-
-.third_box{
-  display: flex;
-  width: 645rpx;
-  height: 100rpx;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 40rpx 40rpx ;
-  top:1280rpx;
-  position: absolute;
 }

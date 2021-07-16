@@ -196,8 +196,6 @@ API：/order/perinfo/resident/post
 | roomType   | string   | 是   | 房间类型                                                     |
 | expLive    | string   | 是   | 预计入住时间                                                 |
 | expAway    | string   | 是   | 预计离开时间                                                 |
-| actLive    | string   | 是   | 实际入住时间                                                 |
-| actAway    | string   | 是   | 实际离开时间                                                 |
 | order_time | string   | 是   | 订单下单时间                                                 |
 | stamp      | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
 | prove      | string   | 是   | 用户的resCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。验证用，不用加入数据库。 |
@@ -220,8 +218,6 @@ API：/order/perinfo/resident/post
     "roomType":"豪华大床房",
     "expLive":"2020-05-1618:55:49",
     "expAway":"2020-05-2518:55:49",
-    "actLive":"2020-05-17 18:55:49",
-    "actAway":"2020-05-26 18:55:49",
     "stamp":"2020-05-21 18:55:49",
     "prove":"xxxxxxxxxx"
 }

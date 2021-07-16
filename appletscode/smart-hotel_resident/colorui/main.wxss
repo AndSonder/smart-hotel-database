@@ -30,6 +30,7 @@ page {
 	--gray: #aaaaaa;
 	--ghostWhite: #f1f1f1;
 	--white: #ffffff;
+	--cyanblue: #13c2c2;
 	/* 浅色 */
 	--redLight: #fadbd9;
 	--orangeLight: #fde6d2;
@@ -3505,6 +3506,12 @@ scroll-view.cu-steps .cu-item {
 .bg-white {
 	background-color: var(--white);
 	color: var(--darkGray);
+}
+
+/* 自定义 */
+.bg-cyanblue {
+	background-color: var(--cyanblue);
+	color: var(--white);
 }
 
 .bg-shadeTop {

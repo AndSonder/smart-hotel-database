@@ -1,1 +1,321 @@
-/* pages/room/room.wxss */
+.total_box {
+  display: flex;
+  width: 750rpx;
+  height: 1334rpx;
+  flex-direction: column;
+  align-items: center;
+}
+
+.first_box {
+  display: flex;
+  width: 100%;
+  height: 370rpx;
+  flex-direction: column;
+  align-items: center;
+}
+
+.backImg {
+  width: 100%;
+  height: 100%;
+  background-size: 100% 100%;
+  z-index: -1;
+}
+
+.roomInf_module {
+  display: flex;
+  width: 700rpx;
+  height: 350rpx;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  border-radius: 40rpx 40rpx;
+  top: 190rpx;
+  position: absolute;
+}
+
+.roomInfChoose_module{
+  display: flex;
+  width: 700rpx;
+  height: 350rpx;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.roomInfShow_module{
+  display: flex;
+  width: 700rpx;
+  height: 175rpx;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.attention_module{
+  width: auto;
+  height: auto;
+}
+
+.signal_module{
+  display: flex;
+  width: auto;
+  height: 42rpx;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40rpx;
+}
+
+.signalContent_module{
+  width: auto;
+  height: auto;
+}
+
+.attention{
+  font-size: x-large;
+  font-weight: 600;
+}
+
+.signal{
+  color: #acabab;
+  font-weight: 500;
+  font-size: medium;
+}
+
+.rtype_module{
+  display: flex;
+  width: 700rpx;
+  height: 87rpx;
+  justify-content: center;
+  align-items: center;
+}
+
+.rtypeContent{
+  height: auto;
+  width: auto;
+}
+
+.rtype{
+  font-size: large;
+  font-weight: 600;
+}
+
+.roomId_module{
+  display: flex;
+  width: 700rpx;
+  height: 87rpx;
+  justify-content: center;
+  align-items: center;
+}
+
+.roomIdContent{
+  height: auto;
+  width: auto;
+}
+
+.roomId{
+  font-size:medium;
+  font-weight: 500;
+}
+
+.roomT-H_module{
+  display: flex;
+  width: 500rpx;
+  height: 58rpx;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 25rpx;
+}
+
+.roomT-HContent_module{
+  display: flex;
+  width: 120rpx;
+  height: 100%;
+  justify-content: start;
+  align-items: center;
+}
+
+.roomImg_module{
+  width: 58rpx;
+  height: 58rpx;
+}
+
+.roomImg{
+  width: 100%;
+  height: 100%;
+}
+
+.roomContent_module{
+  width: 42rpx;
+  height: auto;
+}
+
+/* .roomContent{
+
+} */
+
+.hardwareInf_module{
+  display: flex;
+  width: 500rpx;
+  height: 58rpx;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hardwareInfContent_module{
+  display: flex;
+  width: 125rpx;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hardwareInfContentLayout_module{
+  width: auto;
+  height: auto;
+}
+
+/* .hardwareInfContent{
+
+} */
+
+
+.turnTo_module{
+  display: flex;
+  width: 700rpx;
+  height: 175rpx;
+  justify-content: center;
+  align-items: center;
+}
+
+.button_module{
+  width: 450rpx;
+  height: 64rpx;
+}
+
+.switch_module{
+  display: flex;
+  width: 740rpx;
+  height: auto;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 349rpx;
+}
+
+.second_module {
+  display: flex;
+  width: 700rpx;
+  height: 240rpx;
+  justify-content: space-between;
+  align-items: center;
+  top: 580rpx;
+  position: absolute;
+}
+
+.hardware_module {
+  display: flex;
+  width: 190rpx;
+  height: 240rpx;
+  background-color: white;
+  flex-direction: column;
+  border-radius: 40rpx 40rpx;
+  justify-content: center;
+  align-items: center;
+}
+
+.hardwareImg_module{
+  display: flex;
+  width: 100%;
+  height: 160rpx;
+  justify-content: center;
+  align-items: center;
+}
+
+.hardwareImg{
+  width: 130rpx;
+  height: 130rpx;
+}
+
+.hardwareContent_module{
+  display: flex;
+  width: 100%;
+  height: 50rpx;
+  justify-content: center;
+  align-items: center;
+}
+
+.third_module {
+  display: flex;
+  width: 700rpx;
+  height: 474rpx;
+  top: 860rpx;
+  background-color: white;
+  border-radius: 40rpx 40rpx;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+}
+
+.title_module {
+  display: flex;
+  width: 100%;
+  height: 90rpx;
+  justify-content: center;
+  align-items: center;
+}
+
+.titleContent_module{
+  width: 144rpx;
+  height: 50rpx;
+  margin-top: 40rpx;
+}
+
+.titleContent {
+  font-weight: bolder;
+  font-size: large;
+}
+
+.server_module {
+  display: flex;
+  width: 750rpx;
+  height: 384rpx;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.serverDetail_module {
+  display: flex;
+  width: 250rpx;
+  height: 180rpx;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.img_module {
+  display: flex;
+  width: 100%;
+  height: 110rpx;
+  justify-content: center;
+  align-items: center;
+}
+
+.serverImg {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.serverContent_module {
+  display: flex;
+  width: 100%;
+  height: 40rpx;
+  justify-content: center;
+  align-items: center;
+}
+
+.serverContent{
+  font-size: small;
+}
+

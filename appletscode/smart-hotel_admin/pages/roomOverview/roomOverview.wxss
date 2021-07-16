@@ -135,7 +135,7 @@ page {
   width: 640rpx;
   height: 100rpx;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .rtype_module{

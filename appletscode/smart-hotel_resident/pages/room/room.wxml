@@ -1,2 +1,160 @@
-<!--pages/room/room.wxml-->
-<text>pages/room/room.wxml</text>
+<cu-custom bgColor="bg-white" isBack="{{false}}">
+  <view slot="content">在住</view>
+</cu-custom>
+<view class="total_box">
+  <view class="first_box">
+    <image class="backImg" src="/images/inLive.png" mode="aspectFill"></image>
+  </view>
+  <view class="roomInf_module">
+    <view class="roomInfChoose_module" wx:if="{{bookingShow}}">
+      <view class="roomInfShow_module">
+        <view class="attention_module"><text class="attention">暂无待入住房间</text></view>
+        <view class="signal_module"><view class="signalContent_module"><text class="signal">入住立享智慧生活</text></view></view>
+      </view>
+      <view class="turnTo_module">
+        <view class="button_module">
+          <button class="cu-btn bg-cyanblue round shadow lg" style="width:450rpx">预定房间</button>
+        </view>
+      </view>
+    </view>
+    <view class="roomInfChoose_module" wx:if="{{roominfShow}}">
+      <view class="roomInfShow_module">
+        <view class="rtype_module">
+          <view class="rtypeContent"><text class="rtype">主题特色大床房</text></view>
+        </view>
+        <view class="roomId_module">
+          <view class="roomIdContent"><text class="roomId">101</text></view>
+        </view>
+      </view>
+      <view class="turnTo_module">
+        <view class="button_module">
+          <button class="cu-btn bg-cyanblue round shadow lg" style="width:450rpx">入住房间</button>
+        </view>
+      </view>
+    </view>
+    <view class="roomInfChoose_module" wx:if="{{hardwareShow}}">
+      <view class="roomInfShow_module">
+        <view class="rtype_module">
+          <view class="rtype_module"><text class="rtype">主题特色大床房</text></view>
+        </view>
+        <view class="roomId_module">
+          <view class="roomIdContent"><text class="roomId">101</text></view>
+        </view>
+      </view>
+      <view class="roomT-H_module">
+        <view class="roomT-HContent_module">
+          <view class="roomImg_module">
+            <image class="roomImg" src="/images/temp.png"></image>
+          </view>
+          <view class="roomContent_module">
+            <text class="roomContent">24℃</text>
+          </view>
+        </view>
+        <view class="roomT-HContent_module">
+          <view class="roomImg_module">
+            <image class="roomImg" src="/images/humd.png"></image>
+          </view>
+          <view class="roomContent_module">
+            <text class="roomContent">40rh</text>
+          </view>
+        </view>
+      </view>
+      <view class="hardwareInf_module">
+        <view class="hardwareInfContent_module">
+          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">空调</text></view>
+        </view>
+        <view class="hardwareInfContent_module">
+          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">已开启</text></view>
+        </view>
+        <view class="hardwareInfContent_module">
+          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">制冷</text></view>
+        </view>
+        <view class="hardwareInfContent_module">
+          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">25℃</text></view>
+        </view>
+      </view>
+      <view class="hardwareInf_module">
+        <view class="hardwareInfContent_module">
+          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">灯</text></view>
+        </view>
+        <view class="hardwareInfContent_module">
+          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">已开启</text></view>
+        </view>
+        <view class="hardwareInfContent_module">
+          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">标准</text></view>
+        </view>
+        <view class="hardwareInfContent_module">
+          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">2</text></view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="switch_module">
+    <view class="leftSwitch_module">
+      <button class="cu-btn icon bg-white shadow"><van-icon name="arrow-left" /></button>
+    </view>
+    <view class="rightSwitch_module">
+      <button class="cu-btn icon bg-white shadow"><van-icon name="arrow" /></button>
+    </view>
+  </view>
+  <view class="second_module">
+    <view class="hardware_module">
+      <view class="hardwareImg_module">
+        <image class="hardwareImg" src="/images/door.png"></image>
+      </view>
+      <view class="hardwareContent_module"><text class="hardwareContent">一键开门</text>
+      </view>
+    </view>
+    <view class="hardware_module">
+      <view class="hardwareImg_module">
+        <image class="hardwareImg" src="/images/air.png"></image>
+      </view>
+      <view class="hardwareContent_module"><text class="hardwareContent">空调控制</text>
+      </view>
+    </view>
+    <view class="hardware_module">
+      <view class="hardwareImg_module">
+        <image class="hardwareImg" src="/images/light.png"></image>
+      </view>
+      <view class="hardwareContent_module"><text class="hardwareContent">灯光控制</text>
+      </view>
+    </view>
+  </view>
+  <view class="third_module">
+    <view class="title_module">
+      <view class="titleContent_module"><text class="titleContent">客房服务</text></view>
+    </view>
+    <view class="server_module">
+      <view class="serverDetail_module">
+        <view class="img_module">
+          <image class="serverImg" src="/images/continue_live.png"></image>
+        </view>
+        <view class="serverContent_module"><text class="serverContent">一键续住</text></view>
+      </view>
+      <view class="serverDetail_module">
+        <view class="img_module">
+          <image class="serverImg" src="/images/clean.png"></image>
+        </view>
+        <view class="serverContent_module"><text class="serverContent">呼叫保洁</text></view>
+      </view>
+      <view class="serverDetail_module">
+        <view class="img_module">
+          <image class="serverImg" src="/images/out_home.png"></image>
+        </view>
+        <view class="serverContent_module"><text class="serverContent">预约退房</text></view>
+      </view>
+      <view class="serverDetail_module">
+        <view class="img_module">
+          <image class="serverImg" src="/images/urgency.png"></image>
+        </view>
+        <view class="serverContent_module"><text class="serverContent">紧急呼叫</text></view>
+      </view>
+      <view class="serverDetail_module">
+        <view class="img_module">
+          <image class="serverImg" src="/images/complaints.png"></image>
+        </view>
+        <view class="serverContent_module"><text class="serverContent">一键吐槽</text></view>
+      </view>
+    </view>
+  </view>
+</view>

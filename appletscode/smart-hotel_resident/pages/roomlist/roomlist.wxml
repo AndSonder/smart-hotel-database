@@ -1,0 +1,99 @@
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">房间列表</view>
+</cu-custom>
+<view class="total_box">
+  <view class="first_box">
+    <view class="chooseSearch_module">
+      <view class="chooseSearchContent_module">
+        <view class="show_module">
+          <view class="rtypeChoose_module" catchtap="choose_rtype">
+            <view class="rtype_module"><text class="rtypeContent">{{rtypeContent}}</text></view>
+          </view>
+          <van-action-sheet show="{{ rtypeShow }}" actions="{{ rtypeList }}" cancel-text="取消" bind:close="onClose"
+            bind:select="rtype_onSelect" bind:cancel="onCancel" />
+          <view class="chooseTime_module" bindtap="onDisplay">
+            <view class="chooseTimeContent_module"><text class="chooseTimeContent">{{now}}</text></view>
+          </view>
+          <van-popup show="{{ show }}" position="bottom" custom-style="height: 1000rpx;" bind:close="onClose">
+            <van-calendar poppable="{{false}}" min-date="{{ minDate }}" default-date="{{ currentDate }}"
+              max-date="{{ maxDate }}" type="range" bind:close="onClose" bind:confirm="onConfirm" position="top"
+              round="{{false}}" show-title="{{false}}" color="#13c2c2" />
+          </van-popup>
+          <view class="searchContent_module">
+            <view class="searchIcon_module"><text class="cuIcon-search"></text></view>
+            <view class="searchInput_module"><input bindinput="bindsearch" placeholder="搜索房间"></input></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="second_box">
+    <block wx:for="{{roomList}}" wx:key>
+      <view class="roomInf_module">
+        <view class="roomInfContent">
+          <view class="roomImg_module">
+            <view class="roomImgContent_module">
+              <image class="roomImgContent" src="/images/Double.jpeg"></image>
+            </view>
+          </view>
+          <view class="roomContent_module">
+            <view class="roomTitle_module">
+              <view class="roomTitleContent_module">
+                <text class="roomTitleContent">{{item.roomType}}</text>
+              </view>
+            </view>
+            <view class="roomSimpleInf_module">
+              <view class="roomSimpleInfContent_module">
+                <view class="roomBtype_module">
+                  <view class="roomBtypeContent_module"><text class="roomBtypeContent">{{item.bedType}}</text></view>
+                </view>
+                <view class="roomMaximum_module">
+                  <view class="roomMaximumContent_module"><text class="roomMaximumContent">{{item.maximum}}人</text></view>
+                </view>
+              </view>
+            </view>
+            <view class="roomPrice_module">
+              <view class="roomPricContent_module">
+                <text class="roomPricConten-value">￥{{item.roomPrice}} </text>
+                <text class="roomPricConten-word">起</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="roomInf_module">
+        <view class="roomInfContent">
+          <view class="roomImg_module">
+            <view class="roomImgContent_module">
+              <image class="roomImgContent" src="/images/Double.jpeg"></image>
+            </view>
+          </view>
+          <view class="roomContent_module">
+            <view class="roomTitle_module">
+              <view class="roomTitleContent_module">
+                <text class="roomTitleContent">主题特色大床房</text>
+              </view>
+            </view>
+            <view class="roomSimpleInf_module">
+              <view class="roomSimpleInfContent_module">
+                <view class="roomBtype_module">
+                  <view class="roomBtypeContent_module"><text class="roomBtypeContent">特大床</text></view>
+                </view>
+                <view class="roomMaximum_module">
+                  <view class="roomMaximumContent_module"><text class="roomMaximumContent">3人</text></view>
+                </view>
+              </view>
+            </view>
+            <view class="roomPrice_module">
+              <view class="roomPricContent_module">
+                <text class="roomPricConten-value">￥219 </text>
+                <text class="roomPricConten-word">起</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
