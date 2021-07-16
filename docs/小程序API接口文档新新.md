@@ -417,6 +417,8 @@ API：/order/orderinf/resident/get
 }
 ```
 
+
+
 #### 管理员查询订单详细信息
 
 功能描述：**查询指定房间的进行中状态的订单详细信息**。
@@ -559,6 +561,7 @@ API：/room/roomsinf/resident/get
 | --------- | -------- | ---- | ------------------------------------------------------------ |
 | resCode   | string   | 是   | 住户的登录凭证，后端借其获取openid，验证用户身份是否为住户   |
 | roomType  | string   | 否   | 房间类型                                                     |
+| maximum   | int      | 否   | 房间限住人数                                                 |
 | startTime | string   | 是   | 预计入住起始时间                                             |
 | endTime   | string   | 是   | 预计入住结束时间                                             |
 | stamp     | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
@@ -580,6 +583,7 @@ API：/room/roomsinf/resident/get
 ```json
 {
     "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
+    "maximum"：2,
     "roomType":"豪华大床房"/"roomType":"",
     "startTime":"2020-05-17 18:55:49",
     "endTime":"2020-05-26 18:55:49",
@@ -740,13 +744,11 @@ API：/user/resident/per_roomsinf/get
 }
 ```
 
-#### 管理员查询住户房间简略信息
+**查询指定住户和指定时间的所有已预定状态和进行中状态订单的房间简略信息**。
 
-功能描述：**查询指定时间段的所有房间简略信息**。
+后端返回数组中，进行中状态订单的房间简略信息下标靠前。
 
-API：/room/roomsinf/admin/get
-
-当查询起始时间和结束时间为空时返回所有。
+API：/user/resident/per_roomsinf/get
 
 请求方法：POST
 
@@ -754,23 +756,21 @@ API：/room/roomsinf/admin/get
 
 **请求参数**
 
-| 字段      | 数据类型 | 必填 | 备注                                                         |
-| --------- | -------- | ---- | ------------------------------------------------------------ |
-| adminCode | string   | 是   | 管理员的登录凭证，后端借其获取openid，验证用户身份是否为超级管理员 |
-| startTime | string   | 否   | 查询的起始时间                                               |
-| endTime   | string   | 否   | 查询的结束时间                                               |
-| stamp     | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
-| prove     | string   | 是   | 管理员的adminCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
+| 字段        | 数据类型 | 必填 | 备注                                                         |
+| ----------- | -------- | ---- | ------------------------------------------------------------ |
+| resCode     | string   | 是   | 住户的登录凭证，后端借其获取openid，验证用户身份是否为住户   |
+| currentTime | string   | 是   | 时间戳，前端获取的当前日期和时间。配合住户身份标识联合查询已预定状态和进行中状态的订单的房间信息。 |
+| stamp       | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
+| prove       | string   | 是   | 管理员的数据类型必填备注resCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
 
 **返回参数**
 
-| 字段            | 数据类型     | 必填 | 备注                                                         |
-| --------------- | ------------ | ---- | ------------------------------------------------------------ |
-| errcode         | int          | 是   | 状态标识。0表示成功查询、1表示没有该管理员、2表示未知错误。  |
-| liveRoomList    | string(json) | 是   | 进行中状态订单的房间简略信息(订单号、住户姓名、房间号、温湿度、硬件状态) |
-| notliveRoomList | string(json) | 是   | 非“进行中状态订单的房间”房间（剩余所有房间）简略信息(房间号、温湿度、硬件状态) |
-| stamp           | string       | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
-| tableProve      | string       | 是   | 表验证，功能与用法和prove一致，只不过把adminCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
+| 字段        | 数据类型     | 必填 | 备注                                                         |
+| ----------- | ------------ | ---- | ------------------------------------------------------------ |
+| errcode     | int          | 是   | 状态标识。0表示成功查询、1表示没有该住户、2表示无已预定状态和进行中状态的订单的房间、4表示未知错误。 |
+| perRoomList | string(json) | 是   | 进行中订单房间简略信息（房间号、房间类型、温湿度、门锁状态）。已预订订单房间简略信息房间号、房间类型） |
+| stamp       | string       | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
+| tableProve  | string       | 是   | 表验证，功能与用法和prove一致，只不过把resCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
 
 请求示例：
 
@@ -778,9 +778,8 @@ API：/room/roomsinf/admin/get
 
 ```json
 {
-    "adminCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
-    "startTime":"2020-05-21 18:55:49",
-    "endTime":"2020-05-21 18:55:49",
+    "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
+    "currentTime":"2020-05-26 18:55:49",
     "stamp":"2020-05-21 18:55:49",
     "prove":"xxxxxxxxxx"
 }
@@ -790,27 +789,17 @@ API：/room/roomsinf/admin/get
 
 ```json
 {
-    "errcode":0/1/2,
-    "liveRoomList":[{
-        "orderId":1,
-        "name":"张三",
+    "errcode":0/1/2/3,
+    "perRoomList":[{
         "romId":101,			//进行中订单房间简略信息
+        "roomType":"豪华大床房",
         "roomTemp":26,
         "roomHum":40,
-        "airStatus":0,
-        "lightStatus":0,
-        "lockStatus":0,
-    },
-	],
-    "notliveRoomList":[{
-        "orderId":1,
-        "name":"李四",
-        "romId":102,			//非“进行中状态订单的房间”房间简略信息
-        "roomTemp":26,
-        "roomHum":40,
-        "airStatus":0,
-        "lightStatus":0,
-        "lockStatus":0,
+        "lockStatus":1,
+        
+    },{
+        "romId":102,			//已预订订单房间简略信息
+        "roomType":"情侣套房",
   	},
     ],
     "stamp":"2020-05-21 18:55:49",

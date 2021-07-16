@@ -9,6 +9,7 @@ Page({
     minDate: new Date(2021, 6, 16).getTime(),
     maxDate: new Date(2021, 7, 16).getTime(),
     show: false,
+    roomlist:[]   //精品推荐房间
   },
 
   /**
@@ -19,36 +20,67 @@ Page({
       startDate: this.msToDate(new Date().getTime()).justData,
       endData: this.msToDate(new Date().getTime()).justendData,
     })
-    // var that = this
-    // var stamp = util.formatTime(new Date());
-    // wx.login({
-    //   success(res) {
-    //     if (res.code) {
-    //       var roomlist_jsonData = {
-    //         adminCode: res.code,
-    //         stamp: stamp,
-    //         prove: md5.hex_md5(res.code+stamp+'liuboge'),
-    //       };
-    //       wx.request({
-    //         method: 'POST',
-    //         url: '',
-    //         header: {
-    //           'content-type': 'application/json'
-    //         },
-    //         data: JSON.stringify(roomlist_jsonData),
-    //         success: function (res) {
-    //           console.log('roomlist---', res);
-    //           var roomlist_jsonStr = res.data;
-    //           var roomlist_errorcode = roomlist_jsonStr.errorcode;
-    //           switch (roomlist_errorcode){
-    //             case "0":
-    //               break;
-    //           }
-    //         }
-    //       })
-    //     }
-    //   }
-    // })
+    var that = this
+    var stamp = util.formatTime(new Date());
+    wx.login({
+      success(res) {
+        if (res.code) {
+          var roomsinfBoutique_jsonData = {
+            resCode: res.code,
+            stamp: stamp,
+            prove: md5.hex_md5(res.code+stamp+'liuboge'),
+          };
+          wx.request({
+            method: 'POST',
+            url: '/room/roomsinf-boutique/resident/get',
+            header: {
+              'content-type': 'application/json'
+            },
+            data: JSON.stringify(roomsinfBoutique_jsonData),
+            success: function (res) {
+              console.log('roomsinfBoutique---', res);
+              var roomsinfBoutique_jsonStr = res.data;
+              var roomsinfBoutique_errorcode = roomsinfBoutique_jsonStr.errorcode;
+              switch (roomsinfBoutique_errorcode){
+                case "0":
+                  that.setData({
+                    roomlist:roomsinfBoutique_jsonStr.datelist,
+                  })
+                  break;
+              }
+            }
+          })
+        }
+      }
+    })
+    wx.login({
+      success(res) {
+        if (res.code) {
+          var roomlist_jsonData = {
+            adminCode: res.code,
+            stamp: stamp,
+            prove: md5.hex_md5(res.code+stamp+'liuboge'),
+          };
+          wx.request({
+            method: 'POST',
+            url: '',
+            header: {
+              'content-type': 'application/json'
+            },
+            data: JSON.stringify(roomlist_jsonData),
+            success: function (res) {
+              console.log('roomlist---', res);
+              var roomlist_jsonStr = res.data;
+              var roomlist_errorcode = roomlist_jsonStr.errorcode;
+              switch (roomlist_errorcode){
+                case "0":
+                  break;
+              }
+            }
+          })
+        }
+      }
+    })
   },
 
   onDisplay() {
@@ -68,6 +100,11 @@ Page({
       startDate: this.msToDate(start).justData,
       endData: this.msToDate(end).justData,
     });
+  },
+  roomlist (e) {
+    wx.navigateTo({
+      url: '/pages/roomlist/roomlist',
+    })
   },
   msToDate(msec) {
     let datetime = new Date(msec);

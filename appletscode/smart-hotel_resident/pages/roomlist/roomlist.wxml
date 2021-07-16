@@ -78,7 +78,7 @@
             <view class="roomSimpleInf_module">
               <view class="roomSimpleInfContent_module">
                 <view class="roomBtype_module">
-                  <view class="roomBtypeContent_module"><text class="roomBtypeContent">特大床</text></view>
+                  <view class="roomBtypeContent_module"><text class="roomBtypeContent">小型双床</text></view>
                 </view>
                 <view class="roomMaximum_module">
                   <view class="roomMaximumContent_module"><text class="roomMaximumContent">3人</text></view>

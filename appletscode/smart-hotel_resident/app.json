@@ -1,14 +1,14 @@
 {
   "pages":[
-    "pages/guidePage/guidePage",
     "pages/home/home",
+    "pages/roomlist/roomlist",
+    "pages/guidePage/guidePage",
     "pages/checkOut/checkOut",
     "pages/feedback/feedback",
     "pages/light/light",
     "pages/airCondition/airCondition",
     "pages/orderInf/orderInf", 
     "pages/booking/booking",
-    "pages/roomlist/roomlist",
     "pages/room/room",
     "pages/order/order"
   ],

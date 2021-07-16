@@ -203,6 +203,7 @@ page{
 
 .roomBtypeContent{
   color: white;
+  font-size: x-small;
 }
 
 .roomMaximum_module{
@@ -222,6 +223,7 @@ page{
 
 .roomMaximumContent{
   color: white;
+  font-size: x-small;
 }
 
 .roomPrice_module{
