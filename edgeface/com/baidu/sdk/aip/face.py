@@ -75,12 +75,9 @@ class AipFace(AipBase):
         """
         options = options or {}
 
-        data = {}
-        data['image'] = image
-        data['image_type'] = image_type
-        data['group_id_list'] = group_id_list
-
+        data = {'image': image, 'image_type': image_type, 'group_id_list': group_id_list}
         data.update(options)
+
         return self._request(self.__searchUrl, json.dumps(data, ensure_ascii=False), {
             'Content-Type': 'application/json',
         })
