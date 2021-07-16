@@ -18,7 +18,10 @@ avatars = {
     '卢畅': 'https://blog.keter.top/img/touxiang.png'
 }
 
+from ..utils.utils import catch_except
+
 @user_info.route('/user/info', methods=['GET'])
+@catch_except
 def index():
     """
     获取管理员信息

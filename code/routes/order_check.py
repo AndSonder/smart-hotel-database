@@ -7,15 +7,19 @@ from flask import request
 
 from ..models.order_option import OrderOption
 from ..models.get_info import GetInfo
+from ..utils.utils import black2none
 
 order_check = Blueprint('order_check', __name__)
 
+from ..utils.utils import catch_except
 
 @order_check.route('/order/check', methods=['GET'])
+@catch_except
 def index():
     token = request.args.get("token")
     order_id = request.args.get("id")
     status = request.args.get("status")
+    order_id, status = black2none(order_id, status)
     if token is None or order_id is None or status is None:
         return json.dumps({"code": 20004, "message": "参数错误，请检查参数"})
     try:

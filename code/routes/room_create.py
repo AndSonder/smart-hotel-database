@@ -10,8 +10,10 @@ from ..models.get_info import GetInfo
 
 room_create = Blueprint('room_create', __name__)
 
+from ..utils.utils import catch_except
 
 @room_create.route('/room/create', methods=['POST'])
+@catch_except
 def index():
     data = request.get_data()
     data = json.loads(data)

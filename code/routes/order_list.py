@@ -6,7 +6,8 @@ from flask import Blueprint
 from flask import request
 
 from ..models.get_info import GetInfo
-
+from ..utils.utils import black2none
+from ..utils.utils import catch_except
 order_list = Blueprint('order_list', __name__)
 
 
@@ -24,7 +25,9 @@ def string2timestamp(str_value):
     return int(timeStamp)
 
 
+
 @order_list.route('/order/list', methods=['GET'])
+@catch_except
 def index():
     token = request.args.get("token")
     page = request.args.get("page")
@@ -32,6 +35,7 @@ def index():
     sort = request.args.get("sort")
     id = request.args.get("id")
     name = request.args.get("name")
+    id, name = black2none(id, name)
     if token is None or page is None or limit is None or sort is None:
         return json.dumps({"code": 20004, "message": "参数错误，请检查参数"})
     try:

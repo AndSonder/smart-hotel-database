@@ -8,16 +8,21 @@ from flask import request
 from ..models.get_info import GetInfo
 from ..models.emergency_option import EmergencyOption
 from ..utils.parser import string2timestamp
+from ..utils.utils import black2none
 
 emergency_list = Blueprint('emergency_list', __name__)
 
+from ..utils.utils import catch_except
+
 
 @emergency_list.route('/emergency/list', methods=['GET'])
+@catch_except
 def index():
     token = request.args.get("token")
     page = request.args.get("page")
     limit = request.args.get("limit")
     room_id = request.args.get("room_id")
+    room_id = black2none(room_id)[0]
     if token is None or page is None or limit is None:
         return json.dumps({"code": 20004, "message": "参数错误，请检查参数"})
     try:

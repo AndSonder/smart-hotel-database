@@ -70,6 +70,7 @@
           <span v-if="row.level===2">前台权限</span>
           <span v-if="row.level===3">安保人员权限</span>
           <span v-if="row.level===4">清洁人员权限</span>
+          <span v-if="row.level===5">普通用户权限</span>
         </template>
       </el-table-column>
       <el-table-column label="操作" align="center" width="180" class-name="small-padding fixed-width">

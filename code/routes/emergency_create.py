@@ -9,9 +9,12 @@ from ..models.emergency_option import EmergencyOption
 from ..models.get_info import GetInfo
 
 emergency_create = Blueprint('emergency_create', __name__)
+from ..utils.utils import catch_except
+
 
 
 @emergency_create.route('/emergency/create', methods=['POST'])
+@catch_except
 def index():
     data = request.get_data()
     data = json.loads(data)

@@ -10,8 +10,10 @@ from ..models.get_info import GetInfo
 
 room_update = Blueprint('room_update', __name__)
 
+from ..utils.utils import catch_except
 
 @room_update.route('/room/update', methods=['POST'])
+@catch_except
 def index():
     data = request.get_data()
     data = json.loads(data)
@@ -41,7 +43,7 @@ def index():
     db = RoomOption()
     re = db.update(id, rtype, bedtype, maxnum, area, rwin, rlock, money, temperature, humidity)
     if re:
-        message = "订单更新成功"
+        message = "房间信息更新成功"
     else:
         message = "操作失败，发生未知错误"
     data = {

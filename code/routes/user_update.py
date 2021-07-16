@@ -10,8 +10,11 @@ from ..models.get_info import GetInfo
 
 user_update = Blueprint('user_update', __name__)
 
+from ..utils.utils import catch_except
+
 
 @user_update.route('/user/update', methods=['POST'])
+@catch_except
 def index():
     data = request.get_data()
     data = json.loads(data)

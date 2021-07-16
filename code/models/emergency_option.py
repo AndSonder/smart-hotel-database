@@ -11,7 +11,7 @@ class EmergencyOption(Model):
         # 获取用户数量
         self.cursor.execute('SELECT count(*) FROM accident_record;')
         total_num = self.cursor.fetchone()[0]
-        if room_id != None and room_id != '':
+        if room_id is not None:
             self.cursor.execute(
                 f"SELECT * FROM accident_record ORDER BY id DESC WHERE room_id={room_id};")
         else:

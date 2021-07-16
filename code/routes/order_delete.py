@@ -10,8 +10,10 @@ from ..models.get_info import GetInfo
 
 order_delete = Blueprint('order_delete', __name__)
 
+from ..utils.utils import catch_except
 
 @order_delete.route('/order/delete', methods=['POST'])
+@catch_except
 def index():
     data = request.get_data()
     data = json.loads(data)

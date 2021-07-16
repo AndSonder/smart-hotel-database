@@ -281,7 +281,7 @@ export default {
         token: this.listQuery.token
       }
       var that = this
-      this.$confirm("是否确认删除用户信息", "提示", {
+      this.$confirm("是否确认删除信息", "提示", {
         iconClass: "el-icon-question",
         confirmButtonText: "确认",
         cancelButtonText: "取消",
