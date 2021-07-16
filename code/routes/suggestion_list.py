@@ -8,18 +8,22 @@ from flask import request
 from ..models.get_info import GetInfo
 from ..models.suggestion_option import SuggestionOption
 from ..utils.parser import string2timestamp
+from ..utils.utils import black2none
 from urllib import parse
 
 suggestion_list = Blueprint('suggestion_list', __name__)
 
+from ..utils.utils import catch_except
 
 @suggestion_list.route('/suggestion/list', methods=['GET'])
+@catch_except
 def index():
     token = request.args.get("token")
     page = request.args.get("page")
     limit = request.args.get("limit")
     sort = request.args.get("sort")
     message = request.args.get("message")
+    message = black2none(message)[0]
     if message is not None:
         message = parse.unquote(message)
     start_date = request.args.get("start_date")

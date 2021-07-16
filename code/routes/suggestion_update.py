@@ -11,8 +11,10 @@ from urllib import parse
 
 suggestion_update = Blueprint('suggestion_update', __name__)
 
+from ..utils.utils import catch_except
 
 @suggestion_update.route('/suggestion/update', methods=['POST'])
+@catch_except
 def index():
     data = request.get_data()
     data = json.loads(data)

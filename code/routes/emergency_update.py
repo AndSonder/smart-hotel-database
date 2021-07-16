@@ -10,8 +10,12 @@ from ..models.get_info import GetInfo
 
 emergency_update = Blueprint('emergency_update', __name__)
 
+from ..utils.utils import catch_except
+
+
 
 @emergency_update.route('/emergency/update', methods=['POST'])
+@catch_except
 def index():
     data = request.get_data()
     data = json.loads(data)
@@ -33,7 +37,7 @@ def index():
     if level not in [0, 3]:
         return json.dumps({"code": 20006, "message": "权限不足"})
     db = EmergencyOption()
-    re = db.update(id, room_id, abnormal_time,accident)
+    re = db.update(id, room_id, abnormal_time, accident)
     if re:
         message = "意外事件更新成功"
     else:

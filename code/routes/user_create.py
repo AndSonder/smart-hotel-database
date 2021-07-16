@@ -10,8 +10,10 @@ from ..models.get_info import GetInfo
 
 user_create = Blueprint('user_create', __name__)
 
+from ..utils.utils import catch_except
 
 @user_create.route('/user/create', methods=['POST'])
+@catch_except
 def index():
     data = request.get_data()
     data = json.loads(data)

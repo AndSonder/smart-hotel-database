@@ -7,11 +7,14 @@ from flask import request
 
 from ..models.get_info import GetInfo
 from ..models.user_option import UserOption
+from ..utils.utils import black2none
 
 user_list = Blueprint('user_list', __name__)
 
+from ..utils.utils import catch_except
 
 @user_list.route('/user/list', methods=['GET'])
+@catch_except
 def index():
     token = request.args.get("token")
     page = request.args.get("page")
@@ -19,6 +22,7 @@ def index():
     search_level = request.args.get("level")
     phone = request.args.get("phone")
     name = request.args.get("name")
+    search_level, phone, name = black2none(search_level, phone, name)
     if token is None or page is None or limit is None:
         return json.dumps({"code": 20004, "message": "参数错误，请检查参数"})
     try:
@@ -44,7 +48,7 @@ def index():
     }
     for index, user in enumerate(users):
         item = {
-            "id": index+1,
+            "id": index + 1,
             "wecharid": user[0],
             "name": user[1],
             "sex": user[2],

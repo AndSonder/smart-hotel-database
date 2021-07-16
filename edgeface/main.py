@@ -8,11 +8,6 @@
 
 # and obviously he thought the package name of "json" is not long enough (doge)
 import json as Id_like_to_make_the_package_name_of_json_long_enough
-# sdd-vgg and paddle mobile by group member peterli
-from com.peterli.ssdvgg_hm.src.model import PaddleMobile
-from com.peterli.ssdvgg_hm.src.video import VideoThread
-from com.peterli.ssdvgg_hm.src.uitl import parse_args
-# useless things by rubbish VisualDust
 from com.visualdust.edgeface.terminal import Terminal
 from com.visualdust.edgeface.controller import Controller
 from com.visualdust.edgeface.opencv_cap import CV2Agent 
@@ -31,7 +26,7 @@ if __name__ == '__main__':
     logger.log('loading mqtt and serial configuration...')
     terminal_config = Id_like_to_make_the_package_name_of_json_long_enough.load(open('./config/terminal/terminal.config.all.json'))
     # initializing terminal
-    terminal = Terminal(terminal_config)
+    terminal = None
     # using paddle mobile
     # Attention: use ssd-vgg and cv2 do not work together. Activate only one of them at one time.
     video_path = global_config['camera']
@@ -44,7 +39,7 @@ if __name__ == '__main__':
     # video_thread = VideoThread(global_config["camera"], global_config["input_width"], global_config["input_height"],
     #                           buffer_size=global_config['camera_buffer_size'], name=global_config["camera"])
     # Here is an example using cv2
-    cv_agent = CV2Agent(video_device=2)
+    cv_agent = CV2Agent(video_device=0)
     # controller = Controller(terminal=terminal, video_thread=video_thread, model=hm_model, extra_config=global_config)
     controller = Controller(terminal=terminal, cv_auth=cv_agent, model=None, extra_config=global_config)
     controller.run_here()

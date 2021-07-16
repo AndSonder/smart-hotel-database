@@ -7,11 +7,14 @@ from flask import request
 
 from ..models.get_info import GetInfo
 from ..models.room_option import RoomOption
+from ..utils.utils import black2none
 
 room_guest = Blueprint('room_guest', __name__)
 
+from ..utils.utils import catch_except
 
 @room_guest.route('/room/guest', methods=['GET'])
+@catch_except
 def index():
     token = request.args.get("token")
     page = request.args.get("page")
@@ -22,6 +25,7 @@ def index():
         bedtype = parse.unquote(bedtype)
     start_date = request.args.get("start_date")
     end_date = request.args.get("end_date")
+    bedtype, start_date, end_date = black2none(bedtype, start_date, end_date)
     try:
         if start_date is not None:
             start_date = str(datetime.datetime.fromtimestamp(int(start_date) / 1000))

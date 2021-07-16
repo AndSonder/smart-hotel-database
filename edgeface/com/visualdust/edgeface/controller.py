@@ -3,7 +3,6 @@ from com.peterli.ssdvgg_hm.src.uitl import print_results, draw_results
 from com.visualdust.edgeface.baidu_facesearch import BaiduFaceSearch
 from com.visualdust.edgeface.opencv_cap import CV2Agent
 from com.visualdust.utils.logger import Logger
-from serial import Serial
 from time import sleep as delay
 import time
 from os import system as system_call
@@ -14,7 +13,7 @@ class Controller:
     def __init__(self, terminal, video_thread=None, cv_auth=None, model=None, extra_config={}):
         self.logger = Logger(self)
         self.logger.log('Instantiating controller...', '@')
-        self.terminal = terminal
+        self.terminal = None
         self.video_thread = video_thread
         self.cv_auth = cv_auth
         self.config = extra_config
@@ -28,8 +27,9 @@ class Controller:
         # system_call(self.config['capture_api_command'])
         # delay(3)
         response_dict = self.face_search.request_face_search_path(file_path)
+        print(response_dict)
         # resolving predicted result
-        self.logger.log('response : ' + str(response_dict['error_msg']), '!')
+        # self.logr.log('response : ' + str(response_dict['error_msg']), '!')
         result = response_dict['error_msg'] == 'SUCCESS'
         return result, response_dict
 
@@ -67,7 +67,7 @@ class Controller:
     def wait_for_auth_cv2(self, sleep=-1):
         self.logger.log('Started to wait for cv agent auth')
         delay(sleep)
-        while not self.terminal.occupied:  # if the room was not occupied
+        while True:  # if the room was not occupied
             # doing sleep
             if sleep != -1:
                 delay(sleep)
@@ -78,21 +78,8 @@ class Controller:
                 cv2.imwrite("image_0.jpg", frame)
                 result, response = self.do_online_auth('image_0.jpg')
                 if result:
-                    # TODO printing user id
-                    # occupied !
-                    self.terminal.write_to_serial_anyway(str('uart_sample\r\n'))
-                    self.terminal.open_the_door()
-                    delay(1)
-                    hour = int(time.strftime("%H", time.localtime()))
-                    if hour > 17:
-                        self.terminal.light_up()
-                    else:
-                        self.terminal.open_the_willow()
-                    delay(5)
-                    self.terminal.mqtt.publish('consume', '600')
-                    self.terminal.occupied = True
-                    # stop the video capturing procedure
-        self.terminal.run_in_thread()
+                    break
+        print("jdfgjhkfsgudshfcgudshfcudsvcgdfs")
 
     def start(self):
         if self.video_thread is not None:

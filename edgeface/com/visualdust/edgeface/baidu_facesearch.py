@@ -39,7 +39,8 @@ class BaiduFaceSearch:
         # base64_data = bytes(('data: image/jpeg;base64,%s' % str(base64.b64encode(f.read()), "utf-8")), "utf-8")
         # 转换为bytes对象
         group_id_list = self.configs["group_id_list"]
-        base64_data = str(base64.b64encode(open(image_path, 'rb').read())).encode('utf-8')
+        base64_data = str(base64.b64encode(open(image_path, 'rb').read()))
+        print(type(base64_data))
         # base64_data = str(urllib.parse.quote(base64_data))
         # if "prefix" in kwargs.keys():
         #     data = kwargs["prefix"] + data
@@ -51,6 +52,7 @@ class BaiduFaceSearch:
         # options["user_id"] = "233451"
         self.logger.log('requesting face search...', '$')
         result = self.client.search(base64_data, image_type, group_id_list, options)
+        print("result: ",result)
         return result
 
     def request_face_search_img(self, image, group_id_list="", options={}):
