@@ -25,9 +25,8 @@ Page({
     wx.getStorage({
       key: "first",
       success: (res) => {
-        console.log(res)
         wx.reLaunch({
-          url: '/pages/tpl/reservation/reservation'
+          url: '/pages/home/home'
         })
       },
       fail: (res) => {

@@ -14,6 +14,6 @@
 		<image class="word_1_img" src="{{value[0].back_3}}" ></image>
 	</view>
 	<view class="total_button" animation="{{slideupdisplay_0}}">
-		<button class="btn" hover-class="btn-hover" bindtap="skip">开始体验</button>
+		<button class="cu-btn lg round bg-cyanblue shadow" bindtap="skip" style="width:300rpx">开始体验</button>
 	</view>
 </view>

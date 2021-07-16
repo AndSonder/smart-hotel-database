@@ -32,7 +32,7 @@
   <view class="second_box">
     <view class="title_module">
       <view class="titleContent_module">
-        <text class="titleContent">智能推荐</text>
+        <text class="titleContent">精品推荐</text>
       </view>
     </view>
     <view class="roomInf_module">

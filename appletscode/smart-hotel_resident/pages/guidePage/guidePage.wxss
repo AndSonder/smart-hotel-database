@@ -56,6 +56,7 @@ page {
 }
 
 .total_framework .total_button{
+  display: flex;
   width: 100%;
   height: 100rpx;
   bottom: 0;
@@ -63,8 +64,10 @@ page {
   opacity: 0;
   position: absolute;
   z-index: 30;
+  justify-content: center;
+  align-items: center;
 }
-.total_button .btn{
+/* .total_button .btn{
   background-color: rgb(19, 194, 194);
   border-radius: 30rpx;
   line-height: 80rpx;
@@ -75,8 +78,8 @@ page {
   height: 80%;
   color: white;
   text-align: center;
-}
-.btn-hover {
+} */
+/* .btn-hover {
   position: relative;
   top: 3rpx;
   box-shadow: 0px 0px 10rpx #bbbec4 inset;
@@ -85,4 +88,4 @@ page {
 .btn::after {
   border-radius: 30rpx;
   border: 0;
-}
+} */

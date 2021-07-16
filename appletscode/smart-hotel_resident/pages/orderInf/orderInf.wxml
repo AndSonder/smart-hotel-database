@@ -35,7 +35,6 @@
     </view>
   </view>
   <view class="third_box">
-
     <form>
       <view class="cu-form-group margin-top">
         <view class="title">姓名</view>
