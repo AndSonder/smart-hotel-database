@@ -114,6 +114,10 @@ Page({
         if (res.code) {
           var roomsinf_jsonData = {
             resCode: res.code,
+            roomType: that.data.rtypeContent,
+            maximum: that.data.maximumContent,
+            startTime: that.data.startDate + ' ' + '06:00:00',
+            endime: that.data.endDate + ' ' + '15:00:00',
             stamp: stamp,
             prove: md5.hex_md5(res.code + stamp + 'liuboge'),
           };
@@ -170,6 +174,10 @@ Page({
         if (res.code) {
           var roomsinf_jsonData = {
             resCode: res.code,
+            roomType: that.data.rtypeContent,
+            maximum: that.data.maximumContent,
+            startTime: that.data.startDate + ' ' + '06:00:00',
+            endime: that.data.endDate + ' ' + '15:00:00',
             stamp: stamp,
             prove: md5.hex_md5(res.code + stamp + 'liuboge'),
           };
@@ -222,7 +230,8 @@ Page({
     const [start, end] = event.detail;
     this.setData({
       show: false,
-      date: `${dataTime.msToDate(start).justData} - ${dataTime.msToDate(end).justData}`,
+      startDate: dataTime.msToDate(start).normalDate,
+      endDate: dataTime.msToDate(end).normalDate,
     });
   },
   ChangeWindow(arr, name) {

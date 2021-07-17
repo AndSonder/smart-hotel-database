@@ -32,7 +32,7 @@
     </view>
   </view>
   <view class="second_box">
-    <block wx:for="{{roomList}}" wx:key>
+    <block wx:for="{{roomList}}" wx:key="*this">
       <view class="roomInf_module">
         <view class="roomInfContent">
           <view class="roomImg_module">
