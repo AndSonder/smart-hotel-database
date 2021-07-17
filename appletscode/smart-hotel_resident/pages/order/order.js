@@ -4,9 +4,8 @@ const app = getApp()
 
 Page({
   data: {
-    // orderlist: [],
-    userShow:false,
-    orderlist: [{
+    userShow:true,
+    orderList: [{
       "orderId": 123,
       "roomId": 101,
       "orderTime": "2020-05-17 18:55:49",
@@ -23,46 +22,50 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // var that = this
-    // var stamp = util.formatTime(new Date());
-    // wx.login({
-    //   success(res) {
-    //     if (res.code) {
-    //       var orderlist_jsonData = {
-    //         resCode: res.code,
-    //         stamp: stamp,
-    //         prove: md5.hex_md5(res.code+stamp+'liuboge'),
-    //       };
-    //       wx.request({
-    //         method: 'POST',
-    //         url: '',
-    //         header: {
-    //           'content-type': 'application/json'
-    //         },
-    //         data: JSON.stringify(orderlist_jsonData),
-    //         success: function (res) {
-    //           console.log('roomlist---', res);
-    //           var orderlist_jsonStr = res.data;
-    //           var orderlist_errorcode = orderlist_jsonStr.errorcode;
-    //           switch (orderlist_errorcode){
-    //             case "0":
-    //               var orderlist =  that.handleSameTypeList(orderlist_jsonStr.dataList, 'orderTime', [])
-    //               console.log("orderlist---",orderlist)
-    //                 // for (let item of orderlist) {
-    //                 //   console.log("orderlist_item---",item)
-    //                 // }
-    //               break;
-    //           }
-    //         }
-    //       })
-    //     }
-    //   }
-    // })
+    var that = this
+    var stamp = util.formatTime(new Date());
+    wx.login({
+      success(res) {
+        if (res.code) {
+          var ordersinf_jsonData = {
+            resCode: res.code,
+            stamp: stamp,
+            prove: md5.hex_md5(res.code+stamp+'liuboge'),
+          };
+          wx.request({
+            method: 'POST',
+            url: 'https://www.supremeproger.com/order/ordersinf/resident/get',
+            header: {
+              'content-type': 'application/json'
+            },
+            data: JSON.stringify(ordersinf_jsonData),
+            success: function (res) {
+              console.log('ordersinf---', res);
+              var ordersinf_jsonStr = res.data;
+              if (md5.hex_md5('room' + ordersinf_jsonStr.stamp + 'liuboge' == ordersinf_jsonStr.tableProve)){}
+              var ordersinf_errorcode = ordersinf_jsonStr.errorcode;
+              switch (ordersinf_errorcode){
+                case "0":
+                  var orderList =  that.handleSameTypeList(orderlist_jsonStr.dataList, 'orderTime', [])
+                  var orderList = this.handleSameTypeList(this.data.orderlist, 'orderTime', orderArray)
+                  console.log("orderList---",orderlist)
+                  break;
+              }
+            }
+          })
+        }
+      }
+    })
     var orderArray = []
     var list = this.handleSameTypeList(this.data.orderlist, 'orderTime', orderArray)
     console.log(list)
     this.setData({
       orderlist: list
+    })
+  },
+  turnRoomList(e){
+    wx.navigateTo({
+      url: '/pages/roomlist/roomlist',
     })
   },
   //订单数组分组

@@ -169,6 +169,7 @@ Page({
     that.setData({
       rtypeContent: event.detail.name
     });
+    var stamp = util.formatTime(new Date()); 
     wx.login({
       success(res) {
         if (res.code) {
@@ -189,13 +190,14 @@ Page({
             },
             data: JSON.stringify(roomsinf_jsonData),
             success: function (res) {
-              console.log('roomsinf---', res);
+              console.log('roomsinf_rtype---', res);
               var roomsinf_jsonStr = res.data;
               if (md5.hex_md5('room' + roomsinf_jsonStr.stamp + 'liuboge') == roomsinf_jsonStr.tableProve) {
                 var roomsinf_errorcode = roomsinf_jsonStr.errorcode;
                 switch (roomsinf_errorcode) {
                   case "0":
                     var roomList = that.ChangeWindow(roomsinf_jsonStr.datelist, 'roomWindow')
+                    console.log('roomList---',roomList)
                     that.setData({
                       roomList: roomList,
                     })
@@ -213,6 +215,45 @@ Page({
     that.setData({
       maximumContent: event.detail.name
     });
+    var stamp = util.formatTime(new Date()); 
+    wx.login({
+      success(res) {
+        if (res.code) {
+          var roomsinf_jsonData = {
+            resCode: res.code,
+            roomType: that.data.rtypeContent,
+            maximum: that.data.maximumContent,
+            startTime: that.data.startDate + ' ' + '06:00:00',
+            endime: that.data.endDate + ' ' + '15:00:00',
+            stamp: stamp,
+            prove: md5.hex_md5(res.code + stamp + 'liuboge'),
+          };
+          wx.request({
+            method: 'POST',
+            url: 'https://www.supremeproger.com/room/roomsinf/resident/get',
+            header: {
+              'content-type': 'application/json'
+            },
+            data: JSON.stringify(roomsinf_jsonData),
+            success: function (res) {
+              console.log('roomsinf_maximum---', res);
+              var roomsinf_jsonStr = res.data;
+              if (md5.hex_md5('room' + roomsinf_jsonStr.stamp + 'liuboge') == roomsinf_jsonStr.tableProve) {
+                var roomsinf_errorcode = roomsinf_jsonStr.errorcode;
+                switch (roomsinf_errorcode) {
+                  case "0":
+                    var roomList = that.ChangeWindow(roomsinf_jsonStr.datelist, 'roomWindow')
+                    that.setData({
+                      roomList: roomList,
+                    })
+                    break;
+                }
+              }
+            }
+          })
+        }
+      }
+    })
   },
   onDisplay() {
     this.setData({

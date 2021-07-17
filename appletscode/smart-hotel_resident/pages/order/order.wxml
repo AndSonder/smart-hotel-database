@@ -2,9 +2,9 @@
   <view slot="content">订单列表</view>
 </cu-custom>
 <view class="cu-timeline" wx:if="{{userShow}}">
-  <block wx:for="{{orderlist}}" wx:key>
+  <block wx:for="{{orderlist}}" wx:key="*this">
     <view class="cu-time">{{item.tag}}</view>
-    <view class="cu-item" wx:for="{{item.orderArray}}" wx:key wx:for-index="sub" wx:for-item="orderTimeline">
+    <view class="cu-item" wx:for="{{item.orderArray}}" wx:key="orderId" wx:for-index="sub" wx:for-item="orderTimeline">
       <view class="content bg-{{orderTimeline.orderUI}} shadow-blur">
         <view class="orderinf_module">
           <view class="orderTime_module"><text>{{orderTimeline.orderTime}}</text></view>
@@ -15,7 +15,7 @@
     </view>
   </block>
 </view>
-<view class="total_box" wx:if="!{{userShow}}">
+<view class="total_box" wx:if="{{!userShow}}">
   <view class="attention_module">
     <view class="attentionContent_module">
       <text class="attentionContent">暂无相关订单</text>
@@ -23,7 +23,7 @@
   </view>
   <view class="turnTo_module">
     <view class="turnToContent_module">
-      <button class="cu-btn lg bg-cyanblue shadow round" style="width:400rpx">预订房间</button>
+      <button class="cu-btn lg bg-cyanblue shadow round" style="width:400rpx" bindtap="turnRoomList">预订房间</button>
     </view>
   </view>
 </view>
