@@ -11,15 +11,6 @@ import time
 
 #https://www.supremeproger.com/order/perinfo/resident/post
 user_post_orderinfo = Blueprint('user_post_orderinfo', __name__)
-"""
-传参举例：
-{
-    "adminCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
-    "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
-    "stamp":"2020-05-21 18:55:49",
-    "prove":"2ca41b85f1002f8202e85064e101c54c"
-}
-"""
 
 @user_post_orderinfo.route('/order/perinfo/resident/post', methods=['POST'])
 def index():
@@ -45,6 +36,7 @@ def index():
 
         print(wecharid)
         get_info['wecharid'] = wecharid
+        get_info['stamp_h'] = stamp_h
         db = UserPushOrder()
         flag = db.insert(get_info)
 

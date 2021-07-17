@@ -36,7 +36,7 @@ def index():
 
         print(wecharid)
         get_info['wecharid'] = wecharid
-        db = ClientSearchinfo()
+        db = AdminSearchinfo()
         data = db.search(get_info['roomId'])
 
         if data == 2:

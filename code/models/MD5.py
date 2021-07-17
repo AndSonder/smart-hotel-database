@@ -12,7 +12,7 @@ def md5sum(str):
     return m.hexdigest()
 
 # import time
-# stamp_h = time.strftime("%Y-%m-%d%H:%M:%S", time.localtime())
+# stamp_h = time.strftime("%Y-%m-% d%H:%M:%S", time.localtime())
 # print(stamp_h)
 # print(type(stamp_h))
 #
