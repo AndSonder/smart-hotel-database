@@ -30,5 +30,5 @@ class ClientSearchRoominfo(Model):
         print(data)
         for item in data:
             data_list.append(
-                {"rtype": item[1], "bedtype": item[2], "maxnum": item[3], "money": item[6]})
+                {"rtype": item[1], "bedtype": item[2], "maxnum": item[3], "money": item[6], "roomWindow":item[5]})
         return data_list

@@ -9,7 +9,7 @@ class UserPush(Model):
     def update(self, csv_file):
         flag = self.search(csv_file['orderId'])
         if flag:
-            print('111111111')
+
             sql = f"UPDATE `order` SET scid = '{csv_file['expLive']}', sgo = '{csv_file['expAway']}' , cid ='{csv_file['actLive']}', go ='{csv_file['actAway']}' WHERE id = {csv_file['orderId']}"
             print(sql)
             #传参

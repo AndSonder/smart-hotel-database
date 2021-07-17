@@ -15,7 +15,7 @@ login = Blueprint('login', __name__)
 def index():
     get_info = request.get_data()
     get_info = json.loads(get_info)
-    stamp_h = time.strftime("%Y-%m-%d%H:%M:%S", time.localtime())
+    stamp_h = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     print(stamp_h)
     str = get_info['openid_code'] + get_info['stamp'] + salt
     print(str)

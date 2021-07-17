@@ -20,7 +20,7 @@ class ClientSearchinfo(Model):
         print(data)
         for item in data:
             data_list.append(
-                {"orderId": item[0], "roomId": item[7], "actLive": item[3], "actAway": item[4], "orderStatus": item[8]})
+                {"orderId": item[0], "roomId": item[8], "actLive": item[3], "actAway": item[4], "orderStatus": item[9]})
         return data_list
 
 # a = ((3, 250, datetime.datetime(2021, 7, 1, 8, 30), datetime.datetime(2021, 7, 4, 8, 30), datetime.datetime(2021, 7, 2, 8, 30), datetime.datetime(1970, 1, 1, 8, 0), 'wxid_ux57m1gafdh523', 3, 1, None),

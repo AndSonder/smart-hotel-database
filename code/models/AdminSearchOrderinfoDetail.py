@@ -10,9 +10,9 @@ from . import Model
     "prove": "2ca41b85f1002f8202e85064e101c54c"
 }
 """
-class ClientSearchinfo(Model):
+class AdminSearchinfo(Model):
     def __init__(self):
-        super(ClientSearchinfo, self).__init__()
+        super(AdminSearchinfo, self).__init__()
 
     def search(self, roomid):
         data_list = []
@@ -23,7 +23,7 @@ class ClientSearchinfo(Model):
             for item in data:
                 print(item)
                 data_list.append(
-                    {"orderId": item[0], "amountsPay": item[1], "expLive": item[2],"expAway": item[3], "actLive": item[4], "actAway": item[5], "roomId": item[7], "orderStatus": item[8], "depoist": item[9]})
+                    {"orderId": item[0], "amountsPay": item[1], "expLive": item[2],"expAway": item[3], "actLive": item[4], "actAway": item[5], "roomId": item[8], "orderStatus": item[9], "depoist": item[10]})
                 return data_list
         else:
             return 2

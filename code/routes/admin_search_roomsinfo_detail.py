@@ -41,9 +41,7 @@ def index():
         if data:
 
             datas = {"errcode": 0,
-                     "roomId": data[0]['roomId'], "roomType": data[0]['roomType'], "bedType": data[0]['bedType'],
-                     "roomArea": data[0]['roomArea'], "maximum": data[0]['maximum'], "roomWindow": data[0]['roomWindow'],
-                     "roomPrice": data[0]['roomPrice'], "roomTemp": data[0]['roomTemp'], "roomHum": data[0]['roomHum'],
+                     "datalist":data,
                      "stamp": stamp_h, "tableProve": table_prove}
 
             return json.dumps(datas, cls=DateEncoder)

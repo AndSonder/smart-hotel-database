@@ -27,8 +27,8 @@ class AdminSearchRoomsinfo(Model):
             print(data)
             for item in data:
                 data_list.append(
-                    {"roomId": item[0], "roomTemp": item[7], "roomHum": item[8], "airStatus": item[21],
-                     "lightStatus": item[26], "lockStatus": item[9]})
+                    {"roomId": item[0], "roomTemp": item[7], "roomHum": item[8], "airStatus": item[22],
+                     "lightStatus": item[27], "lockStatus": item[9]})
 
             return data_list
         else:
@@ -41,8 +41,8 @@ class AdminSearchRoomsinfo(Model):
             print(data)
             for item in data:
                 data_list.append(
-                    {"orderId":item[10], "wecharid":item[16], "roomId": item[0], "roomTemp": item[7], "roomHum": item[8], "airStatus": item[21],
-                     "lightStatus": item[26], "lockStatus": item[9] })
+                    {"orderId":item[10], "wecharid":item[17], "roomId": item[0], "roomTemp": item[7], "roomHum": item[8], "airStatus": item[22],
+                     "lightStatus": item[27], "lockStatus": item[9] })
 
             return data_list
 
@@ -59,8 +59,8 @@ class AdminSearchRoomsinfo(Model):
             print(data)
             for item in data:
                 data_list.append(
-                    {"roomId": item[0], "roomTemp": item[7], "roomHum": item[8], "airStatus": item[21],
-                     "lightStatus": item[26], "lockStatus": item[9]})
+                    {"roomId": item[0], "roomTemp": item[7], "roomHum": item[8], "airStatus": item[22],
+                     "lightStatus": item[27], "lockStatus": item[9]})
 
             return data_list
         else:
@@ -73,6 +73,6 @@ class AdminSearchRoomsinfo(Model):
             print(data)
             for item in data:
                 data_list.append(
-                    {"roomId": item[0], "roomTemp": item[7], "roomHum": item[8], "airStatus": item[21], "lightStatus": item[25], "lockStatus": item[9] })
+                    {"roomId": item[0], "roomTemp": item[7], "roomHum": item[8], "airStatus": item[22], "lightStatus": item[27], "lockStatus": item[9]})
 
             return data_list
