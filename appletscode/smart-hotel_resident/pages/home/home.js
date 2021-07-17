@@ -19,13 +19,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
+    var that = this
+    that.setData({
       startDate: dataTime.msToDate(new Date().getTime()).justDate,
       endDate: dataTime.msToDate(new Date().getTime()).justendDate,
       start: dataTime.msToDate(new Date().getTime()).justDate.replace('月','/').replace('日',''),
       end: dataTime.msToDate(new Date().getTime()).justendDate.replace('月','/').replace('日',''),
     })
-    var that = this
     var stamp = util.formatTime(new Date());
     wx.login({
       success(res) {
@@ -88,6 +88,11 @@ Page({
   callServer(e){
     wx.makePhoneCall({
       phoneNumber: '18178346924'
+    })
+  },
+  trunBooking(e){
+    wx.navigateTo({
+      url: '/pages/booking/booking?roomType=' + e.currentTarget.dataset.roomType + '&roomPrice=' + e.currentTarget.dataset.roomPrice + '&startDate=' + this.data.start + '&endDate=' + this.data.end,
     })
   },
   ChangeWindow(arr, name) {

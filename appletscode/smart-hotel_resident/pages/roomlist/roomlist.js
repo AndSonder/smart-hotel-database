@@ -2,14 +2,15 @@ const util = require('../../utils/util.js');
 const dataTime = require('../../utils/dataTime.js');
 const md5 = require('../../utils/md5.js');
 const app = getApp()
+
 Page({
   data: {
-    currentDate: '', //父页传值
+    currentDate: [], //父页传值
     minDate: new Date(2021, 6, 16).getTime(),
-    maxDate: new Date(2021, 7, 16).getTime(),
+    maxDate: new Date(2021, 8, 16).getTime(),
     show: false,
-    startDate: '',
-    endDate: '',
+    startDate: app.globalData.startDate,
+    endDate: app.globalData.endDate,
     rtypeContent: '全选',
     rtypeShow: false,
     maximumContent: '全选',
@@ -274,6 +275,11 @@ Page({
       startDate: dataTime.msToDate(start).normalDate,
       endDate: dataTime.msToDate(end).normalDate,
     });
+  },
+  trunBooking(e){
+    wx.navigateTo({
+      url: '/pages/booking/booking?roomType=' + e.currentTarget.dataset.roomType + '&roomPrice=' + e.currentTarget.dataset.roomPrice + '&startDate=' + this.data.startDate + '&endDate=' + this.data.endDate,
+    })
   },
   ChangeWindow(arr, name) {
     arr.forEach((item) => {

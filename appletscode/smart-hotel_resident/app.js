@@ -1,9 +1,13 @@
-// app.js
+const dataTime = require('./utils/dataTime.js');
 App({
   globalData: {
+    startDate: '',
+    endDate:'',
     userInfo: null
   },
   onLaunch() {
+    this.globalData.startDate = dataTime.msToDate(new Date().getTime()).justDate.replace('月','/').replace('日',''),
+    this.globalData.endDate = dataTime.msToDate(new Date().getTime()).justendDate.replace('月','/').replace('日',''),
     wx.getSystemInfo({
       success: e => {
         this.globalData.StatusBar = e.statusBarHeight;

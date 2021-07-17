@@ -31,12 +31,14 @@ const msToDate = msec => {
   let result5 = ((month + 1) >= 10 ? (month + 1) : '0' + (month + 1)) +
     '/' +
     ((date + 1) <= 10 ? '0' + date : date);
+  let result6 = year;
   let result = {
     hasTime: result1,
     withoutTime: result2,
     justDate: result3,
     justendDate: result4,
     normalDate: result5,
+    justYear: result6,
   };
   return result;
 }

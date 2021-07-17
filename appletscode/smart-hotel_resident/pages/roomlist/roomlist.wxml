@@ -34,7 +34,7 @@
   <view class="second_box">
     <block wx:for="{{roomList}}" wx:key="*this">
       <view class="roomInf_module">
-        <view class="roomInfContent">
+        <view class="roomInfContent" bindtap="trunBooking" data-roomType="{{item.roomType}}" data-roomPrice="{{item.roomPrice}}">
           <view class="roomImg_module">
             <view class="roomImgContent_module">
               <image class="roomImgContent" src="/images/Double.jpeg"></image>

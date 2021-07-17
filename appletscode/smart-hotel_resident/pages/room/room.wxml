@@ -13,7 +13,7 @@
       </view>
       <view class="turnTo_module">
         <view class="button_module">
-          <button class="cu-btn bg-cyanblue round shadow lg" style="width:450rpx">预定房间</button>
+          <button class="cu-btn bg-cyanblue round shadow lg" style="width:450rpx" bindtap="turnRoomList">预定房间</button>
         </view>
       </view>
     </view>
@@ -28,7 +28,7 @@
       </view>
       <view class="turnTo_module">
         <view class="button_module">
-          <button class="cu-btn bg-cyanblue round shadow lg" style="width:450rpx">入住房间</button>
+          <button class="cu-btn bg-cyanblue round shadow lg" style="width:450rpx" bindtap="confirmLive">入住房间</button>
         </view>
       </view>
     </view>

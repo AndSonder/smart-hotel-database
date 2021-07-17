@@ -5,66 +5,62 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bookingShow:true,
-    roominfShow:false,
-    hardwareShow:false,
-    leftSwitchContent:'<',
-    rightSwitchContent:'>',
+    bookingShow: true,
+    roominfShow: false,
+    hardwareShow: false,
+    leftSwitchContent: '<',
+    rightSwitchContent: '>',
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
 
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  turnRoomList(e) {
+    wx.navigateTo({
+      url: '/pages/roomlist/roomlist',
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  confirmLive(e) {
+    var stamp = util.formatTime(new Date());
+    wx.login({
+      success(res) {
+        if (res.code) {
+          var orderinfPush_jsonData = {
+            resCode: res.code,
+            orderId: that.data.orderId,
+            expLive: that.data.startTimeContent + ':00',
+            expAway: that.data.endTimeContent + ':00',
+            actLive: '',
+            actAway: '',
+            orderStatus: '3',
+            stamp: stamp,
+            prove: md5.hex_md5(res.code + stamp + 'liuboge'),
+          };
+          wx.request({
+            method: 'POST',
+            url: 'https://www.supremeproger.com/order/orderinf/resident/push',
+            header: {
+              'content-type': 'application/json'
+            },
+            data: JSON.stringify(orderinfPush_jsonData),
+            success: function (res) {
+              console.log('orderinfPush---', res);
+              var orderinfPush_jsonStr = res.data;
+              if (md5.hex_md5('room' + orderinfPush_jsonStr.stamp + 'liuboge' == orderinfPush_jsonStr.tableProve)) {
+                var orderinfPush_errorcode = orderinfPush.errorcode;
+                switch (orderinfPush_errorcode) {
+                  case "0":
+                    wx.showToast({
+                      title: '欢迎入住',
+                      icon: 'success',
+                    })
+                    break;
+                }
+              }
+            }
+          })
+        }
+      }
+    })
   }
 })

@@ -9,27 +9,27 @@
     </view>
   </view>
   <view class="second_box">
-    <view class="roomInf_module">
+    <view class="roomInf_module" wx:for="{{per_roominf_book}}" wx:key="*this">
       <view class="roomRtype_module">
         <view class="roomRtypeContentShow_module">
-          <view class="roomRtypeContent_module"><text class="roomRtypeContent">主题特色大床房</text></view>
+          <view class="roomRtypeContent_module"><text class="roomRtypeContent">{{item.roomType}}</text></view>
         </view>
       </view>
       <view class="roomInfContent_module">
         <view class="roomInfContentShow_module">
-          <view class="roomInfShow_module"><text class="roomInfShow">房间床型：特大床</text></view>
+          <view class="roomInfShow_module"><text class="roomInfShow">房间床型：{{item.bedType}}</text></view>
         </view>
       </view>
       <view class="roomInfContent_module">
         <view class="roomInfContentShow_module">
           <view class="roomInfShow_module"><text class="roomInfShow">硬件种类：空调、灯</text></view>
-          <view class="roomInfShow_module"><text class="roomInfShow">限住人数：3人</text></view>
+          <view class="roomInfShow_module"><text class="roomInfShow">限住人数：{{item.maximum}} 人</text></view>
         </view>
       </view>
       <view class="roomInfContent_module">
         <view class="roomInfContentShow_module">
-          <view class="roomInfShow_module"><text class="roomInfShow">房间面积：20-25m²</text></view>
-          <view class="roomInfShow_module"><text class="roomInfShow">窗户有无：有</text></view>
+          <view class="roomInfShow_module"><text class="roomInfShow">房间面积：{{item.roomArea}}m²</text></view>
+          <view class="roomInfShow_module"><text class="roomInfShow">窗户有无：{{item.roomWindow}}</text></view>
         </view>
       </view>
     </view>
@@ -38,15 +38,15 @@
     <form>
       <view class="cu-form-group margin-top">
         <view class="title">姓名</view>
-        <input placeholder=""></input>
+        <input placeholder="" type="text" bindinput="nameInput" value="{{nameInputValue}}"></input>
       </view>
       <view class="cu-form-group">
         <view class="title">性别</view>
-        <input placeholder=""></input>
+        <input placeholder="" type="text" bindinput="sexInput" value="{{sexInputValue}}"></input>
       </view>
       <view class="cu-form-group">
         <view class="title">手机号码</view>
-        <input placeholder=""></input>
+        <input placeholder="" type="number" bindinput="phoneInput" value="{{phoneInputValue}}"></input>
         <view class="cu-capsule radius">
           <view class="cu-tag bg-blue">
             +86
@@ -57,20 +57,28 @@
         </view>
       </view>
       <view class="cu-form-group">
-        <view class="title">身份证号</view>
+        <view class="title" type="num" bindinput="idCardInput" value="{{idCardInputValue}}">身份证号</view>
         <input placeholder=""></input>
       </view>
       <view class="cu-form-group">
         <view class="title">起始时间选择</view>
         <view class="picker">
-          {{time}}
+          {{startTimeContent}}
         </view>
+        <van-popup show="{{ startTimeShow }}" position="bottom" bind:close="onClose">
+            <van-datetime-picker type="datetime" value="{{ start_currentDate }}" min-date="{{start_minDate}}"
+              max-date="{{ start_maxDate }}" bind:confirm="startTime_onConfirm" bind:cancel="onCancel" />
+          </van-popup>
       </view>
       <view class="cu-form-group">
         <view class="title">结束时间选择</view>
         <view class="picker">
-          {{time}}
+          {{endTimeContent}}
         </view>
+        <van-popup show="{{ endTimeShow }}" position="bottom" bind:close="onClose">
+            <van-datetime-picker type="datetime" value="{{ end_currentDate }}" min-date="{{end_minDate}}"
+              max-date="{{ end_maxDate }}" bind:confirm="endTime_onConfirm" bind:cancel="onCancel" />
+          </van-popup>
       </view>
       <view class="cu-bar bg-white margin-top">
         <view class="action">
@@ -98,6 +106,6 @@
     <view class="nothing_module"></view>
   </view>
   <view class="fourth_box">
-    <van-submit-bar price="{{ 3050 }}" button-text="提交订单" bind:submit="onSubmit" />
+    <van-submit-bar price="{{ roomPrice }}" button-text="提交订单" bind:submit="onSubmit" />
   </view>
 </view>

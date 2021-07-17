@@ -43,6 +43,7 @@ Page({
           var per_roominf_jsonData = {
             resCode: res.code,
             roomId: that.data.roomId,
+            roomType: '',
             stamp: stamp,
             prove: md5.hex_md5(res.code + stamp + 'liuboge'),
           };
