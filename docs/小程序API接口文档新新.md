@@ -241,7 +241,7 @@ API：/order/perinfo/resident/post
 
 API：/order/ordersinf/resident/get
 
-订单列表元素按照时间由近及远的排序放入数组中。
+订单列表元素按照下单时间由近及远的排序放入数组中。
 
 请求方法：POST
 
@@ -465,7 +465,7 @@ API：/order/orderinf/admin/get
 {
     "errcode":0/1/2/3,
     "datalist":[{
-        "id":123,
+        "orderId":123,
         "deposit":100,
         "amountsPay":400,
         "expLive":"2020-05-1618:55:49",
@@ -760,6 +760,7 @@ API：/user/resident/per_roominf/get
 | 字段    | 数据类型 | 必填 | 备注                                                         |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
 | resCode | string   | 是   | 住户的登录凭证，后端借其获取openid，验证用户身份是否为住户   |
+| roomId  | int      | 是   | 房间号                                                       |
 | stamp   | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
 | prove   | string   | 是   | 管理员的数据类型必填备注resCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
 
@@ -779,6 +780,7 @@ API：/user/resident/per_roominf/get
 ```json
 {
     "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
+    "roomId":101,
     "stamp":"2020-05-21 18:55:49",
     "prove":"xxxxxxxxxx"
 }

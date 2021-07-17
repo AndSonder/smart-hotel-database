@@ -46,9 +46,12 @@ Page({
               var ordersinf_errorcode = ordersinf_jsonStr.errorcode;
               switch (ordersinf_errorcode){
                 case "0":
-                  var orderList =  that.handleSameTypeList(orderlist_jsonStr.dataList, 'orderTime', [])
-                  var orderList = this.handleSameTypeList(this.data.orderlist, 'orderTime', orderArray)
-                  console.log("orderList---",orderlist)
+                  var orderList =  that.handleSameTypeList(orderList_jsonStr.datalist, 'orderTime', [])
+                  var orderList = this.handleSameTypeList(orderList, 'orderTime', orderArray)
+                  console.log("orderList---",orderList)
+                  that.setData({
+                    orderList: orderList
+                  })
                   break;
               }
             }
@@ -56,16 +59,15 @@ Page({
         }
       }
     })
-    var orderArray = []
-    var list = this.handleSameTypeList(this.data.orderlist, 'orderTime', orderArray)
-    console.log(list)
-    this.setData({
-      orderlist: list
-    })
   },
   turnRoomList(e){
     wx.navigateTo({
       url: '/pages/roomlist/roomlist',
+    })
+  },
+  turnOrderInf(e){
+    wx.navigateTo({
+      url: '/pages/orderInf/orderInf?orderId=' + e.currentTarget.dataset.orderId,
     })
   },
   //订单数组分组
