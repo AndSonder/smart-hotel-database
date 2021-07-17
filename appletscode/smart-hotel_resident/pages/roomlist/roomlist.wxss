@@ -13,7 +13,7 @@ page{
 .first_box{
   display: flex;
   width: 100%;
-  height: 200rpx;
+  height: 150rpx;
   flex-direction: column;
   justify-content: start;
 }
@@ -39,11 +39,11 @@ page{
   display: flex;
   width: 680rpx;
   height: 90rpx;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   align-items: center;
 }
 
-.rtypeChoose_module{
+.choose_module{
   display: flex;
   width: 220rpx;
   height: 100%;
@@ -51,12 +51,16 @@ page{
   align-items: center;
 }
 
-.rtype_module{
+.chooseContent_module{
   width: auto;
   height: auto;
 }
 
-.rtypeContent{
+.chooseContent_title{
+  color: #acacac;
+}
+
+.chooseContent{
   font-weight: 600;
 }
 
@@ -75,25 +79,6 @@ page{
 
 .chooseTimeContent{
   font-weight: 600;
-}
-
-.searchContent_module{
-  display: flex;
-  width: 280rpx;
-  height: 100%;
-  justify-content: space-around;
-  align-items: center;
-  padding-left: 60rpx;
-}
-
-.searchIcon_module{
-  width: auto;
-  height: auto;
-}
-
-.searchInput_module{
-  width: 150rpx;
-  height: auto;
 }
 
 .second_box{
@@ -180,7 +165,7 @@ page{
 
 .roomSimpleInfContent_module{
   display: flex;
-  width: 190rpx;
+  width: 230rpx;
   height: 45rpx;
   justify-content: space-between;
   align-items: center;
@@ -189,7 +174,7 @@ page{
 .roomBtype_module{
   display: flex;
   width: 100rpx;
-  height: 40rpx;
+  height: 35rpx;
   justify-content: center;
   align-items: center;
   background-image: linear-gradient(45deg, #ff9700, #ed1c24);
@@ -208,8 +193,8 @@ page{
 
 .roomMaximum_module{
   display: flex;
-  width: 70rpx;
-  height: 40rpx;
+  width: 60rpx;
+  height: 35rpx;
   justify-content: center;
   align-items: center;
   background-color: #cce6ff;
@@ -225,6 +210,27 @@ page{
   color: white;
   font-size: x-small;
 }
+
+.roomWindow_module{
+  display: flex;
+  width: 60rpx;
+  height: 35rpx;
+  justify-content: center;
+  align-items: center;
+  background-color:rgba(114, 130, 138, 0.2);
+  border-radius: 5rpx;
+}
+
+.roomWindowContent_module{
+  width: auto;
+  height: auto;
+}
+
+.roomWindowContent{
+  color: white;
+  font-size: smaller;
+}
+
 
 .roomPrice_module{
   display: flex;

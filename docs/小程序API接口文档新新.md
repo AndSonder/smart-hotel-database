@@ -560,8 +560,8 @@ API：/room/roomsinf/resident/get
 | 字段      | 数据类型 | 必填 | 备注                                                         |
 | --------- | -------- | ---- | ------------------------------------------------------------ |
 | resCode   | string   | 是   | 住户的登录凭证，后端借其获取openid，验证用户身份是否为住户   |
-| roomType  | string   | 否   | 房间类型                                                     |
-| maximum   | int      | 否   | 房间限住人数                                                 |
+| roomType  | string   | 是   | 房间类型                                                     |
+| maximum   | int      | 是   | 房间限住人数                                                 |
 | startTime | string   | 是   | 预计入住起始时间                                             |
 | endTime   | string   | 是   | 预计入住结束时间                                             |
 | stamp     | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |

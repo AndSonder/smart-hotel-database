@@ -1,15 +1,18 @@
 const util = require('../../utils/util.js');
+const dataTime = require('../../utils/dataTime.js');
 const md5 = require('../../utils/md5.js');
 const app = getApp()
 Page({
   data: {
     backImage: '/images/reservation_backimg.png',
     startDate: '',
-    endData: '',
+    endDate: '',
+    start:'',
+    end:'',
     minDate: new Date(2021, 6, 16).getTime(),
     maxDate: new Date(2021, 7, 16).getTime(),
     show: false,
-    roomlist:[]   //精品推荐房间
+    roomList: [] //精品推荐房间
   },
 
   /**
@@ -17,8 +20,10 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      startDate: this.msToDate(new Date().getTime()).justData,
-      endData: this.msToDate(new Date().getTime()).justendData,
+      startDate: dataTime.msToDate(new Date().getTime()).justDate,
+      endDate: dataTime.msToDate(new Date().getTime()).justendDate,
+      start: dataTime.msToDate(new Date().getTime()).justDate.replace('月','/').replace('日',''),
+      end: dataTime.msToDate(new Date().getTime()).justendDate.replace('月','/').replace('日',''),
     })
     var that = this
     var stamp = util.formatTime(new Date());
@@ -28,11 +33,11 @@ Page({
           var roomsinfBoutique_jsonData = {
             resCode: res.code,
             stamp: stamp,
-            prove: md5.hex_md5(res.code+stamp+'liuboge'),
+            prove: md5.hex_md5(res.code + stamp + 'liuboge'),
           };
           wx.request({
             method: 'POST',
-            url: '/room/roomsinf-boutique/resident/get',
+            url: 'https://www.supremeproger.com/room/roomsinf-boutique/resident/get',
             header: {
               'content-type': 'application/json'
             },
@@ -40,41 +45,16 @@ Page({
             success: function (res) {
               console.log('roomsinfBoutique---', res);
               var roomsinfBoutique_jsonStr = res.data;
-              var roomsinfBoutique_errorcode = roomsinfBoutique_jsonStr.errorcode;
-              switch (roomsinfBoutique_errorcode){
-                case "0":
-                  that.setData({
-                    roomlist:roomsinfBoutique_jsonStr.datelist,
-                  })
-                  break;
-              }
-            }
-          })
-        }
-      }
-    })
-    wx.login({
-      success(res) {
-        if (res.code) {
-          var roomlist_jsonData = {
-            adminCode: res.code,
-            stamp: stamp,
-            prove: md5.hex_md5(res.code+stamp+'liuboge'),
-          };
-          wx.request({
-            method: 'POST',
-            url: '',
-            header: {
-              'content-type': 'application/json'
-            },
-            data: JSON.stringify(roomlist_jsonData),
-            success: function (res) {
-              console.log('roomlist---', res);
-              var roomlist_jsonStr = res.data;
-              var roomlist_errorcode = roomlist_jsonStr.errorcode;
-              switch (roomlist_errorcode){
-                case "0":
-                  break;
+              if (md5.hex_md5('room' + roomsinfBoutique_jsonStr.stamp + 'liuboge' == roomsinfBoutique_jsonStr.tableProve)) {
+                var roomsinfBoutique_errorcode = roomsinfBoutique_jsonStr.errorcode;
+                switch (roomsinfBoutique_errorcode) {
+                  case "0":
+                    var roomList = that.ChangeWindow(roomsinfBoutique_jsonStr.datelist, 'roomWindow')
+                    that.setData({
+                      roomList: roomList,
+                    })
+                    break;
+                }
               }
             }
           })
@@ -82,7 +62,6 @@ Page({
       }
     })
   },
-
   onDisplay() {
     this.setData({
       show: true
@@ -97,51 +76,28 @@ Page({
     const [start, end] = event.detail;
     this.setData({
       show: false,
-      startDate: this.msToDate(start).justData,
-      endData: this.msToDate(end).justData,
+      startDate: dataTime.msToDate(start).justData,
+      endDate: dataTime.msToDate(end).justData,
     });
   },
-  roomlist (e) {
+  roomlist(e) {
     wx.navigateTo({
-      url: '/pages/roomlist/roomlist',
+      url: '/pages/roomlist/roomlist?startDate=' + this.data.start + '&endDate=' + this.data.end,
     })
   },
-  msToDate(msec) {
-    let datetime = new Date(msec);
-    let year = datetime.getFullYear();
-    let month = datetime.getMonth();
-    let date = datetime.getDate();
-    let hour = datetime.getHours();
-    let minute = datetime.getMinutes();
-    let second = datetime.getSeconds();
-    let result1 = year +
-      '-' +
-      ((month + 1) >= 10 ? (month + 1) : '0' + (month + 1)) +
-      '-' +
-      ((date + 1) < 10 ? '0' + date : date) +
-      ' ' +
-      ((hour + 1) < 10 ? '0' + hour : hour) +
-      ':' +
-      ((minute + 1) < 10 ? '0' + minute : minute)
-    // ':' +
-    // ((second + 1) < 10 ? '0' + second : second);
-    let result2 = year +
-      '-' +
-      ((month + 1) >= 10 ? (month + 1) : '0' + (month + 1)) +
-      '-' +
-      ((date + 1) < 10 ? '0' + date : date);
-    let result3 = ((month + 1) >= 10 ? (month + 1) : '0' + (month + 1)) +
-      '月' +
-      ((date + 1) < 10 ? '0' + date : date) + '日';
-    let result4 = ((month + 1) >= 10 ? (month + 1) : '0' + (month + 1)) +
-      '月' +
-      ((date + 1) < 10 ? '0' + (date + 1) : (date + 1) ) + '日';
-    let result = {
-      hasTime: result1,
-      withoutTime: result2,
-      justData: result3,
-      justendData: result4,
-    };
-    return result;
+  callServer(e){
+    wx.makePhoneCall({
+      phoneNumber: '18178346924'
+    })
+  },
+  ChangeWindow(arr, name) {
+    arr.forEach((item) => {
+      if (item[`${name}`] === 1) {
+        item.roomWindow = '有窗'
+      } else {
+        item.roomWindow = '无窗'
+      }
+    })
+    return arr
   },
 })

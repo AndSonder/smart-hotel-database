@@ -34,10 +34,12 @@
     "useIsolateContext": true,
     "userConfirmedBundleSwitch": false,
     "packNpmManually": true,
-    "packNpmRelationList": [{
-      "packageJsonPath": "./package.json",
-      "miniprogramNpmDistDir": "./"
-    }],
+    "packNpmRelationList": [
+      {
+        "packageJsonPath": "./package.json",
+        "miniprogramNpmDistDir": "./"
+      }
+    ],
     "minifyWXSS": true,
     "showES6CompileOption": false
   },
