@@ -235,7 +235,7 @@ Page({
                 expAway: that.data.endTimeContent + ':00',
                 actLive: '',
                 actAway: '',
-                orderStatus: '3',
+                orderStatus: 3,
                 stamp: stamp,
                 prove: md5.hex_md5(res.code + stamp + 'liuboge'),
               };
@@ -308,7 +308,7 @@ Page({
                 expAway: that.data.endTimeContent + ':00',
                 actLive: '',
                 actAway: '',
-                orderStatus: '2',
+                orderStatus: 2,
                 stamp: stamp,
                 prove: md5.hex_md5(res.code + stamp + 'liuboge'),
               };
@@ -367,7 +367,7 @@ Page({
   },
   ChangeWindow(arr, name) {
     arr.forEach((item) => {
-      if (item[`${name}`] === 1) {
+      if (item[`${name}`] === '1') {
         item.roomWindow = '有窗'
       } else {
         item.roomWindow = '无窗'

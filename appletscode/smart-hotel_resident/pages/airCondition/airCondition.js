@@ -10,13 +10,17 @@ Page({
       '0%': '#0081ff',
       '100%': '#1cbbb4',
     },
+    airList:[],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var airList = JSON.parse(options.airList)
+    this.setData({
+      airList:airList,
+    })
   },
 
   /**

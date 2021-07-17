@@ -628,11 +628,11 @@ API：/room/roomsinf-boutique/resident/get
 
 **请求参数**
 
-| 字段    | 数据类型                                                     | 必填 | 备注                                                         |
-| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| resCode | string                                                       | 是   | 住户的登录凭证，后端借其获取openid，验证用户身份是否为住户   |
-| stamp   | string                                                       | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
-| prove   | s                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                tring | 是   | 管理员的resCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
+| 字段    | 数据类型 | 必填 | 备注                                                         |
+| ------- | -------- | ---- | ------------------------------------------------------------ |
+| resCode | string   | 是   | 住户的登录凭证，后端借其获取openid，验证用户身份是否为住户   |
+| stamp   | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
+| prove   | string   | 是   | 管理员的resCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
 
 **返回参数**
 
@@ -728,8 +728,8 @@ API：/room/per_roomsinf/resident/get
 {
     "errcode":0/1/2/3,
     "perRoomList":[{
-        "order":123,
-        "romId":101,			//进行中订单房间简略信息
+        "orderId":123,
+        "roomId":101,			//进行中订单房间简略信息
         "roomType":"豪华大床房",
         "roomTemp":26,
         "roomHum":40,
@@ -737,8 +737,8 @@ API：/room/per_roomsinf/resident/get
         "orderStatus":0,
         
     },{
-        "order":123,
-        "romId":102,			//已预订订单房间简略信息
+        "orderId":123,
+        "roomId":102,			//已预订订单房间简略信息
         "roomType":"情侣套房",
         "orderStatus":3,
   	},
@@ -798,7 +798,7 @@ API：/room/per_roominf/resident/get
 {
     "errcode":0/1/2/3,
     "datalist":[{
-        "id":123,
+        "roomId":123,
         "roomType":"豪华大床房",
         "bedType":"特大床",
         "roomArea":25,
@@ -861,7 +861,7 @@ API：/room/roominf/admin/get
 {
     "errcode":0/1/2/3/4,
     "datalist":[{
-        "id":123,
+        "roomId":123,
         "roomType":"豪华大床房",
         "bedType":"特大床",
         "roomArea":25,

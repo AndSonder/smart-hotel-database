@@ -9,7 +9,9 @@
     <view class="roomInfChoose_module" wx:if="{{bookingShow}}">
       <view class="roomInfShow_module">
         <view class="attention_module"><text class="attention">暂无待入住房间</text></view>
-        <view class="signal_module"><view class="signalContent_module"><text class="signal">入住立享智慧生活</text></view></view>
+        <view class="signal_module">
+          <view class="signalContent_module"><text class="signal">入住立享智慧生活</text></view>
+        </view>
       </view>
       <view class="turnTo_module">
         <view class="button_module">
@@ -17,28 +19,30 @@
         </view>
       </view>
     </view>
-    <view class="roomInfChoose_module" wx:if="{{room}}">
+    <view class="roomInfChoose_module" wx:if="{{roominfShow}}" wx:for="{{roomList}}" wx:key="roomId">
       <view class="roomInfShow_module">
         <view class="rtype_module">
-          <view class="rtypeContent"><text class="rtype">主题特色大床房</text></view>
+          <view class="rtypeContent"><text class="rtype">{{item.roomType}}</text></view>
         </view>
         <view class="roomId_module">
-          <view class="roomIdContent"><text class="roomId">101</text></view>
+          <view class="roomIdContent"><text class="roomId">{{item.roomId}}</text></view>
         </view>
       </view>
       <view class="turnTo_module">
         <view class="button_module">
-          <button class="cu-btn bg-cyanblue round shadow lg" style="width:450rpx" bindtap="confirmLive">入住房间</button>
+          <button class="cu-btn bg-cyanblue round shadow lg" style="width:450rpx" bindtap="confirmLive"
+            data-orderId="{{item.orderId}}">入住房间</button>
         </view>
       </view>
     </view>
-    <view class="roomInfChoose_module" wx:if="{{hardwareShow}}">
+    <view class="roomInfChoose_module" wx:if="{{hardwareShow}}" wx:for="{{roomList}}" wx:key="roomId"
+      wx:for-item="room">
       <view class="roomInfShow_module">
         <view class="rtype_module">
-          <view class="rtype_module"><text class="rtype">主题特色大床房</text></view>
+          <view class="rtype_module"><text class="rtype">{{room.roomType}}</text></view>
         </view>
         <view class="roomId_module">
-          <view class="roomIdContent"><text class="roomId">101</text></view>
+          <view class="roomIdContent"><text class="roomId">{{room.roomId}}</text></view>
         </view>
       </view>
       <view class="roomT-H_module">
@@ -47,7 +51,7 @@
             <image class="roomImg" src="/images/temp.png"></image>
           </view>
           <view class="roomContent_module">
-            <text class="roomContent">24℃</text>
+            <text class="roomContent">{{room.roomTem}}℃</text>
           </view>
         </view>
         <view class="roomT-HContent_module">
@@ -55,46 +59,50 @@
             <image class="roomImg" src="/images/humd.png"></image>
           </view>
           <view class="roomContent_module">
-            <text class="roomContent">40rh</text>
+            <text class="roomContent">{{room.roomHumi}}rh</text>
           </view>
         </view>
       </view>
       <view class="hardwareInf_module">
-        <view class="hardwareInfContent_module">
-          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">空调</text></view>
+        <view class="hardwareInfContent_module" wx:for="{{airList}}" wx:key="*this" wx:for-item="air">
+          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">{{air.airValue}}</text></view>
         </view>
         <view class="hardwareInfContent_module">
-          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">已开启</text></view>
+          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">{{air.airStatus}}</text></view>
         </view>
         <view class="hardwareInfContent_module">
-          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">制冷</text></view>
+          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">{{air.airMode}}</text></view>
         </view>
         <view class="hardwareInfContent_module">
-          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">25℃</text></view>
+          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">{{air.airValue}}℃</text></view>
         </view>
       </view>
       <view class="hardwareInf_module">
-        <view class="hardwareInfContent_module">
+        <view class="hardwareInfContent_module" wx:for="{{lightList}}" wx:key="*this" wx:for-item="light">
           <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">灯</text></view>
         </view>
         <view class="hardwareInfContent_module">
-          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">已开启</text></view>
+          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">{{light.lightStatus}}</text></view>
         </view>
         <view class="hardwareInfContent_module">
-          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">标准</text></view>
+          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">{{light.lightMode}}</text></view>
         </view>
         <view class="hardwareInfContent_module">
-          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">2</text></view>
+          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">{{light.lightValue}}级</text></view>
         </view>
       </view>
-    </view>
-  </view>
-  <view class="switch_module">
-    <view class="leftSwitch_module">
-      <button class="cu-btn icon bg-white shadow"><van-icon name="arrow-left" /></button>
-    </view>
-    <view class="rightSwitch_module">
-      <button class="cu-btn icon bg-white shadow"><van-icon name="arrow" /></button>
+      <view class="switch_module">
+        <view class="leftSwitch_module">
+          <button class="{{swipeLeftUI}}" bindtap="swipeLeft" data-roomId="{{room.roomId}}">
+            <van-icon name="arrow-left" />
+          </button>
+        </view>
+        <view class="rightSwitch_module">
+          <button class="{{swipeRightUI}}" bindtap="swipeRight" data-roomId="{{room.roomId}}">
+            <van-icon name="arrow" />
+          </button>
+        </view>
+      </view>
     </view>
   </view>
   <view class="second_module">
@@ -102,21 +110,21 @@
       <view class="hardwareImg_module">
         <image class="hardwareImg" src="/images/door.png"></image>
       </view>
-      <view class="hardwareContent_module"><text class="hardwareContent">一键开门</text>
+      <view class="hardwareContent_module"><text class="hardwareContent" bindtap="openDoor">一键开门</text>
       </view>
     </view>
     <view class="hardware_module">
       <view class="hardwareImg_module">
         <image class="hardwareImg" src="/images/air.png"></image>
       </view>
-      <view class="hardwareContent_module"><text class="hardwareContent">空调控制</text>
+      <view class="hardwareContent_module"><text class="hardwareContent" bindtap="controlAir">空调控制</text>
       </view>
     </view>
     <view class="hardware_module">
       <view class="hardwareImg_module">
         <image class="hardwareImg" src="/images/light.png"></image>
       </view>
-      <view class="hardwareContent_module"><text class="hardwareContent">灯光控制</text>
+      <view class="hardwareContent_module"><text class="hardwareContent" bindtap="controlLight">灯光控制</text>
       </view>
     </view>
   </view>
