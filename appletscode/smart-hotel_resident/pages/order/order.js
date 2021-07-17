@@ -67,7 +67,7 @@ Page({
   },
   turnOrderInf(e){
     wx.navigateTo({
-      url: '/pages/orderInf/orderInf?orderId=' + e.currentTarget.dataset.orderId,
+      url: '/pages/orderInf/orderInf?orderId=' + e.currentTarget.dataset.orderId + "&roomId=" +  e.currentTarget.dataset.roomId,
     })
   },
   //订单数组分组

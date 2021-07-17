@@ -6,7 +6,7 @@
     <view class="cu-time">{{item.tag}}</view>
     <view class="cu-item" wx:for="{{item.orderArray}}" wx:key="orderId" wx:for-index="sub" wx:for-item="orderTimeline">
       <view class="content bg-{{orderTimeline.orderUI}} shadow-blur">
-        <view class="orderinf_module" data-orderId="{{orderTimeline.orderId}}" bindtap="turnOrderInf">
+        <view class="orderinf_module" data-orderId="{{orderTimeline.orderId}}" data-roomId="{{orderTimeline.roomId}}" bindtap="turnOrderInf">
           <view class="orderTime_module"><text>{{orderTimeline.orderTime}}</text></view>
           <view class="idTitle_module"><text class="orderId_title">订单号:</text></view>
           <view class="idContent_module"><text class="orderId_content">{{orderTimeline.orderId}}</text></view>

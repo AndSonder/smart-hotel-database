@@ -117,11 +117,11 @@ API：/user/perinfo/resident/get
 
 
 
-#### 管理员查询住户个人详细信息
+#### 管理员查询住户个人详细信息（改）
 
 功能描述：**根据订单号查询指定住户的个人详细信息**。
 
-API：/user/admin/super_admin/perinf/get
+API：/user/perinf/admin/super_admin/get
 
 请求方法：POST
 
@@ -494,16 +494,17 @@ API：/order/orderinf/resident/push
 
 **请求参数**
 
-| 字段    | 数据类型 | 必填 | 备注                                                         |
-| ------- | -------- | ---- | ------------------------------------------------------------ |
-| resCode | string   | 是   | 住户的登录凭证，后端借其获取openid，验证用户身份是否为住户   |
-| orderId | int      | 是   | 订单号                                                       |
-| expLive | string   | 否   | 预计入住时间                                                 |
-| expAway | string   | 否   | 预计离开时间                                                 |
-| actLive | string   | 否   | 实际入住时间                                                 |
-| actAway | string   | 否   | 实际离开时间                                                 |
-| stamp   | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
-| prove   | string   | 是   | 管理员的resCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
+| 字段        | 数据类型 | 必填 | 备注                                                         |
+| ----------- | -------- | ---- | ------------------------------------------------------------ |
+| resCode     | string   | 是   | 住户的登录凭证，后端借其获取openid，验证用户身份是否为住户   |
+| orderId     | int      | 是   | 订单号                                                       |
+| expLive     | string   | 否   | 预计入住时间                                                 |
+| expAway     | string   | 否   | 预计离开时间                                                 |
+| actLive     | string   | 否   | 实际入住时间                                                 |
+| actAway     | string   | 否   | 实际离开时间                                                 |
+| orderStatus | int      | 否   | 订单状态，默认值为空                                         |
+| stamp       | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
+| prove       | string   | 是   | 管理员的resCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
 
 **返回参数**
 
@@ -627,11 +628,11 @@ API：/room/roomsinf-boutique/resident/get
 
 **请求参数**
 
-| 字段    | 数据类型 | 必填 | 备注                                                         |
-| ------- | -------- | ---- | ------------------------------------------------------------ |
-| resCode | string   | 是   | 住户的登录凭证，后端借其获取openid，验证用户身份是否为住户   |
-| stamp   | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
-| prove   | string   | 是   | 管理员的resCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
+| 字段    | 数据类型                                                     | 必填 | 备注                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| resCode | string                                                       | 是   | 住户的登录凭证，后端借其获取openid，验证用户身份是否为住户   |
+| stamp   | string                                                       | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
+| prove   | s                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                tring | 是   | 管理员的resCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
 
 **返回参数**
 
@@ -678,13 +679,13 @@ API：/room/roomsinf-boutique/resident/get
 }
 ```
 
-#### 住户查询个人所有房间简略信息
+#### 住户查询个人所有房间简略信息（改）
 
 功能描述：**查询指定住户和指定时间的所有已预定状态和进行中状态订单的房间简略信息**。
 
 后端返回数组中，进行中状态订单的房间简略信息下标靠前。
 
-API：/user/resident/per_roomsinf/get
+API：/room/per_roomsinf/resident/get
 
 请求方法：POST
 
@@ -743,13 +744,13 @@ API：/user/resident/per_roomsinf/get
 }
 ```
 
-#### 住户查询指定房间详细信息
+#### 住户查询指定房间详细信息（改）
 
 **查询指定住户进行中状态订单的房间详细信息**。
 
 后端返回数组中，进行中状态订单的房间简略信息下标靠前。
 
-API：/user/resident/per_roominf/get
+API：/room/per_roominf/resident/get
 
 请求方法：POST
 
@@ -1106,13 +1107,13 @@ API：/hardware/light/admin/get
 }
 ```
 
-### 修改
+### 修改（改）
 
 #### 用户修改门锁详细信息
 
 功能描述：**修改房间内门锁的详细信息**。
 
-API：/hardware/hardwareinf/lock/user/push
+API：/hardware/lock/user/push
 
 请求方法：POST
 
