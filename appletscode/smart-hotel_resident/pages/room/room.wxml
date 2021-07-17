@@ -17,7 +17,7 @@
         </view>
       </view>
     </view>
-    <view class="roomInfChoose_module" wx:if="{{roominfShow}}">
+    <view class="roomInfChoose_module" wx:if="{{room}}">
       <view class="roomInfShow_module">
         <view class="rtype_module">
           <view class="rtypeContent"><text class="rtype">主题特色大床房</text></view>

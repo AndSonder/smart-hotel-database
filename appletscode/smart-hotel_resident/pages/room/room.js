@@ -5,15 +5,65 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bookingShow: true,
+    bookingShow: false,
     roominfShow: false,
-    hardwareShow: false,
+    hardwareShow: true,
     leftSwitchContent: '<',
     rightSwitchContent: '>',
+    roomList:[],
   },
 
   onLoad: function (options) {
-
+    var that = this;
+    var stamp = util.formatTime(new Date());
+    wx.login({
+      success(res) {
+        if (res.code) {
+          var per_roomsinf_jsonData = {
+            resCode: res.code,
+            currentTime: stamp,
+            stamp: stamp,
+            prove: md5.hex_md5(res.code + stamp + 'liuboge'),
+          };
+          wx.request({
+            method: 'POST',
+            url: 'https://www.supremeproger.com/room/per_roomsinf/resident/get',
+            header: {
+              'content-type': 'application/json'
+            },
+            data: JSON.stringify(per_roomsinf_jsonData),
+            success: function (res) {
+              console.log('per_roomsinf---', res);
+              var per_roomsinf_jsonStr = res.data;
+              if (md5.hex_md5('room' + per_roomsinf_jsonStr.stamp + 'liuboge' == per_roomsinf_jsonStr.tableProve)) {
+                var per_roomsinf_errorcode = per_roomsinf.errorcode;
+                switch (per_roomsinf_errorcode) {
+                  case "0":
+                      that.setData({
+                        roomList: per_roomsinf_jsonStr.datalist
+                      })
+                    break;
+                  case "1":
+                    that.setData({
+                      bookingShow: true,
+                      roominfShow: false,
+                      hardwareShow: false,
+                    })
+                    break;
+                  case "2":
+                    that.setData({
+                      bookingShow: true,
+                      roominfShow: false,
+                      hardwareShow: false,
+                    })
+                    break;
+                }
+              }
+            }
+          })
+        }
+      }
+    })
   },
   turnRoomList(e) {
     wx.navigateTo({
@@ -25,14 +75,14 @@ Page({
     wx.login({
       success(res) {
         if (res.code) {
-          var orderinfPush_jsonData = {
+          var per_orderinf_live_jsonData = {
             resCode: res.code,
             orderId: that.data.orderId,
-            expLive: that.data.startTimeContent + ':00',
-            expAway: that.data.endTimeContent + ':00',
-            actLive: '',
+            expLive: '',
+            expAway: '',
+            actLive: stamp,
             actAway: '',
-            orderStatus: '3',
+            orderStatus: '0',
             stamp: stamp,
             prove: md5.hex_md5(res.code + stamp + 'liuboge'),
           };
@@ -42,13 +92,13 @@ Page({
             header: {
               'content-type': 'application/json'
             },
-            data: JSON.stringify(orderinfPush_jsonData),
+            data: JSON.stringify(per_orderinf_live_jsonData),
             success: function (res) {
-              console.log('orderinfPush---', res);
-              var orderinfPush_jsonStr = res.data;
-              if (md5.hex_md5('room' + orderinfPush_jsonStr.stamp + 'liuboge' == orderinfPush_jsonStr.tableProve)) {
-                var orderinfPush_errorcode = orderinfPush.errorcode;
-                switch (orderinfPush_errorcode) {
+              console.log('per_orderinf_live---', res);
+              var per_orderinf_live_jsonStr = res.data;
+              if (md5.hex_md5('room' + per_orderinf_live_jsonStr.stamp + 'liuboge' == per_orderinf_live_jsonStr.tableProve)) {
+                var per_orderinf_live_errorcode = per_orderinf_live.errorcode;
+                switch (per_orderinf_live_errorcode) {
                   case "0":
                     wx.showToast({
                       title: '欢迎入住',

@@ -4,7 +4,7 @@ const app = getApp()
 
 Page({
   data: {
-    userShow:true,
+    userShow:false,
     orderList: [{
       "orderId": 123,
       "roomId": 101,
@@ -23,6 +23,42 @@ Page({
    */
   onLoad: function (options) {
     var that = this
+    var stamp = util.formatTime(new Date());
+    wx.login({
+      success(res) {
+        if (res.code) {
+          var identity_jsonData = {
+            resCode: res.code,
+            stamp: stamp,
+            prove: md5.hex_md5(res.code + stamp + 'liuboge'),
+          };
+          wx.request({
+            method: 'POST',
+            url: 'https://www.supremeproger.com/order/identity/resident/get',
+            header: {
+              'content-type': 'application/json'
+            },
+            data: JSON.stringify(identity_jsonData),
+            success: function (res) {
+              console.log('identity---', res);
+              var identity_jsonStr = res.data;
+              if (md5.hex_md5('room' + identity_jsonStr.stamp + 'liuboge' == identity_jsonStr.tableProve)) {
+                var identity_errorcode = identity_jsonStr.errorcode;
+                switch (identity_errorcode) {
+                  case "0":
+                    if (identity_jsonStr/datalist[0].identity == '5'){
+                      that.setData({
+                        userShow:true,
+                      })
+                    }
+                    break;
+                }
+              }
+            }
+          })
+        }
+      }
+    })
     var stamp = util.formatTime(new Date());
     wx.login({
       success(res) {
