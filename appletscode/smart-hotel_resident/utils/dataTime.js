@@ -21,16 +21,16 @@ const msToDate = msec => {
     '-' +
     ((month + 1) >= 10 ? (month + 1) : '0' + (month + 1)) +
     '-' +
-    ((date + 1) < 10 ? '0' + date : date);
+    ((date + 1) <= 10 ? '0' + date : date);
   let result3 = ((month + 1) >= 10 ? (month + 1) : '0' + (month + 1)) +
     '月' +
-    ((date + 1) < 10 ? '0' + date : date) + '日';
+    ((date + 1) <= 10 ? '0' + date : date) + '日';
   let result4 = ((month + 1) >= 10 ? (month + 1) : '0' + (month + 1)) +
     '月' +
-    ((date + 1) < 10 ? '0' + (date + 1) : (date + 1)) + '日';
+    ((date + 1) <= 10 ? '0' + (date + 1) : (date + 1)) + '日';
   let result5 = ((month + 1) >= 10 ? (month + 1) : '0' + (month + 1)) +
     '/' +
-    ((date + 1) < 10 ? '0' + date : date);
+    ((date + 1) <= 10 ? '0' + date : date);
   let result = {
     hasTime: result1,
     withoutTime: result2,

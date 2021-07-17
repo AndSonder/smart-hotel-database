@@ -1,7 +1,7 @@
 {
   "pages":[
-    "pages/orderInf/orderInf", 
     "pages/home/home",
+    "pages/orderInf/orderInf", 
     "pages/roomlist/roomlist",
     "pages/guidePage/guidePage",
     "pages/checkOut/checkOut",

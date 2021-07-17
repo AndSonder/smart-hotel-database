@@ -302,18 +302,18 @@ Page({
       '-' +
       ((month + 1) >= 10 ? (month + 1) : '0' + (month + 1)) +
       '-' +
-      ((date + 1) < 10 ? '0' + date : date) +
+      ((date + 1) <= 10 ? '0' + date : date) +
       ' ' +
-      ((hour + 1) < 10 ? '0' + hour : hour) +
+      ((hour + 1) <= 10 ? '0' + hour : hour) +
       ':' +
-      ((minute + 1) < 10 ? '0' + minute : minute)
+      ((minute + 1) <= 10 ? '0' + minute : minute)
       // ':' +
       // ((second + 1) < 10 ? '0' + second : second);
     let result2 = year +
       '-' +
       ((month + 1) >= 10 ? (month + 1) : '0' + (month + 1)) +
       '-' +
-      ((date + 1) < 10 ? '0' + date : date);
+      ((date + 1) <= 10 ? '0' + date : date);
     let result = {
       hasTime: result1,
       withoutTime: result2

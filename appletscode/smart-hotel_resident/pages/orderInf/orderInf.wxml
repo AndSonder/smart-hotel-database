@@ -9,70 +9,84 @@
     </view>
   </view>
   <view class="second_box">
-    <view class="roomInf_module">
+    <view class="roomInf_module" wx:for="{{per_roominf}}" wx:key="*this">
       <view class="roomRtype_module">
         <view class="roomRtypeContentShow_module">
-          <view class="roomRtypeContent_module"><text class="roomRtypeContent">主题特色大床房</text></view>
+          <view class="roomRtypeContent_module"><text class="roomRtypeContent">{{item.roomType}}</text></view>
         </view>
       </view>
       <view class="roomInfContent_module">
         <view class="roomInfContentShow_module">
-          <view class="roomInfShow_module"><text class="roomInfShow">房间床型：特大床</text></view>
+          <view class="roomInfShow_module"><text class="roomInfShow">{{item.bedType}}</text></view>
         </view>
       </view>
       <view class="roomInfContent_module">
         <view class="roomInfContentShow_module">
           <view class="roomInfShow_module"><text class="roomInfShow">硬件种类：空调、灯</text></view>
-          <view class="roomInfShow_module"><text class="roomInfShow">限住人数：3人</text></view>
+          <view class="roomInfShow_module"><text class="roomInfShow">限住人数：{{item.maximum}}人</text></view>
         </view>
       </view>
       <view class="roomInfContent_module">
         <view class="roomInfContentShow_module">
-          <view class="roomInfShow_module"><text class="roomInfShow">房间面积：20-25m²</text></view>
-          <view class="roomInfShow_module"><text class="roomInfShow">窗户有无：有</text></view>
+          <view class="roomInfShow_module"><text class="roomInfShow">房间面积：{{item.roomType}}m²</text></view>
+          <view class="roomInfShow_module"><text class="roomInfShow">窗户有无：{{item.roomWindow}}</text></view>
         </view>
       </view>
     </view>
   </view>
   <view class="third_box">
     <form>
-      <view class="cu-form-group margin-top">
-        <view class="title">姓名</view>
-        <view class="title titleContent">穆刘杨</view>
+      <view class="userInf_module" wx:for="{{perinfo}}" wx:key="*this">
+        <view class="cu-form-group margin-top">
+          <view class="title">姓名</view>
+          <view class="title titleContent">{{item.name}}</view>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">性别</view>
+          <view class="title titleContent">{{item.sex}}</view>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">手机号码</view>
+          <view class="title titleContent">{{item.phone}}</view>
+        </view>
       </view>
-      <view class="cu-form-group">
-        <view class="title">性别</view>
-        <view class="title titleContent">女</view>
-      </view>
-      <view class="cu-form-group">
-        <view class="title">手机号码</view>
-        <view class="title titleContent">18178346924</view>
-      </view>
-      <view class="cu-form-group">
-        <view class="title">预计入住时间</view>
-        <view class="title">{{time}}</view>
-      </view>
-      <view class="cu-form-group">
-        <view class="title">预计离开时间</view>
-        <view class="title">{{time}}</view>
-      </view>
-      <view class="cu-form-group">
-        <view class="title">实际入住时间</view>
-        <view class="title titleContent">{{time}}</view>
-      </view>
-      <view class="cu-form-group">
-        <view class="title">实际离开时间</view>
-        <view class="title titleContent">{{time}}</view>
+      <view class="orderInf_module" wx:for="{{orderinf}}" wx:key="*this">
+        <view class="cu-form-group">
+          <view class="title">预计入住时间</view>
+          <view class="title">{{item.expLive}}</view>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">预计离开时间</view>
+          <view class="title">{{item.expAway}}</view>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">实际入住时间</view>
+          <view class="title">{{item.actLive}}</view>
+          <view class="title titleContent" wx:if="{{orderStatus == '0'}}" bindtap="choose_startTime">{{startTimeContent}}</view>
+          <van-popup show="{{ startTimeShow }}" position="bottom" bind:close="onClose">
+            <van-datetime-picker type="datetime" value="{{ start_currentDate }}" min-date="{{start_minDate}}"
+              max-date="{{ start_maxDate }}" bind:confirm="startTime_onConfirm" bind:cancel="onCancel" />
+          </van-popup>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">实际离开时间</view>
+          <view class="title">{{item.actAway}}</view>
+          <view class="title titleContent" wx:if="{{orderStatus == '0'}}" bindtap="choose_endTime">{{endTimeContent}}</view>
+          <van-popup show="{{ endTimeShow }}" position="bottom" bind:close="onClose">
+            <van-datetime-picker type="datetime" value="{{ end_currentDate }}" min-date="{{end_minDate}}"
+              max-date="{{ end_maxDate }}" bind:confirm="endTime_onConfirm" bind:cancel="onCancel" />
+          </van-popup>
+        </view>
       </view>
     </form>
   </view>
-  <view class="fourth_box">
+  <view class="fourth_box" wx:if="{{orderStatus == '0'}}">
     <view class="button_module">
       <view class="change_button">
-        <button class="cu-btn lg round bg-green" style="width:250rpx">提交修改</button>
+        <button class="cu-btn lg round bg-green" style="width:250rpx" bindtap="changeTime">提交修改</button>
       </view>
       <view class="change_button">
-        <button class="cu-btn lg round bg-red" style="width:250rpx">放弃订单</button>
+        <button class="cu-btn lg round bg-red" style="width:250rpx" bindtap="Unsubscribe">放弃订单</button>
       </view>
     </view>
   </view>
