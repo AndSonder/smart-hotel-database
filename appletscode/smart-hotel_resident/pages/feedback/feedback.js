@@ -9,6 +9,7 @@ Page({
     buttonContent: '提交',
     countNum: count,
     buttonUI: 'cu-btn lg round shadow bg-cyanblue',
+    buttonButton:false,
   },
   onLoad: function (options) {
 
@@ -29,7 +30,8 @@ Page({
       if (count == 0) {
         clearInterval(time); //到时间取消执行
         that.setData({
-          buttonUI: 'cu-btn lg round shadow bg-cyanblue block',
+          buttonUI: 'cu-btn lg round shadow line-blue',
+          buttonButton:true,
           countNum: '',
         })
         var that = this;
@@ -55,7 +57,7 @@ Page({
                   success: function (res) {
                     console.log('feedback---', res);
                     var feedback_jsonStr = res.data;
-                    if (md5.hex_md5('room' + feedback_jsonStr.stamp + 'liuboge' == feedback_jsonStr.tableProve)) {
+                    if (md5.hex_md5('feedback' + feedback_jsonStr.stamp + 'liuboge' == feedback_jsonStr.tableProve)) {
                       var feedback_errorcode = feedback_jsonStr.errorcode;
                       switch (feedback_errorcode) {
                         case "0":

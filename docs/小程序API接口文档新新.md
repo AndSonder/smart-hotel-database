@@ -620,7 +620,7 @@ API：/room/roomsinf/resident/get
 
 功能描述：**查询系统推送的精品房间简略信息**。
 
-API：/room/roomsinf-boutique/resident/get
+API：/room/roomsinf_boutique/resident/get
 
 请求方法：POST
 
@@ -750,9 +750,7 @@ API：/room/per_roomsinf/resident/get
 
 #### 住户查询指定房间详细信息（改）
 
-**查询指定住户进行中状态订单的房间详细信息**。
-
-后端返回数组中，进行中状态订单的房间简略信息下标靠前。
+**查询指定房间类型或房间号的详细信息**。
 
 API：/room/per_roominf/resident/get
 
@@ -775,7 +773,7 @@ API：/room/per_roominf/resident/get
 | 字段       | 数据类型     | 必填 | 备注                                                         |
 | ---------- | ------------ | ---- | ------------------------------------------------------------ |
 | errcode    | int          | 是   | 状态标识。0表示成功查询、1表示没有该住户、2表示没有该房间、4表示未知错误。 |
-| datalist   | string(json) | 是   | 进行中订单房间简略信息（房间号、房间类型、温湿度、门锁状态）。已预订订单房间简略信息房间号、房间类型） |
+| datalist   | string(json) | 是   | 房间详细信息（房间号、房间类型、房间床型、房间面积、限住人数、窗户有无、房间价格、房间温度、房间湿度） |
 | stamp      | string       | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
 | tableProve | string       | 是   | 表验证，功能与用法和prove一致，只不过把resCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
 
@@ -830,8 +828,8 @@ API：/room/roomsinf/admin/get
 | --------- | -------- | ---- | ------------------------------------------------------------ |
 | adminCode | string   | 是   | 管理员的登录凭证，后端借其获取openid，验证用户身份是否为超级管理员 |
 | roomType  | string   | 是   | 房间类型，默认值为“全选”                                     |
-| startTime | string   | 否   | 实际入住时间的查询最小值，默认值为“display-all”              |
-| endTime   | string   | 否   | 实际入住时间的查询最大值，默认值为“display-all”              |
+| startTime | string   | 是   | 实际入住时间的查询最小值，默认值为“display-all”              |
+| endTime   | string   | 是   | 实际入住时间的查询最大值，默认值为“display-all”              |
 | stamp     | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
 | prove     | string   | 是   | 管理员的adminCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
 
@@ -901,8 +899,8 @@ API：/room/extra_roomsinf/admin/get
 | --------- | -------- | ---- | ------------------------------------------------------------ |
 | adminCode | string   | 是   | 管理员的登录凭证，后端借其获取openid，验证用户身份是否为超级管理员 |
 | roomType  | string   | 是   | 房间类型，默认值为“全选”                                     |
-| startTime | string   | 否   | 实际入住时间的查询最小值，默认值为“display-all”              |
-| endTime   | string   | 否   | 实际入住时间的查询最大值，默认值为“display-all”              |
+| startTime | string   | 是   | 实际入住时间的查询最小值，默认值为“display-all”              |
+| endTime   | string   | 是   | 实际入住时间的查询最大值，默认值为“display-all”              |
 | stamp     | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
 | prove     | string   | 是   | 管理员的adminCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
 

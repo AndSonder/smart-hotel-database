@@ -1,6 +1,7 @@
 const util = require('../../utils/util.js');
 const dataTime = require('../../utils/dataTime.js');
 const md5 = require('../../utils/md5.js');
+const imgUrl = require('../../utils/image.js');
 const app = getApp()
 
 Page({
@@ -138,6 +139,7 @@ Page({
                   case "0":
                     var roomList = that.Introomlist(roomsinf_jsonStr.datelist)
                     var roomList = that.ChangeWindow(roomList, 'roomWindow')
+                    var roomList = imgUrl.ImageNameGeneration(roomList)
                     that.setData({
                       roomList: roomList,
                     })
@@ -200,6 +202,7 @@ Page({
                   case "0":
                     var roomList = that.Introomlist(roomsinf_jsonStr.datelist)
                     var roomList = that.ChangeWindow(roomList, 'roomWindow')
+                    var roomList = imgUrl.ImageNameGeneration(roomList)
                     console.log('roomList---',roomList)
                     that.setData({
                       roomList: roomList,
@@ -247,6 +250,7 @@ Page({
                   case "0":
                     var roomList = that.Introomlist(roomsinf_jsonStr.datelist)
                     var roomList = that.ChangeWindow(roomList, 'roomWindow')
+                    var roomList = imgUrl.ImageNameGeneration(roomList)
                     that.setData({
                       roomList: roomList,
                     })

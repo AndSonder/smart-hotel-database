@@ -33,7 +33,8 @@
     </view>
     <view class="second_box">
       <view class="roomlist_box" wx:for="{{liveRoomList}}" wx:key="roomId">
-        <view class="roomInf_box">
+        <view class="roomInf_box" bindtap="showModal" data-target="viewModal" data-roomId="{{item.roomId}}"
+          data-orderId="{{item.orderId}}">
           <view class="icon_module">
             <view class="iconContent_module">
               <text class="cuIcon-homefill text-grey"></text>
@@ -41,7 +42,7 @@
           </view>
           <view class="icon_module">
             <view class="iconContent_module">
-              <text class="text-grey">101</text>
+              <text class="text-grey">{{item.roomId}}</text>
             </view>
           </view>
           <view class="inf-button_module">
@@ -72,57 +73,69 @@
               </view>
             </view>
             <view class="button_module">
-              <view class="buttonContent_module">
-                <button class="cu-btn block icon bg-cyanblue shadow" bindtap="showModal" data-target="viewModal"
-                  data-roomId="{{item.roomId}}" data-orderId="{{item.orderId}}">开</button>
+              <view class="buttonContent_module" wx:if="{{!receptionShow && (item.lockStatus == '关')}}">
+                <button class="cu-btn block icon bg-cyanblue shadow" data-roomId="{{item.roomId}}"
+                  bindtap="openDoor">开</button>
+              </view>
+              <view class="buttonContent_module" wx:if="{{!receptionShow && (item.lockStatus == '开')}}">
+                <button class="cu-btn block icon line-blue shadow">开</button>
               </view>
             </view>
           </view>
         </view>
-      </view>
-      <view class="roomlist_box" wx:for="{{notliveRoomList}}" wx:key="roomId">
-        <view class="roomInf_box">
-          <view class="icon_module">
-            <view class="iconContent_module">
-              <text class="cuIcon-homefill text-grey"></text>
-            </view>
+        <view class="kong">
+          <view class="kong_module">
+            <text class="kongContent">以下房间无住户入住</text>
           </view>
-          <view class="icon_module">
-            <view class="iconContent_module">
-              <text class="text-grey">101</text>
-            </view>
-          </view>
-          <view class="inf-button_module">
-            <view class="inf_module">
-              <view class="infContentShow_module">
-                <view class="infContent_module">
-                  <text class="infContent_title">T:</text>
-                  <text class="infContent">{{item.roomTemp}}℃</text>
-                </view>
-              </view>
-              <view class="infContentShow_module">
-                <view class="infContent_module">
-                  <text class="infContent_title">H:</text>
-                  <text class="infContent">{{item.roomHum}}rh</text>
-                </view>
-              </view>
-              <view class="infContentShow_module">
-                <view class="infContent_module">
-                  <text class="infContent_title">空调</text>
-                  <text class="infContent">{{item.airStatus}}</text>
-                </view>
-              </view>
-              <view class="infContentShow_module">
-                <view class="infContent_module">
-                  <text class="infContent_title">灯</text>
-                  <text class="infContent">{{item.lightStatus}}</text>
-                </view>
+        </view>
+        <view class="roomlist_box" wx:for="{{notliveRoomList}}" wx:key="roomId">
+          <view class="roomInf_box" bindtap="showModal_just" data-target="viewModal" data-roomId="{{item.roomId}}"
+            data-orderId="{{item.orderId}}">
+            <view class="icon_module">
+              <view class="iconContent_module">
+                <text class="cuIcon-homefill text-grey"></text>
               </view>
             </view>
-            <view class="button_module">
-              <view class="buttonContent_module">
-                <button class="cu-btn block icon bg-cyanblue shadow" bindtap="showModal" data-target="viewModal"
-                  data-roomId="{{item.roomId}}" data-orderId="{{item.orderId}}">开</button>
+            <view class="icon_module">
+              <view class="iconContent_module">
+                <text class="text-grey">101</text>
+              </view>
+            </view>
+            <view class="inf-button_module">
+              <view class="inf_module">
+                <view class="infContentShow_module">
+                  <view class="infContent_module">
+                    <text class="infContent_title">T:</text>
+                    <text class="infContent">{{item.roomTemp}}℃</text>
+                  </view>
+                </view>
+                <view class="infContentShow_module">
+                  <view class="infContent_module">
+                    <text class="infContent_title">H:</text>
+                    <text class="infContent">{{item.roomHum}}rh</text>
+                  </view>
+                </view>
+                <view class="infContentShow_module">
+                  <view class="infContent_module">
+                    <text class="infContent_title">空调</text>
+                    <text class="infContent">{{item.airStatus}}</text>
+                  </view>
+                </view>
+                <view class="infContentShow_module">
+                  <view class="infContent_module">
+                    <text class="infContent_title">灯</text>
+                    <text class="infContent">{{item.lightStatus}}</text>
+                  </view>
+                </view>
+              </view>
+              <view class="button_module">
+                <view class="buttonContent_module" wx:if="{{!receptionShow && (item.lockStatus == '关')}}">
+                  <button class="cu-btn block icon bg-cyanblue shadow" data-roomId="{{item.roomId}}"
+                    bindtap="openDoor">开</button>
+                </view>
+                <view class="buttonContent_module" wx:if="{{!receptionShow && (item.lockStatus == '开')}}">
+                  <button class="cu-btn block icon line-blue shadow">开</button>
+                </view>
               </view>
             </view>
           </view>
@@ -172,7 +185,7 @@
           </view>
         </view>
       </view>
-      <view class="second_module">
+      <view class="second_module" wx:if="{{securityShow || cleanerShow}}">
         <view class="handware_module" wx:for="{{airInf}}" wx:key="roomId" wx:for-item="air" bindtap="turnToAir">
           <view class="handwareInf_module">
             <view class="handwareInfContent_modul">
@@ -208,7 +221,7 @@
           </view>
         </view>
       </view>
-      <view class="third_module">
+      <view class="third_module" wx:if="{{securityShow || cleanerShow}}">
         <view class="userForm_module" wx:for="{{userInf}}" wx:key="orderId" wx:for-item="user">
           <form>
             <view class="cu-form-group">
@@ -230,7 +243,7 @@
           </form>
         </view>
       </view>
-      <view class="fourth_module">
+      <view class="fourth_module" wx:if="{{securityShow || cleanerShow}}">
         <view class="orderForm_module" wx:for="{{orderInf}}" wx:key="orderId" wx:for-item="order">
           <form>
             <view class="cu-form-group">

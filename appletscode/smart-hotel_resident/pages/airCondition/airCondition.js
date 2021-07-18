@@ -110,7 +110,7 @@ Page({
               success: function (res) {
                 console.log('air---', res);
                 var air_jsonStr = res.data;
-                if (md5.hex_md5('room' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
+                if (md5.hex_md5('air_conditioning' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
                   var air_errorcode = air_jsonStr.errorcode;
                   switch (air_errorcode) {
                     case "0":
@@ -160,7 +160,7 @@ Page({
               success: function (res) {
                 console.log('air---', res);
                 var air_jsonStr = res.data;
-                if (md5.hex_md5('room' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
+                if (md5.hex_md5('air_conditioning' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
                   var air_errorcode = air_jsonStr.errorcode;
                   switch (air_errorcode) {
                     case "0":
@@ -210,7 +210,7 @@ Page({
               success: function (res) {
                 console.log('air---', res);
                 var air_jsonStr = res.data;
-                if (md5.hex_md5('room' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
+                if (md5.hex_md5('air_conditioning' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
                   var air_errorcode = air_jsonStr.errorcode;
                   switch (air_errorcode) {
                     case "0":
@@ -260,7 +260,7 @@ Page({
               success: function (res) {
                 console.log('air---', res);
                 var air_jsonStr = res.data;
-                if (md5.hex_md5('room' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
+                if (md5.hex_md5('air_conditioning' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
                   var air_errorcode = air_jsonStr.errorcode;
                   switch (air_errorcode) {
                     case "0":
@@ -306,7 +306,7 @@ Page({
               success: function (res) {
                 console.log('air---', res);
                 var air_jsonStr = res.data;
-                if (md5.hex_md5('room' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
+                if (md5.hex_md5('air_conditioning' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
                   var air_errorcode = air_jsonStr.errorcode;
                   switch (air_errorcode) {
                     case "0":
@@ -355,7 +355,7 @@ Page({
               success: function (res) {
                 console.log('air---', res);
                 var air_jsonStr = res.data;
-                if (md5.hex_md5('room' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
+                if (md5.hex_md5('air_conditioning' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
                   var air_errorcode = air_jsonStr.errorcode;
                   switch (air_errorcode) {
                     case "0":
@@ -400,7 +400,7 @@ Page({
               success: function (res) {
                 console.log('air---', res);
                 var air_jsonStr = res.data;
-                if (md5.hex_md5('room' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
+                if (md5.hex_md5('air_conditioning' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
                   var air_errorcode = air_jsonStr.errorcode;
                   switch (air_errorcode) {
                     case "0":

@@ -2,14 +2,14 @@
   <view slot="backText">返回</view>
   <view slot="content">房间预订</view>
 </cu-custom>
-<view class="total_box">
+<view class="total_box"  wx:for="{{per_roominf_book}}" wx:key="*this">
   <view class="first_box">
     <view class="roomImg_module">
-      <image class="roomImg" src="/images/Double.png"></image>
+      <image class="roomImg" src="{{item.imagePath}}"></image>
     </view>
   </view>
   <view class="second_box">
-    <view class="roomInf_module" wx:for="{{per_roominf_book}}" wx:key="*this">
+    <view class="roomInf_module">
       <view class="roomRtype_module">
         <view class="roomRtypeContentShow_module">
           <view class="roomRtypeContent_module"><text class="roomRtypeContent">{{item.roomType}}</text></view>

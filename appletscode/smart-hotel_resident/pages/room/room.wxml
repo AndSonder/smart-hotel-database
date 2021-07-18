@@ -3,7 +3,7 @@
 </cu-custom>
 <view class="total_box">
   <view class="first_box">
-    <image class="backImg" src="/images/inLive.png" mode="aspectFill"></image>
+    <image class="backImg" src="https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/inLive.png" mode="aspectFill"></image>
   </view>
   <view class="roomInf_module">
     <view class="roomInfChoose_module" wx:if="{{bookingShow}}">
@@ -48,7 +48,7 @@
       <view class="roomT-H_module">
         <view class="roomT-HContent_module">
           <view class="roomImg_module">
-            <image class="roomImg" src="/images/temp.png"></image>
+            <image class="roomImg" src="https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/temp.png"></image>
           </view>
           <view class="roomContent_module">
             <text class="roomContent">{{room.roomTemp}}℃</text>
@@ -56,7 +56,7 @@
         </view>
         <view class="roomT-HContent_module">
           <view class="roomImg_module">
-            <image class="roomImg" src="/images/humd.png"></image>
+            <image class="roomImg" src="https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/humd.png"></image>
           </view>
           <view class="roomContent_module">
             <text class="roomContent">{{room.roomHum}}rh</text>
@@ -96,12 +96,12 @@
       </view>
       <view class="switch_module">
         <view class="leftSwitch_module">
-          <button class="{{swipeLeftUI}}" bindtap="swipeLeft" data-roomId="{{room.roomId}}">
+          <button class="{{swipeLeftUI}}" bindtap="swipeLeft" data-roomId="{{room.roomId}}" disabled="{{swipeLeftButton}}">
             <van-icon name="arrow-left" />
           </button>
         </view>
         <view class="rightSwitch_module">
-          <button class="{{swipeRightUI}}" bindtap="swipeRight" data-roomId="{{room.roomId}}">
+          <button class="{{swipeRightUI}}" bindtap="swipeRight" data-roomId="{{room.roomId}}" disabled="{{swipeRightButton}}">
             <van-icon name="arrow" />
           </button>
         </view>
@@ -111,21 +111,21 @@
   <view class="second_module">
     <view class="hardware_module" bindtap="openDoor">
       <view class="hardwareImg_module">
-        <image class="hardwareImg" src="/images/door.png"></image>
+        <image class="hardwareImg" src="https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/door.png"></image>
       </view>
       <view class="hardwareContent_module"><text class="hardwareContent">一键开门</text>
       </view>
     </view>
     <view class="hardware_module" bindtap="controlAir">
       <view class="hardwareImg_module">
-        <image class="hardwareImg" src="/images/air.png"></image>
+        <image class="hardwareImg" src="https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/air.png"></image>
       </view>
       <view class="hardwareContent_module"><text class="hardwareContent">空调控制</text>
       </view>
     </view>
     <view class="hardware_module" bindtap="controlLight">
       <view class="hardwareImg_module">
-        <image class="hardwareImg" src="/images/light.png"></image>
+        <image class="hardwareImg" src="https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/light.png"></image>
       </view>
       <view class="hardwareContent_module"><text class="hardwareContent">灯光控制</text>
       </view>
@@ -138,7 +138,7 @@
     <view class="server_module">
       <view class="serverDetail_module" bindtap="wakeServer">
         <view class="img_module">
-          <image class="serverImg" src="/images/brokeup.png"></image>
+          <image class="serverImg" src="https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/brokeup.png"></image>
         </view>
         <view class="serverContent_module"><text class="serverContent">叫醒服务</text></view>
       </view>
@@ -148,25 +148,25 @@
         </van-popup>
       <view class="serverDetail_module" bindtap="cleanServer">
         <view class="img_module">
-          <image class="serverImg" src="/images/clean.png"></image>
+          <image class="serverImg" src="https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/clean.png"></image>
         </view>
         <view class="serverContent_module"><text class="serverContent">呼叫保洁</text></view>
       </view>
       <view class="serverDetail_module" bindtap="checkoutServer">
         <view class="img_module">
-          <image class="serverImg" src="/images/out_home.png"></image>
+          <image class="serverImg" src="https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/out_home.png"></image>
         </view>
         <view class="serverContent_module"><text class="serverContent">预约退房</text></view>
       </view>
       <view class="serverDetail_module" bindtap="urgencyServer">
         <view class="img_module">
-          <image class="serverImg" src="/images/urgency.png"></image>
+          <image class="serverImg" src="https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/urgency.png"></image>
         </view>
         <view class="serverContent_module"><text class="serverContent">紧急呼叫</text></view>
       </view>
       <view class="serverDetail_module" bindtap="feedbackServer">
         <view class="img_module">
-          <image class="serverImg" src="/images/complaints.png"></image>
+          <image class="serverImg" src="https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/complaints.png"></image>
         </view>
         <view class="serverContent_module"><text class="serverContent">一键吐槽</text></view>
       </view>

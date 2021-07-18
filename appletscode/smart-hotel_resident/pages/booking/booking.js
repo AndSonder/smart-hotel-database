@@ -1,6 +1,7 @@
 const util = require('../../utils/util.js');
 const dataTime = require('../../utils/dataTime.js');
 const md5 = require('../../utils/md5.js');
+const imgUrl = require('../../utils/image.js');
 Page({
   data: {
     roomType: '',
@@ -65,6 +66,7 @@ Page({
                   case "0":
                     var per_roominf_book = that.IntroomInf(per_roominf_jsonStr.datelist)
                     var per_roominf_book = that.ChangeWindow(per_roominf_book, 'roomWindow')
+                    var per_roominf_book = imgUrl.ImageNameGeneration(per_roominf_book)
                     that.setData({
                       per_roominf_book: per_roominf_book,
                     })
@@ -155,7 +157,7 @@ Page({
             success: function (res) {
               console.log('perinfoPush---', res);
               var perinfoPush_jsonStr = res.data;
-              if (md5.hex_md5('room' + perinfoPush_jsonStr.stamp + 'liuboge' == perinfoPush_jsonStr.tableProve)) {
+              if (md5.hex_md5('user' + perinfoPush_jsonStr.stamp + 'liuboge' == perinfoPush_jsonStr.tableProve)) {
                 var perinfoPush_errorcode = perinfoPush_jsonStr.errorcode;
                 switch (perinfoPush_errorcode) {
                   case "0":
@@ -189,7 +191,7 @@ Page({
             success: function (res) {
               console.log('perorderInfo---', res);
               var perorderInfo_jsonStr = res.data;
-              if (md5.hex_md5('room' + perorderInfo_jsonStr.stamp + 'liuboge' == perorderInfo_jsonStr.tableProve)) {
+              if (md5.hex_md5('order' + perorderInfo_jsonStr.stamp + 'liuboge' == perorderInfo_jsonStr.tableProve)) {
                 var perorderInfo_errorcode = perorderInfo_jsonStr.errorcode;
                 switch (perorderInfo_errorcode) {
                   case "0":

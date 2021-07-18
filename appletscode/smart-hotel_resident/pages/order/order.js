@@ -28,13 +28,13 @@ Page({
       success(res) {
         if (res.code) {
           var identity_jsonData = {
-            resCode: res.code,
+            cerCode: res.code,
             stamp: stamp,
             prove: md5.hex_md5(res.code + stamp + 'liuboge'),
           };
           wx.request({
             method: 'POST',
-            url: 'https://www.supremeproger.com/order/identity/resident/get',
+            url: 'https://www.supremeproger.com/system/identity/user/get',
             header: {
               'content-type': 'application/json'
             },
@@ -42,7 +42,7 @@ Page({
             success: function (res) {
               console.log('identity---', res);
               var identity_jsonStr = res.data;
-              if (md5.hex_md5('room' + identity_jsonStr.stamp + 'liuboge' == identity_jsonStr.tableProve)) {
+              if (md5.hex_md5('user' + identity_jsonStr.stamp + 'liuboge' == identity_jsonStr.tableProve)) {
                 var identity_errorcode = identity_jsonStr.errorcode;
                 switch (identity_errorcode) {
                   case "0":
@@ -78,7 +78,7 @@ Page({
             success: function (res) {
               console.log('ordersinf---', res);
               var ordersinf_jsonStr = res.data;
-              if (md5.hex_md5('room' + ordersinf_jsonStr.stamp + 'liuboge' == ordersinf_jsonStr.tableProve)){}
+              if (md5.hex_md5('order' + ordersinf_jsonStr.stamp + 'liuboge' == ordersinf_jsonStr.tableProve)){}
               var ordersinf_errorcode = ordersinf_jsonStr.errorcode;
               switch (ordersinf_errorcode){
                 case "0":

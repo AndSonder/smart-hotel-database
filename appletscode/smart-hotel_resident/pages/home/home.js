@@ -1,10 +1,11 @@
 const util = require('../../utils/util.js');
 const dataTime = require('../../utils/dataTime.js');
 const md5 = require('../../utils/md5.js');
+const imgUrl = require('../../utils/image.js');
 const app = getApp()
 Page({
   data: {
-    backImage: '/images/reservation_backimg.png',
+    backImage: 'https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/reservation_backimg.png',
     startDate: '',
     endDate: '',
     start:'',
@@ -38,7 +39,7 @@ Page({
           };
           wx.request({
             method: 'POST',
-            url: 'https://www.supremeproger.com/room/roomsinf-boutique/resident/get',
+            url: 'https://www.supremeproger.com/room/roomsinf_boutique/resident/get',
             header: {
               'content-type': 'application/json'
             },
@@ -52,6 +53,7 @@ Page({
                   case "0":
                     var roomList = that.Introomlist(roomsinfBoutique_jsonStr.datelist)
                     var roomList = that.ChangeWindow(roomList, 'roomWindow')
+                    var roomList = imgUrl.ImageNameGeneration(roomList)
                     that.setData({
                       roomList: roomList,
                     })

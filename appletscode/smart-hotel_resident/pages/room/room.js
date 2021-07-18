@@ -19,8 +19,10 @@ Page({
     airList: [],
     lightList: [],
     roomListLength: '',
-    swipeLeftUI: '',
-    swipeRightUI: '',
+    swipeLeftUI: 'cu-btn icon bg-white shadow',
+    swipeRightUI: 'cu-btn icon bg-white shadow',
+    swipeleftButto:false,
+    swipeRightButto:false,
     roomId: '',
     orderId: '',
     currentDate: '08:00',
@@ -54,7 +56,7 @@ Page({
               var per_roomsinf_jsonStr = res.data;
               if (md5.hex_md5('room' + per_roomsinf_jsonStr.stamp + 'liuboge' == per_roomsinf_jsonStr.tableProve)) {
                 var per_roomsinf_errorcode = per_roomsinf_jsonStr.errorcode;
-                var roomsList = IntroomsInf(per_roomsinf_jsonStr.datalist)
+                var roomsList = that.IntroomsInf(per_roomsinf_jsonStr.datalist)
                 switch (per_roomsinf_errorcode) {
                   case "0":
                     that.setData({
@@ -119,7 +121,7 @@ Page({
             success: function (res) {
               console.log('per_orderinf_live---', res);
               var per_orderinf_live_jsonStr = res.data;
-              if (md5.hex_md5('room' + per_orderinf_live_jsonStr.stamp + 'liuboge' == per_orderinf_live_jsonStr.tableProve)) {
+              if (md5.hex_md5('order' + per_orderinf_live_jsonStr.stamp + 'liuboge' == per_orderinf_live_jsonStr.tableProve)) {
                 var per_orderinf_live_errorcode = per_orderinf_live_jsonStr.errorcode;
                 switch (per_orderinf_live_errorcode) {
                   case "0":
@@ -169,7 +171,7 @@ Page({
                 success: function (res) {
                   console.log('air---', res);
                   var air_jsonStr = res.data;
-                  if (md5.hex_md5('room' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
+                  if (md5.hex_md5('air_conditioning' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
                     var air_errorcode = air_jsonStr.errorcode;
                     switch (air_errorcode) {
                       case "0":
@@ -206,7 +208,7 @@ Page({
                 success: function (res) {
                   console.log('light---', res);
                   var light_jsonStr = res.data;
-                  if (md5.hex_md5('room' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                  if (md5.hex_md5('light' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
                     var light_errorcode = light_jsonStr.errorcode;
                     switch (light_errorcode) {
                       case "0":
@@ -227,7 +229,8 @@ Page({
     }
     if (index == 0) {
       that.setData({
-        swipeLeftUI: 'cu-btn icon bg-white shadow block',
+        swipeLeftUI: 'cu-btn icon line-blue shadow ',
+        swipeLeftButton: true
       })
     }
   },
@@ -264,7 +267,7 @@ Page({
                 success: function (res) {
                   console.log('air---', res);
                   var air_jsonStr = res.data;
-                  if (md5.hex_md5('room' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
+                  if (md5.hex_md5('air_conditioning' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
                     var air_errorcode = air_jsonStr.errorcode;
                     switch (air_errorcode) {
                       case "0":
@@ -301,15 +304,11 @@ Page({
                 success: function (res) {
                   console.log('light---', res);
                   var light_jsonStr = res.data;
-                  if (md5.hex_md5('room' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                  if (md5.hex_md5('light' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
                     var light_errorcode = light_jsonStr.errorcode;
                     switch (light_errorcode) {
                       case "0":
-                        var lightList = that.IntlightInf(light_jsonStr.datalist)
-                        var lightList = that.ChangeAir(light_jsonStr.datalist,'lightStatus','lightMode')
-                        that.setData({
-                          lightList: lightList
-                        })
+                         
                         break;
                     }
                   }
@@ -322,7 +321,8 @@ Page({
     }
     if (index == (roomListLength - 1)) {
       that.setData({
-        swipeRightUI: 'cu-btn icon bg-white shadow block',
+        swipeRightUI: 'cu-btn icon line-blue shadow',
+        swipeRightButto:true,
       })
     }
   },
@@ -386,14 +386,10 @@ Page({
             success: function (res) {
               console.log('lockRecord---', res);
               var lockRecord_jsonStr = res.data;
-              if (md5.hex_md5('room' + lockRecord_jsonStr.stamp + 'liuboge' == lockRecord_jsonStr.tableProve)) {
+              if (md5.hex_md5('door_opening_record' + lockRecord_jsonStr.stamp + 'liuboge' == lockRecord_jsonStr.tableProve)) {
                 var lockRecord_errorcode = lockRecord_jsonStr.errorcode;
                 switch (lockRecord_errorcode) {
                   case "0":
-                    wx.showToast({
-                      title: '门锁已开',
-                      icon: 'success',
-                    })
                     break;
                 }
               }
@@ -404,7 +400,7 @@ Page({
     })
   },
   controlAir(e){
-    var airList = ReturnAir(this.data.airList)
+    var airList = this.ReturnAir(this.data.airList)
     var airList = JSON.stringify(airList)
     wx.navigateTo({
       url: '/pages/airCondition/airCondition?roomId=' + this.data.roomId + '&airList=' + airList,

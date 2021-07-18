@@ -140,7 +140,7 @@ Page({
               success: function (res) {
                 console.log('light---', res);
                 var light_jsonStr = res.data;
-                if (md5.hex_md5('room' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                if (md5.hex_md5('light' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
                   var light_errorcode = light_jsonStr.errorcode;
                   switch (light_errorcode) {
                     case 0:
@@ -192,7 +192,7 @@ Page({
               success: function (res) {
                 console.log('light---', res);
                 var light_jsonStr = res.data;
-                if (md5.hex_md5('room' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                if (md5.hex_md5('light' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
                   var light_errorcode = light_jsonStr.errorcode;
                   switch (light_errorcode) {
                     case 0:
@@ -244,7 +244,7 @@ Page({
               success: function (res) {
                 console.log('light---', res);
                 var light_jsonStr = res.data;
-                if (md5.hex_md5('room' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                if (md5.hex_md5('light' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
                   var light_errorcode = light_jsonStr.errorcode;
                   switch (light_errorcode) {
                     case 0:
@@ -296,7 +296,7 @@ Page({
               success: function (res) {
                 console.log('light---', res);
                 var light_jsonStr = res.data;
-                if (md5.hex_md5('room' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                if (md5.hex_md5('light' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
                   var light_errorcode = light_jsonStr.errorcode;
                   switch (light_errorcode) {
                     case 0:
@@ -348,7 +348,7 @@ Page({
               success: function (res) {
                 console.log('light---', res);
                 var light_jsonStr = res.data;
-                if (md5.hex_md5('room' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                if (md5.hex_md5('light' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
                   var light_errorcode = light_jsonStr.errorcode;
                   switch (light_errorcode) {
                     case 0:
@@ -395,7 +395,7 @@ Page({
               success: function (res) {
                 console.log('light---', res);
                 var light_jsonStr = res.data;
-                if (md5.hex_md5('room' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                if (md5.hex_md5('light' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
                   var light_errorcode = light_jsonStr.errorcode;
                   switch (light_errorcode) {
                     case 0:
@@ -438,7 +438,7 @@ Page({
               success: function (res) {
                 console.log('light---', res);
                 var light_jsonStr = res.data;
-                if (md5.hex_md5('room' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                if (md5.hex_md5('light' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
                   var light_errorcode = light_jsonStr.errorcode;
                   switch (light_errorcode) {
                     case 0:
@@ -487,7 +487,7 @@ Page({
               success: function (res) {
                 console.log('light---', res);
                 var light_jsonStr = res.data;
-                if (md5.hex_md5('room' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                if (md5.hex_md5('light' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
                   var light_errorcode = light_jsonStr.errorcode;
                   switch (light_errorcode) {
                     case 0:
@@ -532,7 +532,7 @@ Page({
               success: function (res) {
                 console.log('light---', res);
                 var light_jsonStr = res.data;
-                if (md5.hex_md5('room' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                if (md5.hex_md5('light' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
                   var light_errorcode = light_jsonStr.errorcode;
                   switch (light_errorcode) {
                     case 0:

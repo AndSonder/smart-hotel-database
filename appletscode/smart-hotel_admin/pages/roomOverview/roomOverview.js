@@ -1,9 +1,13 @@
 const util = require('../../utils/util.js');
 const md5 = require('../../utils/md5.js');
 const app = getApp()
-
 Page({
   data: {
+    super_adminShow: false,
+    managerShow: false,
+    receptionShow: false,
+    securityShow: false,
+    cleanerShow: false,
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
     Custom: app.globalData.Custom,
@@ -27,10 +31,10 @@ Page({
       "lightStatus": 1,
     }],
     notliveRoomList: [],
-    airInf:[],
-    lightInf:[],
-    userInf:[],
-    orderInf:[],
+    airInf: [],
+    lightInf: [],
+    userInf: [],
+    orderInf: [],
     rtypeList: [{
         name: '主题特色大床房',
       },
@@ -74,6 +78,64 @@ Page({
     wx.login({
       success(res) {
         if (res.code) {
+          var identity_jsonData = {
+            cerCode: res.code,
+            stamp: stamp,
+            prove: md5.hex_md5(res.code + stamp + 'liuboge'),
+          };
+          wx.request({
+            method: 'POST',
+            url: 'https://www.supremeproger.com/system/identity/user/get',
+            header: {
+              'content-type': 'application/json'
+            },
+            data: JSON.stringify(identity_jsonData),
+            success: function (res) {
+              console.log('identity---', res);
+              var identity_jsonStr = res.data;
+              if (md5.hex_md5('user' + identity_jsonStr.stamp + 'liuboge' == identity_jsonStr.tableProve)) {
+                var identity_errorcode = identity_jsonStr.errorcode;
+                switch (identity_errorcode) {
+                  case "0":
+                    switch (identity_jsonStr.datalist[0].identity) {
+                      case '0':
+                        that.setData({
+                          super_adminShow: true,
+                        })
+                        break;
+                      case '1':
+                        that.setData({
+                          managerShow: true,
+                        })
+                        break;
+                      case '2':
+                        that.setData({
+                          receptionShow: true,
+                        })
+                        break;
+                      case '3':
+                        that.setData({
+                          securityShow: true,
+                        })
+                        break;
+                      case '4':
+                        that.setData({
+                          cleanerShow: true,
+                        })
+                        break;
+                    }
+                    break;
+                }
+              }
+            }
+          })
+        }
+      }
+    })
+    var stamp = util.formatTime(new Date());
+    wx.login({
+      success(res) {
+        if (res.code) {
           var roomlist_jsonData = {
             adminCode: res.code,
             roomType: that.data.rtypeContent,
@@ -95,11 +157,12 @@ Page({
               var roomlist_errorcode = roomlist_jsonStr.errorcode;
               switch (roomlist_errorcode) {
                 case "0":
-                  var liveRoomList = that.ChangeHardware(roomlist_jsonStr.liveRoomList)
-                  var notliveRoomList = that.ChangeHardware(roomlist_jsonStr.notliveRoomList)
+                  var liveRoomList = that.IntroomsList(roomlist_jsonStr.liveRoomList)
+                  var liveRoomList = that.ChangeHardware(liveRoomList)
+                  var notliveRoomList = that.IntextraroomsList(roomlist_jsonStr.notliveRoomList)
                   that.setData({
-                    roomList1: roomList1,
-                    roomList2: roomList2,
+                    liveRoomList: liveRoomList,
+                    notliveRoomList: notliveRoomList,
                   })
                   break;
               }
@@ -189,7 +252,7 @@ Page({
           };
           wx.request({
             method: 'POST',
-            url: '',
+            url: 'https://www.supremeproger.com/room/roominf/admin/get',
             header: {
               'content-type': 'application/json'
             },
@@ -224,7 +287,7 @@ Page({
           };
           wx.request({
             method: 'POST',
-            url: '',
+            url: 'https://www.supremeproger.com/hardware/air_condition/admin/get',
             header: {
               'content-type': 'application/json'
             },
@@ -259,7 +322,7 @@ Page({
           };
           wx.request({
             method: 'POST',
-            url: '',
+            url: 'https://www.supremeproger.com/hardware/light/admin/get',
             header: {
               'content-type': 'application/json'
             },
@@ -294,7 +357,7 @@ Page({
           };
           wx.request({
             method: 'POST',
-            url: '',
+            url: 'https://www.supremeproger.com/user/perinf/admin/super_admin/get',
             header: {
               'content-type': 'application/json'
             },
@@ -328,7 +391,7 @@ Page({
           };
           wx.request({
             method: 'POST',
-            url: '',
+            url: 'https://www.supremeproger.com/order/orderinf/admin/get',
             header: {
               'content-type': 'application/json'
             },
@@ -351,18 +414,134 @@ Page({
       }
     })
   },
-  turnToAir(e){
+  showModal_just(e) {
+    var that = this;
+    var roomId = e.currentTarget.dataset.roomId;
+    that.setData({
+      modalName: e.currentTarget.dataset.target
+    })
+    var stamp = util.formatTime(new Date());
+    wx.login({
+      success(res) {
+        if (res.code) {
+          var room_jsonData = {
+            adminCode: res.code,
+            roomId: roomId,
+            stamp: stamp,
+            prove: md5.hex_md5(res.code + stamp + 'liuboge'),
+          };
+          wx.request({
+            method: 'POST',
+            url: 'https://www.supremeproger.com/room/roominf/admin/get',
+            header: {
+              'content-type': 'application/json'
+            },
+            data: JSON.stringify(room_jsonData),
+            success: function (res) {
+              console.log('room---', res);
+              var room_jsonStr = res.data;
+              var room_errorcode = room_jsonStr.errorcode;
+              switch (room_errorcode) {
+                case "0":
+                  var roomInf = that.IntroomInf(room_jsonStr.datalist)
+                  var roomInf = that.ChangeWindow(roomInf, 'roomWindow')
+                  that.setData({
+                    roomInf: roomInf,
+                  })
+                  break;
+              }
+            }
+          })
+        }
+      }
+    })
+  },
+  turnToAir(e) {
     var airList = this.ReturnAir(this.data.airInf)
     var airList = JSON.stringify(airList)
     wx.navigateTo({
       url: '/pages/airCondition/airCondition?roomId=' + this.data.roomId + '&airList=' + airList,
     })
   },
-  turnToLight(e){
+  turnToLight(e) {
     var lightList = this.ReturnLight(this.data.lightInf)
     var lightList = JSON.stringify(lightList)
     wx.navigateTo({
       url: '/pages/light/light?roomId=' + this.data.roomId + '&lightList=' + lightList
+    })
+  },
+  openDoor(e){
+    var that =this;
+    var roomId = e.currentTarget.dataset.roomId;
+    var stamp = util.formatTime(new Date());
+    wx.login({
+      success(res) {
+        if (res.code) {
+          var lock_jsonData = {
+            cerCode: res.code,
+            roomId: roomId,
+            lockStatus: 0,
+            stamp: stamp,
+            prove: md5.hex_md5(res.code + stamp + 'liuboge'),
+          };
+          wx.request({
+            method: 'POST',
+            url: 'https://www.supremeproger.com/hardware/lock/user/push',
+            header: {
+              'content-type': 'application/json'
+            },
+            data: JSON.stringify(lock_jsonData),
+            success: function (res) {
+              console.log('lock---', res);
+              var lock_jsonStr = res.data;
+              if (md5.hex_md5('room' + lock_jsonStr.stamp + 'liuboge' == lock_jsonStr.tableProve)) {
+                var lock_errorcode = lock_jsonStr.errorcode;
+                switch (lock_errorcode) {
+                  case "0":
+                    wx.showToast({
+                      title: '门锁已开',
+                      icon: 'success',
+                    })
+                    break;
+                }
+              }
+            }
+          })
+        }
+      }
+    })
+    var stamp = util.formatTime(new Date());
+    wx.login({
+      success(res) {
+        if (res.code) {
+          var lockRecord_jsonData = {
+            cerCode: res.code,
+            roomId: roomId,
+            openTime: stamp,
+            stamp: stamp,
+            prove: md5.hex_md5(res.code + stamp + 'liuboge'),
+          };
+          wx.request({
+            method: 'POST',
+            url: 'https://www.supremeproger.com/record/unlock/user/post',
+            header: {
+              'content-type': 'application/json'
+            },
+            data: JSON.stringify(lockRecord_jsonData),
+            success: function (res) {
+              console.log('lockRecord---', res);
+              var lockRecord_jsonStr = res.data;
+              if (md5.hex_md5('door_opening_record' + lockRecord_jsonStr.stamp + 'liuboge' == lockRecord_jsonStr.tableProve)) {
+                var lockRecord_errorcode = lockRecord_jsonStr.errorcode;
+                switch (lockRecord_errorcode) {
+                  case "0":
+                    break;
+                }
+              }
+            }
+          })
+        }
+      }
     })
   },
   hideModal(e) {
@@ -433,22 +612,6 @@ Page({
     })
     return taskStartTime;
   },
-  ChangeHardware(arr, status1, status2) {
-    arr.forEach((item) => {
-      if (item[`${status1}`] === 1) {
-        item.airStatus = '开'
-      } else {
-        item.airStatus = '关'
-      }
-      if (item[`${status2}`] === 1) {
-        item.lightStatus = '开'
-      } else {
-        item.lightStatus = '关'
-      }
-
-    })
-    return arr
-  },
   IntroomsList(arr) {
     arr.forEach((item) => {
       item.orderId = Nunmber(item.orderId)
@@ -458,6 +621,12 @@ Page({
       item.lockStatus = Nunmber(item.lockStatus)
       item.airStatus = Nunmber(item.orderStatus)
       item.lightStatus = Nunmber(item.lightStatus)
+    })
+    return arr
+  },
+  IntextraroomsList(arr) {
+    arr.forEach((item) => {
+      item.roomId = Nunmber(item.roomId)
     })
     return arr
   },
@@ -500,7 +669,27 @@ Page({
     arr.forEach((item) => {
       item.orderId = Nunmber(item.phone)
       item.deposit = Nunmber(item.deposit)
-      item.amountsPay = Nunmber(item.amountsPay) 
+      item.amountsPay = Nunmber(item.amountsPay)
+    })
+    return arr
+  },
+  ChangeHardware(arr) {
+    arr.forEach((item) => {
+      if (item.airStatus === 1) {
+        item.airStatus = '开'
+      } else {
+        item.airStatus = '关'
+      }
+      if (item.lightStatus === 1) {
+        item.lightStatus = '开'
+      } else {
+        item.lightStatus = '关'
+      }
+      if (item.lockStatus === 0) {
+        item.lockStatus = '开'
+      } else {
+        item.lockStatus = '关'
+      }
     })
     return arr
   },

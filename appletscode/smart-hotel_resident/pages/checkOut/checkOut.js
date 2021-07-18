@@ -1,6 +1,7 @@
 const util = require('../../utils/util.js');
 const dataTime = require('../../utils/dataTime.js');
 const md5 = require('../../utils/md5.js');
+const imgUrl = require('../../utils/image.js');
 const app = getApp()
 Page({
   data: {
@@ -43,6 +44,7 @@ Page({
                   case "0":
                     var per_roominf = that.IntroomInf(per_roominf_jsonStr.datelist)
                     var per_roominf = that.ChangeWindow(per_roominf, 'roomWindow')
+                    var per_roominf = imgUrl.ImageNameGeneration(per_roominf)
                     that.setData({
                       per_roominf: per_roominf,
                     })
@@ -74,7 +76,7 @@ Page({
             success: function (res) {
               console.log('amountsPay---', res);
               var amountsPay_jsonStr = res.data;
-              if (md5.hex_md5('room' + amountsPay_jsonStr.stamp + 'liuboge' == amountsPay_jsonStr.tableProve)) {
+              if (md5.hex_md5('order' + amountsPay_jsonStr.stamp + 'liuboge' == amountsPay_jsonStr.tableProve)) {
                 var amountsPay_errorcode = amountsPay_jsonStr.errorcode;
                 switch (amountsPay_errorcode) {
                   case "0":
@@ -124,7 +126,7 @@ Page({
                 success: function (res) {
                   console.log('orderinfGiveUp---', res);
                   var orderinfGiveUp_jsonStr = res.data;
-                  if (md5.hex_md5('room' + orderinfGiveUp_jsonStr.stamp + 'liuboge' == orderinfGiveUp_jsonStr.tableProve)) {
+                  if (md5.hex_md5('order' + orderinfGiveUp_jsonStr.stamp + 'liuboge' == orderinfGiveUp_jsonStr.tableProve)) {
                     var orderinfGiveUp_errorcode = orderinfGiveUp.errorcode;
                     switch (orderinfGiveUp_errorcode) {
                       case 0:

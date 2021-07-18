@@ -1,4 +1,5 @@
 page {
+  background-image: var(--gradualBlue);
   width: 100vw;
   overflow: hidden;
 }
@@ -100,6 +101,7 @@ page {
 .DrawerPage .cu-bar.tabbar .action {
   flex: initial;
 }
+
 
 /* 自定义内容 */
 .total_box{
@@ -273,6 +275,23 @@ page {
 .buttonContent_module{
   width: auto;
   height: auto;
+}
+
+.kong{
+  display: flex;
+  width: 100%;
+  height: 100rpx;
+  justify-content: center;
+  align-items: center;
+}
+
+.kong_module{
+  width: auto;
+  height: auto;
+}
+
+.kongContent{
+  color: #8799A3;
 }
 
 .room_module{

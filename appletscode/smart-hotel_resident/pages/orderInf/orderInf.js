@@ -1,6 +1,7 @@
 const util = require('../../utils/util.js');
 const dataTime = require('../../utils/dataTime.js');
 const md5 = require('../../utils/md5.js');
+const imgUrl = require('../../utils/image.js');
 const app = getApp()
 Page({
 
@@ -63,6 +64,7 @@ Page({
                   case "0":
                     var per_roominf = that.IntroomInf(per_roominf_jsonStr.datelist)
                     var per_roominf = that.ChangeWindow(per_roominf, 'roomWindow')
+                    var per_roominf = imgUrl.ImageNameGeneration(per_roominf)
                     that.setData({
                       per_roominf: per_roominf,
                     })
@@ -93,7 +95,7 @@ Page({
             success: function (res) {
               console.log('perinfo---', res);
               var perinfo_jsonStr = res.data;
-              if (md5.hex_md5('room' + perinfo_jsonStr.stamp + 'liuboge' == perinfo_jsonStr.tableProve)) {
+              if (md5.hex_md5('user' + perinfo_jsonStr.stamp + 'liuboge' == perinfo_jsonStr.tableProve)) {
                 var perinfo_errorcode = perinfo_jsonStr.errorcode;
                 switch (perinfo_errorcode) {
                   case "0":
@@ -129,7 +131,7 @@ Page({
             success: function (res) {
               console.log('orderinf---', res);
               var orderinf_jsonStr = res.data;
-              if (md5.hex_md5('room' + orderinf_jsonStr.stamp + 'liuboge' == orderinf_jsonStr.tableProve)) {
+              if (md5.hex_md5('order' + orderinf_jsonStr.stamp + 'liuboge' == orderinf_jsonStr.tableProve)) {
                 var orderinf_errorcode = orderinf_jsonStr.errorcode;
                 switch (orderinf_errorcode) {
                   case "0":
@@ -166,7 +168,7 @@ Page({
             success: function (res) {
               console.log('time_limit---', res);
               var time_limit_jsonStr = res.data;
-              if (md5.hex_md5('room' + time_limit_jsonStr.stamp + 'liuboge' == time_limit_jsonStr.tableProve)) {
+              if (md5.hex_md5('order' + time_limit_jsonStr.stamp + 'liuboge' == time_limit_jsonStr.tableProve)) {
                 var time_limit_errorcode = time_limit_jsonStr.errorcode;
                 switch (time_limit_errorcode) {
                   case "0":
@@ -252,7 +254,7 @@ Page({
                 success: function (res) {
                   console.log('orderinfPush---', res);
                   var orderinfPush_jsonStr = res.data;
-                  if (md5.hex_md5('room' + orderinfPush_jsonStr.stamp + 'liuboge' == orderinfPush_jsonStr.tableProve)) {
+                  if (md5.hex_md5('order' + orderinfPush_jsonStr.stamp + 'liuboge' == orderinfPush_jsonStr.tableProve)) {
                     var orderinfPush_errorcode = orderinfPush.errorcode;
                     switch (orderinfPush_errorcode) {
                       case "0":
@@ -326,7 +328,7 @@ Page({
                 success: function (res) {
                   console.log('orderinfGiveUp---', res);
                   var orderinfGiveUp_jsonStr = res.data;
-                  if (md5.hex_md5('room' + orderinfGiveUp_jsonStr.stamp + 'liuboge' == orderinfGiveUp_jsonStr.tableProve)) {
+                  if (md5.hex_md5('order' + orderinfGiveUp_jsonStr.stamp + 'liuboge' == orderinfGiveUp_jsonStr.tableProve)) {
                     var orderinfGiveUp_errorcode = orderinfGiveUp.errorcode;
                     switch (orderinfGiveUp_errorcode) {
                       case 0:

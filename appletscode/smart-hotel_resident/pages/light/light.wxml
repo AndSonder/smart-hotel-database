@@ -6,7 +6,7 @@
   <view class="first_box">
     <view class="lightImg_module">
       <view class="lightImgContent_module">
-        <image class="lightImgContent" src="/images/light.png"></image>
+        <image class="lightImgContent" src="https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/light.png"></image>
       </view>
     </view>
   </view>
@@ -14,27 +14,27 @@
     <view class="lightStatus_module">
       <view class="lightStatusContent_module" style="{{illuminationUI}}" bindtap="chooseIllumination">
         <view class="lightStatusContentShow_module">
-          <image class="lightStatusContentShow" src="/images/illumination.png"></image>
+          <image class="lightStatusContentShow" src="https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/illumination.png"></image>
         </view>
       </view>
       <view class="lightStatusContent_module" style="{{nightUI}}" bindtap="chooseNight">
         <view class="lightStatusContentShow_module">
-          <image class="lightStatusContentShow" src="/images/night.png"></image>
+          <image class="lightStatusContentShow" src="https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/night.png"></image>
         </view>
       </view>
       <view class="lightStatusContent_module" style="{{sleepUI}}" bindtap="chooseSleep">
         <view class="lightStatusContentShow_module">
-          <image class="lightStatusContentShow" src="/images/sleep.png"></image>
+          <image class="lightStatusContentShow" src="https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/sleep.png"></image>
         </view>
       </view>
       <view class="lightStatusContent_module" style="{{getUpNightUI}}" bindtap="choosegetUpNight">
         <view class="lightStatusContentShow_module">
-          <image class="lightStatusContentShow" src="/images/getUp-night.png"></image>
+          <image class="lightStatusContentShow" src="https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/getUp-night.png"></image>
         </view>
       </view>
       <view class="lightStatusContent_module" style="{{cinema}}" bindtap="chooseCinema">
         <view class="lightStatusContentShow_module">
-          <image class="lightStatusContentShow" src="/images/cinema.png"></image>
+          <image class="lightStatusContentShow" src="https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/cinema.png"></image>
         </view>
       </view>
     </view>

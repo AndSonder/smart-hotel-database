@@ -41,7 +41,7 @@
           <view class="roomInfContent" bindtap="trunBooking" data-roomType="{{item.roomType}}" data-roomPrice="{{item.roomPrice}}">
             <view class="roomImg_module">
               <view class="roomImgContent_module">
-                <image class="roomImgContent" src="/images/Double.jpeg"></image>
+                <image class="roomImgContent" src="{{item.imagePath}}"></image>
               </view>
             </view>
             <view class="roomContent_module">
