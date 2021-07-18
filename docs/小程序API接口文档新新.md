@@ -816,7 +816,7 @@ API：/room/per_roominf/resident/get
 
 #### 管理员查询住户房间简略信息(新增原有接口，原本的在过往版本更改中被误删)
 
-功能描述：**查询指定房间的进行中状态订单的房间详细信息**。
+功能描述：**查询指定房间的房间简略信息**。
 
 API：/room/roomsinf/admin/get
 
@@ -865,7 +865,7 @@ API：/room/roomsinf/admin/get
 ```json
 {
     "errcode":0/1/2/3/4,
-    "processList":[{
+    "liveRoomList":[{	//进行中状态订单
         "orderId":123,
         "roomId":123,
         "roomTemp":26,
@@ -875,7 +875,7 @@ API：/room/roomsinf/admin/get
         "lightStatus":1,
 	},
     ],
-    "unprocessList":[{
+    "notliveRoomList":[{	//非进行中状态订单
         "roomId":123,
         "lockStatus":1,
 	},
@@ -884,6 +884,73 @@ API：/room/roomsinf/admin/get
     "tableProve":"xxxxxxxxxxx"
 }
 ```
+
+#### 管理员根据指定因素查询住户房间简略信息(新增接口)
+
+功能描述：**查询指定房间简略信息**。
+
+API：/room/extra_roomsinf/admin/get
+
+请求方法：POST
+
+支持格式：JSON
+
+**请求参数**
+
+| 字段      | 数据类型 | 必填 | 备注                                                         |
+| --------- | -------- | ---- | ------------------------------------------------------------ |
+| adminCode | string   | 是   | 管理员的登录凭证，后端借其获取openid，验证用户身份是否为超级管理员 |
+| roomType  | string   | 是   | 房间类型，默认值为“全选”                                     |
+| startTime | string   | 否   | 实际入住时间的查询最小值，默认值为“display-all”              |
+| endTime   | string   | 否   | 实际入住时间的查询最大值，默认值为“display-all”              |
+| stamp     | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
+| prove     | string   | 是   | 管理员的adminCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
+
+**返回参数**
+
+| 字段       | 数据类型     | 必填 | 备注                                                         |
+| ---------- | ------------ | ---- | ------------------------------------------------------------ |
+| errcode    | int          | 是   | 状态标识。0表示成功查询，1表示没有该管理员、2表示房间不存在，3表示订单不存在，4表示未知错误。 |
+| datalist   | string(json) | 是   | 如果查询的房间是进行中状态订单的房间，返回房间简略信息（房间号、温湿度、锁状态、灯状态、空调状态、订单号）；如果是非进行中状态订单的房间。返回房间简略信息（房间号、硬件状态） |
+| stamp      | string       | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
+| tableProve | string       | 是   | 表验证，功能与用法和prove一致，只不过把adminCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
+
+请求示例：
+
+**request**
+
+```json
+{
+    "adminCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
+    "roomType":"豪华大床房",
+    "startTime":"2020-05-21 18:55:49",
+    "endTime":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21 18:55:49",
+    "prove":"xxxxxxxxxx"
+}
+```
+
+**response**
+
+```json
+{
+    "errcode":0/1/2/3/4,
+    "datalist":[{		
+        "orderId":123,
+        "roomId":123,
+        "roomTemp":26,
+        "roomHum":45,
+        "lockStatus":1,
+        "airStatus":1,
+        "lightStatus":1,
+	},
+    ],
+    "stamp":"2020-05-21 18:55:49",
+    "tableProve":"xxxxxxxxxxx"
+}
+```
+
+####
 
 #### 管理员查询住户房间详细信息
 
