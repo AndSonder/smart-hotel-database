@@ -14,14 +14,19 @@ class ClientSearchinfo(Model):
         super(ClientSearchinfo, self).__init__()
 
     def search(self, word):
+        sql = f"SELECT * FROM `order` WHERE wecharid='{word}';"
+        print(sql)
         data_list = []
-        self.cursor.execute(f"SELECT * FROM `order` WHERE wecharid='{word}'")
+        self.cursor.execute(sql)
         data = self.cursor.fetchall()
         print(data)
-        for item in data:
-            data_list.append(
-                {"orderId": item[0], "roomId": item[8], "actLive": item[3], "actAway": item[4], "orderStatus": item[9]})
-        return data_list
+        if data:
+            for item in data:
+                data_list.append(
+                    {"orderId": item[0], "roomId": item[8], "orderTime": item[6], "orderStatus": item[9]})
+            return data_list
+        else:
+            return 2
 
 # a = ((3, 250, datetime.datetime(2021, 7, 1, 8, 30), datetime.datetime(2021, 7, 4, 8, 30), datetime.datetime(2021, 7, 2, 8, 30), datetime.datetime(1970, 1, 1, 8, 0), 'wxid_ux57m1gafdh523', 3, 1, None),
 #      (9, 260, datetime.datetime(2021, 7, 14, 11, 42), datetime.datetime(2021, 7, 15, 19, 49), datetime.datetime(2021, 7, 15, 11, 42), None, 'wxid_ux57m1gafdh523', 2, 0, None),

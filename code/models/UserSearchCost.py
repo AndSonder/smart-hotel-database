@@ -20,8 +20,13 @@ class ClientSearchCost(Model):
             self.cursor.execute(f"SELECT pmoney FROM `order` WHERE id = {word['orderId']} AND wecharid = '{word['wecharid']}';")
             data = self.cursor.fetchone()
             print(data)
-            data_list.append({"amountsPay": data[0]})
-            return data_list
+            print(data[0])
+            if data:
+                data_list.append({"amountsPay": data[0]})
+                print(data_list)
+                return data_list
+            else:
+                return 2
         except:
             self.db.rollback()
             print("出现了未知错误！")

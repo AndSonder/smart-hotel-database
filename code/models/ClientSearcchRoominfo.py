@@ -21,7 +21,7 @@ class ClientSearchroominfo(Model):
                 print(word['roomId'])
                 sql = f"select room.id,rtype,bedtype,area,maxnum,rwin,pmoney,temperature,humidity from room,`order` " \
                       f"where room_id = room.id and room_id = {word['roomId']};"
-                self.cursor.execute()
+                self.cursor.execute(sql)
                 print(sql)
                 data = self.cursor.fetchone()
                 print(data)

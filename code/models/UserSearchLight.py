@@ -19,7 +19,10 @@ class ClientSearchLight(Model):
         self.cursor.execute(f"SELECT * FROM light WHERE room_id = {word['roomId']};")
         data = self.cursor.fetchall()
         print(data)
-        for item in data:
-            data_list.append(
-                {"lightStatus": item[1], "lightMode": item[4], "lightValue": item[2]})
-        return data_list
+        if data :
+            for item in data:
+                data_list.append(
+                    {"lightStatus": item[1], "lightMode": item[4], "lightValue": item[2]})
+            return data_list
+        else:
+            return 2

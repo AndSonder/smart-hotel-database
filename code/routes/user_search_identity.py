@@ -35,11 +35,11 @@ def index():
         data = db.search(get_info)
 
         if data == 2:
-            datas = {"errcode": data,  "message": "没有查询到数据", "stamp": stamp_h, "tableProve": table_prove}
+            datas = {"errcode": data,  "message": "没有查询到该用户", "stamp": stamp_h, "tableProve": table_prove}
             return json.dumps(datas)
         elif data:
             datas = {"errcode": 0, "datalist": data, "stamp": stamp_h, "tableProve": table_prove}
             return json.dumps(datas)
     else:
-        return json.dumps({"errcode": 3,"message": "你不对劲！你是faker!", "stamp": stamp_h, "tableProve": table_prove}, cls=DateEncoder)
+        return json.dumps({"errcode": 3,"message": "你不对劲！你是faker!", "stamp": stamp_h, "tableProve": table_prove})
 

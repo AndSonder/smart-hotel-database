@@ -34,7 +34,9 @@ class ClientSearchPersonRoominfo(Model):
         self.cursor.execute(sql)
         data = self.cursor.fetchall()
         print(data)
-        for item in data:
-            data_list.append({"orderId": item[10], "roomId": item[0], "roomType": item[1], "orderStatus": item[19]})
-
-        return data_list
+        if data:
+            for item in data:
+                data_list.append({"orderId": item[10], "roomId": item[0], "roomType": item[1], "orderStatus": item[19]})
+            return data_list
+        else:
+            return 2

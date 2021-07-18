@@ -13,6 +13,6 @@ class ClientSearchinfo(Model):
         print(data)
         for item in data:
             data_list.append(
-                { "wecharid": item[0], "name": item[1], "sex": item[2], "phone": item[4]})
+                { "name": item[1], "sex": item[2], "phone": item[4]})
         return data_list
 

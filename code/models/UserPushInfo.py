@@ -7,7 +7,7 @@ class UserPush(Model):
         super(UserPush, self).__init__()
 
     def insert(self, csv_file):
-        sql = f"INSERT INTO user (wecharid, name, sex, id_card, phone, level) VALUES ('{csv_file['wecharid']}','{csv_file['name']}','{csv_file['sex']}',{csv_file['idCard']},'{csv_file['phone']}',{1})"
+        sql = f"INSERT INTO user (wecharid, name, sex, id_card, phone, level) VALUES ('{csv_file['wecharid']}','{csv_file['name']}','{csv_file['sex']}',{csv_file['idCard']},'{csv_file['phone']}',{5})"
         print(sql)
         #传参
         """
@@ -33,7 +33,12 @@ class UserPush(Model):
             return 2
 
     def search(self, word):
-        self.cursor.execute(f"SELECT name FROM user WHERE wecharid='{word}'")
+        sql = f"SELECT name FROM user WHERE wecharid='{word}'"
+        self.cursor.execute(sql)
+        print(sql)
         data = self.cursor.fetchone()
+        print('\n')
+        print(data)
+        print('\n')
         return data
 

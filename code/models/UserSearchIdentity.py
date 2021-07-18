@@ -18,7 +18,10 @@ class ClientSearchIdentity(Model):
         self.cursor.execute(f"SELECT level FROM user WHERE wecharid = '{word['wecharid']}';")
         data = self.cursor.fetchall()
         print(data)
-        for item in data:
-            data_list.append(
-                {"identity": item[0]})
-        return data_list
+        if data:
+            for item in data:
+                data_list.append(
+                    {"identity": item[0]})
+            return data_list
+        else:
+            return 2

@@ -26,8 +26,8 @@ class AdminSearchRoominfo(Model):
             if flag == 0:
                 data_list = []
                 sql = f"SELECT `order`.id,room.id,room.temperature,room.humidity,rlock,air_conditioning.status,light.status,id_status FROM room,`order`,air_conditioning,light "\
-                      f"WHERE (scid > '{word['endTime']}'  AND `order`.room_id = room.id AND room.id = air_conditioning.room_id AND room.id = light.room_id AND `order`.id = '{word['orderId']}') OR "\
-                      f"(sgo < '{word['startTime']}'  AND `order`.room_id = room.id AND room.id = air_conditioning.room_id AND room.id = light.room_id AND `order`.id = '{word['orderId']}');"
+                      f"WHERE (scid > '{word['endTime']}'  AND `order`.room_id = room.id AND room.id = air_conditioning.room_id AND room.id = light.room_id AND `order`.id = '{word['orderId']}' and `order`.id_status = {flag} ) OR "\
+                      f"(sgo < '{word['startTime']}'  AND `order`.room_id = room.id AND room.id = air_conditioning.room_id AND room.id = light.room_id AND `order`.id = '{word['orderId']}' and `order`.id_status = {flag});"
                 print(sql)
                 self.cursor.execute(sql)
                 data = self.cursor.fetchall()
@@ -44,8 +44,8 @@ class AdminSearchRoominfo(Model):
             else:
                 data_list = []
                 sql = f"SELECT room.id,rlock,air_conditioning.status,light.status,id_status FROM room,`order`,air_conditioning,light "\
-                      f"WHERE (scid > '{word['endTime']}'  AND `order`.room_id = room.id AND room.id = air_conditioning.room_id AND room.id = light.room_id AND `order`.id = '{word['orderId']}') OR "\
-                      f"(sgo < '{word['startTime']}'  AND `order`.room_id = room.id AND room.id = air_conditioning.room_id AND room.id = light.room_id AND `order`.id = '{word['orderId']}');"
+                      f"WHERE (scid > '{word['endTime']}'  AND `order`.room_id = room.id AND room.id = air_conditioning.room_id AND room.id = light.room_id AND `order`.id = '{word['orderId']}' and `order`.id_status = {flag} ) OR "\
+                      f"(sgo < '{word['startTime']}'  AND `order`.room_id = room.id AND room.id = air_conditioning.room_id AND room.id = light.room_id AND `order`.id = '{word['orderId']}' and `order`.id_status = {flag} );"
                 print(sql)
                 self.cursor.execute(sql)
                 data = self.cursor.fetchall()
@@ -65,8 +65,8 @@ class AdminSearchRoominfo(Model):
             if flag == 0:
                 data_list = []
                 sql = f"SELECT `order`.id,room.id,room.temperature,room.humidity,rlock,air_conditioning.status,light.status,id_status FROM room,`order`,air_conditioning,light "\
-                      f"WHERE (scid > '{word['endTime']}'  AND `order`.room_id = room.id AND room.id = air_conditioning.room_id AND room.id = light.room_id AND `order`.id = '{word['orderId']}' AND rtype = '{word['roomType']}') OR "\
-                      f"(sgo < '{word['startTime']}'  AND `order`.room_id = room.id AND room.id = air_conditioning.room_id AND room.id = light.room_id AND `order`.id = '{word['orderId']}' AND rtype = '{word['roomType']}');"
+                      f"WHERE (scid > '{word['endTime']}'  AND `order`.room_id = room.id AND room.id = air_conditioning.room_id AND room.id = light.room_id AND `order`.id = '{word['orderId']}' AND rtype = '{word['roomType']}' and `order`.id_status = {flag}) OR "\
+                      f"(sgo < '{word['startTime']}'  AND `order`.room_id = room.id AND room.id = air_conditioning.room_id AND room.id = light.room_id AND `order`.id = '{word['orderId']}' AND rtype = '{word['roomType']}' and `order`.id_status = {flag});"
                 print(sql)
                 self.cursor.execute(sql)
                 data = self.cursor.fetchall()

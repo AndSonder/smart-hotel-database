@@ -14,9 +14,9 @@ class AdminSearchinfo(Model):
     def __init__(self):
         super(AdminSearchinfo, self).__init__()
 
-    def search(self, roomid):
+    def search(self, orderid):
         data_list = []
-        self.cursor.execute(f"SELECT * FROM `order` WHERE room_id='{roomid}' and id_status = 1 ")
+        self.cursor.execute(f"SELECT * FROM `order` WHERE `order`.id='{orderid}' and id_status = 0 ")
         data = self.cursor.fetchall()
         print(data)
         if data:

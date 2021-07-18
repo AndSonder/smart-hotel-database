@@ -19,7 +19,10 @@ class ClientSearchAir(Model):
         self.cursor.execute(f"SELECT * FROM air_conditioning WHERE room_id = {word['roomId']};")
         data = self.cursor.fetchall()
         print(data)
-        for item in data:
-            data_list.append(
-                {"airStatus": item[1], "airMode": item[4], "airValue": item[2]})
-        return data_list
+        if data:
+            for item in data:
+                data_list.append(
+                    {"airStatus": item[1], "airMode": item[4], "airValue": item[2]})
+            return data_list
+        else:
+            return 2

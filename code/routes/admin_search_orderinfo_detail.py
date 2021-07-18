@@ -32,7 +32,7 @@ def index():
         print(wecharid)
         get_info['wecharid'] = wecharid
         db = AdminSearchinfo()
-        data = db.search(get_info['roomId'])
+        data = db.search(get_info['orderId'])
 
         if data == 2:
             datas = {"errcode": 2, "message": "没有该订单", "stamp": stamp_h, "tableProve": table_prove}

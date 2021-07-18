@@ -33,8 +33,7 @@ def index():
         get_info['wecharid'] = wecharid
         db = ClientSearchinfo()
         data = db.search(wecharid)
-        print(data[0]['actLive'])
-        print(data[0]['actAway'])
+
         if data == 2:
             datas = {"errcode": data,  "message": "没有查询到数据", "stamp": stamp_h, "tableProve": table_prove}
             return json.dumps(datas, cls=DateEncoder)

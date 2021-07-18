@@ -9,7 +9,7 @@ from ..models.AdminSearchUserinfo import *
 from ..models.MD5 import *
 import time
 
-#https://www.supremeproger.com/user/admin/super_admin/perinf/get
+#https://www.supremeproger.com/user/perinf/admin/get
 admin_search_userinfo = Blueprint('admin_search_userinfo', __name__)
 """
 传参举例：
@@ -21,7 +21,7 @@ admin_search_userinfo = Blueprint('admin_search_userinfo', __name__)
 }
 """
 
-@admin_search_userinfo.route('/user/admin/super_admin/perinf/get', methods=['POST'])
+@admin_search_userinfo.route('/user/perinf/admin/get', methods=['POST'])
 def index():
     get_info = request.get_data()
     get_info = json.loads(get_info)
