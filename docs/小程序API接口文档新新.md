@@ -901,6 +901,8 @@ API：/room/extra_roomsinf/admin/get
 | roomType  | string   | 是   | 房间类型，默认值为“全选”                                     |
 | startTime | string   | 是   | 实际入住时间的查询最小值，默认值为“display-all”              |
 | endTime   | string   | 是   | 实际入住时间的查询最大值，默认值为“display-all”              |
+| orderId   | int      | 否   | 订单号                                                       |
+| roomId    | int      | 否   | 房间号                                                       |
 | stamp     | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
 | prove     | string   | 是   | 管理员的adminCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
 
@@ -923,6 +925,8 @@ API：/room/extra_roomsinf/admin/get
     "roomType":"豪华大床房",
     "startTime":"2020-05-21 18:55:49",
     "endTime":"2020-05-21 18:55:49",
+    "orderId":123,
+    "roomId":123,
     "stamp":"2020-05-21 18:55:49",
     "prove":"xxxxxxxxxx"
 }
@@ -1289,7 +1293,7 @@ API：/hardware/air_condition/user/push
 
 ```json
 {
-    "cerCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
+    "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "roomId":101,
     "airStatus":1,
     "airMode":1,
@@ -1345,7 +1349,7 @@ API：/hardware/light/user/push
 
 ```json
 {
-    "cerCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
+    "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "roomId":101,
     "lightStatus":1,
     "lightMode":1,
@@ -1399,7 +1403,7 @@ API：/hardware/lock/user/push
 
 ```json
 {
-    "cerCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
+    "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "roomId":101,
     "lockStatus":1,
     "stamp":"2020-05-21 18:55:49",
@@ -1668,7 +1672,7 @@ API：/system/identity/user/get
 
 ```json
 {
-    "cerCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
+    "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "stamp":"2020-05-21 18:55:49",
     "prove":"xxxxxxxxxx"
 }
