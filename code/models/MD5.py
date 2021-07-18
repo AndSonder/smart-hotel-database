@@ -4,7 +4,6 @@ import hashlib
 from .SALT  import *
 def md5sum(str):
 
-    str = str + salt
     print(str)
     m = hashlib.md5()  # 创建一个hashlib.md5()对象
     m.update(str.encode("utf8"))  # 将参数转换为UTF8编码

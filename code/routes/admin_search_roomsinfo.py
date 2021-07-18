@@ -35,7 +35,7 @@ def index():
         liveRoomList = db.search_live(get_info)
         notliveRoomList =db.search_notlive(get_info)
         if liveRoomList or notliveRoomList:
-            datas = {"errcode": 0, "liveRoomList ": liveRoomList,"notliveRoomList ": notliveRoomList ,"stamp": stamp_h, "tableProve": table_prove}
+            datas = {"errcode": 0, "liveRoomList": liveRoomList,"notliveRoomList": notliveRoomList ,"stamp": stamp_h, "tableProve": table_prove}
             return json.dumps(datas, cls=DateEncoder)
         else:
             datas = {"errcode": 2,  "message": "没有查询到数据", "stamp": stamp_h, "tableProve": table_prove}

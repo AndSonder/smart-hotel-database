@@ -38,7 +38,7 @@ def index():
             datas = {"errcode": data,  "message": "没有查询到数据", "stamp": stamp_h, "tableProve": table_prove}
             return json.dumps(datas, cls=DateEncoder)
         elif data:
-            datas = {"errcode": 0, "dataList ": data, "stamp": stamp_h, "tableProve": table_prove}
+            datas = {"errcode": 0, "datalist": data, "stamp": stamp_h, "tableProve": table_prove}
             return json.dumps(datas, cls=DateEncoder)
 
     else:

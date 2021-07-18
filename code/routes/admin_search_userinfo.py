@@ -47,7 +47,7 @@ def index():
             datas = {"errcode": 2, "message": "没有该订单", "stamp": stamp_h, "tableProve": table_prove}
             return json.dumps(datas)
         elif data:
-            datas = {"errcode": 0, "data ": data, "stamp": stamp_h, "tableProve": table_prove}
+            datas = {"errcode": 0, "datalist": data, "stamp": stamp_h, "tableProve": table_prove}
             return json.dumps(datas)
     else:
         return json.dumps({"errcode": 1,"message": "没有该管理员", "stamp": stamp_h, "tableProve": table_prove})
