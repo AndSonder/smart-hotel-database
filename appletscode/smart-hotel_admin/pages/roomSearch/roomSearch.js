@@ -126,6 +126,7 @@ Page({
       startTimeContent: options.startTime,
       endTimeContent: options.endTime,
     })
+    console.log(options)
   },
   choose_rtype(e) {
     this.setData({
@@ -386,73 +387,14 @@ Page({
   //搜索部分
   //当键盘输入时，触发input事件
   bindsearch: function (e) {
-    var that = this
-    //用户实时输入值
-    var prefix = e.detail.value
-    //匹配的结果
-    var newSource = []
-    var bookinf = that.data.bookinf
-    var bookinf = []
-    if (prefix != "") {
-      // 对于数组array进行遍历，功能函数中的参数 `e`就是遍历时的数组元素值。
-      that.data.adapterSource.forEach(function (e) {
-        // 用户输入的字符串如果在数组中某个元素中出现，将该元素存到newSource中
-        if (e.name.indexOf(prefix) != -1) {
-          console.log(e);
-          bookinf.push(e)
-          newSource.push(e.name)
-        }
-        that.setData({
-          bookinf:bookinf,
-        })
-      })
-      console.log(that.data.bookinf)
-    };
-    // 如果匹配结果存在，那么将其返回，相反则返回空数组
-    if (newSource.length != 0) {
-      this.setData({
-        // 匹配结果存在，显示自动联想词下拉列表
-        hideScroll: false,
-        bindSource: newSource,
-        arrayHeight: newSource.length * 100
-      })
-    } else {
-      this.setData({
-        // 匹配无结果，不显示下拉列表
-        hideScroll: true,
-        bindSource: []
-      })
-    }
-  },
-
-  // 用户点击选择某个联想字符串时，获取该联想词，并清空提醒联想词数组
-  itemtap: function (e) {
-    var booklogo = e.currentTarget.id
     this.setData({
-      // .id在wxml中被赋值为{{item}}，即当前遍历的元素值
-      inputValue: booklogo,
-      // 当用户选择某个联想词，隐藏下拉列表
-      hideScroll: true,
-      bindSource: []
+      inputValue:e.detail.value,
     })
-    this.data.bookinf.forEach(function (e) {
-      // 用户输入的字符串如果在数组中某个元素中出现，将该元素存到newSource中
-      if (e.name.indexOf(booklogo) != -1) {
-        console.log(e);
-        wx.navigateTo({
-          url: '/pages/bookinf/bookinf?bookid=' + e.bookid + "&name=" + e.name + "&author=" + e.author + "&introduction=" + e.introduction + "&cnt=" + e.availiable_cnt,
-        })
-      }
-    })
+    console.log(e.detail.value)
   },
   cancelsearch: function (e) {
-    wx.navigateBack({
-      //返回上一级
-      delta: 1,
-    })
     this.setData({
-      color: "rgb(58, 56, 56)",
-      opacity: "0.9",
+      inputValue:'',
     })
   }
 })

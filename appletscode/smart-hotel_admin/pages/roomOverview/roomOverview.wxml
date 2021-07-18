@@ -26,13 +26,61 @@
         <view class="search_module">
           <view class="search_button">
             <button class="cu-btn round  bg-blue shadow" bindtap="turn_search" data-rtype="{{rtypeContent}}"
-              data-startTime="{{startTimeContent}}" data-endTime="{{endTimeContent}}">房间搜索</button>
+              data-starttime="{{startTimeContent}}" data-endtime="{{endTimeContent}}">房间搜索</button>
           </view>
         </view>
       </view>
     </view>
     <view class="second_box">
-      <view class="roomlist_box" wx:for="{{roomList1}}" wx:key="roomId">
+      <view class="roomlist_box" wx:for="{{liveRoomList}}" wx:key="roomId">
+        <view class="roomInf_box">
+          <view class="icon_module">
+            <view class="iconContent_module">
+              <text class="cuIcon-homefill text-grey"></text>
+            </view>
+          </view>
+          <view class="icon_module">
+            <view class="iconContent_module">
+              <text class="text-grey">101</text>
+            </view>
+          </view>
+          <view class="inf-button_module">
+            <view class="inf_module">
+              <view class="infContentShow_module">
+                <view class="infContent_module">
+                  <text class="infContent_title">T:</text>
+                  <text class="infContent">{{item.roomTemp}}℃</text>
+                </view>
+              </view>
+              <view class="infContentShow_module">
+                <view class="infContent_module">
+                  <text class="infContent_title">H:</text>
+                  <text class="infContent">{{item.roomHum}}rh</text>
+                </view>
+              </view>
+              <view class="infContentShow_module">
+                <view class="infContent_module">
+                  <text class="infContent_title">空调</text>
+                  <text class="infContent">{{item.airStatus}}</text>
+                </view>
+              </view>
+              <view class="infContentShow_module">
+                <view class="infContent_module">
+                  <text class="infContent_title">灯</text>
+                  <text class="infContent">{{item.lightStatus}}</text>
+                </view>
+              </view>
+            </view>
+            <view class="button_module">
+              <view class="buttonContent_module">
+                <button class="cu-btn block icon bg-cyanblue shadow" bindtap="showModal" data-target="viewModal"
+                  data-roomId="{{item.roomId}}" data-orderId="{{item.orderId}}">开</button>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="roomlist_box" wx:for="{{notliveRoomList}}" wx:key="roomId">
         <view class="roomInf_box">
           <view class="icon_module">
             <view class="iconContent_module">

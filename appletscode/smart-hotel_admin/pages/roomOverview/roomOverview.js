@@ -17,7 +17,7 @@ Page({
     rtypeShow: false,
     startTimeShow: false,
     endTimeShow: false,
-    roomList1: [{
+    liveRoomList: [{
       "orderId": 123,
       "roomId": 123,
       "roomTemp": 26,
@@ -26,7 +26,7 @@ Page({
       "airStatus": 1,
       "lightStatus": 1,
     }],
-    roomList2: [],
+    notliveRoomList: [],
     airInf:[],
     lightInf:[],
     userInf:[],
@@ -95,8 +95,8 @@ Page({
               var roomlist_errorcode = roomlist_jsonStr.errorcode;
               switch (roomlist_errorcode) {
                 case "0":
-                  var roomList1 = that.ChangeHardware(roomlist_jsonStr.processList)
-                  var roomList2 = that.ChangeHardware(roomlist_jsonStr.unprocessList)
+                  var liveRoomList = that.ChangeHardware(roomlist_jsonStr.liveRoomList)
+                  var notliveRoomList = that.ChangeHardware(roomlist_jsonStr.notliveRoomList)
                   that.setData({
                     roomList1: roomList1,
                     roomList2: roomList2,
@@ -165,8 +165,10 @@ Page({
   },
   turn_search(e) {
     wx.navigateTo({
-      url: '/pages/roomSearch/roomSearch?rtype=' + e.currentTarget.dataset.rtype + '&startTime=' + e.currentTarget.dataset.startTime + '&endTime=' + e.currentTarget.dataset.endTime,
+      url: '/pages/roomSearch/roomSearch?rtype=' + e.currentTarget.dataset.rtype + '&startTime=' + e.currentTarget.dataset.starttime + '&endTime=' + e.currentTarget.dataset.endtime,
     })
+    console.log(e)
+
   },
   showModal(e) {
     var that = this;
