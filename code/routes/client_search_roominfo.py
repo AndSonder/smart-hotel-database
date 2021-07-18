@@ -9,7 +9,7 @@ from ..models.MD5 import *
 import time
 import datetime
 #https://www.supremeproger.com/room/per_roominf/resident/get
-
+from ..models.get_openid import *
 client_search_roominfo = Blueprint('client_search_roominfo', __name__)
 @client_search_roominfo.route('/room/per_roominf/resident/get', methods=['POST'])
 def index():
@@ -25,13 +25,8 @@ def index():
     str2 = 'user' + stamp_h + salt
     table_prove = md5sum(str2)
     if prove_h == get_info['prove']:
-        # url = 'https://test.com/onLogin'
-        # data = {
-        #     'code': get_info['resCode']
-        # }
-        # wecharid = requests.post(url=url, data=data)
-        # wecharid = wecharid.text
-        wecharid = 'wxid_ux57m1gafdh523'
+
+        wecharid = get_wx_user_openid(get_info['resCode'])
 
         print(wecharid)
         get_info['wecharid'] = wecharid

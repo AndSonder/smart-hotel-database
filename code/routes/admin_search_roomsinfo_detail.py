@@ -8,6 +8,7 @@ from ..models.AdminSearchRoomsInfoDetail import *
 from ..models.MD5 import *
 import time
 import datetime
+from ..models.get_openid import *
 #https://www.supremeproger.com/room/roominf/admin/get
 admin_search_roomsinfo_detail = Blueprint('admin_search_roomsinfo_detail', __name__)
 
@@ -25,13 +26,8 @@ def index():
     str2 = 'admin' + stamp_h + salt
     table_prove = md5sum(str2)
     if prove_h == get_info['prove']:
-        # url = 'https://test.com/onLogin'
-        # data = {
-        #     'code': get_info['resCode']
-        # }
-        # wecharid = requests.post(url=url, data=data)
-        # wecharid = wecharid.text
-        wecharid = 'wxid_ux57m1gafdh523'
+
+        wecharid = get_wx_user_openid(get_info['adminCode'])
 
         print(wecharid)
         get_info['wecharid'] = wecharid

@@ -1,12 +1,12 @@
 # author:liuyang
 # time:2021/7/14
-
 from flask import Blueprint
 from flask import request
 import requests
 import json
 from ..models.AdminSearchLight import *
 from ..models.MD5 import *
+from ..models.get_openid import *
 import time
 import datetime
 #https://www.supremeproger.com/hardware/light/admin/get
@@ -26,13 +26,8 @@ def index():
     str2 = 'admin' + stamp_h + salt
     table_prove = md5sum(str2)
     if prove_h == get_info['prove']:
-        # url = 'https://test.com/onLogin'
-        # data = {
-        #     'code': get_info['resCode']
-        # }
-        # wecharid = requests.post(url=url, data=data)
-        # wecharid = wecharid.text
-        wecharid = 'wxid_ux57m1gafdh523'
+
+        wecharid = get_wx_user_openid(get_info['adminCode'])
 
         print(wecharid)
         get_info['wecharid'] = wecharid

@@ -1,6 +1,6 @@
 # author:liuyang
 # time:2021/7/13
-
+from ..models.get_openid import *
 from flask import Blueprint
 from flask import request
 import requests
@@ -35,13 +35,8 @@ def index():
     str2 = 'admin' + stamp_h + salt
     table_prove = md5sum(str2)
     if prove_h == get_info['prove']:
-        # url = 'https://test.com/onLogin'
-        # data = {
-        #     'code': get_info['resCode']
-        # }
-        # wecharid = requests.post(url=url, data=data)
-        # wecharid = wecharid.text
-        wecharid = 'wxid_ux57m1gafdh524'
+
+        wecharid = get_wx_user_openid(get_info['adminCode'])
 
         print(wecharid)
         get_info['wecharid'] = wecharid

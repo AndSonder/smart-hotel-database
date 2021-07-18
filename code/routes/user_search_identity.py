@@ -1,6 +1,6 @@
 # author:liuyang
 # time:2021/7/14
-
+from ..models.get_openid import *
 from flask import Blueprint
 from flask import request
 import requests
@@ -26,13 +26,8 @@ def index():
     str2 = 'user' + stamp_h + salt
     table_prove = md5sum(str2)
     if prove_h == get_info['prove']:
-        # url = 'https://test.com/onLogin'
-        # data = {
-        #     'code': get_info['resCode']
-        # }
-        # wecharid = requests.post(url=url, data=data)
-        # wecharid = wecharid.text
-        wecharid = 'wxid_ux57m1gafdh523'
+
+        wecharid = get_wx_user_openid(get_info['resCode'])
 
         print(wecharid)
         get_info['wecharid'] = wecharid
@@ -41,10 +36,10 @@ def index():
 
         if data == 2:
             datas = {"errcode": data,  "message": "没有查询到数据", "stamp": stamp_h, "tableProve": table_prove}
-            return json.dumps(datas, cls=DateEncoder)
+            return json.dumps(datas)
         elif data:
             datas = {"errcode": 0, "dataList ": data, "stamp": stamp_h, "tableProve": table_prove}
-            return json.dumps(datas, cls=DateEncoder)
+            return json.dumps(datas)
     else:
         return json.dumps({"errcode": 3,"message": "你不对劲！你是faker!", "stamp": stamp_h, "tableProve": table_prove}, cls=DateEncoder)
 
