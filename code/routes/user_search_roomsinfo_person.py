@@ -8,10 +8,10 @@ from ..models.UserSearchPersonRoomsinfo import *
 from ..models.MD5 import *
 import time
 import datetime
-#https://www.supremeproger.com/user/resident/per_roomsinf/get
+#https://www.supremeproger.com/room/per_roomsinf/resident/get
 user_search_roomsinfo_person = Blueprint('user_search_roomsinfo_person', __name__)
 
-@user_search_roomsinfo_person.route('/user/resident/per_roomsinf/get', methods=['POST'])
+@user_search_roomsinfo_person.route('/room/per_roomsinf/resident/get', methods=['POST'])
 def index():
     get_info = request.get_data()
     get_info = json.loads(get_info)
@@ -38,11 +38,11 @@ def index():
         db = ClientSearchPersonRoominfo()
         data = db.search(get_info)
 
-        if data:
-            datas = {"errcode": 0, "perRoomList ": data, "stamp": stamp_h, "tableProve": table_prove}
+        if data == 2:
+            datas = {"errcode": data,  "message": "没有查询到数据", "stamp": stamp_h, "tableProve": table_prove}
             return json.dumps(datas, cls=DateEncoder)
-        else:
-            datas = {"errcode": 2,  "message": "没有查询到数据", "stamp": stamp_h, "tableProve": table_prove}
+        elif data:
+            datas = {"errcode": 0, "dataList ": data, "stamp": stamp_h, "tableProve": table_prove}
             return json.dumps(datas, cls=DateEncoder)
     else:
         return json.dumps({"errcode": 3,"message": "你不对劲！你是faker!", "stamp": stamp_h, "tableProve": table_prove}, cls=DateEncoder)

@@ -39,11 +39,11 @@ def index():
         db = AdminSearchAir()
         data = db.search(get_info)
 
-        if data:
-            datas = {"errcode": 0, "data ": data, "stamp": stamp_h, "tableProve": table_prove}
+        if data == 2:
+            datas = {"errcode": 2, "message": "没有该订单", "stamp": stamp_h, "tableProve": table_prove}
             return json.dumps(datas, cls=DateEncoder)
-        else:
-            datas = {"errcode": 2,  "orderlist": "没有查询到数据", "stamp": stamp_h, "tableProve": table_prove}
+        elif data:
+            datas = {"errcode": 0, "data ": data, "stamp": stamp_h, "tableProve": table_prove}
             return json.dumps(datas, cls=DateEncoder)
     else:
         return json.dumps({"errcode": 3,"message": "你不对劲！你是faker!", "stamp": stamp_h, "tableProve": table_prove}, cls=DateEncoder)

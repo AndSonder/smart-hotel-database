@@ -20,14 +20,16 @@ class UserPushOrder(Model):
         #pmoney根据房间类型来算
         hourmoney = self.search_tmoney(csv_file['roomType'])
         time = (int(csv_file['expAway'][5:7]) - int(csv_file['expLive'][5:7])) * 30 * 24 + (int(csv_file['expAway'][8:10]) - int(csv_file['expLive'][8:10])) * 24 + (int(csv_file['expAway'][11:13]) - int(csv_file['expLive'][11:13]))
-        pmoney = hourmoney * time
+
+        depoist = 131 * time
+        pmoney = hourmoney * time + depoist
 
         roomlist = self.search_roomid(csv_file)
         roomid = roomlist[0]
         print(roomid)
         print(roomlist)
         sql = f"INSERT INTO `order`( id, pmoney, scid, sgo, cid, go, otime, wecharid, room_id, depoist) " \
-              f"VALUES ({count},{pmoney},'{csv_file['expLive']}','{csv_file['expAway']}',null,null,'{csv_file['stamp_h']}','{csv_file['wecharid']}',{roomid},null);"
+              f"VALUES ({count},{pmoney},'{csv_file['expLive']}','{csv_file['expAway']}',null,null,'{csv_file['stamp_h']}','{csv_file['wecharid']}',{roomid},{depoist});"
         print(sql)
         #传参
         """

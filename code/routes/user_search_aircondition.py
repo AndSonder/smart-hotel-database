@@ -39,11 +39,11 @@ def index():
         db = ClientSearchAir()
         data = db.search(get_info)
 
-        if data:
-            datas = {"errcode": 0, "data ": data, "stamp": stamp_h, "tableProve": table_prove}
+        if data == 2:
+            datas = {"errcode": data,  "message": "没有查询到数据", "stamp": stamp_h, "tableProve": table_prove}
             return json.dumps(datas, cls=DateEncoder)
-        else:
-            datas = {"errcode": 2,  "orderlist": "没有查询到数据", "stamp": stamp_h, "tableProve": table_prove}
+        elif data:
+            datas = {"errcode": 0, "dataList ": data, "stamp": stamp_h, "tableProve": table_prove}
             return json.dumps(datas, cls=DateEncoder)
     else:
         return json.dumps({"errcode": 3,"message": "你不对劲！你是faker!", "stamp": stamp_h, "tableProve": table_prove}, cls=DateEncoder)

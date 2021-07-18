@@ -48,11 +48,11 @@ def index():
         db = AdminSearchinfo()
         data = db.search(wecharid)
 
-        if data:
-            datas = {"errcode": 0, "data ": data, "stamp": stamp_h, "tableProve": table_prove}
+        if data == 2:
+            datas = {"errcode": 2, "message": "没有该订单", "stamp": stamp_h, "tableProve": table_prove}
             return json.dumps(datas)
-        else:
-            datas = {"errcode": 3,  "data":"没有查询到数据", "stamp": stamp_h, "tableProve": table_prove}
+        elif data:
+            datas = {"errcode": 0, "data ": data, "stamp": stamp_h, "tableProve": table_prove}
             return json.dumps(datas)
     else:
         return json.dumps({"errcode": 1,"message": "没有该管理员", "stamp": stamp_h, "tableProve": table_prove})

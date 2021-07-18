@@ -41,7 +41,7 @@ def index():
         if data == 2:
             datas = {"errcode": 2, "message": "没有该订单", "stamp": stamp_h, "tableProve": table_prove}
             return json.dumps(datas, cls=DateEncoder)
-        else:
+        elif data:
             datas = {"errcode": 0, "data ": data, "stamp": stamp_h, "tableProve": table_prove}
             return json.dumps(datas, cls=DateEncoder)
     else:

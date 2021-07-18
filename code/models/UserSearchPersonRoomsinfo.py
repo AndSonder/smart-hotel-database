@@ -17,7 +17,7 @@ class ClientSearchPersonRoominfo(Model):
     def search(self, word):
         data_list = []
 
-        sql = f"SELECT * FROM room,`order`" \
+        sql = f"SELECT * FROM room,`order` " \
               f"WHERE (wecharid = '{word['wecharid']}' AND id_status = 0 AND `order`.room_id = room.id);"
         print(sql)
 
@@ -25,9 +25,9 @@ class ClientSearchPersonRoominfo(Model):
         data = self.cursor.fetchall()
         print(data)
         for item in data:
-            data_list.append({"id": item[0], "rtype": item[1], "temperature": item[7], "humidity": item[8], "lockStatus": item[9]})
+            data_list.append({"orderId": item[10], "roomId": item[0], "roomType": item[1], "roomTemp": item[7], "roomHum": item[8], "lockStatus": item[9], "orderStatus": item[19]})
 
-        sql = f"SELECT * FROM room,`order`" \
+        sql = f"SELECT * FROM room,`order` " \
               f"WHERE wecharid = '{word['wecharid']}' AND id_status = 3 AND `order`.room_id = room.id;"
         print(sql)
 
@@ -35,6 +35,6 @@ class ClientSearchPersonRoominfo(Model):
         data = self.cursor.fetchall()
         print(data)
         for item in data:
-            data_list.append({"id": item[0], "rtype": item[1]})
+            data_list.append({"orderId": item[10], "roomId": item[0], "roomType": item[1], "orderStatus": item[19]})
 
         return data_list

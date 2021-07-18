@@ -9,10 +9,10 @@ from ..models.UserUpdateLock import *
 from ..models.MD5 import *
 import time
 
-#https://www.supremeproger.com/hardware/hardwareinf/lock/user/push
+#https://www.supremeproger.com/hardware/lock/user/push
 user_updata_lockinfo = Blueprint('user_updata_lockinfo', __name__)
 
-@user_updata_lockinfo.route('/hardware/hardwareinf/lock/user/push', methods=['POST'])
+@user_updata_lockinfo.route('/hardware/lock/user/push', methods=['POST'])
 def index():
     get_info = request.get_data()
     get_info = json.loads(get_info)
