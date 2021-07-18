@@ -30,6 +30,7 @@ Page({
     wx.login({
       success(res) {
         if (res.code) {
+          console.log(res.code)
           var roomsinfBoutique_jsonData = {
             resCode: res.code,
             stamp: stamp,
@@ -49,7 +50,8 @@ Page({
                 var roomsinfBoutique_errorcode = roomsinfBoutique_jsonStr.errorcode;
                 switch (roomsinfBoutique_errorcode) {
                   case "0":
-                    var roomList = that.ChangeWindow(roomsinfBoutique_jsonStr.datelist, 'roomWindow')
+                    var roomList = that.Introomlist(roomsinfBoutique_jsonStr.datelist)
+                    var roomList = that.ChangeWindow(roomList, 'roomWindow')
                     that.setData({
                       roomList: roomList,
                     })
@@ -94,6 +96,14 @@ Page({
     wx.navigateTo({
       url: '/pages/booking/booking?roomType=' + e.currentTarget.dataset.roomType + '&roomPrice=' + e.currentTarget.dataset.roomPrice + '&startDate=' + this.data.start + '&endDate=' + this.data.end,
     })
+  },
+  Introomlist(arr){
+    arr.forEach((item) => {
+      item.maximum = Nunmber(item.maximum)
+      item.roomPrice = Nunmber(item.roomPrice)
+      item.roomWindow = Nunmber(item.roomWindow)
+    })
+    return arr
   },
   ChangeWindow(arr, name) {
     arr.forEach((item) => {

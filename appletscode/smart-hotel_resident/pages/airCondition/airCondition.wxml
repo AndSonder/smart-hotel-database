@@ -12,17 +12,17 @@
   </view>
   <view class="second_box">
     <view class="airStatus_module">
-      <view class="airStatusContent_module">
+      <view class="airStatusContent_module" bindtap="chooseHot" style="{{hotUI}}">
         <view class="airStatusContentShow_module">
           <image class="airStatusContentShow" src="/images/hot.png"></image>
         </view>
       </view>
-      <view class="airStatusContent_module">
+      <view class="airStatusContent_module" bindtap="chooseWind" style="{{windUI}}">
         <view class="airStatusContentShow_module">
           <image class="airStatusContentShow" src="/images/wind.png"></image>
         </view>
       </view>
-      <view class="airStatusContent_module">
+      <view class="airStatusContent_module" bindtap="chooseCold" style="{{coldUI}}">
         <view class="airStatusContentShow_module">
           <image class="airStatusContentShow" src="/images/cold.png"></image>
         </view>
@@ -30,20 +30,20 @@
     </view>
   </view>
   <view class="third_box">
-    <view class="control_module">
+    <view class="control_module" bindtap="controlStatus">
       <view class="controlContent_module">
         <van-circle value="{{ value }}" color="{{ gradientColor }}" clockwise="{{ false }}" stroke-width="9"
-          text="{{airValue}}" />
+          text="{{airContent}}" />
       </view>
     </view>
     <view class="switch_module">
       <view class="leftSwitch_module">
-        <button class="cu-btn icon bg-white shadow lg">
+        <button class="cu-btn icon bg-white shadow lg" bindtap="down">
           <van-icon name="arrow-left" />
         </button>
       </view>
       <view class="rightSwitch_module">
-        <button class="cu-btn icon bg-white shadow lg">
+        <button class="cu-btn icon bg-white shadow lg" bindtap="up">
           <van-icon name="arrow" />
         </button>
       </view>

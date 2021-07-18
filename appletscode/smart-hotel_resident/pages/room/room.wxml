@@ -51,7 +51,7 @@
             <image class="roomImg" src="/images/temp.png"></image>
           </view>
           <view class="roomContent_module">
-            <text class="roomContent">{{room.roomTem}}℃</text>
+            <text class="roomContent">{{room.roomTemp}}℃</text>
           </view>
         </view>
         <view class="roomT-HContent_module">
@@ -59,7 +59,7 @@
             <image class="roomImg" src="/images/humd.png"></image>
           </view>
           <view class="roomContent_module">
-            <text class="roomContent">{{room.roomHumi}}rh</text>
+            <text class="roomContent">{{room.roomHum}}rh</text>
           </view>
         </view>
       </view>
@@ -82,13 +82,16 @@
           <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">灯</text></view>
         </view>
         <view class="hardwareInfContent_module">
-          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">{{light.lightStatus}}</text></view>
+          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">{{light.lightStatus}}</text>
+          </view>
         </view>
         <view class="hardwareInfContent_module">
-          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">{{light.lightMode}}</text></view>
+          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">{{light.lightMode}}</text>
+          </view>
         </view>
         <view class="hardwareInfContent_module">
-          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">{{light.lightValue}}级</text></view>
+          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">{{light.lightValue}}级</text>
+          </view>
         </view>
       </view>
       <view class="switch_module">
@@ -106,25 +109,25 @@
     </view>
   </view>
   <view class="second_module">
-    <view class="hardware_module">
+    <view class="hardware_module" bindtap="openDoor">
       <view class="hardwareImg_module">
         <image class="hardwareImg" src="/images/door.png"></image>
       </view>
-      <view class="hardwareContent_module"><text class="hardwareContent" bindtap="openDoor">一键开门</text>
+      <view class="hardwareContent_module"><text class="hardwareContent">一键开门</text>
       </view>
     </view>
-    <view class="hardware_module">
+    <view class="hardware_module" bindtap="controlAir">
       <view class="hardwareImg_module">
         <image class="hardwareImg" src="/images/air.png"></image>
       </view>
-      <view class="hardwareContent_module"><text class="hardwareContent" bindtap="controlAir">空调控制</text>
+      <view class="hardwareContent_module"><text class="hardwareContent">空调控制</text>
       </view>
     </view>
-    <view class="hardware_module">
+    <view class="hardware_module" bindtap="controlLight">
       <view class="hardwareImg_module">
         <image class="hardwareImg" src="/images/light.png"></image>
       </view>
-      <view class="hardwareContent_module"><text class="hardwareContent" bindtap="controlLight">灯光控制</text>
+      <view class="hardwareContent_module"><text class="hardwareContent">灯光控制</text>
       </view>
     </view>
   </view>
@@ -133,31 +136,35 @@
       <view class="titleContent_module"><text class="titleContent">客房服务</text></view>
     </view>
     <view class="server_module">
-      <view class="serverDetail_module">
+      <view class="serverDetail_module" bindtap="wakeServer">
         <view class="img_module">
           <image class="serverImg" src="/images/brokeup.png"></image>
         </view>
         <view class="serverContent_module"><text class="serverContent">叫醒服务</text></view>
       </view>
-      <view class="serverDetail_module">
+      <van-popup show="{{ timeShow }}" position="bottom" bind:close="onClose">
+          <van-datetime-picker type="time" value="{{ currentDate }}" min-hour="{{minHour}}"
+            max-hour="{{ maxHour }}" bind:confirm="time_onConfirm" bind:cancel="onCancel" />
+        </van-popup>
+      <view class="serverDetail_module" bindtap="cleanServer">
         <view class="img_module">
           <image class="serverImg" src="/images/clean.png"></image>
         </view>
         <view class="serverContent_module"><text class="serverContent">呼叫保洁</text></view>
       </view>
-      <view class="serverDetail_module">
+      <view class="serverDetail_module" bindtap="checkoutServer">
         <view class="img_module">
           <image class="serverImg" src="/images/out_home.png"></image>
         </view>
         <view class="serverContent_module"><text class="serverContent">预约退房</text></view>
       </view>
-      <view class="serverDetail_module">
+      <view class="serverDetail_module" bindtap="urgencyServer">
         <view class="img_module">
           <image class="serverImg" src="/images/urgency.png"></image>
         </view>
         <view class="serverContent_module"><text class="serverContent">紧急呼叫</text></view>
       </view>
-      <view class="serverDetail_module">
+      <view class="serverDetail_module" bindtap="feedbackServer">
         <view class="img_module">
           <image class="serverImg" src="/images/complaints.png"></image>
         </view>

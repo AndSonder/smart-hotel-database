@@ -814,6 +814,77 @@ API：/room/per_roominf/resident/get
 }
 ```
 
+#### 管理员查询住户房间简略信息(新增原有接口，原本的在过往版本更改中被误删)
+
+功能描述：**查询指定房间的进行中状态订单的房间详细信息**。
+
+API：/room/roomsinf/admin/get
+
+请求方法：POST
+
+支持格式：JSON
+
+**请求参数**
+
+| 字段      | 数据类型 | 必填 | 备注                                                         |
+| --------- | -------- | ---- | ------------------------------------------------------------ |
+| adminCode | string   | 是   | 管理员的登录凭证，后端借其获取openid，验证用户身份是否为超级管理员 |
+| roomType  | string   | 是   | 房间类型，默认值为“全选”                                     |
+| startTime | string   | 否   | 实际入住时间的查询最小值，默认值为“display-all”              |
+| endTime   | string   | 否   | 实际入住时间的查询最大值，默认值为“display-all”              |
+| stamp     | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
+| prove     | string   | 是   | 管理员的adminCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
+
+**返回参数**
+
+| 字段          | 数据类型     | 必填 | 备注                                                         |
+| ------------- | ------------ | ---- | ------------------------------------------------------------ |
+| errcode       | int          | 是   | 状态标识。0表示成功查询，1表示没有该管理员、2表示房间不存在，3表示订单不存在，4表示未知错误。 |
+| processList   | string(json) | 是   | 房间简略信息（房间号、温湿度、锁状态、灯状态、空调状态、订单号）（后端若保存过字段名则更新为原字段名） |
+| unprocessList | string(json) | 是   | 房间简略信息（房间号、硬件状态）（后端若保存过字段名则更新为原字段名） |
+| stamp         | string       | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
+| tableProve    | string       | 是   | 表验证，功能与用法和prove一致，只不过把adminCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
+
+请求示例：
+
+**request**
+
+```json
+{
+    "adminCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
+    "roomType":"豪华大床房",
+    "startTime":"2020-05-21 18:55:49",
+    "endTime":"2020-05-21 18:55:49",
+    "stamp":"2020-05-21 18:55:49",
+    "prove":"xxxxxxxxxx"
+}
+```
+
+**response**
+
+```json
+{
+    "errcode":0/1/2/3/4,
+    "processList":[{
+        "orderId":123,
+        "roomId":123,
+        "roomTemp":26,
+        "roomHum":45,
+        "lockStatus":1,
+        "airStatus":1,
+        "lightStatus":1,
+	},
+    ],
+    "unprocessList":[{
+        "roomId":123,
+        "lockStatus":1,
+	},
+    ],
+    "stamp":"2020-05-21 18:55:49",
+    "tableProve":"xxxxxxxxxxx"
+}
+```
+
 #### 管理员查询住户房间详细信息
 
 功能描述：**查询指定房间的进行中状态订单的房间详细信息**。
@@ -1114,6 +1185,120 @@ API：/hardware/light/admin/get
 
 ### 修改
 
+
+
+#### 用户修改空调详细信息(新增接口)
+
+功能描述：**修改房间内空调的详细信息**。
+
+API：/hardware/air_condition/user/push
+
+请求方法：POST
+
+支持格式：JSON
+
+**请求参数**
+
+| 字段      | 数据类型 | 必填 | 备注                                                         |
+| --------- | -------- | ---- | ------------------------------------------------------------ |
+| cerCode   | string   | 是   | 住户的登录凭证，后端借其获取openid，验证用户身份是否为住户   |
+| roomId    | int      | 是   | 房间号                                                       |
+| airStatus | int      | 否   | 空调状态                                                     |
+| airStatus | int      | 否   | 空调模式                                                     |
+| airStatus | int      | 否   | 空调数值                                                     |
+| stamp     | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
+| prove     | string   | 是   | 管理员的cerCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
+
+**返回参数**
+
+| 字段       | 数据类型 | 必填 | 备注                                                         |
+| ---------- | -------- | ---- | ------------------------------------------------------------ |
+| errcode    | int      | 是   | 状态标识。0表示成功查询，1表示没有该用户，2表示房间不存在，3表示灯不存在、4表示未知错误。 |
+| stamp      | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
+| tableProve | string   | 是   | 表验证，功能与用法和prove一致，只不过把cerCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
+
+请求示例：
+
+**request**
+
+```json
+{
+    "cerCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
+    "roomId":101,
+    "airStatus":1,
+    "airMode":1,
+    "airValue":1,
+    "stamp":"2020-05-21 18:55:49",
+    "prove":"xxxxxxxxxx"
+}
+```
+
+**response**
+
+```json
+{
+    "errcode":0/1/2/3/4,
+    "stamp":"2020-05-21 18:55:49",
+    "tableProve":"xxxxxxxxxxx"
+}
+```
+
+#### 用户修改灯详细信息(新增接口)
+
+功能描述：**修改房间内灯的详细信息**。
+
+API：/hardware/light/user/push
+
+请求方法：POST
+
+支持格式：JSON
+
+**请求参数**
+
+| 字段        | 数据类型 | 必填 | 备注                                                         |
+| ----------- | -------- | ---- | ------------------------------------------------------------ |
+| cerCode     | string   | 是   | 住户的登录凭证，后端借其获取openid，验证用户身份是否为住户   |
+| roomId      | int      | 是   | 房间号                                                       |
+| lightStatus | int      | 否   | 灯状态                                                       |
+| lightStatus | int      | 否   | 灯模式                                                       |
+| lightStatus | int      | 否   | 灯数值                                                       |
+| stamp       | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
+| prove       | string   | 是   | 管理员的cerCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
+
+**返回参数**
+
+| 字段       | 数据类型 | 必填 | 备注                                                         |
+| ---------- | -------- | ---- | ------------------------------------------------------------ |
+| errcode    | int      | 是   | 状态标识。0表示成功查询，1表示没有该用户，2表示房间不存在，3表示灯不存在、4表示未知错误。 |
+| stamp      | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
+| tableProve | string   | 是   | 表验证，功能与用法和prove一致，只不过把cerCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
+
+请求示例：
+
+**request**
+
+```json
+{
+    "cerCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
+    "roomId":101,
+    "lightStatus":1,
+    "lightMode":1,
+    "lightValue":1,
+    "stamp":"2020-05-21 18:55:49",
+    "prove":"xxxxxxxxxx"
+}
+```
+
+**response**
+
+```json
+{
+    "errcode":0/1/2/3/4,
+    "stamp":"2020-05-21 18:55:49",
+    "tableProve":"xxxxxxxxxxx"
+}
+```
+
 #### 用户修改门锁详细信息
 
 功能描述：**修改房间内门锁的详细信息**。
@@ -1148,7 +1333,7 @@ API：/hardware/lock/user/push
 
 ```json
 {
-    "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
+    "cerCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "roomId":101,
     "lockStatus":1,
     "stamp":"2020-05-21 18:55:49",
@@ -1276,7 +1461,59 @@ API：/server/call_cleaning/resident/post
 }
 ```
 
-#### 住户提交意见反馈
+#### 住户提交叫醒服务申请（新增接口）
+
+功能描述：**住户申请酒店提供叫醒服务**。
+
+API：/server/wake/resident/post
+
+请求方法：POST
+
+支持格式：JSON
+
+**请求参数**
+
+| 字段     | 数据类型 | 必填 | 备注                                                         |
+| :------- | :------- | :--- | :----------------------------------------------------------- |
+| resCode  | string   | 是   | 用户的登录凭证，后端借其获取openid，验证是否是用户           |
+| roomId   | int      | 是   | 房间号                                                       |
+| wakeTime | string   | 是   | 叫醒时间                                                     |
+| stamp    | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
+| prove    | string   | 是   | 管理员的resCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
+
+**返回参数**
+
+| 字段       | 数据类型 | 必填 | 备注                                                         |
+| :--------- | :------- | :--- | :----------------------------------------------------------- |
+| errcode    | int      | 是   | 状态标识。0表示成功呼叫，1表示没有该住户、2表示现在无法提供叫醒服务、4表示意外错误 |
+| stamp      | string   | 是   | 时间戳，后端获取的当前日期和时间。验证用，不用加入数据库。   |
+| tableProve | string   | 是   | 表验证，功能与用法和prove一致，只不过把resCode换成表的名称。(如果涉及到联合查询，表名就用占主要返回属性的表名) |
+
+请求示例：
+
+**request**
+
+```json
+{
+    "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
+    "roomId":101,
+    "wakeTime":"08:55"
+    "stamp":"2020-05-21 18:55:49",
+    "prove":"xxxxxxxxxx"
+}
+```
+
+**response**
+
+```json
+{
+    "errcode":0/1/2/3/4,
+    "stamp":"2020-05-21 18:55:49",
+    "tableProve":"xxxxxxxxxxx"
+}
+```
+
+#### 住户提交意见反馈（新增message_time字段）
 
 功能描述：**住户提交对酒店的意见或建议**。
 
@@ -1288,12 +1525,13 @@ API：/server/feedback/resident/post
 
 **请求参数**
 
-| 字段    | 数据类型 | 必填 | 备注                                                         |
-| :------ | :------- | :--- | :----------------------------------------------------------- |
-| resCode | string   | 是   | 用户的登录凭证，后端借其获取openid，验证是否是用户           |
-| message | string   | 是   | 用户的反馈留言                                               |
-| stamp   | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库     |
-| prove   | string   | 是   | 管理员的resCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
+| 字段         | 数据类型 | 必填 | 备注                                                         |
+| :----------- | :------- | :--- | :----------------------------------------------------------- |
+| resCode      | string   | 是   | 用户的登录凭证，后端借其获取openid，验证是否是用户           |
+| message      | string   | 是   | 用户的反馈留言                                               |
+| message_time | string   | 是   | 用户的反馈留言的时间                                         |
+| stamp        | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库     |
+| prove        | string   | 是   | 管理员的resCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
 
 **返回参数**
 
@@ -1311,6 +1549,7 @@ API：/server/feedback/resident/post
 {
     "resCode":"083Hu7ll2TMK874FU0ol2cPhVk1Hu7ls",
     "message":"浴室需要改进",
+    "message_time":"2020-05-21 18:55:49",
     "stamp":"2020-05-21 18:55:49",
     "prove":"xxxxxxxxxx"
 }

@@ -2,7 +2,8 @@
   "pages":[
     "pages/roomOverview/roomOverview",
     "pages/roomSearch/roomSearch",
-    "pages/logs/logs"
+    "pages/light/light",
+    "pages/airCondition/airCondition"
   ],
   "window":{
     "backgroundTextStyle":"light",

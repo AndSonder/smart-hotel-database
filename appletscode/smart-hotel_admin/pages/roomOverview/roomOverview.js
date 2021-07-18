@@ -12,13 +12,26 @@ Page({
     TabCur: 1,
     scrollLeft: 0,
     rtypeContent: '全选',
-    startTimeContent:'display-all',
-    endTimeContent:'display-all',
+    startTimeContent: 'display-all',
+    endTimeContent: 'display-all',
     rtypeShow: false,
     startTimeShow: false,
     endTimeShow: false,
-    rtypeList: [
-      {
+    roomList1: [{
+      "orderId": 123,
+      "roomId": 123,
+      "roomTemp": 26,
+      "roomHum": 45,
+      "lockStatus": 1,
+      "airStatus": 1,
+      "lightStatus": 1,
+    }],
+    roomList2: [],
+    airInf:[],
+    lightInf:[],
+    userInf:[],
+    orderInf:[],
+    rtypeList: [{
         name: '主题特色大床房',
       },
       {
@@ -46,8 +59,8 @@ Page({
         name: '全选',
       },
     ],
-    liveRoomList:[],
-    notliveRoomList:[],
+    liveRoomList: [],
+    notliveRoomList: [],
     start_minDate: new Date(1990, 1, 1).getTime(),
     start_maxDate: new Date(2099, 12, 31).getTime(),
     start_currentDate: new Date().getTime(),
@@ -56,19 +69,22 @@ Page({
     end_currentDate: new Date().getTime(),
   },
   onLoad(e) {
-    var that = this
+    var that = this;
     var stamp = util.formatTime(new Date());
     wx.login({
       success(res) {
         if (res.code) {
           var roomlist_jsonData = {
             adminCode: res.code,
+            roomType: that.data.rtypeContent,
+            strartTime: that.data.startTimeContent,
+            endTime: that.data.endTimeContent,
             stamp: stamp,
-            prove: md5.hex_md5(res.code+stamp+'liuboge'),
+            prove: md5.hex_md5(res.code + stamp + 'liuboge'),
           };
           wx.request({
             method: 'POST',
-            url: '',
+            url: 'https://www.supremeproger.com/room/roomsinf/admin/get',
             header: {
               'content-type': 'application/json'
             },
@@ -77,8 +93,14 @@ Page({
               console.log('roomlist---', res);
               var roomlist_jsonStr = res.data;
               var roomlist_errorcode = roomlist_jsonStr.errorcode;
-              switch (roomlist_errorcode){
+              switch (roomlist_errorcode) {
                 case "0":
+                  var roomList1 = that.ChangeHardware(roomlist_jsonStr.processList)
+                  var roomList2 = that.ChangeHardware(roomlist_jsonStr.unprocessList)
+                  that.setData({
+                    roomList1: roomList1,
+                    roomList2: roomList2,
+                  })
                   break;
               }
             }
@@ -122,13 +144,13 @@ Page({
     });
   },
   startTime_onConfirm(e) {
-    this.setData({ 
-      startTimeShow: false, 
+    this.setData({
+      startTimeShow: false,
       startTimeContent: this.msToDate(e.detail).hasTime,
     })
   },
   endTime_onConfirm(e) {
-    this.setData({ 
+    this.setData({
       endTimeShow: false,
       endTimeContent: this.msToDate(e.detail).hasTime,
     })
@@ -141,26 +163,27 @@ Page({
       hasUserInfo: true
     })
   },
-  turn_search(e){
+  turn_search(e) {
     wx.navigateTo({
-      url: '/pages/roomSearch/roomSearch?rtype=' + e.currentTarget.dataset.rtype + '&startTime=' + e.currentTarget.dataset.startTime +'&endTime=' + e.currentTarget.dataset.endTime,
+      url: '/pages/roomSearch/roomSearch?rtype=' + e.currentTarget.dataset.rtype + '&startTime=' + e.currentTarget.dataset.startTime + '&endTime=' + e.currentTarget.dataset.endTime,
     })
   },
   showModal(e) {
     var that = this;
+    var roomId = e.currentTarget.dataset.roomId;
+    var orderId = e.currentTarget.dataset.orderId;
     that.setData({
       modalName: e.currentTarget.dataset.target
     })
-    console.log(e.currentTarget.dataset.target)
     var stamp = util.formatTime(new Date());
     wx.login({
       success(res) {
         if (res.code) {
           var room_jsonData = {
             adminCode: res.code,
-            roomId: 'roomId',
+            roomId: roomId,
             stamp: stamp,
-            prove: md5.hex_md5(res.code+stamp+'liuboge'),
+            prove: md5.hex_md5(res.code + stamp + 'liuboge'),
           };
           wx.request({
             method: 'POST',
@@ -173,8 +196,13 @@ Page({
               console.log('room---', res);
               var room_jsonStr = res.data;
               var room_errorcode = room_jsonStr.errorcode;
-              switch (room_errorcode){
+              switch (room_errorcode) {
                 case "0":
+                  var roomInf = that.IntroomInf(room_jsonStr.datalist)
+                  var roomInf = that.ChangeWindow(roomInf, 'roomWindow')
+                  that.setData({
+                    roomInf: roomInf,
+                  })
                   break;
               }
             }
@@ -182,14 +210,15 @@ Page({
         }
       }
     })
+    var stamp = util.formatTime(new Date());
     wx.login({
       success(res) {
         if (res.code) {
           var air_jsonData = {
             adminCode: res.code,
-            roomId: 'roomId',
+            roomId: roomId,
             stamp: stamp,
-            prove: md5.hex_md5(res.code+stamp+'liuboge'),
+            prove: md5.hex_md5(res.code + stamp + 'liuboge'),
           };
           wx.request({
             method: 'POST',
@@ -202,8 +231,13 @@ Page({
               console.log('air---', res);
               var air_jsonStr = res.data;
               var air_errorcode = air_jsonStr.errorcode;
-              switch (air_errorcode){
+              switch (air_errorcode) {
                 case "0":
+                  var airInf = that.IntairInf(air_jsonStr.datalist)
+                  var airInf = that.ChangeAir(airInf, 'airStatus', 'airMode')
+                  that.setData({
+                    airInf: airInf
+                  })
                   break;
               }
             }
@@ -211,6 +245,7 @@ Page({
         }
       }
     })
+    var stamp = util.formatTime(new Date());
     wx.login({
       success(res) {
         if (res.code) {
@@ -218,7 +253,7 @@ Page({
             adminCode: res.code,
             roomId: 'roomId',
             stamp: stamp,
-            prove: md5.hex_md5(res.code+stamp+'liuboge'),
+            prove: md5.hex_md5(res.code + stamp + 'liuboge'),
           };
           wx.request({
             method: 'POST',
@@ -231,8 +266,13 @@ Page({
               console.log('light---', res);
               var light_jsonStr = res.data;
               var light_errorcode = light_jsonStr.errorcode;
-              switch (light_errorcode){
+              switch (light_errorcode) {
                 case "0":
+                  var lightInf = that.IntlightInf(light_jsonStr.datalist)
+                  var lightInf = that.ChangeAir(lightInf, 'lightStatus', 'lightMode')
+                  that.setData({
+                    lightInf: lightInf
+                  })
                   break;
               }
             }
@@ -240,14 +280,49 @@ Page({
         }
       }
     })
+    var stamp = util.formatTime(new Date());
+    wx.login({
+      success(res) {
+        if (res.code) {
+          var user_jsonData = {
+            adminCode: res.code,
+            roomId: orderId,
+            stamp: stamp,
+            prove: md5.hex_md5(res.code + stamp + 'liuboge'),
+          };
+          wx.request({
+            method: 'POST',
+            url: '',
+            header: {
+              'content-type': 'application/json'
+            },
+            data: JSON.stringify(user_jsonData),
+            success: function (res) {
+              console.log('user---', res);
+              var user_jsonStr = res.data;
+              var user_errorcode = user_jsonStr.errorcode;
+              switch (user_errorcode) {
+                case "0":
+                  var userInf = that.IntuserInf(user_jsonStr.datalist)
+                  that.setData({
+                    userInf: userInf,
+                  })
+                  break;
+              }
+            }
+          })
+        }
+      }
+    })
+    var stamp = util.formatTime(new Date());
     wx.login({
       success(res) {
         if (res.code) {
           var order_jsonData = {
             adminCode: res.code,
-            orderId: 'orderId',
+            orderId: orderId,
             stamp: stamp,
-            prove: md5.hex_md5(res.code+stamp+'liuboge'),
+            prove: md5.hex_md5(res.code + stamp + 'liuboge'),
           };
           wx.request({
             method: 'POST',
@@ -260,14 +335,32 @@ Page({
               console.log('order---', res);
               var order_jsonStr = res.data;
               var order_errorcode = order_jsonStr.errorcode;
-              switch (order_errorcode){
+              switch (order_errorcode) {
                 case "0":
+                  var orderInf = that.IntorderInf(order_jsonStr.datalist)
+                  that.setData({
+                    orderInf: orderInf,
+                  })
                   break;
               }
             }
           })
         }
       }
+    })
+  },
+  turnToAir(e){
+    var airList = this.ReturnAir(this.data.airInf)
+    var airList = JSON.stringify(airList)
+    wx.navigateTo({
+      url: '/pages/airCondition/airCondition?roomId=' + this.data.roomId + '&airList=' + airList,
+    })
+  },
+  turnToLight(e){
+    var lightList = this.ReturnLight(this.data.lightInf)
+    var lightList = JSON.stringify(lightList)
+    wx.navigateTo({
+      url: '/pages/light/light?roomId=' + this.data.roomId + '&lightList=' + lightList
     })
   },
   hideModal(e) {
@@ -286,7 +379,7 @@ Page({
     var date = new Date(time + 8 * 3600 * 1000); // 增加8小时
     return date.toJSON().substr(0, 19).replace('T', ' ');
   },
-  dateToMs (date) {
+  dateToMs(date) {
     let result = new Date(date).getTime();
     return result;
   },
@@ -307,8 +400,8 @@ Page({
       ((hour + 1) <= 10 ? '0' + hour : hour) +
       ':' +
       ((minute + 1) <= 10 ? '0' + minute : minute)
-      // ':' +
-      // ((second + 1) < 10 ? '0' + second : second);
+    // ':' +
+    // ((second + 1) < 10 ? '0' + second : second);
     let result2 = year +
       '-' +
       ((month + 1) >= 10 ? (month + 1) : '0' + (month + 1)) +
@@ -337,5 +430,182 @@ Page({
       taskStartTime: taskStartTime,
     })
     return taskStartTime;
+  },
+  ChangeHardware(arr, status1, status2) {
+    arr.forEach((item) => {
+      if (item[`${status1}`] === 1) {
+        item.airStatus = '开'
+      } else {
+        item.airStatus = '关'
+      }
+      if (item[`${status2}`] === 1) {
+        item.lightStatus = '开'
+      } else {
+        item.lightStatus = '关'
+      }
+
+    })
+    return arr
+  },
+  IntroomsList(arr) {
+    arr.forEach((item) => {
+      item.orderId = Nunmber(item.orderId)
+      item.roomId = Nunmber(item.roomId)
+      item.roomTemp = Nunmber(item.roomTemp)
+      item.roomHum = Nunmber(item.roomHum)
+      item.lockStatus = Nunmber(item.lockStatus)
+      item.airStatus = Nunmber(item.orderStatus)
+      item.lightStatus = Nunmber(item.lightStatus)
+    })
+    return arr
+  },
+  IntroomInf(arr) {
+    arr.forEach((item) => {
+      item.roomId = Nunmber(item.roomId)
+      item.roomArea = Nunmber(item.roomArea)
+      item.maximum = Nunmber(item.maximum)
+      item.roomWindow = Nunmber(item.roomWindow)
+      item.roomPrice = Nunmber(item.roomPrice)
+      item.roomTemp = Nunmber(item.roomTemp)
+      item.roomHum = Nunmber(item.roomHum)
+    })
+    return arr
+  },
+  IntairInf(arr) {
+    arr.forEach((item) => {
+      item.airStatus = Nunmber(item.airStatus)
+      item.airMode = Nunmber(item.airMode)
+      item.airValue = Nunmber(item.airValue)
+    })
+    return arr
+  },
+  IntlightInf(arr) {
+    arr.forEach((item) => {
+      item.lightStatus = Nunmber(item.lightStatus)
+      item.lightMode = Nunmber(item.lightMode)
+      item.lightValue = Nunmber(item.lightValue)
+    })
+    return arr
+  },
+  IntuserInf(arr) {
+    arr.forEach((item) => {
+      item.phone = Nunmber(item.phone)
+      item.idCard = Nunmber(item.idCard)
+    })
+    return arr
+  },
+  IntorderInf(arr) {
+    arr.forEach((item) => {
+      item.orderId = Nunmber(item.phone)
+      item.deposit = Nunmber(item.deposit)
+      item.amountsPay = Nunmber(item.amountsPay) 
+    })
+    return arr
+  },
+  ChangeAir(arr, status, mode) {
+    arr.forEach((item) => {
+      if (item[`${status}`] === 1) {
+        item.airStatus = '已开启'
+      } else {
+        item.airStatus = '已关闭'
+      }
+      switch (item[`${mode}`]) {
+        case 0:
+          item.airmMode = '吹风'
+          break;
+        case 1:
+          item.airMode = '制热'
+          break;
+        case 2:
+          item.airMode = '制冷'
+          break;
+      }
+    })
+    return arr
+  },
+  ChangeLight(arr, status, mode) {
+    arr.forEach((item) => {
+      if (item[`${status}`] === 1) {
+        item.lightStatus = '已开启'
+      } else {
+        item.lightStatus = '已关闭'
+      }
+      switch (item[`${mode}`]) {
+        case 0:
+          item.lightMode = '标准'
+          break;
+        case 1:
+          item.lightMode = '夜间'
+          break;
+        case 2:
+          item.lightMode = '睡眠'
+          break;
+        case 3:
+          item.lightMode = '起夜'
+          break;
+        case 4:
+          item.lightMode = '影院'
+          break;
+      }
+    })
+    return arr
+  },
+  ChangeWindow(arr, name) {
+    arr.forEach((item) => {
+      if (item[`${name}`] === 1) {
+        item.roomWindow = '有窗'
+      } else {
+        item.roomWindow = '无窗'
+      }
+    })
+    return arr
+  },
+  ReturnAir(arr, status, mode) {
+    arr.forEach((item) => {
+      if (item[`${status}`] === '已开启') {
+        item.airStatus = 1
+      } else {
+        item.airStatus = 0
+      }
+      switch (item[`${mode}`]) {
+        case '吹风':
+          item.airmMode = 0
+          break;
+        case '制热':
+          item.airMode = 1
+          break;
+        case '制冷':
+          item.airMode = 2
+          break;
+      }
+    })
+    return arr
+  },
+  ReturnLight(arr, status, mode) {
+    arr.forEach((item) => {
+      if (item[`${status}`] === '已开启') {
+        item.lightStatus = 1
+      } else {
+        item.lightStatus = 0
+      }
+      switch (item[`${mode}`]) {
+        case '标准':
+          item.lightMode = 0
+          break;
+        case '夜间':
+          item.lightMode = 1
+          break;
+        case '睡眠':
+          item.lightMode = 2
+          break;
+        case '起夜':
+          item.lightMode = 3
+          break;
+        case '影院':
+          item.lightMode = 4
+          break;
+      }
+    })
+    return arr
   },
 })

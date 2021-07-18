@@ -9,7 +9,7 @@
     </view>
   </view>
   <view class="second_box">
-    <view class="roomInf_module" wx:for="{{per_roominf}}" wx:key="*this">
+    <view class="roomInf_module" wx:for="{{per_roominf}}" wx:key="roomId">
       <view class="roomRtype_module">
         <view class="roomRtypeContentShow_module">
           <view class="roomRtypeContent_module"><text class="roomRtypeContent">{{item.roomType}}</text></view>

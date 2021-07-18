@@ -63,7 +63,8 @@ Page({
                 var per_roominf_book_errorcode = per_roominf_book_jsonStr.errorcode;
                 switch (per_roominf_book_errorcode) {
                   case "0":
-                    var per_roominf_book = that.ChangeWindow(per_roominf_book_jsonStr.datelist, 'roomWindow')
+                    var per_roominf_book = that.IntroomInf(per_roominf_jsonStr.datelist)
+                    var per_roominf_book = that.ChangeWindow(per_roominf_book, 'roomWindow')
                     that.setData({
                       per_roominf_book: per_roominf_book,
                     })
@@ -172,7 +173,9 @@ Page({
         if (res.code) {
           var perorderInfo_jsonData = {
             resCode: res.code,
-            orderId: that.data.orderId,
+            roomType: that.data.roomType,
+            expLive: that.dataset.startTimeContent + ':00',
+            expAway: that.dataset.endTimeContent + ':00',
             stamp: stamp,
             prove: md5.hex_md5(res.code + stamp + 'liuboge'),
           };
@@ -236,6 +239,18 @@ Page({
         }
       }
     })
+  },
+  IntroomInf(arr){
+    arr.forEach((item) => {
+      item.roomId = Nunmber(item.roomId)
+      item.roomArea = Nunmber(item.roomArea)
+      item.maximum = Nunmber(item.maximum)
+      item.roomWindow = Nunmber(item.roomWindow)
+      item.roomPrice = Nunmber(item.roomPrice)
+      item.roomTemp = Nunmber(item.roomTemp)
+      item.roomHum = Nunmber(item.roomHum)
+    })
+    return arr
   },
   ChangeWindow(arr, name) {
     arr.forEach((item) => {

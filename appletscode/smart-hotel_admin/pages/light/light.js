@@ -1,70 +1,549 @@
-// pages/light/light.js
+const util = require('../../utils/util.js');
+const dataTime = require('../../utils/dataTime.js');
+const md5 = require('../../utils/md5.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    value: 25,
-    gradientColor: {
-      '0%': '#ffd01e',
-      '100%': '#ee0a24',
-    },
+    value: '',
+    gradientColor: {},
+    roomId: '',
+    lightContent: '',
+    lightList: [],
+    lightStatus: '',
+    lightMode: '',
+    lightValue: '',
+    illuminationUI: '',
+    nightUI: '',
+    sleepUI: '',
+    getUpNightUI: '',
+    cinemaUI: '',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this
+    var lightList = JSON.parse(options.lightList)
+    that.setData({
+      roomId: options.roomId,
+      lightList: lightList,
+      lightStatus: lightList[0].lightStatus,
+      lightMode: lightList[0].lightMode,
+      lightValue: lightList[0].lightValue,
+      value: lightList[0].lightValue * 10,
+    })
+    if (lightList[0].lightStatus == 1) {
+      that.setData({
+        lightContent: '开',
+        gradientColor: {
+          '0%': '#0081ff',
+          '100%': '#1cbbb4',
+        },
+      })
+      switch (lightList[0].lightMode) {
+        case 0:
+          that.setData({
+            illuminationUI: 'background-color: #aaaaaa;opacity: 0.8;',
+            nightUI: '',
+            sleepUI: '',
+            getUpNightUI: '',
+            cinemaUI: '',
+          })
+          break;
+        case 1:
+          that.setData({
+            illuminationUI: '',
+            nightUI: 'background-color: #aaaaaa;opacity: 0.8;',
+            sleepUI: '',
+            getUpNightUI: '',
+            cinemaUI: '',
+          })
+          break;
+        case 2:
+          that.setData({
+            illuminationUI: '',
+            nightUI: '',
+            sleepUI: 'background-color: #aaaaaa;opacity: 0.8;',
+            getUpNightUI: '',
+            cinemaUI: '',
+          })
+          break;
+        case 3:
+          that.setData({
+            illuminationUI: '',
+            nightUI: '',
+            sleepUI: '',
+            getUpNightUI: 'background-color: #aaaaaa;opacity: 0.8;',
+            cinemaUI: '',
+          })
+          break;
+        case 4:
+          that.setData({
+            illuminationUI: '',
+            nightUI: '',
+            sleepUI: '',
+            getUpNightUI: '',
+            cinemaUI: 'background-color: #aaaaaa;opacity: 0.8;',
+          })
+          break;
+      }
+    } else {
+      that.setData({
+        illuminationUI: '',
+        nightUI: '',
+        sleepUI: '',
+        getUpNightUI: '',
+        cinemaUI: '',
+        lightContent: '关',
+        gradientColor: {
+          '0%': 'gray',
+          '100%': 'black',
+        }
+      })
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  chooseIllumination(e) {
+    if (this.data.lightStatus == 1) {
+      var that = this
+      that.setData({
+        illuminationUI: 'background-color: #aaaaaa;opacity: 0.8;',
+        nightUI: '',
+        sleepUI: '',
+        getUpNightUI: '',
+        cinemaUI: '',
+        lightMode: 0,
+      })
+      var stamp = util.formatTime(new Date());
+      wx.login({
+        success(res) {
+          if (res.code) {
+            var light_jsonData = {
+              cerCode: res.code,
+              roomId: that.data.roomId,
+              lightStatus: that.data.lightStatus,
+              lightMode: that.data.lightMode,
+              lightValue: that.data.lightValue,
+              stamp: stamp,
+              prove: md5.hex_md5(res.code + stamp + 'liuboge'),
+            };
+            wx.request({
+              method: 'POST',
+              url: 'https://www.supremeproger.com/hardware/light/user/push',
+              header: {
+                'content-type': 'application/json'
+              },
+              data: JSON.stringify(light_jsonData),
+              success: function (res) {
+                console.log('light---', res);
+                var light_jsonStr = res.data;
+                if (md5.hex_md5('room' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                  var light_errorcode = light_jsonStr.errorcode;
+                  switch (light_errorcode) {
+                    case 0:
+                      wx.showToast({
+                        title: '标准照明',
+                        icon: 'none',
+                      })
+                      break;
+                  }
+                }
+              }
+            })
+          }
+        }
+      })
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  chooseNight(e) {
+    if (this.data.lightStatus == 1) {
+      var that = this
+      that.setData({
+        illuminationUI: '',
+        nightUI: 'background-color: #aaaaaa;opacity: 0.8;',
+        sleepUI: '',
+        getUpNightUI: '',
+        cinemaUI: '',
+        lightMode: 1,
+      })
+      var stamp = util.formatTime(new Date());
+      wx.login({
+        success(res) {
+          if (res.code) {
+            var light_jsonData = {
+              cerCode: res.code,
+              roomId: that.data.roomId,
+              lightStatus: that.data.lightStatus,
+              lightMode: that.data.lightMode,
+              lightValue: that.data.lightValue,
+              stamp: stamp,
+              prove: md5.hex_md5(res.code + stamp + 'liuboge'),
+            };
+            wx.request({
+              method: 'POST',
+              url: 'https://www.supremeproger.com/hardware/light/user/push',
+              header: {
+                'content-type': 'application/json'
+              },
+              data: JSON.stringify(light_jsonData),
+              success: function (res) {
+                console.log('light---', res);
+                var light_jsonStr = res.data;
+                if (md5.hex_md5('room' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                  var light_errorcode = light_jsonStr.errorcode;
+                  switch (light_errorcode) {
+                    case 0:
+                      wx.showToast({
+                        title: '夜间模式',
+                        icon: 'none',
+                      })
+                      break;
+                  }
+                }
+              }
+            })
+          }
+        }
+      })
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  chooseSleep(e) {
+    if (this.data.lightStatus == 1) {
+      var that = this
+      that.setData({
+        illuminationUI: '',
+        nightUI: '',
+        sleepUI: 'background-color: #aaaaaa;opacity: 0.8;',
+        getUpNightUI: '',
+        cinemaUI: '',
+        lightMode: 2,
+      })
+      var stamp = util.formatTime(new Date());
+      wx.login({
+        success(res) {
+          if (res.code) {
+            var light_jsonData = {
+              cerCode: res.code,
+              roomId: that.data.roomId,
+              lightStatus: that.data.lightStatus,
+              lightMode: that.data.lightMode,
+              lightValue: that.data.lightValue,
+              stamp: stamp,
+              prove: md5.hex_md5(res.code + stamp + 'liuboge'),
+            };
+            wx.request({
+              method: 'POST',
+              url: 'https://www.supremeproger.com/hardware/light/user/push',
+              header: {
+                'content-type': 'application/json'
+              },
+              data: JSON.stringify(light_jsonData),
+              success: function (res) {
+                console.log('light---', res);
+                var light_jsonStr = res.data;
+                if (md5.hex_md5('room' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                  var light_errorcode = light_jsonStr.errorcode;
+                  switch (light_errorcode) {
+                    case 0:
+                      wx.showToast({
+                        title: '睡眠模式',
+                        icon: 'none',
+                      })
+                      break;
+                  }
+                }
+              }
+            })
+          }
+        }
+      })
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  choosegetUpNight(e) {
+    if (this.data.lightStatus == 1) {
+      var that = this
+      that.setData({
+        illuminationUI: '',
+        nightUI: '',
+        sleepUI: '',
+        getUpNightUI: 'background-color: #aaaaaa;opacity: 0.8;',
+        cinemaUI: '',
+        lightMode: 3,
+      })
+      var stamp = util.formatTime(new Date());
+      wx.login({
+        success(res) {
+          if (res.code) {
+            var light_jsonData = {
+              cerCode: res.code,
+              roomId: that.data.roomId,
+              lightStatus: that.data.lightStatus,
+              lightMode: that.data.lightMode,
+              lightValue: that.data.lightValue,
+              stamp: stamp,
+              prove: md5.hex_md5(res.code + stamp + 'liuboge'),
+            };
+            wx.request({
+              method: 'POST',
+              url: 'https://www.supremeproger.com/hardware/light/user/push',
+              header: {
+                'content-type': 'application/json'
+              },
+              data: JSON.stringify(light_jsonData),
+              success: function (res) {
+                console.log('light---', res);
+                var light_jsonStr = res.data;
+                if (md5.hex_md5('room' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                  var light_errorcode = light_jsonStr.errorcode;
+                  switch (light_errorcode) {
+                    case 0:
+                      wx.showToast({
+                        title: '起夜模式',
+                        icon: 'none',
+                      })
+                      break;
+                  }
+                }
+              }
+            })
+          }
+        }
+      })
+    }
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+  chooseCinema(e) {
+    if (this.data.lightStatus == 1) {
+      var that = this
+      that.setData({
+        illuminationUI: '',
+        nightUI: '',
+        sleepUI: '',
+        getUpNightUI: '',
+        cinemaUI: 'background-color: #aaaaaa;opacity: 0.8;',
+        lightMode: 4,
+      })
+      var stamp = util.formatTime(new Date());
+      wx.login({
+        success(res) {
+          if (res.code) {
+            var light_jsonData = {
+              cerCode: res.code,
+              roomId: that.data.roomId,
+              lightStatus: that.data.lightStatus,
+              lightMode: that.data.lightMode,
+              lightValue: that.data.lightValue,
+              stamp: stamp,
+              prove: md5.hex_md5(res.code + stamp + 'liuboge'),
+            };
+            wx.request({
+              method: 'POST',
+              url: 'https://www.supremeproger.com/hardware/light/user/push',
+              header: {
+                'content-type': 'application/json'
+              },
+              data: JSON.stringify(light_jsonData),
+              success: function (res) {
+                console.log('light---', res);
+                var light_jsonStr = res.data;
+                if (md5.hex_md5('room' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                  var light_errorcode = light_jsonStr.errorcode;
+                  switch (light_errorcode) {
+                    case 0:
+                      wx.showToast({
+                        title: '影院模式',
+                        icon: 'none',
+                      })
+                      break;
+                  }
+                }
+              }
+            })
+          }
+        }
+      })
+    }
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
+  controlStatus(e) {
+    var that = this
+    if (that.data.lightStatus == 1) {
+      that.setData({
+        lightStatus: 0,
+      })
+      var stamp = util.formatTime(new Date());
+      wx.login({
+        success(res) {
+          if (res.code) {
+            var light_jsonData = {
+              cerCode: res.code,
+              roomId: that.data.roomId,
+              lightStatus: that.data.lightStatus,
+              lightMode: that.data.lightMode,
+              lightValue: that.data.lightValue,
+              stamp: stamp,
+              prove: md5.hex_md5(res.code + stamp + 'liuboge'),
+            };
+            wx.request({
+              method: 'POST',
+              url: 'https://www.supremeproger.com/hardware/light/user/push',
+              header: {
+                'content-type': 'application/json'
+              },
+              data: JSON.stringify(light_jsonData),
+              success: function (res) {
+                console.log('light---', res);
+                var light_jsonStr = res.data;
+                if (md5.hex_md5('room' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                  var light_errorcode = light_jsonStr.errorcode;
+                  switch (light_errorcode) {
+                    case 0:
+                      wx.showToast({
+                        title: '已关闭',
+                        icon: 'none',
+                      })
+                      break;
+                  }
+                }
+              }
+            })
+          }
+        }
+      })
+    } else {
+      that.setData({
+        lightStatus: 1,
+      })
+      var stamp = util.formatTime(new Date());
+      wx.login({
+        success(res) {
+          if (res.code) {
+            var light_jsonData = {
+              cerCode: res.code,
+              roomId: that.data.roomId,
+              lightStatus: that.data.lightStatus,
+              lightMode: that.data.lightMode,
+              lightValue: that.data.lightValue,
+              stamp: stamp,
+              prove: md5.hex_md5(res.code + stamp + 'liuboge'),
+            };
+            wx.request({
+              method: 'POST',
+              url: 'https://www.supremeproger.com/hardware/light/user/push',
+              header: {
+                'content-type': 'application/json'
+              },
+              data: JSON.stringify(light_jsonData),
+              success: function (res) {
+                console.log('light---', res);
+                var light_jsonStr = res.data;
+                if (md5.hex_md5('room' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                  var light_errorcode = light_jsonStr.errorcode;
+                  switch (light_errorcode) {
+                    case 0:
+                      wx.showToast({
+                        title: '已开启',
+                        icon: 'none',
+                      })
+                      break;
+                  }
+                }
+              }
+            })
+          }
+        }
+      })
+    }
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+  down(e) {
+    var that = this;
+    if (that.data.lightValue > 0) {
+      that.data({
+        lightValue: that.data.lightValue - 1,
+        value: (that.data.lightValue - 1) * 10,
+        lightContent: (that.data.lightValue - 1) * 10
+      })
+      var stamp = util.formatTime(new Date());
+      wx.login({
+        success(res) {
+          if (res.code) {
+            var light_jsonData = {
+              cerCode: res.code,
+              roomId: that.data.roomId,
+              lightStatus: that.data.lightStatus,
+              lightMode: that.data.lightMode,
+              lightValue: that.data.lightValue,
+              stamp: stamp,
+              prove: md5.hex_md5(res.code + stamp + 'liuboge'),
+            };
+            wx.request({
+              method: 'POST',
+              url: 'https://www.supremeproger.com/hardware/light/user/push',
+              header: {
+                'content-type': 'application/json'
+              },
+              data: JSON.stringify(light_jsonData),
+              success: function (res) {
+                console.log('light---', res);
+                var light_jsonStr = res.data;
+                if (md5.hex_md5('room' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                  var light_errorcode = light_jsonStr.errorcode;
+                  switch (light_errorcode) {
+                    case 0:
+                      break;
+                  }
+                }
+              }
+            })
+          }
+        }
+      })
+    }
+  },
+  up(e) {
+    var that = this;
+    if (that.data.lightValue < 10) {
+      that.data({
+        lightValue: that.data.lightValue + 1,
+        value: (that.data.lightValue + 1) * 10,
+        lightContent: (that.data.lightValue + 1) * 10
+      })
+      var stamp = util.formatTime(new Date());
+      wx.login({
+        success(res) {
+          if (res.code) {
+            var light_jsonData = {
+              cerCode: res.code,
+              roomId: that.data.roomId,
+              lightStatus: that.data.lightStatus,
+              lightMode: that.data.lightMode,
+              lightValue: that.data.lightValue,
+              stamp: stamp,
+              prove: md5.hex_md5(res.code + stamp + 'liuboge'),
+            };
+            wx.request({
+              method: 'POST',
+              url: 'https://www.supremeproger.com/hardware/light/user/push',
+              header: {
+                'content-type': 'application/json'
+              },
+              data: JSON.stringify(light_jsonData),
+              success: function (res) {
+                console.log('light---', res);
+                var light_jsonStr = res.data;
+                if (md5.hex_md5('room' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                  var light_errorcode = light_jsonStr.errorcode;
+                  switch (light_errorcode) {
+                    case 0:
+                      break;
+                  }
+                }
+              }
+            })
+          }
+        }
+      })
+    }
+  },
 })

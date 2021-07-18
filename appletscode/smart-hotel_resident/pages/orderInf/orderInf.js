@@ -61,7 +61,8 @@ Page({
                 var per_roominf_errorcode = per_roominf_jsonStr.errorcode;
                 switch (per_roominf_errorcode) {
                   case "0":
-                    var per_roominf = that.ChangeWindow(per_roominf_jsonStr.datelist, 'roomWindow')
+                    var per_roominf = that.IntroomInf(per_roominf_jsonStr.datelist)
+                    var per_roominf = that.ChangeWindow(per_roominf, 'roomWindow')
                     that.setData({
                       per_roominf: per_roominf,
                     })
@@ -96,6 +97,7 @@ Page({
                 var perinfo_errorcode = perinfo_jsonStr.errorcode;
                 switch (perinfo_errorcode) {
                   case "0":
+                    var perinfo = that.IntuserInf(perinfo_jsonStr.datelist)
                     that.setData({
                       perinfo: perinfo,
                     })
@@ -223,6 +225,7 @@ Page({
     wx.showModal({
       title: '提示',
       content: '确定修改吗',
+      confirmColor: '#13c2c2',
       success(res) {
         var stamp = util.formatTime(new Date());
         wx.login({
@@ -296,6 +299,7 @@ Page({
     wx.showModal({
       title: '提示',
       content: '确定退单吗',
+      confirmColor: '#13c2c2',
       success(res) {
         var stamp = util.formatTime(new Date());
         wx.login({
@@ -325,19 +329,19 @@ Page({
                   if (md5.hex_md5('room' + orderinfGiveUp_jsonStr.stamp + 'liuboge' == orderinfGiveUp_jsonStr.tableProve)) {
                     var orderinfGiveUp_errorcode = orderinfGiveUp.errorcode;
                     switch (orderinfGiveUp_errorcode) {
-                      case "0":
+                      case 0:
                         wx.showToast({
                           title: '退订成功',
                           icon: 'success',
                         })
                         break;
-                      case "1":
+                      case 1:
                         wx.showToast({
                           title: '退订失败',
                           icon: 'error',
                         })
                         break;
-                      case "2":
+                      case 2:
                         wx.showToast({
                           title: '退订失败',
                           icon: 'error',
@@ -364,6 +368,25 @@ Page({
         })
       }
     })
+  },
+  IntroomInf(arr){
+    arr.forEach((item) => {
+      item.roomId = Nunmber(item.roomId)
+      item.roomArea = Nunmber(item.roomArea)
+      item.maximum = Nunmber(item.maximum)
+      item.roomWindow = Nunmber(item.roomWindow)
+      item.roomPrice = Nunmber(item.roomPrice)
+      item.roomTemp = Nunmber(item.roomTemp)
+      item.roomHum = Nunmber(item.roomHum)
+    })
+    return arr
+  },
+  IntuserInf(arr){
+    arr.forEach((item) => {
+      item.sex = Nunmber(item.sex)
+      item.phone = Nunmber(item.phone)
+    })
+    return arr
   },
   ChangeWindow(arr, name) {
     arr.forEach((item) => {

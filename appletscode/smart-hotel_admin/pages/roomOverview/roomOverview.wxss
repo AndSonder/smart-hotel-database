@@ -1,5 +1,4 @@
 page {
-  background-image: var(--gradualBlue);
   width: 100vw;
   overflow: hidden;
 }
@@ -182,6 +181,98 @@ page {
   background-color: white;
   border-radius: 20rpx;
   overflow: hidden;
+}
+
+.second_box{
+  display: flex;
+  width: 680rpx;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.roomlist_box{
+  display: flex;
+  width: 680rpx;
+  height: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 20rpx;
+}
+
+.roomInf_box{
+  display: flex;
+  width: 650rpx;
+  height: 100rpx;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon_module{
+  display: flex;
+  width: 50rpx;
+  height: 50rpx;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconContent_module{
+  width: auto;
+  height: auto;
+}
+
+.inf-button_module{
+  display: flex;
+  width: 550rpx;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.inf_module{
+  display: flex;
+  width: 440rpx;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.infContentShow_module{
+  display: flex;
+  width: 110rpx;
+  height: 50rpx;
+  justify-content: center;
+  align-items: center;
+}
+
+.infContent_module{
+  width: auto;
+  height: 32rpx;
+  line-height: 32rpx;
+  text-align: center;
+}
+
+.infContent_title{
+  color: #8799A3;
+}
+
+.infContent_{
+  color: #8799A3;
+}
+
+.button_module{
+  display: flex;
+  width: 110rpx;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonContent_module{
+  width: auto;
+  height: auto;
 }
 
 .room_module{

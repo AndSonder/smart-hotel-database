@@ -31,26 +31,56 @@
         </view>
       </view>
     </view>
-    <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
-      <view class="cu-item arrow" wx:for="{{10}}" wx:key="index" bindtap="showModal" data-target="viewModal">
-        <view class="content">
-          <text class="cuIcon-homefill text-grey"></text>
-          <text class="text-grey">{{index +1}}</text>
-        </view>
-      </view>
-      <view class="buffer_module"></view>
-      <view class="cu-item arrow" wx:for="{{10}}" wx:key="index" bindtap="showModal" data-target="viewModal">
-        <view class="content">
-          <text class="cuIcon-homefill text-grey"></text>
-          <text class="text-grey">{{index +1}}</text>
+    <view class="second_box">
+      <view class="roomlist_box" wx:for="{{roomList1}}" wx:key="roomId">
+        <view class="roomInf_box">
+          <view class="icon_module">
+            <view class="iconContent_module">
+              <text class="cuIcon-homefill text-grey"></text>
+            </view>
+          </view>
+          <view class="icon_module">
+            <view class="iconContent_module">
+              <text class="text-grey">101</text>
+            </view>
+          </view>
+          <view class="inf-button_module">
+            <view class="inf_module">
+              <view class="infContentShow_module">
+                <view class="infContent_module">
+                  <text class="infContent_title">T:</text>
+                  <text class="infContent">{{item.roomTemp}}℃</text>
+                </view>
+              </view>
+              <view class="infContentShow_module">
+                <view class="infContent_module">
+                  <text class="infContent_title">H:</text>
+                  <text class="infContent">{{item.roomHum}}rh</text>
+                </view>
+              </view>
+              <view class="infContentShow_module">
+                <view class="infContent_module">
+                  <text class="infContent_title">空调</text>
+                  <text class="infContent">{{item.airStatus}}</text>
+                </view>
+              </view>
+              <view class="infContentShow_module">
+                <view class="infContent_module">
+                  <text class="infContent_title">灯</text>
+                  <text class="infContent">{{item.lightStatus}}</text>
+                </view>
+              </view>
+            </view>
+            <view class="button_module">
+              <view class="buttonContent_module">
+                <button class="cu-btn block icon bg-cyanblue shadow" bindtap="showModal" data-target="viewModal"
+                  data-roomId="{{item.roomId}}" data-orderId="{{item.orderId}}">开</button>
+              </view>
+            </view>
+          </view>
         </view>
       </view>
     </view>
-    <!-- <view class='padding margin text-center'>
-      <view class='cu-btn bg-green lg block shadow radius margin-xl' bindtap="showModal" data-target="viewModal">
-        打开抽屉
-      </view>
-    </view> -->
   </view>
 </scroll-view>
 <view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap="hideModal">
@@ -60,128 +90,132 @@
   <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
     <view class="total_module">
       <view class="first_module">
-        <view class="room_module">
+        <view class="room_module" wx:for="{{roomInf}}" wx:key="roomId" wx:for-item="room">
           <view class="roomId_module">
-            <view class="roomIdContent_module"><text class="roomIdContent">101</text></view>
+            <view class="roomIdContent_module"><text class="roomIdContent">{{room.roomId}}</text></view>
           </view>
           <view class="roomForm_module">
             <form>
               <view class="cu-form-group margin-top">
                 <view class="title">房间类型</view>
-                <view class="title">主题特色大床房</view>
+                <view class="title">{{room.roomType}}</view>
               </view>
               <view class="cu-form-group">
                 <view class="title">房间床型</view>
-                <view class="title">特大床</view>
+                <view class="title">{{room.bedType}}</view>
               </view>
               <view class="cu-form-group">
                 <view class="title">房间面积</view>
-                <view class="title">25-30m²</view>
+                <view class="title">{{room.roomArea}}m²</view>
               </view>
               <view class="cu-form-group">
                 <view class="title">窗户有无</view>
-                <view class="title">有</view>
+                <view class="title">{{room.roomWindow}}</view>
               </view>
               <view class="cu-form-group">
                 <view class="title">限住人数</view>
-                <view class="title">3人</view>
+                <view class="title">{{room.maximum}} 人</view>
               </view>
               <view class="cu-form-group">
                 <view class="title">房间价格</view>
-                <view class="title">￥219</view>
+                <view class="title">￥{{room.roomPrice}}</view>
               </view>
             </form>
           </view>
         </view>
       </view>
       <view class="second_module">
-        <view class="handware_module">
+        <view class="handware_module" wx:for="{{airInf}}" wx:key="roomId" wx:for-item="air" bindtap="turnToAir">
           <view class="handwareInf_module">
             <view class="handwareInfContent_modul">
-              <text class="handwareInfContent">已开启{{air_status}}</text>
+              <text class="handwareInfContent">{{air.airStatus}}</text>
             </view>
           </view>
           <view class="handwareInf_module">
             <view class="handwareInfContent_modul">
-              <text class="handwareInfContent">制热{{air_mode}}</text>
+              <text class="handwareInfContent">{{air.airMode}}</text>
             </view>
           </view>
           <view class="handwareInf_module">
             <view class="handwareInfContent_modul">
-              <text class="handwareInfContent">25{{air_value}}</text>
+              <text class="handwareInfContent">{{air.airValue}}</text>
             </view>
           </view>
         </view>
-        <view class="handware_module">
+        <view class="handware_module" wx:for="{{lightInf}}" wx:key="roomId" wx:for-item="light" bindtap="turnToLight">
           <view class="handwareInf_module">
             <view class="handwareInfContent_modul">
-              <text class="handwareInfContent">已关闭{{light_status}}</text>
+              <text class="handwareInfContent">{{light.lightStatus}}</text>
             </view>
           </view>
           <view class="handwareInf_module">
             <view class="handwareInfContent_modul">
-              <text class="handwareInfContent">夜间{{light_mode}}</text>
+              <text class="handwareInfContent">{{light.lightMode}}</text>
             </view>
           </view>
           <view class="handwareInf_module">
             <view class="handwareInfContent_modul">
-              <text class="handwareInfContent">1{{light_value}}</text>
+              <text class="handwareInfContent">{{light.lightValue}}</text>
             </view>
           </view>
         </view>
       </view>
       <view class="third_module">
-        <view class="userForm_module">
+        <view class="userForm_module" wx:for="{{userInf}}" wx:key="orderId" wx:for-item="user">
           <form>
             <view class="cu-form-group">
               <view class="title">姓名</view>
-              <view class="title">穆刘杨</view>
+              <view class="title">{{user.name}}</view>
             </view>
             <view class="cu-form-group">
               <view class="title">性别</view>
-              <view class="title">女</view>
+              <view class="title">{{user.sex}}</view>
             </view>
             <view class="cu-form-group">
               <view class="title">联系号码</view>
-              <view class="title">18178346924</view>
+              <view class="title">{{user.phone}}</view>
             </view>
             <view class="cu-form-group">
               <view class="title">身份证号</view>
-              <view class="title">230120828276388491</view>
+              <view class="title">{{user.idCard}}</view>
             </view>
           </form>
         </view>
       </view>
       <view class="fourth_module">
-        <view class="orderForm_module">
+        <view class="orderForm_module" wx:for="{{orderInf}}" wx:key="orderId" wx:for-item="order">
           <form>
             <view class="cu-form-group">
               <view class="title">订单号</view>
-              <view class="title">123</view>
+              <view class="title">{{order.orderId}}</view>
             </view>
             <view class="cu-form-group">
               <view class="title">订金</view>
-              <view class="title">￥200</view>
+              <view class="title">￥{{order.deposit}}</view>
+            </view>
+            <view class="cu-form-group">
+              <view class="title">应付金额</view>
+              <view class="title">￥{{order.amountsPay}}</view>
             </view>
             <view class="cu-form-group">
               <view class="title">预计入住时间</view>
-              <view class="title">2020-01-01 01:29</view>
+              <view class="title">{{order.expLive}}</view>
             </view>
             <view class="cu-form-group">
               <view class="title">预计离开时间</view>
-              <view class="title">2020-01-01 01:29</view>
+              <view class="title">{{order.expAway}}</view>
             </view>
             <view class="cu-form-group">
               <view class="title">实际入住时间</view>
-              <view class="title">2020-01-01 01:29</view>
+              <view class="title">{{order.actLive}}</view>
             </view>
             <view class="cu-form-group">
               <view class="title">实际离开时间</view>
-              <view class="title">2020-01-01 01:29</view>
+              <view class="title">{{order.actAway}}</view>
             </view>
             <view class="cu-form-group">
               <view class="title">订单下单时间</view>
-              <view class="title">2020-01-01 01:29</view>
+              <view class="title">{{order.orderTime}}</view>
             </view>
           </form>
         </view>

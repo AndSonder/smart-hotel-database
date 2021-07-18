@@ -136,7 +136,8 @@ Page({
                 var roomsinf_errorcode = roomsinf_jsonStr.errorcode;
                 switch (roomsinf_errorcode) {
                   case "0":
-                    var roomList = that.ChangeWindow(roomsinf_jsonStr.datelist, 'roomWindow')
+                    var roomList = that.Introomlist(roomsinf_jsonStr.datelist)
+                    var roomList = that.ChangeWindow(roomList, 'roomWindow')
                     that.setData({
                       roomList: roomList,
                     })
@@ -197,7 +198,8 @@ Page({
                 var roomsinf_errorcode = roomsinf_jsonStr.errorcode;
                 switch (roomsinf_errorcode) {
                   case "0":
-                    var roomList = that.ChangeWindow(roomsinf_jsonStr.datelist, 'roomWindow')
+                    var roomList = that.Introomlist(roomsinf_jsonStr.datelist)
+                    var roomList = that.ChangeWindow(roomList, 'roomWindow')
                     console.log('roomList---',roomList)
                     that.setData({
                       roomList: roomList,
@@ -243,7 +245,8 @@ Page({
                 var roomsinf_errorcode = roomsinf_jsonStr.errorcode;
                 switch (roomsinf_errorcode) {
                   case "0":
-                    var roomList = that.ChangeWindow(roomsinf_jsonStr.datelist, 'roomWindow')
+                    var roomList = that.Introomlist(roomsinf_jsonStr.datelist)
+                    var roomList = that.ChangeWindow(roomList, 'roomWindow')
                     that.setData({
                       roomList: roomList,
                     })
@@ -280,6 +283,14 @@ Page({
     wx.navigateTo({
       url: '/pages/booking/booking?roomType=' + e.currentTarget.dataset.roomType + '&roomPrice=' + e.currentTarget.dataset.roomPrice + '&startDate=' + this.data.startDate + '&endDate=' + this.data.endDate,
     })
+  },
+  Introomlist(arr){
+    arr.forEach((item) => {
+      item.maximum = Nunmber(item.maximum)
+      item.roomPrice = Nunmber(item.roomPrice)
+      item.roomWindow = Nunmber(item.roomWindow)
+    })
+    return arr
   },
   ChangeWindow(arr, name) {
     arr.forEach((item) => {

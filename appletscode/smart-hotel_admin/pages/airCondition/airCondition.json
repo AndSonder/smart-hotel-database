@@ -1,6 +1,8 @@
 {
   "usingComponents": {
     "van-circle": "/miniprogram_npm/@vant/weapp/circle/index",
-    "van-icon": "/miniprogram_npm/@vant/weapp/icon/index"
+    "van-icon": "/miniprogram_npm/@vant/weapp/icon/index",
+    "van-transition": "/miniprogram_npm/@vant/weapp/transition/index",
+    "van-overlay": "/miniprogram_npm/@vant/weapp/overlay/index"
   }
 }

@@ -82,8 +82,8 @@ Page({
               var ordersinf_errorcode = ordersinf_jsonStr.errorcode;
               switch (ordersinf_errorcode){
                 case "0":
-                  var orderList =  that.handleSameTypeList(orderList_jsonStr.datalist, 'orderTime', [])
-                  var orderList = this.handleSameTypeList(orderList, 'orderTime', orderArray)
+                  var orderList = that.IntordersInf(orderList_jsonStr.datalist)
+                  var orderList = that.handleSameTypeList(orderList, 'orderTime', [])
                   console.log("orderList---",orderList)
                   that.setData({
                     orderList: orderList
@@ -157,5 +157,13 @@ Page({
     } else {
       return resultList
     }
+  },
+  IntordersInf(arr){
+    arr.forEach((item) => {
+      item.orderId = Nunmber(item.orderId)
+      item.roomId = Nunmber(item.roomId)
+      item.orderStatus = Nunmber(item.orderStatus)
+    })
+    return arr
   },
 })
