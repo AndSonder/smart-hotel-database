@@ -1271,13 +1271,13 @@ API：/hardware/air_condition/user/push
 
 | 字段      | 数据类型 | 必填 | 备注                                                         |
 | --------- | -------- | ---- | ------------------------------------------------------------ |
-| cerCode   | string   | 是   | 住户的登录凭证，后端借其获取openid，验证用户身份是否为住户   |
+| resCode   | string   | 是   | 住户的登录凭证，后端借其获取openid，验证用户身份是否为住户   |
 | roomId    | int      | 是   | 房间号                                                       |
 | airStatus | int      | 否   | 空调状态                                                     |
-| airStatus | int      | 否   | 空调模式                                                     |
-| airStatus | int      | 否   | 空调数值                                                     |
+| airMode   | int      | 否   | 空调模式                                                     |
+| airValue  | int      | 否   | 空调数值                                                     |
 | stamp     | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
-| prove     | string   | 是   | 管理员的cerCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
+| prove     | string   | 是   | 管理员的resCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
 
 **返回参数**
 
@@ -1327,13 +1327,13 @@ API：/hardware/light/user/push
 
 | 字段        | 数据类型 | 必填 | 备注                                                         |
 | ----------- | -------- | ---- | ------------------------------------------------------------ |
-| cerCode     | string   | 是   | 住户的登录凭证，后端借其获取openid，验证用户身份是否为住户   |
+| resCode     | string   | 是   | 住户的登录凭证，后端借其获取openid，验证用户身份是否为住户   |
 | roomId      | int      | 是   | 房间号                                                       |
 | lightStatus | int      | 否   | 灯状态                                                       |
-| lightStatus | int      | 否   | 灯模式                                                       |
-| lightStatus | int      | 否   | 灯数值                                                       |
+| lightMode   | int      | 否   | 灯模式                                                       |
+| lightValue  | int      | 否   | 灯数值                                                       |
 | stamp       | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
-| prove       | string   | 是   | 管理员的cerCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
+| prove       | string   | 是   | 管理员的resCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
 
 **返回参数**
 
