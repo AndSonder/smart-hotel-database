@@ -28,6 +28,7 @@ const ImageNameGeneration = arr => {
         break;
     }
   })
+  return arr
 }
 
 module.exports = {

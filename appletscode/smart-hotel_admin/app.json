@@ -1,13 +1,12 @@
 {
   "pages":[
     "pages/roomOverview/roomOverview",
-    "pages/roomSearch/roomSearch",
-    "pages/light/light",
-    "pages/airCondition/airCondition"
+    "pages/roomSearch/roomSearch"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#39b54a",
+    "navigationBarTitleText": "智慧酒店",
     "navigationStyle": "custom",
     "navigationBarTextStyle":"white"
   },

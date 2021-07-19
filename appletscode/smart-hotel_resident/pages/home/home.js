@@ -37,6 +37,8 @@ Page({
             stamp: stamp,
             prove: md5.hex_md5(res.code + stamp + 'liuboge'),
           };
+          console.log(res.code + stamp + 'liuboge')
+          console.log("roomsinfBoutique_jsonData---",roomsinfBoutique_jsonData)
           wx.request({
             method: 'POST',
             url: 'https://www.supremeproger.com/room/roomsinf_boutique/resident/get',
@@ -47,13 +49,13 @@ Page({
             success: function (res) {
               console.log('roomsinfBoutique---', res);
               var roomsinfBoutique_jsonStr = res.data;
-              if (md5.hex_md5('room' + roomsinfBoutique_jsonStr.stamp + 'liuboge' == roomsinfBoutique_jsonStr.tableProve)) {
-                var roomsinfBoutique_errorcode = roomsinfBoutique_jsonStr.errorcode;
-                switch (roomsinfBoutique_errorcode) {
-                  case "0":
-                    var roomList = that.Introomlist(roomsinfBoutique_jsonStr.datelist)
-                    var roomList = that.ChangeWindow(roomList, 'roomWindow')
-                    var roomList = imgUrl.ImageNameGeneration(roomList)
+              if (md5.hex_md5('user' + roomsinfBoutique_jsonStr.stamp + 'liuboge' == roomsinfBoutique_jsonStr.tableProve)) {
+                var roomsinfBoutique_errcode = roomsinfBoutique_jsonStr.errcode;
+                switch (roomsinfBoutique_errcode) {
+                  case 0:
+                    var roomList = that.Introomlist(roomsinfBoutique_jsonStr.datalist)
+                    var roomList1 = that.ChangeWindow(roomList, 'roomWindow')
+                    var roomList = imgUrl.ImageNameGeneration(roomList1)
                     that.setData({
                       roomList: roomList,
                     })
@@ -65,6 +67,7 @@ Page({
         }
       }
     })
+   
   },
   onDisplay() {
     this.setData({
@@ -96,14 +99,15 @@ Page({
   },
   trunBooking(e){
     wx.navigateTo({
-      url: '/pages/booking/booking?roomType=' + e.currentTarget.dataset.roomType + '&roomPrice=' + e.currentTarget.dataset.roomPrice + '&startDate=' + this.data.start + '&endDate=' + this.data.end,
+      url: '/pages/booking/booking?roomType=' + e.currentTarget.dataset.roomtype + '&roomPrice=' + e.currentTarget.dataset.roomprice + '&startDate=' + this.data.start + '&endDate=' + this.data.end,
     })
+    console.log(e)
   },
   Introomlist(arr){
     arr.forEach((item) => {
-      item.maximum = Nunmber(item.maximum)
-      item.roomPrice = Nunmber(item.roomPrice)
-      item.roomWindow = Nunmber(item.roomWindow)
+      item.maximum = Number(item.maximum)
+      item.roomPrice = Number(item.roomPrice)
+      item.roomWindow = Number(item.roomWindow)
     })
     return arr
   },

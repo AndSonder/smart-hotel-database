@@ -2,7 +2,7 @@
   <view slot="backText">返回</view>
   <view slot="content">房间预订</view>
 </cu-custom>
-<view class="total_box"  wx:for="{{per_roominf_book}}" wx:key="*this">
+<view class="total_box" wx:for="{{per_roominf_book}}" wx:key="*this">
   <view class="first_box">
     <view class="roomImg_module">
       <image class="roomImg" src="{{item.imagePath}}"></image>
@@ -57,28 +57,22 @@
         </view>
       </view>
       <view class="cu-form-group">
-        <view class="title" type="num" bindinput="idCardInput" value="{{idCardInputValue}}">身份证号</view>
-        <input placeholder=""></input>
+        <view class="title">身份证号</view>
+        <input placeholder="" type="num" bindinput="idCardInput" value="{{idCardInputValue}}"></input>
       </view>
-      <view class="cu-form-group">
+      <view class="cu-form-group" bindtap="choose_startTime">
         <view class="title">起始时间选择</view>
         <view class="picker">
           {{startTimeContent}}
         </view>
-        <van-popup show="{{ startTimeShow }}" position="bottom" bind:close="onClose">
-            <van-datetime-picker type="datetime" value="{{ start_currentDate }}" min-date="{{start_minDate}}"
-              max-date="{{ start_maxDate }}" bind:confirm="startTime_onConfirm" bind:cancel="onCancel" />
-          </van-popup>
+
       </view>
-      <view class="cu-form-group">
+      <view class="cu-form-group" bindtap="choose_endTime">
         <view class="title">结束时间选择</view>
         <view class="picker">
           {{endTimeContent}}
         </view>
-        <van-popup show="{{ endTimeShow }}" position="bottom" bind:close="onClose">
-            <van-datetime-picker type="datetime" value="{{ end_currentDate }}" min-date="{{end_minDate}}"
-              max-date="{{ end_maxDate }}" bind:confirm="endTime_onConfirm" bind:cancel="onCancel" />
-          </van-popup>
+
       </view>
       <view class="cu-bar bg-white margin-top">
         <view class="action">
@@ -106,6 +100,14 @@
     <view class="nothing_module"></view>
   </view>
   <view class="fourth_box">
-    <van-submit-bar price="{{ roomPrice }}" button-text="提交订单" bind:submit="onSubmit" />
+    <van-submit-bar price="{{ roomPrice }}" button-text="提交订单" bind:submit="onSubmit" color="#13c2c2" />
   </view>
 </view>
+<van-popup show="{{ startTimeShow }}" position="bottom" bind:close="onClose">
+  <van-datetime-picker type="datetime" value="{{ start_currentDate }}" min-date="{{start_minDate}}"
+    max-date="{{ start_maxDate }}" bind:confirm="startTime_onConfirm" bind:cancel="onCancel" />
+</van-popup>
+<van-popup show="{{ endTimeShow }}" position="bottom" bind:close="onClose">
+  <van-datetime-picker type="datetime" value="{{ end_currentDate }}" min-date="{{end_minDate}}"
+    max-date="{{ end_maxDate }}" bind:confirm="endTime_onConfirm" bind:cancel="onCancel" />
+</van-popup>

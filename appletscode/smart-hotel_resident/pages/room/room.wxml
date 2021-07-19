@@ -3,7 +3,8 @@
 </cu-custom>
 <view class="total_box">
   <view class="first_box">
-    <image class="backImg" src="https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/inLive.png" mode="aspectFill"></image>
+    <image class="backImg" src="https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/inLive.png"
+      mode="aspectFill"></image>
   </view>
   <view class="roomInf_module">
     <view class="roomInfChoose_module" wx:if="{{bookingShow}}">
@@ -25,7 +26,7 @@
           <view class="rtypeContent"><text class="rtype">{{item.roomType}}</text></view>
         </view>
         <view class="roomId_module">
-          <view class="roomIdContent"><text class="roomId">{{item.roomId}}</text></view>
+          <view class="roomIdContent"><text class="roomId">房间号：{{item.roomId}}</text></view>
         </view>
       </view>
       <view class="turnTo_module">
@@ -63,9 +64,9 @@
           </view>
         </view>
       </view>
-      <view class="hardwareInf_module">
-        <view class="hardwareInfContent_module" wx:for="{{airList}}" wx:key="*this" wx:for-item="air">
-          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">{{air.airValue}}</text></view>
+      <view class="hardwareInf_module" wx:for="{{airList}}" wx:key="*this" wx:for-item="air">
+        <view class="hardwareInfContent_module">
+          <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">空调</text></view>
         </view>
         <view class="hardwareInfContent_module">
           <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">{{air.airStatus}}</text></view>
@@ -77,8 +78,8 @@
           <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">{{air.airValue}}℃</text></view>
         </view>
       </view>
-      <view class="hardwareInf_module">
-        <view class="hardwareInfContent_module" wx:for="{{lightList}}" wx:key="*this" wx:for-item="light">
+      <view class="hardwareInf_module" wx:for="{{lightList}}" wx:key="*this" wx:for-item="light">
+        <view class="hardwareInfContent_module">
           <view class="hardwareInfContentLayout_module"><text class="hardwareInfContent">灯</text></view>
         </view>
         <view class="hardwareInfContent_module">
@@ -94,18 +95,19 @@
           </view>
         </view>
       </view>
-      <view class="switch_module">
-        <view class="leftSwitch_module">
-          <button class="{{swipeLeftUI}}" bindtap="swipeLeft" data-roomId="{{room.roomId}}" disabled="{{swipeLeftButton}}">
-            <van-icon name="arrow-left" />
-          </button>
-        </view>
-        <view class="rightSwitch_module">
-          <button class="{{swipeRightUI}}" bindtap="swipeRight" data-roomId="{{room.roomId}}" disabled="{{swipeRightButton}}">
-            <van-icon name="arrow" />
-          </button>
-        </view>
-      </view>
+    </view>
+  </view>
+  <view class="switch_module">
+    <view class="leftSwitch_module">
+      <button class="{{swipeLeftUI}}" bindtap="swipeLeft" data-roomId="{{room.roomId}}" disabled="{{swipeLeftButton}}">
+        <van-icon name="arrow-left" />
+      </button>
+    </view>
+    <view class="rightSwitch_module">
+      <button class="{{swipeRightUI}}" bindtap="swipeRight" data-roomId="{{room.roomId}}"
+        disabled="{{swipeRightButton}}">
+        <van-icon name="arrow" />
+      </button>
     </view>
   </view>
   <view class="second_module">
@@ -138,14 +140,15 @@
     <view class="server_module">
       <view class="serverDetail_module" bindtap="wakeServer">
         <view class="img_module">
-          <image class="serverImg" src="https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/brokeup.png"></image>
+          <image class="serverImg" src="https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/brokeup.png">
+          </image>
         </view>
         <view class="serverContent_module"><text class="serverContent">叫醒服务</text></view>
       </view>
       <van-popup show="{{ timeShow }}" position="bottom" bind:close="onClose">
-          <van-datetime-picker type="time" value="{{ currentDate }}" min-hour="{{minHour}}"
-            max-hour="{{ maxHour }}" bind:confirm="time_onConfirm" bind:cancel="onCancel" />
-        </van-popup>
+        <van-datetime-picker type="time" value="{{ currentDate }}" min-hour="{{minHour}}" max-hour="{{ maxHour }}"
+          bind:confirm="time_onConfirm" bind:cancel="onCancel" />
+      </van-popup>
       <view class="serverDetail_module" bindtap="cleanServer">
         <view class="img_module">
           <image class="serverImg" src="https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/clean.png"></image>
@@ -154,19 +157,22 @@
       </view>
       <view class="serverDetail_module" bindtap="checkoutServer">
         <view class="img_module">
-          <image class="serverImg" src="https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/out_home.png"></image>
+          <image class="serverImg" src="https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/out_home.png">
+          </image>
         </view>
         <view class="serverContent_module"><text class="serverContent">预约退房</text></view>
       </view>
       <view class="serverDetail_module" bindtap="urgencyServer">
         <view class="img_module">
-          <image class="serverImg" src="https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/urgency.png"></image>
+          <image class="serverImg" src="https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/urgency.png">
+          </image>
         </view>
         <view class="serverContent_module"><text class="serverContent">紧急呼叫</text></view>
       </view>
       <view class="serverDetail_module" bindtap="feedbackServer">
         <view class="img_module">
-          <image class="serverImg" src="https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/complaints.png"></image>
+          <image class="serverImg" src="https://corona-images2.obs.cn-north-4.myhuaweicloud.com/img/complaints.png">
+          </image>
         </view>
         <view class="serverContent_module"><text class="serverContent">一键吐槽</text></view>
       </view>

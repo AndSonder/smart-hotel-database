@@ -46,9 +46,8 @@
       </view>
     </view>
     <view class="second_box">
-      <view class="roomlist_box" wx:for="{{RoomList}}" wx:key="roomId" wx:if="{{!justShow}}">
-        <view class="roomInf_box" bindtap="showModal" data-target="viewModal" data-roomId="{{item.roomId}}"
-          data-orderId="{{item.orderId}}">
+      <view class="roomlist_box" wx:for="{{RoomList}}" wx:key="*this">
+        <view class="roomInf_box">
           <view class="icon_module">
             <view class="iconContent_module">
               <text class="cuIcon-homefill text-grey"></text>
@@ -59,7 +58,8 @@
               <text class="text-grey">{{item.roomId}}</text>
             </view>
           </view>
-          <view class="inf-button_module">
+          <view class="inf-button_module" bindtap="showModal" data-target="viewModal" data-roomId="{{item.roomId}}"
+          data-orderId="{{item.orderId}}">
             <view class="inf_module">
               <view class="infContentShow_module">
                 <view class="infContent_module">
@@ -75,65 +75,40 @@
               </view>
               <view class="infContentShow_module">
                 <view class="infContent_module">
-                  <text class="infContent_title">空调</text>
+                  <text class="infContent_title">空调:</text>
                   <text class="infContent">{{item.airStatus}}</text>
                 </view>
               </view>
               <view class="infContentShow_module">
                 <view class="infContent_module">
-                  <text class="infContent_title">灯</text>
+                  <text class="infContent_title">灯:</text>
                   <text class="infContent">{{item.lightStatus}}</text>
                 </view>
               </view>
             </view>
-            <view class="button_module">
+          </view>
+          <view class="button_module">
               <view class="buttonContent_module" wx:if="{{!receptionShow && (item.lockStatus == '关')}}">
-                <button class="cu-btn block icon bg-cyanblue shadow" data-roomId="{{item.roomId}}"
-                  bindtap="openDoor">开</button>
+                <button class="cu-btn icon bg-cyanblue shadow round line-blue" data-roomId="{{item.roomId}}"
+                  catchtap="openDoor">开</button>
               </view>
               <view class="buttonContent_module" wx:if="{{!receptionShow && (item.lockStatus == '开')}}">
-                <button class="cu-btn block icon line-blue shadow">开</button>
+                <button class="cu-btn icon shadow round">开</button>
               </view>
             </view>
-          </view>
-        </view>
-        <view class="roomlist_box" wx:for="{{RoomList}}" wx:key="roomId" wx:if="{{!justShow}}" wx:if="{{justShow}}">
-          <view class="roomInf_box" bindtap="{{justShow}}?'showModal':'showModal_just'" data-target="viewModal"
-            data-roomId="{{item.roomId}}" data-orderId="{{item.orderId}}">
-            <view class="icon_module">
-              <view class="iconContent_module">
-                <text class="cuIcon-homefill text-grey"></text>
-              </view>
-            </view>
-            <view class="icon_module">
-              <view class="iconContent_module">
-                <text class="text-grey">{{item.roomId}}</text>
-              </view>
-            </view>
-            <view class="inf-button_module">
-              <view class="inf_module">
-              </view>
-              <view class="button_module">
-                <view class="buttonContent_module" wx:if="{{!receptionShow && (item.lockStatus == '关')}}">
-                  <button class="cu-btn block icon bg-cyanblue shadow" data-roomId="{{item.roomId}}"
-                    bindtap="openDoor">开</button>
-                </view>
-                <view class="buttonContent_module" wx:if="{{!receptionShow && (item.lockStatus == '开')}}">
-                  <button class="cu-btn block icon line-blue shadow">开</button>
-                </view>
-              </view>
-            </view>
-          </view>
         </view>
       </view>
     </view>
   </view>
 </scroll-view>
+<view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap="hideModal">
+  <text class="cuIcon-pullright"></text>
+</view>
 <scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
   <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
     <view class="total_module">
       <view class="first_module">
-        <view class="room_module" wx:for="{{roomInf}}" wx:key="roomId" wx:for-item="room">
+        <view class="room_module" wx:for="{{roomInf}}" wx:key="*this" wx:for-item="room">
           <view class="roomId_module">
             <view class="roomIdContent_module"><text class="roomIdContent">{{room.roomId}}</text></view>
           </view>
@@ -167,8 +142,8 @@
           </view>
         </view>
       </view>
-      <view class="second_module">
-        <view class="handware_module" wx:for="{{airInf}}" wx:key="roomId" wx:for-item="air" bindtap="turnToAir">
+      <view class="second_module" wx:if="{{super_adminShow || managerShow || receptionShow}}">
+        <view class="handware_module" wx:for="{{airInf}}" wx:key="*this" wx:for-item="air" bindtap="turnToAir">
           <view class="handwareInf_module">
             <view class="handwareInfContent_modul">
               <text class="handwareInfContent">{{air.airStatus}}</text>
@@ -185,7 +160,7 @@
             </view>
           </view>
         </view>
-        <view class="handware_module" wx:for="{{lightInf}}" wx:key="roomId" wx:for-item="light" bindtap="turnToLight">
+        <view class="handware_module" wx:for="{{lightInf}}" wx:key="*this" wx:for-item="light" bindtap="turnToLight">
           <view class="handwareInf_module">
             <view class="handwareInfContent_modul">
               <text class="handwareInfContent">{{light.lightStatus}}</text>
@@ -203,7 +178,7 @@
           </view>
         </view>
       </view>
-      <view class="third_module">
+      <view class="third_module" wx:if="{{super_adminShow || managerShow || receptionShow}}">
         <view class="userForm_module" wx:for="{{userInf}}" wx:key="orderId" wx:for-item="user">
           <form>
             <view class="cu-form-group">
@@ -225,7 +200,7 @@
           </form>
         </view>
       </view>
-      <view class="fourth_module">
+      <view class="fourth_module" wx:if="{{super_adminShow || managerShow || receptionShow}}">
         <view class="orderForm_module" wx:for="{{orderInf}}" wx:key="orderId" wx:for-item="order">
           <form>
             <view class="cu-form-group">
@@ -241,23 +216,23 @@
               <view class="title">￥{{order.amountsPay}}</view>
             </view>
             <view class="cu-form-group">
-              <view class="title">预计入住时间</view>
+              <view class="title">预入住时间</view>
               <view class="title">{{order.expLive}}</view>
             </view>
             <view class="cu-form-group">
-              <view class="title">预计离开时间</view>
+              <view class="title">预离开时间</view>
               <view class="title">{{order.expAway}}</view>
             </view>
             <view class="cu-form-group">
-              <view class="title">实际入住时间</view>
+              <view class="title">实入住时间</view>
               <view class="title">{{order.actLive}}</view>
             </view>
             <view class="cu-form-group">
-              <view class="title">实际离开时间</view>
+              <view class="title">实离开时间</view>
               <view class="title">{{order.actAway}}</view>
             </view>
             <view class="cu-form-group">
-              <view class="title">订单下单时间</view>
+              <view class="title">下单时间</view>
               <view class="title">{{order.orderTime}}</view>
             </view>
           </form>

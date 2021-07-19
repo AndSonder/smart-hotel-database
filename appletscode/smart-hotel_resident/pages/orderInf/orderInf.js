@@ -58,11 +58,11 @@ Page({
             success: function (res) {
               console.log('per_roominf---', res);
               var per_roominf_jsonStr = res.data;
-              if (md5.hex_md5('room' + per_roominf_jsonStr.stamp + 'liuboge' == per_roominf_jsonStr.tableProve)) {
-                var per_roominf_errorcode = per_roominf_jsonStr.errorcode;
-                switch (per_roominf_errorcode) {
-                  case "0":
-                    var per_roominf = that.IntroomInf(per_roominf_jsonStr.datelist)
+              if (md5.hex_md5('user' + per_roominf_jsonStr.stamp + 'liuboge' == per_roominf_jsonStr.tableProve)) {
+                var per_roominf_errcode = per_roominf_jsonStr.errcode;
+                switch (per_roominf_errcode) {
+                  case 0:
+                    var per_roominf = that.IntroomInf(per_roominf_jsonStr.datalist)
                     var per_roominf = that.ChangeWindow(per_roominf, 'roomWindow')
                     var per_roominf = imgUrl.ImageNameGeneration(per_roominf)
                     that.setData({
@@ -96,12 +96,11 @@ Page({
               console.log('perinfo---', res);
               var perinfo_jsonStr = res.data;
               if (md5.hex_md5('user' + perinfo_jsonStr.stamp + 'liuboge' == perinfo_jsonStr.tableProve)) {
-                var perinfo_errorcode = perinfo_jsonStr.errorcode;
-                switch (perinfo_errorcode) {
-                  case "0":
-                    var perinfo = that.IntuserInf(perinfo_jsonStr.datelist)
+                var perinfo_errcode = perinfo_jsonStr.errcode;
+                switch (perinfo_errcode) {
+                  case 0:
                     that.setData({
-                      perinfo: perinfo,
+                      perinfo: perinfo_jsonStr.datalist,
                     })
                     break;
                 }
@@ -131,14 +130,14 @@ Page({
             success: function (res) {
               console.log('orderinf---', res);
               var orderinf_jsonStr = res.data;
-              if (md5.hex_md5('order' + orderinf_jsonStr.stamp + 'liuboge' == orderinf_jsonStr.tableProve)) {
-                var orderinf_errorcode = orderinf_jsonStr.errorcode;
-                switch (orderinf_errorcode) {
-                  case "0":
+              if (md5.hex_md5('user' + orderinf_jsonStr.stamp + 'liuboge' == orderinf_jsonStr.tableProve)) {
+                var orderinf_errcode = orderinf_jsonStr.errcode;
+                switch (orderinf_errcode) {
+                  case 0:
                     that.setData({
-                      orderinf: orderinf_jsonStr.datelist,
-                      startTimeContent: orderinf_jsonStr.datelist[0].actLive.slice(0, 16),
-                      endTimeContent: orderinf_jsonStr.datelist[0].actAway.slice(0, 16),
+                      orderinf: orderinf_jsonStr.datalist,
+                      startTimeContent: orderinf_jsonStr.datalist[0].expLive.slice(0, 16),
+                      endTimeContent: orderinf_jsonStr.datalist[0].expAway.slice(0, 16),
                     })
                     break;
                 }
@@ -168,17 +167,17 @@ Page({
             success: function (res) {
               console.log('time_limit---', res);
               var time_limit_jsonStr = res.data;
-              if (md5.hex_md5('order' + time_limit_jsonStr.stamp + 'liuboge' == time_limit_jsonStr.tableProve)) {
-                var time_limit_errorcode = time_limit_jsonStr.errorcode;
-                switch (time_limit_errorcode) {
-                  case "0":
-                    var startTime = time_limit_jsonStr.datelist[0].startTime
-                    var endTime = time_limit_jsonStr.datelist[0].endTime
+              if (md5.hex_md5('user' + time_limit_jsonStr.stamp + 'liuboge' == time_limit_jsonStr.tableProve)) {
+                var time_limit_errcode = time_limit_jsonStr.errcode;
+                switch (time_limit_errcode) {
+                  case 0:
+                    var startTime = time_limit_jsonStr.datalist[0].startTime
+                    var endTime = time_limit_jsonStr.datalist[1].endTime
                     that.setData({
-                      start_minDate: new Date(Number(startTime.slice(0, 4)), Number(startTime.slice(5, 7)), Number(startTime.slice(8, 10))).getTime(),
-                      start_maxDate: new Date(Number(endTime.slice(0, 4)), Number(endTime.slice(5, 7)), Number(endTime.slice(8, 10))).getTime(),
-                      end_minDate: new Date(Number(startTime.slice(0, 4)), Number(startTime.slice(5, 7)), Number(startTime.slice(8, 10))).getTime(),
-                      end_maxDate: new Date(Number(endTime.slice(0, 4)), Number(endTime.slice(5, 7)), Number(endTime.slice(8, 10))).getTime(),
+                      start_minDate: new Date(Number(startTime.slice(0, 4)), Number(startTime.slice(5, 7))-1, Number(startTime.slice(8, 10))).getTime(),
+                      start_maxDate: new Date(Number(endTime.slice(0, 4)), Number(endTime.slice(5, 7))-1, Number(endTime.slice(8, 10))).getTime(),
+                      end_minDate: new Date(Number(startTime.slice(0, 4)), Number(startTime.slice(5, 7))-1, Number(startTime.slice(8, 10))).getTime(),
+                      end_maxDate: new Date(Number(endTime.slice(0, 4)), Number(endTime.slice(5, 7))-1, Number(endTime.slice(8, 10))).getTime(),
                     })
                     break;
                 }
@@ -224,6 +223,7 @@ Page({
     })
   },
   changeTime(e) {
+    var that = this
     wx.showModal({
       title: '提示',
       content: '确定修改吗',
@@ -238,8 +238,8 @@ Page({
                 orderId: that.data.orderId,
                 expLive: that.data.startTimeContent + ':00',
                 expAway: that.data.endTimeContent + ':00',
-                actLive: '',
-                actAway: '',
+                actLive: false,
+                actAway: false,
                 orderStatus: 3,
                 stamp: stamp,
                 prove: md5.hex_md5(res.code + stamp + 'liuboge'),
@@ -254,34 +254,34 @@ Page({
                 success: function (res) {
                   console.log('orderinfPush---', res);
                   var orderinfPush_jsonStr = res.data;
-                  if (md5.hex_md5('order' + orderinfPush_jsonStr.stamp + 'liuboge' == orderinfPush_jsonStr.tableProve)) {
-                    var orderinfPush_errorcode = orderinfPush.errorcode;
-                    switch (orderinfPush_errorcode) {
-                      case "0":
+                  if (md5.hex_md5('user' + orderinfPush_jsonStr.stamp + 'liuboge' == orderinfPush_jsonStr.tableProve)) {
+                    var orderinfPush_errcode = orderinfPush_jsonStr.errcode;
+                    switch (orderinfPush_errcode) {
+                      case 0:
                         wx.showToast({
                           title: '修改成功',
                           icon: 'success',
                         })
                         break;
-                      case "1":
+                      case 1:
                         wx.showToast({
                           title: '修改失败',
                           icon: 'error',
                         })
                         break;
-                      case "2":
+                      case 2:
                         wx.showToast({
                           title: '修改失败',
                           icon: 'error',
                         })
                         break;
-                      case "3":
+                      case 3:
                         wx.showToast({
                           title: '修改失败',
                           icon: 'error',
                         })
                         break;
-                      case "4":
+                      case 4:
                         wx.showToast({
                           title: '修改失败',
                           icon: 'error',
@@ -298,6 +298,7 @@ Page({
     })
   },
   Unsubscribe(e) {
+    var that = this;
     wx.showModal({
       title: '提示',
       content: '确定退单吗',
@@ -312,8 +313,8 @@ Page({
                 orderId: that.data.orderId,
                 expLive: that.data.startTimeContent + ':00',
                 expAway: that.data.endTimeContent + ':00',
-                actLive: '',
-                actAway: '',
+                actLive: false,
+                actAway: false,
                 orderStatus: 2,
                 stamp: stamp,
                 prove: md5.hex_md5(res.code + stamp + 'liuboge'),
@@ -328,9 +329,9 @@ Page({
                 success: function (res) {
                   console.log('orderinfGiveUp---', res);
                   var orderinfGiveUp_jsonStr = res.data;
-                  if (md5.hex_md5('order' + orderinfGiveUp_jsonStr.stamp + 'liuboge' == orderinfGiveUp_jsonStr.tableProve)) {
-                    var orderinfGiveUp_errorcode = orderinfGiveUp.errorcode;
-                    switch (orderinfGiveUp_errorcode) {
+                  if (md5.hex_md5('user' + orderinfGiveUp_jsonStr.stamp + 'liuboge' == orderinfGiveUp_jsonStr.tableProve)) {
+                    var orderinfGiveUp_errcode = orderinfGiveUp_jsonStr.errcode;
+                    switch (orderinfGiveUp_errcode) {
                       case 0:
                         wx.showToast({
                           title: '退订成功',
@@ -373,20 +374,20 @@ Page({
   },
   IntroomInf(arr){
     arr.forEach((item) => {
-      item.roomId = Nunmber(item.roomId)
-      item.roomArea = Nunmber(item.roomArea)
-      item.maximum = Nunmber(item.maximum)
-      item.roomWindow = Nunmber(item.roomWindow)
-      item.roomPrice = Nunmber(item.roomPrice)
-      item.roomTemp = Nunmber(item.roomTemp)
-      item.roomHum = Nunmber(item.roomHum)
+      item.roomId = Number(item.roomId)
+      item.roomArea = Number(item.roomArea)
+      item.maximum = Number(item.maximum)
+      item.roomWindow = Number(item.roomWindow)
+      item.roomPrice = Number(item.roomPrice)
+      item.roomTemp = Number(item.roomTemp)
+      item.roomHum = Number(item.roomHum)
     })
     return arr
   },
   IntuserInf(arr){
     arr.forEach((item) => {
-      item.sex = Nunmber(item.sex)
-      item.phone = Nunmber(item.phone)
+      item.sex = Number(item.sex)
+      item.phone = Number(item.phone)
     })
     return arr
   },

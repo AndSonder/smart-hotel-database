@@ -13,10 +13,12 @@ Page({
     amountsPayTotalContent:'',
   },
   onLoad: function (options) {
+    var that = this
     that.setData({
       roomId: options.roomId,
       orderId: options.orderId,
     })
+    console.log(options)
     var stamp = util.formatTime(new Date());
     wx.login({
       success(res) {
@@ -38,11 +40,11 @@ Page({
             success: function (res) {
               console.log('per_roominf---', res);
               var per_roominf_jsonStr = res.data;
-              if (md5.hex_md5('room' + per_roominf_jsonStr.stamp + 'liuboge' == per_roominf_jsonStr.tableProve)) {
-                var per_roominf_errorcode = per_roominf_jsonStr.errorcode;
-                switch (per_roominf_errorcode) {
-                  case "0":
-                    var per_roominf = that.IntroomInf(per_roominf_jsonStr.datelist)
+              if (md5.hex_md5('user' + per_roominf_jsonStr.stamp + 'liuboge' == per_roominf_jsonStr.tableProve)) {
+                var per_roominf_errcode = per_roominf_jsonStr.errcode;
+                switch (per_roominf_errcode) {
+                  case 0:
+                    var per_roominf = that.IntroomInf(per_roominf_jsonStr.datalist)
                     var per_roominf = that.ChangeWindow(per_roominf, 'roomWindow')
                     var per_roominf = imgUrl.ImageNameGeneration(per_roominf)
                     that.setData({
@@ -76,15 +78,14 @@ Page({
             success: function (res) {
               console.log('amountsPay---', res);
               var amountsPay_jsonStr = res.data;
-              if (md5.hex_md5('order' + amountsPay_jsonStr.stamp + 'liuboge' == amountsPay_jsonStr.tableProve)) {
-                var amountsPay_errorcode = amountsPay_jsonStr.errorcode;
-                switch (amountsPay_errorcode) {
-                  case "0":
-                    var amountsPayList = that.ChangeWindow(amountsPay_jsonStr.datelist, 'roomWindow')
+              if (md5.hex_md5('user' + amountsPay_jsonStr.stamp + 'liuboge' == amountsPay_jsonStr.tableProve)) {
+                var amountsPay_errcode = amountsPay_jsonStr.errcode;
+                switch (amountsPay_errcode) {
+                  case 0:
                     that.setData({
-                      amountsPayList: amountsPayList,
-                      amountsPayContent:Nunmber(amountsPayList.amountsPay),
-                      amountsPayTotalContent:Nunmber(amountsPayList.amountsPay + '00'),
+                      amountsPayList: amountsPay_jsonStr.datalist,
+                      amountsPayContent:Number(amountsPay_jsonStr.datalist[0].amountsPay),
+                      amountsPayTotalContent:Number(amountsPay_jsonStr.datalist[0].amountsPay + '00'),
                     })
                     break;
                 }
@@ -108,9 +109,9 @@ Page({
               var orderinfGiveUp_jsonData = {
                 resCode: res.code,
                 orderId: that.data.orderId,
-                expLive: '',
-                expAway: '',
-                actLive: '',
+                expLive: false,
+                expAway: false,
+                actLive: false,
                 actAway: stamp,
                 orderStatus: 1,
                 stamp: stamp,
@@ -126,36 +127,36 @@ Page({
                 success: function (res) {
                   console.log('orderinfGiveUp---', res);
                   var orderinfGiveUp_jsonStr = res.data;
-                  if (md5.hex_md5('order' + orderinfGiveUp_jsonStr.stamp + 'liuboge' == orderinfGiveUp_jsonStr.tableProve)) {
-                    var orderinfGiveUp_errorcode = orderinfGiveUp.errorcode;
-                    switch (orderinfGiveUp_errorcode) {
+                  if (md5.hex_md5('user' + orderinfGiveUp_jsonStr.stamp + 'liuboge' == orderinfGiveUp_jsonStr.tableProve)) {
+                    var orderinfGiveUp_errcode = orderinfGiveUp.errcode;
+                    switch (orderinfGiveUp_errcode) {
                       case 0:
                         wx.showToast({
-                          title: '退订成功',
+                          title: '退房成功',
                           icon: 'success',
                         })
                         break;
                       case 1:
                         wx.showToast({
-                          title: '退订失败',
+                          title: '退房失败',
                           icon: 'error',
                         })
                         break;
                       case 2:
                         wx.showToast({
-                          title: '退订失败',
+                          title: '退房失败',
                           icon: 'error',
                         })
                         break;
                       case "3":
                         wx.showToast({
-                          title: '退订失败',
+                          title: '退房失败',
                           icon: 'error',
                         })
                         break;
                       case "4":
                         wx.showToast({
-                          title: '退订失败',
+                          title: '退房失败',
                           icon: 'error',
                         })
                         break;
@@ -171,13 +172,13 @@ Page({
   },
   IntroomInf(arr){
     arr.forEach((item) => {
-      item.roomId = Nunmber(item.roomId)
-      item.roomArea = Nunmber(item.roomArea)
-      item.maximum = Nunmber(item.maximum)
-      item.roomWindow = Nunmber(item.roomWindow)
-      item.roomPrice = Nunmber(item.roomPrice)
-      item.roomTemp = Nunmber(item.roomTemp)
-      item.roomHum = Nunmber(item.roomHum)
+      item.roomId = Number(item.roomId)
+      item.roomArea = Number(item.roomArea)
+      item.maximum = Number(item.maximum)
+      item.roomWindow = Number(item.roomWindow)
+      item.roomPrice = Number(item.roomPrice)
+      item.roomTemp = Number(item.roomTemp)
+      item.roomHum = Number(item.roomHum)
     })
     return arr
   },

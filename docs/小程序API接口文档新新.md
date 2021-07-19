@@ -121,7 +121,7 @@ API：/user/perinfo/resident/get
 
 功能描述：**根据订单号查询指定住户的个人详细信息**。
 
-API：/user/perinf/admin/super_admin/get
+API：/user/perinf/admin/get
 
 请求方法：POST
 
@@ -902,7 +902,6 @@ API：/room/extra_roomsinf/admin/get
 | startTime | string   | 是   | 实际入住时间的查询最小值，默认值为“display-all”              |
 | endTime   | string   | 是   | 实际入住时间的查询最大值，默认值为“display-all”              |
 | orderId   | int      | 否   | 订单号                                                       |
-| roomId    | int      | 否   | 房间号                                                       |
 | stamp     | string   | 是   | 时间戳，前端获取的当前日期和时间。验证用，不用加入数据库。   |
 | prove     | string   | 是   | 管理员的adminCode+stamp时间戳+盐（自定义的一个字段）后得到的字段进行MD5加密。身份验证验证用，不用加入数据库。 |
 
@@ -926,7 +925,6 @@ API：/room/extra_roomsinf/admin/get
     "startTime":"2020-05-21 18:55:49",
     "endTime":"2020-05-21 18:55:49",
     "orderId":123,
-    "roomId":123,
     "stamp":"2020-05-21 18:55:49",
     "prove":"xxxxxxxxxx"
 }

@@ -36,15 +36,20 @@ Page({
       lightValue: lightList[0].lightValue,
       value: lightList[0].lightValue * 10,
     })
-    if (lightList[0].lightStatus == 1) {
+    console.log(options)
+    that.chooseUI()
+  },
+  chooseUI(){
+    var that = this
+    if (that.data.lightStatus == 1) {
       that.setData({
-        lightContent: '开',
+        lightContent: '关',
         gradientColor: {
           '0%': '#0081ff',
           '100%': '#1cbbb4',
         },
       })
-      switch (lightList[0].lightMode) {
+      switch (that.data.lightMode) {
         case 0:
           that.setData({
             illuminationUI: 'background-color: #aaaaaa;opacity: 0.8;',
@@ -98,7 +103,7 @@ Page({
         sleepUI: '',
         getUpNightUI: '',
         cinemaUI: '',
-        lightContent: '关',
+        lightContent: '开',
         gradientColor: {
           '0%': 'gray',
           '100%': 'black',
@@ -140,9 +145,9 @@ Page({
               success: function (res) {
                 console.log('light---', res);
                 var light_jsonStr = res.data;
-                if (md5.hex_md5('light' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
-                  var light_errorcode = light_jsonStr.errorcode;
-                  switch (light_errorcode) {
+                if (md5.hex_md5('user' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                  var light_errcode = light_jsonStr.errcode;
+                  switch (light_errcode) {
                     case 0:
                       wx.showToast({
                         title: '标准照明',
@@ -192,9 +197,9 @@ Page({
               success: function (res) {
                 console.log('light---', res);
                 var light_jsonStr = res.data;
-                if (md5.hex_md5('light' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
-                  var light_errorcode = light_jsonStr.errorcode;
-                  switch (light_errorcode) {
+                if (md5.hex_md5('user' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                  var light_errcode = light_jsonStr.errcode;
+                  switch (light_errcode) {
                     case 0:
                       wx.showToast({
                         title: '夜间模式',
@@ -244,9 +249,9 @@ Page({
               success: function (res) {
                 console.log('light---', res);
                 var light_jsonStr = res.data;
-                if (md5.hex_md5('light' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
-                  var light_errorcode = light_jsonStr.errorcode;
-                  switch (light_errorcode) {
+                if (md5.hex_md5('user' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                  var light_errcode = light_jsonStr.errcode;
+                  switch (light_errcode) {
                     case 0:
                       wx.showToast({
                         title: '睡眠模式',
@@ -296,9 +301,9 @@ Page({
               success: function (res) {
                 console.log('light---', res);
                 var light_jsonStr = res.data;
-                if (md5.hex_md5('light' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
-                  var light_errorcode = light_jsonStr.errorcode;
-                  switch (light_errorcode) {
+                if (md5.hex_md5('user' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                  var light_errcode = light_jsonStr.errcode;
+                  switch (light_errcode) {
                     case 0:
                       wx.showToast({
                         title: '起夜模式',
@@ -348,9 +353,9 @@ Page({
               success: function (res) {
                 console.log('light---', res);
                 var light_jsonStr = res.data;
-                if (md5.hex_md5('light' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
-                  var light_errorcode = light_jsonStr.errorcode;
-                  switch (light_errorcode) {
+                if (md5.hex_md5('user' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                  var light_errcode = light_jsonStr.errcode;
+                  switch (light_errcode) {
                     case 0:
                       wx.showToast({
                         title: '影院模式',
@@ -370,7 +375,13 @@ Page({
     var that = this
     if (that.data.lightStatus == 1) {
       that.setData({
+        illuminationUI: '',
+        nightUI: '',
+        sleepUI: '',
+        getUpNightUI: '',
+        cinemaUI: '',
         lightStatus: 0,
+        lightContent:'开'
       })
       var stamp = util.formatTime(new Date());
       wx.login({
@@ -395,9 +406,9 @@ Page({
               success: function (res) {
                 console.log('light---', res);
                 var light_jsonStr = res.data;
-                if (md5.hex_md5('light' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
-                  var light_errorcode = light_jsonStr.errorcode;
-                  switch (light_errorcode) {
+                if (md5.hex_md5('user' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                  var light_errcode = light_jsonStr.errcode;
+                  switch (light_errcode) {
                     case 0:
                       wx.showToast({
                         title: '已关闭',
@@ -414,7 +425,9 @@ Page({
     } else {
       that.setData({
         lightStatus: 1,
+        lightContent:'关',
       })
+      that.chooseUI()
       var stamp = util.formatTime(new Date());
       wx.login({
         success(res) {
@@ -438,9 +451,9 @@ Page({
               success: function (res) {
                 console.log('light---', res);
                 var light_jsonStr = res.data;
-                if (md5.hex_md5('light' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
-                  var light_errorcode = light_jsonStr.errorcode;
-                  switch (light_errorcode) {
+                if (md5.hex_md5('user' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                  var light_errcode = light_jsonStr.errcode;
+                  switch (light_errcode) {
                     case 0:
                       wx.showToast({
                         title: '已开启',
@@ -459,10 +472,10 @@ Page({
   down(e) {
     var that = this;
     if (that.data.lightValue > 0) {
-      that.data({
+      that.setData({
         lightValue: that.data.lightValue - 1,
         value: (that.data.lightValue - 1) * 10,
-        lightContent: (that.data.lightValue - 1) * 10
+        lightContent: that.data.lightValue - 1
       })
       var stamp = util.formatTime(new Date());
       wx.login({
@@ -487,9 +500,9 @@ Page({
               success: function (res) {
                 console.log('light---', res);
                 var light_jsonStr = res.data;
-                if (md5.hex_md5('light' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
-                  var light_errorcode = light_jsonStr.errorcode;
-                  switch (light_errorcode) {
+                if (md5.hex_md5('user' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                  var light_errcode = light_jsonStr.errcode;
+                  switch (light_errcode) {
                     case 0:
                       break;
                   }
@@ -504,10 +517,10 @@ Page({
   up(e) {
     var that = this;
     if (that.data.lightValue < 10) {
-      that.data({
+      that.setData({
         lightValue: that.data.lightValue + 1,
         value: (that.data.lightValue + 1) * 10,
-        lightContent: (that.data.lightValue + 1) * 10
+        lightContent: that.data.lightValue + 1
       })
       var stamp = util.formatTime(new Date());
       wx.login({
@@ -532,9 +545,9 @@ Page({
               success: function (res) {
                 console.log('light---', res);
                 var light_jsonStr = res.data;
-                if (md5.hex_md5('light' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
-                  var light_errorcode = light_jsonStr.errorcode;
-                  switch (light_errorcode) {
+                if (md5.hex_md5('user' + light_jsonStr.stamp + 'liuboge' == light_jsonStr.tableProve)) {
+                  var light_errcode = light_jsonStr.errcode;
+                  switch (light_errcode) {
                     case 0:
                       break;
                   }

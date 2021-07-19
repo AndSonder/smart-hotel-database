@@ -115,7 +115,7 @@ page {
 .first_box {
   display: flex;
   width: 700rpx;
-  height: 250rpx;
+  height: 300rpx;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -189,8 +189,31 @@ page {
   display: flex;
   width: 680rpx;
   height: auto;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.liveRoom_box{
+  display: flex;
+  width: 100%;
+  height: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 50rpx;
+}
+
+.notliveRoom_box{
+  display: flex;
+  width: 100%;
+  height: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 50rpx;
 }
 
 .roomlist_box{
@@ -200,8 +223,6 @@ page {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: white;
-  border-radius: 20rpx;
 }
 
 .roomInf_box{
@@ -227,7 +248,7 @@ page {
 
 .inf-button_module{
   display: flex;
-  width: 550rpx;
+  width: 440rpx;
   height: 100%;
   justify-content: center;
   align-items: center;

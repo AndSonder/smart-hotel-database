@@ -33,12 +33,13 @@ Page({
     var endTimeContent = dataTime.msToDate(new Date().getTime()).justYear + '-' + options.endDate.replace('/','-') + ' 15:00'
     that.setData({
       roomType: options.roomType,
-      roomPrice: options.roomPrice + '00',
+      roomPrice: options.roomPrice * 100,
       startDate: options.startDate,
       endDate: options.endDate,
       startTimeContent: startTimeContent,
       endTimeContent: endTimeContent,
     })
+    console.log(options)
     var stamp = util.formatTime(new Date());
     wx.login({
       success(res) {
@@ -50,6 +51,7 @@ Page({
             stamp: stamp,
             prove: md5.hex_md5(res.code + stamp + 'liuboge'),
           };
+          console.log(per_roominf_book_jsonData)
           wx.request({
             method: 'POST',
             url: 'https://www.supremeproger.com/room/per_roominf/resident/get',
@@ -60,11 +62,12 @@ Page({
             success: function (res) {
               console.log('per_roominf_book---', res);
               var per_roominf_book_jsonStr = res.data;
-              if (md5.hex_md5('room' + per_roominf_book_jsonStr.stamp + 'liuboge' == per_roominf_book_jsonStr.tableProve)) {
-                var per_roominf_book_errorcode = per_roominf_book_jsonStr.errorcode;
-                switch (per_roominf_book_errorcode) {
-                  case "0":
-                    var per_roominf_book = that.IntroomInf(per_roominf_jsonStr.datelist)
+              if (md5.hex_md5('user' + per_roominf_book_jsonStr.stamp + 'liuboge' == per_roominf_book_jsonStr.tableProve)) {
+                var per_roominf_book_errcode = per_roominf_book_jsonStr.errcode;
+                switch (per_roominf_book_errcode) {
+                  case 0:
+                    console.log(per_roominf_book_jsonStr)
+                    var per_roominf_book = that.IntroomInf(per_roominf_book_jsonStr.datalist)
                     var per_roominf_book = that.ChangeWindow(per_roominf_book, 'roomWindow')
                     var per_roominf_book = imgUrl.ImageNameGeneration(per_roominf_book)
                     that.setData({
@@ -132,8 +135,10 @@ Page({
     this.setData({
       idCardInputValue:e.detail.value,
     })
+    console.log(e)
   },
   onSubmit(e){
+    var that = this
     var stamp = util.formatTime(new Date());
     wx.login({
       success(res) {
@@ -147,6 +152,7 @@ Page({
             stamp: stamp,
             prove: md5.hex_md5(res.code + stamp + 'liuboge'),
           };
+          console.log(perinfoPush_jsonData)
           wx.request({
             method: 'POST',
             url: 'https://www.supremeproger.com/user/perinfo/resident/post',
@@ -158,9 +164,9 @@ Page({
               console.log('perinfoPush---', res);
               var perinfoPush_jsonStr = res.data;
               if (md5.hex_md5('user' + perinfoPush_jsonStr.stamp + 'liuboge' == perinfoPush_jsonStr.tableProve)) {
-                var perinfoPush_errorcode = perinfoPush_jsonStr.errorcode;
-                switch (perinfoPush_errorcode) {
-                  case "0":
+                var perinfoPush_errcode = perinfoPush_jsonStr.errcode;
+                switch (perinfoPush_errcode) {
+                  case 0:
                     break;
                 }
               }
@@ -176,8 +182,8 @@ Page({
           var perorderInfo_jsonData = {
             resCode: res.code,
             roomType: that.data.roomType,
-            expLive: that.dataset.startTimeContent + ':00',
-            expAway: that.dataset.endTimeContent + ':00',
+            expLive: that.data.startTimeContent + ':00',
+            expAway: that.data.endTimeContent + ':00',
             stamp: stamp,
             prove: md5.hex_md5(res.code + stamp + 'liuboge'),
           };
@@ -192,9 +198,9 @@ Page({
               console.log('perorderInfo---', res);
               var perorderInfo_jsonStr = res.data;
               if (md5.hex_md5('order' + perorderInfo_jsonStr.stamp + 'liuboge' == perorderInfo_jsonStr.tableProve)) {
-                var perorderInfo_errorcode = perorderInfo_jsonStr.errorcode;
-                switch (perorderInfo_errorcode) {
-                  case "0":
+                var perorderInfo_errcode = perorderInfo_jsonStr.errcode;
+                switch (perorderInfo_errcode) {
+                  case 0:
                     wx.showToast({
                       title: '预定成功',
                       icon: 'success',
@@ -212,7 +218,7 @@ Page({
     wx.chooseImage({
       count: 4, //默认9
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album'], //从相册选择
+      sourceType: ['album','camera'], //从相册选择
       success: (res) => {
         if (this.data.imgList.length != 0) {
           this.setData({
@@ -244,13 +250,13 @@ Page({
   },
   IntroomInf(arr){
     arr.forEach((item) => {
-      item.roomId = Nunmber(item.roomId)
-      item.roomArea = Nunmber(item.roomArea)
-      item.maximum = Nunmber(item.maximum)
-      item.roomWindow = Nunmber(item.roomWindow)
-      item.roomPrice = Nunmber(item.roomPrice)
-      item.roomTemp = Nunmber(item.roomTemp)
-      item.roomHum = Nunmber(item.roomHum)
+      item.roomId = Number(item.roomId)
+      item.roomArea = Number(item.roomArea)
+      item.maximum = Number(item.maximum)
+      item.roomWindow = Number(item.roomWindow)
+      item.roomPrice = Number(item.roomPrice)
+      item.roomTemp = Number(item.roomTemp)
+      item.roomHum = Number(item.roomHum)
     })
     return arr
   },

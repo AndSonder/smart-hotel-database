@@ -1,7 +1,7 @@
 .total_box {
   display: flex;
   width: 750rpx;
-  height: 1334rpx;
+  height: 1274rpx;
   flex-direction: column;
   align-items: center;
 }
@@ -201,6 +201,7 @@
   align-items: center;
   position: absolute;
   top: 349rpx;
+  z-index: 10;
 }
 
 .second_module {

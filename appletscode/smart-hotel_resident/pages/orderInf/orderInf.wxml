@@ -53,34 +53,33 @@
       <view class="orderInf_module" wx:for="{{orderinf}}" wx:key="*this">
         <view class="cu-form-group">
           <view class="title">预计入住时间</view>
-          <view class="title">{{item.expLive}}</view>
-        </view>
-        <view class="cu-form-group">
-          <view class="title">预计离开时间</view>
-          <view class="title">{{item.expAway}}</view>
-        </view>
-        <view class="cu-form-group">
-          <view class="title">实际入住时间</view>
-          <view class="title">{{item.actLive}}</view>
-          <view class="title titleContent" wx:if="{{orderStatus == '0'}}" bindtap="choose_startTime">{{startTimeContent}}</view>
+          <view class="title" wx:if="{{orderStatus}} == 0 || {{orderStatus}} == 3" bindtap="choose_startTime">{{startTimeContent}}</view>
           <van-popup show="{{ startTimeShow }}" position="bottom" bind:close="onClose">
             <van-datetime-picker type="datetime" value="{{ start_currentDate }}" min-date="{{start_minDate}}"
               max-date="{{ start_maxDate }}" bind:confirm="startTime_onConfirm" bind:cancel="onCancel" />
           </van-popup>
         </view>
         <view class="cu-form-group">
-          <view class="title">实际离开时间</view>
-          <view class="title">{{item.actAway}}</view>
-          <view class="title titleContent" wx:if="{{orderStatus == '0'}}" bindtap="choose_endTime">{{endTimeContent}}</view>
+          <view class="title">预计离开时间</view>
+          <view class="title" wx:if="{{orderStatus == 0 || 3}}" bindtap="choose_endTime">{{endTimeContent}}</view>
           <van-popup show="{{ endTimeShow }}" position="bottom" bind:close="onClose">
             <van-datetime-picker type="datetime" value="{{ end_currentDate }}" min-date="{{end_minDate}}"
               max-date="{{ end_maxDate }}" bind:confirm="endTime_onConfirm" bind:cancel="onCancel" />
           </van-popup>
         </view>
+        <view class="cu-form-group">
+          <view class="title">实际入住时间</view>
+          <view class="title titleContent">{{item.actLive}}</view>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">实际离开时间</view>
+          <view class="title titleContent">{{item.actAway}}</view>
+         
+        </view>
       </view>
     </form>
   </view>
-  <view class="fourth_box" wx:if="{{orderStatus == '0'}}">
+  <view class="fourth_box" wx:if="{{orderStatus == 0 || orderStatus == 3}}">
     <view class="button_module">
       <view class="change_button">
         <button class="cu-btn lg round bg-green" style="width:250rpx" bindtap="changeTime">提交修改</button>

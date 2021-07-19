@@ -18,21 +18,13 @@ Page({
     rtypeContent: '全选',
     startTimeContent: 'display-all',
     endTimeContent: 'display-all',
-    searchContent: '房间号',
+    searchContent: '订单号',
     rtypeShow: false,
     startTimeShow: false,
     endTimeShow: false,
     searchShow: false,
     justShow: false,
-    RoomList: [{
-      "orderId": 123,
-      "roomId": 123,
-      "roomTemp": 26,
-      "roomHum": 45,
-      "lockStatus": 1,
-      "airStatus": 1,
-      "lightStatus": 1,
-    }],
+    RoomList: [],
     airInf: [],
     lightInf: [],
     userInf: [],
@@ -67,15 +59,8 @@ Page({
       },
     ],
     searchList: [{
-        name: '住户姓名',
-      },
-      {
-        name: '订单号',
-      },
-      {
-        name: '房间号',
-      },
-    ],
+      name: '订单号',
+    }, ],
     liveRoomList: [],
     notliveRoomList: [],
     start_minDate: new Date(1990, 1, 1).getTime(),
@@ -98,7 +83,7 @@ Page({
       success(res) {
         if (res.code) {
           var identity_jsonData = {
-            cerCode: res.code,
+            resCode: res.code,
             stamp: stamp,
             prove: md5.hex_md5(res.code + stamp + 'liuboge'),
           };
@@ -113,31 +98,31 @@ Page({
               console.log('identity---', res);
               var identity_jsonStr = res.data;
               if (md5.hex_md5('user' + identity_jsonStr.stamp + 'liuboge' == identity_jsonStr.tableProve)) {
-                var identity_errorcode = identity_jsonStr.errorcode;
-                switch (identity_errorcode) {
-                  case "0":
+                var identity_errcode = identity_jsonStr.errcode;
+                switch (identity_errcode) {
+                  case 0:
                     switch (identity_jsonStr.datalist[0].identity) {
-                      case '0':
+                      case 0:
                         that.setData({
                           super_adminShow: true,
                         })
                         break;
-                      case '1':
+                      case 1:
                         that.setData({
                           managerShow: true,
                         })
                         break;
-                      case '2':
+                      case 2:
                         that.setData({
                           receptionShow: true,
                         })
                         break;
-                      case '3':
+                      case 3:
                         that.setData({
                           securityShow: true,
                         })
                         break;
-                      case '4':
+                      case 4:
                         that.setData({
                           cleanerShow: true,
                         })
@@ -145,51 +130,6 @@ Page({
                     }
                     break;
                 }
-              }
-            }
-          })
-        }
-      }
-    })
-    var stamp = util.formatTime(new Date());
-    wx.login({
-      success(res) {
-        if (res.code) {
-          var roomlist_jsonData = {
-            adminCode: res.code,
-            roomType: that.data.rtypeContent,
-            strartTime: that.data.startTimeContent,
-            endTime: that.data.endTimeContent,
-            stamp: stamp,
-            prove: md5.hex_md5(res.code + stamp + 'liuboge'),
-          };
-          wx.request({
-            method: 'POST',
-            url: 'https://www.supremeproger.com/room/roomsinf/admin/get',
-            header: {
-              'content-type': 'application/json'
-            },
-            data: JSON.stringify(roomlist_jsonData),
-            success: function (res) {
-              console.log('roomlist---', res);
-              var roomlist_jsonStr = res.data;
-              var roomlist_errorcode = roomlist_jsonStr.errorcode;
-              switch (roomlist_errorcode) {
-                case "0":
-                  if (roomlist_jsonStr.datalist[0].orderStatus == '0') {
-                    var RoomList = that.IntroomsList(roomlist_jsonStr.datalist)
-                    var liveRoomList = that.ChangeHardware(liveRoomList)
-                    that.setData({
-                      RoomList: RoomList,
-                    })
-                  } else {
-                    var RoomList = that.IntextraroomsList(roomlist_jsonStr.datalist)
-                    that.setData({
-                      RoomList: RoomList,
-                      justShow: true,
-                    })
-                  }
-                  break;
               }
             }
           })
@@ -246,13 +186,13 @@ Page({
   startTime_onConfirm(e) {
     this.setData({
       startTimeShow: false,
-      startTimeContent: this.formatDate(new Date(e.detail)),
+      startTimeContent: this.msToDate(e.detail).hasTime,
     })
   },
   endTime_onConfirm(e) {
     this.setData({
       endTimeShow: false,
-      endTimeContent: this.formatDate(new Date(e.detail)),
+      endTimeContent: this.msToDate(e.detail).hasTime,
     })
   },
   getUserInfo: function (e) {
@@ -265,8 +205,8 @@ Page({
   },
   showModal(e) {
     var that = this;
-    var roomId = e.currentTarget.dataset.roomId;
-    var orderId = e.currentTarget.dataset.orderId;
+    var roomId = e.currentTarget.dataset.roomid;
+    var orderId = e.currentTarget.dataset.orderid;
     that.setData({
       modalName: e.currentTarget.dataset.target
     })
@@ -290,9 +230,9 @@ Page({
             success: function (res) {
               console.log('room---', res);
               var room_jsonStr = res.data;
-              var room_errorcode = room_jsonStr.errorcode;
-              switch (room_errorcode) {
-                case "0":
+              var room_errcode = room_jsonStr.errcode;
+              switch (room_errcode) {
+                case 0:
                   var roomInf = that.IntroomInf(room_jsonStr.datalist)
                   var roomInf = that.ChangeWindow(roomInf, 'roomWindow')
                   that.setData({
@@ -325,9 +265,9 @@ Page({
             success: function (res) {
               console.log('air---', res);
               var air_jsonStr = res.data;
-              var air_errorcode = air_jsonStr.errorcode;
-              switch (air_errorcode) {
-                case "0":
+              var air_errcode = air_jsonStr.errcode;
+              switch (air_errcode) {
+                case 0:
                   var airInf = that.IntairInf(air_jsonStr.datalist)
                   var airInf = that.ChangeAir(airInf, 'airStatus', 'airMode')
                   that.setData({
@@ -346,7 +286,7 @@ Page({
         if (res.code) {
           var light_jsonData = {
             adminCode: res.code,
-            roomId: 'roomId',
+            roomId: roomId,
             stamp: stamp,
             prove: md5.hex_md5(res.code + stamp + 'liuboge'),
           };
@@ -360,11 +300,11 @@ Page({
             success: function (res) {
               console.log('light---', res);
               var light_jsonStr = res.data;
-              var light_errorcode = light_jsonStr.errorcode;
-              switch (light_errorcode) {
-                case "0":
+              var light_errcode = light_jsonStr.errcode;
+              switch (light_errcode) {
+                case 0:
                   var lightInf = that.IntlightInf(light_jsonStr.datalist)
-                  var lightInf = that.ChangeAir(lightInf, 'lightStatus', 'lightMode')
+                  var lightInf = that.ChangeLight(lightInf, 'lightStatus', 'lightMode')
                   that.setData({
                     lightInf: lightInf
                   })
@@ -381,13 +321,13 @@ Page({
         if (res.code) {
           var user_jsonData = {
             adminCode: res.code,
-            roomId: orderId,
+            orderId: orderId,
             stamp: stamp,
             prove: md5.hex_md5(res.code + stamp + 'liuboge'),
           };
           wx.request({
             method: 'POST',
-            url: 'https://www.supremeproger.com/user/perinf/admin/super_admin/get',
+            url: 'https://www.supremeproger.com/user/perinf/admin/get',
             header: {
               'content-type': 'application/json'
             },
@@ -395,9 +335,9 @@ Page({
             success: function (res) {
               console.log('user---', res);
               var user_jsonStr = res.data;
-              var user_errorcode = user_jsonStr.errorcode;
-              switch (user_errorcode) {
-                case "0":
+              var user_errcode = user_jsonStr.errcode;
+              switch (user_errcode) {
+                case 0:
                   var userInf = that.IntuserInf(user_jsonStr.datalist)
                   that.setData({
                     userInf: userInf,
@@ -429,12 +369,11 @@ Page({
             success: function (res) {
               console.log('order---', res);
               var order_jsonStr = res.data;
-              var order_errorcode = order_jsonStr.errorcode;
-              switch (order_errorcode) {
-                case "0":
-                  var orderInf = that.IntorderInf(order_jsonStr.datalist)
+              var order_errcode = order_jsonStr.errcode;
+              switch (order_errcode) {
+                case 0:
                   that.setData({
-                    orderInf: orderInf,
+                    orderInf: order_jsonStr.datalist,
                   })
                   break;
               }
@@ -470,9 +409,9 @@ Page({
             success: function (res) {
               console.log('room---', res);
               var room_jsonStr = res.data;
-              var room_errorcode = room_jsonStr.errorcode;
-              switch (room_errorcode) {
-                case "0":
+              var room_errcode = room_jsonStr.errcode;
+              switch (room_errcode) {
+                case 0:
                   var roomInf = that.IntroomInf(room_jsonStr.datalist)
                   var roomInf = that.ChangeWindow(roomInf, 'roomWindow')
                   that.setData({
@@ -486,15 +425,15 @@ Page({
       }
     })
   },
-  openDoor(e){
-    var that =this;
+  openDoor(e) {
+    var that = this;
     var roomId = e.currentTarget.dataset.roomId;
     var stamp = util.formatTime(new Date());
     wx.login({
       success(res) {
         if (res.code) {
           var lock_jsonData = {
-            cerCode: res.code,
+            resCode: res.code,
             roomId: roomId,
             lockStatus: 0,
             stamp: stamp,
@@ -511,9 +450,9 @@ Page({
               console.log('lock---', res);
               var lock_jsonStr = res.data;
               if (md5.hex_md5('room' + lock_jsonStr.stamp + 'liuboge' == lock_jsonStr.tableProve)) {
-                var lock_errorcode = lock_jsonStr.errorcode;
-                switch (lock_errorcode) {
-                  case "0":
+                var lock_errcode = lock_jsonStr.errcode;
+                switch (lock_errcode) {
+                  case 0:
                     wx.showToast({
                       title: '门锁已开',
                       icon: 'success',
@@ -531,7 +470,7 @@ Page({
       success(res) {
         if (res.code) {
           var lockRecord_jsonData = {
-            cerCode: res.code,
+            resCode: res.code,
             roomId: roomId,
             openTime: stamp,
             stamp: stamp,
@@ -548,9 +487,9 @@ Page({
               console.log('lockRecord---', res);
               var lockRecord_jsonStr = res.data;
               if (md5.hex_md5('door_opening_record' + lockRecord_jsonStr.stamp + 'liuboge' == lockRecord_jsonStr.tableProve)) {
-                var lockRecord_errorcode = lockRecord_jsonStr.errorcode;
-                switch (lockRecord_errorcode) {
-                  case "0":
+                var lockRecord_errcode = lockRecord_jsonStr.errcode;
+                switch (lockRecord_errcode) {
+                  case 0:
                     break;
                 }
               }
@@ -596,8 +535,9 @@ Page({
           var extra_roomsinf_jsonData = {
             adminCode: res.code,
             roomType: that.data.rtypeContent,
-            strartTime: that.data.startTimeContent,
+            startTime: that.data.startTimeContent,
             endTime: that.data.endTimeContent,
+            orderId: that.data.inputValue,
             stamp: stamp,
             prove: md5.hex_md5(res.code + stamp + 'liuboge'),
           };
@@ -611,12 +551,12 @@ Page({
             success: function (res) {
               console.log('extra_roomsinf---', res);
               var extra_roomsinf_jsonStr = res.data;
-              var extra_roomsinf_errorcode = extra_roomsinf_jsonStr.errorcode;
-              switch (extra_roomsinf_errorcode) {
-                case "0":
-                  var extra_roomsInf = that.Intextra_roomsinfInf(extra_roomsinf_jsonStr.datalist)
+              var extra_roomsinf_errcode = extra_roomsinf_jsonStr.errcode;
+              switch (extra_roomsinf_errcode) {
+                case 0:
+                  var RoomList = that.ChangeHardware(extra_roomsinf_jsonStr.datalist)
                   that.setData({
-                    extra_roomsinfInf: extra_roomsinfInf,
+                    RoomList: extra_roomsinf_jsonStr.datalist,
                   })
                   break;
               }
@@ -696,62 +636,62 @@ Page({
   },
   IntroomsList(arr) {
     arr.forEach((item) => {
-      item.orderId = Nunmber(item.orderId)
-      item.roomId = Nunmber(item.roomId)
-      item.roomTemp = Nunmber(item.roomTemp)
-      item.roomHum = Nunmber(item.roomHum)
-      item.lockStatus = Nunmber(item.lockStatus)
-      item.airStatus = Nunmber(item.orderStatus)
-      item.lightStatus = Nunmber(item.lightStatus)
+      item.orderId = Number(item.orderId)
+      item.roomId = Number(item.roomId)
+      item.roomTemp = Number(item.roomTemp)
+      item.roomHum = Number(item.roomHum)
+      item.lockStatus = Number(item.lockStatus)
+      item.airStatus = Number(item.orderStatus)
+      item.lightStatus = Number(item.lightStatus)
     })
     return arr
   },
   IntroomInf(arr) {
     arr.forEach((item) => {
-      item.roomId = Nunmber(item.roomId)
-      item.roomArea = Nunmber(item.roomArea)
-      item.maximum = Nunmber(item.maximum)
-      item.roomWindow = Nunmber(item.roomWindow)
-      item.roomPrice = Nunmber(item.roomPrice)
-      item.roomTemp = Nunmber(item.roomTemp)
-      item.roomHum = Nunmber(item.roomHum)
+      item.roomId = Number(item.roomId)
+      item.roomArea = Number(item.roomArea)
+      item.maximum = Number(item.maximum)
+      item.roomWindow = Number(item.roomWindow)
+      item.roomPrice = Number(item.roomPrice)
+      item.roomTemp = Number(item.roomTemp)
+      item.roomHum = Number(item.roomHum)
     })
     return arr
   },
   IntextraroomsList(arr) {
     arr.forEach((item) => {
-      item.roomId = Nunmber(item.roomId)
+      item.roomId = Number(item.roomId)
     })
     return arr
   },
   IntairInf(arr) {
     arr.forEach((item) => {
-      item.airStatus = Nunmber(item.airStatus)
-      item.airMode = Nunmber(item.airMode)
-      item.airValue = Nunmber(item.airValue)
+      item.airStatus = Number(item.airStatus)
+      item.airMode = Number(item.airMode)
+      item.airValue = Number(item.airValue)
     })
     return arr
   },
   IntlightInf(arr) {
     arr.forEach((item) => {
-      item.lightStatus = Nunmber(item.lightStatus)
-      item.lightMode = Nunmber(item.lightMode)
-      item.lightValue = Nunmber(item.lightValue)
+      item.lightStatus = Number(item.lightStatus)
+      item.lightMode = Number(item.lightMode)
+      item.lightValue = Number(item.lightValue)
     })
     return arr
   },
   IntuserInf(arr) {
     arr.forEach((item) => {
-      item.phone = Nunmber(item.phone)
-      item.idCard = Nunmber(item.idCard)
+      item.phone = Number(item.phone)
+      item.idCard = Number(item.idCard)
     })
     return arr
   },
   IntorderInf(arr) {
     arr.forEach((item) => {
-      item.orderId = Nunmber(item.phone)
-      item.deposit = Nunmber(item.deposit)
-      item.amountsPay = Nunmber(item.amountsPay)
+      item.orderId = Number(item.phone)
+      item.deposit = Number(item.deposit)
+      item.amountsPay = Number(item.amountsPay)
     })
     return arr
   },

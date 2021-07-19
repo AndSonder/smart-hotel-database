@@ -16,6 +16,7 @@ Page({
     rtypeShow: false,
     maximumContent: '全选',
     maximumShow: false,
+    rtypeContentShow: '房间类型：',
     rtypeList: [{
         name: '主题特色大床房',
       },
@@ -45,16 +46,16 @@ Page({
       },
     ],
     maximumList: [{
-        name: '4 人',
+        name: '4',
       },
       {
-        name: '3 人',
+        name: '3',
       },
       {
-        name: '2 人',
+        name: '2',
       },
       {
-        name: '1 人',
+        name: '1',
       },
       {
         name: '全选',
@@ -88,17 +89,7 @@ Page({
         name: '全选',
       },
     ],
-    roomList: [{
-      "roomType": "豪华大床房",
-      "bedType": "特大床",
-      "maximum": 3,
-      "roomPrice": 400
-    }, {
-      "roomType": "豪华大床房",
-      "bedType": "特大床",
-      "maximum": 3,
-      "roomPrice": 400,
-    }, ],
+    roomList: [],
   },
 
   /**
@@ -119,7 +110,7 @@ Page({
             roomType: that.data.rtypeContent,
             maximum: that.data.maximumContent,
             startTime: that.data.startDate + ' ' + '06:00:00',
-            endime: that.data.endDate + ' ' + '15:00:00',
+            endTime: that.data.endDate + ' ' + '15:00:00',
             stamp: stamp,
             prove: md5.hex_md5(res.code + stamp + 'liuboge'),
           };
@@ -133,15 +124,27 @@ Page({
             success: function (res) {
               console.log('roomsinf---', res);
               var roomsinf_jsonStr = res.data;
-              if (md5.hex_md5('room' + roomsinf_jsonStr.stamp + 'liuboge') == roomsinf_jsonStr.tableProve) {
-                var roomsinf_errorcode = roomsinf_jsonStr.errorcode;
-                switch (roomsinf_errorcode) {
-                  case "0":
-                    var roomList = that.Introomlist(roomsinf_jsonStr.datelist)
+              if (md5.hex_md5('user' + roomsinf_jsonStr.stamp + 'liuboge') == roomsinf_jsonStr.tableProve) {
+                var roomsinf_errcode = roomsinf_jsonStr.errcode;
+                switch (roomsinf_errcode) {
+                  case 0:
+                    var roomList = that.Introomlist(roomsinf_jsonStr.datalist)
+                    console.log(roomList)
                     var roomList = that.ChangeWindow(roomList, 'roomWindow')
+                    console.log(roomList)
                     var roomList = imgUrl.ImageNameGeneration(roomList)
+                    console.log(roomList)
                     that.setData({
                       roomList: roomList,
+                    })
+                    break;
+                  case 2:
+                    that.setData({
+                      roomList: [],
+                    })
+                    wx.showToast({
+                      title: '无符合条件的房间',
+                      icon: 'none',
                     })
                     break;
                 }
@@ -171,9 +174,10 @@ Page({
   rtype_onSelect(event) {
     var that = this;
     that.setData({
-      rtypeContent: event.detail.name
+      rtypeContent: event.detail.name,
+      rtypeContentShow: '',
     });
-    var stamp = util.formatTime(new Date()); 
+    var stamp = util.formatTime(new Date());
     wx.login({
       success(res) {
         if (res.code) {
@@ -182,7 +186,7 @@ Page({
             roomType: that.data.rtypeContent,
             maximum: that.data.maximumContent,
             startTime: that.data.startDate + ' ' + '06:00:00',
-            endime: that.data.endDate + ' ' + '15:00:00',
+            endTime: that.data.endDate + ' ' + '15:00:00',
             stamp: stamp,
             prove: md5.hex_md5(res.code + stamp + 'liuboge'),
           };
@@ -196,16 +200,25 @@ Page({
             success: function (res) {
               console.log('roomsinf_rtype---', res);
               var roomsinf_jsonStr = res.data;
-              if (md5.hex_md5('room' + roomsinf_jsonStr.stamp + 'liuboge') == roomsinf_jsonStr.tableProve) {
-                var roomsinf_errorcode = roomsinf_jsonStr.errorcode;
-                switch (roomsinf_errorcode) {
-                  case "0":
-                    var roomList = that.Introomlist(roomsinf_jsonStr.datelist)
+              if (md5.hex_md5('user' + roomsinf_jsonStr.stamp + 'liuboge') == roomsinf_jsonStr.tableProve) {
+                var roomsinf_errcode = roomsinf_jsonStr.errcode;
+                switch (roomsinf_errcode) {
+                  case 0:
+                    var roomList = that.Introomlist(roomsinf_jsonStr.datalist)
                     var roomList = that.ChangeWindow(roomList, 'roomWindow')
                     var roomList = imgUrl.ImageNameGeneration(roomList)
-                    console.log('roomList---',roomList)
+                    console.log('roomList---', roomList)
                     that.setData({
                       roomList: roomList,
+                    })
+                    break;
+                  case 2:
+                    that.setData({
+                      roomList: [],
+                    })
+                    wx.showToast({
+                      title: '无符合条件的房间',
+                      icon: 'none',
                     })
                     break;
                 }
@@ -221,7 +234,7 @@ Page({
     that.setData({
       maximumContent: event.detail.name
     });
-    var stamp = util.formatTime(new Date()); 
+    var stamp = util.formatTime(new Date());
     wx.login({
       success(res) {
         if (res.code) {
@@ -230,7 +243,7 @@ Page({
             roomType: that.data.rtypeContent,
             maximum: that.data.maximumContent,
             startTime: that.data.startDate + ' ' + '06:00:00',
-            endime: that.data.endDate + ' ' + '15:00:00',
+            endTime: that.data.endDate + ' ' + '15:00:00',
             stamp: stamp,
             prove: md5.hex_md5(res.code + stamp + 'liuboge'),
           };
@@ -244,15 +257,24 @@ Page({
             success: function (res) {
               console.log('roomsinf_maximum---', res);
               var roomsinf_jsonStr = res.data;
-              if (md5.hex_md5('room' + roomsinf_jsonStr.stamp + 'liuboge') == roomsinf_jsonStr.tableProve) {
-                var roomsinf_errorcode = roomsinf_jsonStr.errorcode;
-                switch (roomsinf_errorcode) {
-                  case "0":
-                    var roomList = that.Introomlist(roomsinf_jsonStr.datelist)
+              if (md5.hex_md5('user' + roomsinf_jsonStr.stamp + 'liuboge') == roomsinf_jsonStr.tableProve) {
+                var roomsinf_errcode = roomsinf_jsonStr.errcode;
+                switch (roomsinf_errcode) {
+                  case 0:
+                    var roomList = that.Introomlist(roomsinf_jsonStr.datalist)
                     var roomList = that.ChangeWindow(roomList, 'roomWindow')
                     var roomList = imgUrl.ImageNameGeneration(roomList)
                     that.setData({
                       roomList: roomList,
+                    })
+                    break;
+                  case 2:
+                    that.setData({
+                      roomList: [],
+                    })
+                    wx.showToast({
+                      title: '无符合条件的房间',
+                      icon: 'none',
                     })
                     break;
                 }
@@ -276,23 +298,74 @@ Page({
     });
   },
   onConfirm(event) {
+    var that = this
     const [start, end] = event.detail;
-    this.setData({
+    that.setData({
       show: false,
       startDate: dataTime.msToDate(start).normalDate,
       endDate: dataTime.msToDate(end).normalDate,
     });
-  },
-  trunBooking(e){
-    wx.navigateTo({
-      url: '/pages/booking/booking?roomType=' + e.currentTarget.dataset.roomType + '&roomPrice=' + e.currentTarget.dataset.roomPrice + '&startDate=' + this.data.startDate + '&endDate=' + this.data.endDate,
+    var stamp = util.formatTime(new Date());
+    wx.login({
+      success(res) {
+        if (res.code) {
+          var roomsinf_jsonData = {
+            resCode: res.code,
+            roomType: that.data.rtypeContent,
+            maximum: that.data.maximumContent,
+            startTime: that.data.startDate + ' ' + '06:00:00',
+            endTime: that.data.endDate + ' ' + '15:00:00',
+            stamp: stamp,
+            prove: md5.hex_md5(res.code + stamp + 'liuboge'),
+          };
+          wx.request({
+            method: 'POST',
+            url: 'https://www.supremeproger.com/room/roomsinf/resident/get',
+            header: {
+              'content-type': 'application/json'
+            },
+            data: JSON.stringify(roomsinf_jsonData),
+            success: function (res) {
+              console.log('roomsinf_maximum---', res);
+              var roomsinf_jsonStr = res.data;
+              if (md5.hex_md5('user' + roomsinf_jsonStr.stamp + 'liuboge') == roomsinf_jsonStr.tableProve) {
+                var roomsinf_errcode = roomsinf_jsonStr.errcode;
+                switch (roomsinf_errcode) {
+                  case 0:
+                    var roomList = that.Introomlist(roomsinf_jsonStr.datalist)
+                    var roomList = that.ChangeWindow(roomList, 'roomWindow')
+                    var roomList = imgUrl.ImageNameGeneration(roomList)
+                    that.setData({
+                      roomList: roomList,
+                    })
+                    break;
+                  case 2:
+                    that.setData({
+                      roomList: [],
+                    })
+                    wx.showToast({
+                      title: '无符合条件的房间',
+                      icon: 'none',
+                    })
+                    break;
+                }
+              }
+            }
+          })
+        }
+      }
     })
   },
-  Introomlist(arr){
+  trunBooking(e) {
+    wx.navigateTo({
+      url: '/pages/booking/booking?roomType=' + e.currentTarget.dataset.roomtype + '&roomPrice=' + e.currentTarget.dataset.roomprice + '&startDate=' + this.data.startDate + '&endDate=' + this.data.endDate,
+    })
+  },
+  Introomlist(arr) {
     arr.forEach((item) => {
-      item.maximum = Nunmber(item.maximum)
-      item.roomPrice = Nunmber(item.roomPrice)
-      item.roomWindow = Nunmber(item.roomWindow)
+      item.maximum = Number(item.maximum)
+      item.roomPrice = Number(item.roomPrice)
+      item.roomWindow = Number(item.roomWindow)
     })
     return arr
   },

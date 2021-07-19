@@ -32,17 +32,22 @@ Page({
       airStatus: airList[0].airStatus,
       airMode: airList[0].airMode,
       airValue: airList[0].airValue,
-      value: airList[0].airValue*6.25,
+      value: (airList[0].airValue-16)*6.25,
     })
-    if (airList[0].airStatus == 1) {
+    console.log(options)
+    that.chooseUI()
+  },
+  chooseUI(){
+    var that = this
+    if (that.data.airStatus == 1) {
       that.setData({
-        airContent: '开',
+        airContent: '关',
         gradientColor: {
           '0%': '#0081ff',
           '100%': '#1cbbb4',
         },
       })
-      switch (airList[0].airMode) {
+      switch (that.data.airMode) {
         case 0:
           that.setData({
             hotUI: '',
@@ -70,7 +75,7 @@ Page({
         hotUI: '',
         windUI: '',
         coldUI: '',
-        airContent: '关',
+        airContent: '开',
         gradientColor: {
           '0%': 'gray',
           '100%': 'black',
@@ -110,10 +115,10 @@ Page({
               success: function (res) {
                 console.log('air---', res);
                 var air_jsonStr = res.data;
-                if (md5.hex_md5('air_conditioning' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
-                  var air_errorcode = air_jsonStr.errorcode;
-                  switch (air_errorcode) {
-                    case "0":
+                if (md5.hex_md5('user' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
+                  var air_errcode = air_jsonStr.errcode;
+                  switch (air_errcode) {
+                    case 0:
                       wx.showToast({
                         title: '制热模式',
                         icon: 'none',
@@ -160,10 +165,10 @@ Page({
               success: function (res) {
                 console.log('air---', res);
                 var air_jsonStr = res.data;
-                if (md5.hex_md5('air_conditioning' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
-                  var air_errorcode = air_jsonStr.errorcode;
-                  switch (air_errorcode) {
-                    case "0":
+                if (md5.hex_md5('user' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
+                  var air_errcode = air_jsonStr.errcode;
+                  switch (air_errcode) {
+                    case 0:
                       wx.showToast({
                         title: '吹风模式',
                         icon: 'none',
@@ -210,10 +215,10 @@ Page({
               success: function (res) {
                 console.log('air---', res);
                 var air_jsonStr = res.data;
-                if (md5.hex_md5('air_conditioning' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
-                  var air_errorcode = air_jsonStr.errorcode;
-                  switch (air_errorcode) {
-                    case "0":
+                if (md5.hex_md5('user' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
+                  var air_errcode = air_jsonStr.errcode;
+                  switch (air_errcode) {
+                    case 0:
                       wx.showToast({
                         title: '制冷模式',
                         icon: 'none',
@@ -236,7 +241,9 @@ Page({
         windUI: '',
         coldUI: '',
         airStatus: 0,
+        airContent:'开'
       })
+      that.chooseUI()
       var stamp = util.formatTime(new Date());
       wx.login({
         success(res) {
@@ -260,10 +267,10 @@ Page({
               success: function (res) {
                 console.log('air---', res);
                 var air_jsonStr = res.data;
-                if (md5.hex_md5('air_conditioning' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
-                  var air_errorcode = air_jsonStr.errorcode;
-                  switch (air_errorcode) {
-                    case "0":
+                if (md5.hex_md5('user' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
+                  var air_errcode = air_jsonStr.errcode;
+                  switch (air_errcode) {
+                    case 0:
                       wx.showToast({
                         title: '已关闭',
                         icon: 'none',
@@ -278,11 +285,10 @@ Page({
       })
     }else{
       that.setData({
-        hotUI: 'background-color: #aaaaaa;opacity: 0.8;',
-        windUI: 'background-color: #aaaaaa;opacity: 0.8;',
-        coldUI: 'background-color: #aaaaaa;opacity: 0.8;',
-        airStatus: 1,
+        airContent:'关',
+        airStatus: 1
       })
+      that.chooseUI()
       var stamp = util.formatTime(new Date());
       wx.login({
         success(res) {
@@ -306,10 +312,10 @@ Page({
               success: function (res) {
                 console.log('air---', res);
                 var air_jsonStr = res.data;
-                if (md5.hex_md5('air_conditioning' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
-                  var air_errorcode = air_jsonStr.errorcode;
-                  switch (air_errorcode) {
-                    case "0":
+                if (md5.hex_md5('user' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
+                  var air_errcode = air_jsonStr.errcode;
+                  switch (air_errcode) {
+                    case 0:
                       wx.showToast({
                         title: '已开启',
                         icon: 'none',
@@ -327,10 +333,10 @@ Page({
   down(e){
     var that = this;
     if(that.data.airValue > 16){
-      that.data({
+      that.setData({
         airValue: that.data.airValue-1,
-        value: (that.data.airValue-1)*6.25,
-        airContent: (that.data.airValue-1)*6.25
+        value: (that.data.airValue-16-1)*6.25,
+        airContent: that.data.airValue-1
       })
       var stamp = util.formatTime(new Date());
       wx.login({
@@ -345,6 +351,7 @@ Page({
               stamp: stamp,
               prove: md5.hex_md5(res.code + stamp + 'liuboge'),
             };
+            console.log()
             wx.request({
               method: 'POST',
               url: 'https://www.supremeproger.com/hardware/air_condition/user/push',
@@ -355,10 +362,10 @@ Page({
               success: function (res) {
                 console.log('air---', res);
                 var air_jsonStr = res.data;
-                if (md5.hex_md5('air_conditioning' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
-                  var air_errorcode = air_jsonStr.errorcode;
-                  switch (air_errorcode) {
-                    case "0":
+                if (md5.hex_md5('user' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
+                  var air_errcode = air_jsonStr.errcode;
+                  switch (air_errcode) {
+                    case 0:
                       break;
                   }
                 }
@@ -372,10 +379,10 @@ Page({
   up(e){
     var that = this;
     if(that.data.airValue < 33){
-      that.data({
+      that.setData({
         airValue: that.data.airValue+1,
-        value: (that.data.airValue+1)*6.25,
-        airContent: (that.data.airValue+1)*6.25
+        value: (that.data.airValue+1-16)*6.25,
+        airContent: that.data.airValue+1
       })
       var stamp = util.formatTime(new Date());
       wx.login({
@@ -400,10 +407,10 @@ Page({
               success: function (res) {
                 console.log('air---', res);
                 var air_jsonStr = res.data;
-                if (md5.hex_md5('air_conditioning' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
-                  var air_errorcode = air_jsonStr.errorcode;
-                  switch (air_errorcode) {
-                    case "0":
+                if (md5.hex_md5('user' + air_jsonStr.stamp + 'liuboge' == air_jsonStr.tableProve)) {
+                  var air_errcode = air_jsonStr.errcode;
+                  switch (air_errcode) {
+                    case 0:
                       break;
                   }
                 }

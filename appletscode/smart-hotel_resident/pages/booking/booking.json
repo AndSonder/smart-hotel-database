@@ -3,6 +3,8 @@
     "van-submit-bar": "/miniprogram_npm/@vant/weapp/submit-bar/index",
     "van-cell": "/miniprogram_npm/@vant/weapp/cell/index",
     "van-cell-group": "/miniprogram_npm/@vant/weapp/cell-group/index",
-    "van-icon": "/miniprogram_npm/@vant/weapp/icon/index"
+    "van-icon": "/miniprogram_npm/@vant/weapp/icon/index",
+    "van-popup": "/miniprogram_npm/@vant/weapp/popup/index",
+    "van-datetime-picker": "/miniprogram_npm/@vant/weapp/datetime-picker/index"
   }
 }

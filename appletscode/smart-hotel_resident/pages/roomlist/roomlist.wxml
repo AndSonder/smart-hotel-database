@@ -8,7 +8,8 @@
       <view class="chooseSearchContent_module">
         <view class="show_module">
           <view class="choose_module">
-            <view class="chooseContent_module"><text class="chooseContent_title">房间类型：</text><text class="chooseContent"
+            <view class="chooseContent_module"><text class="chooseContent_title">{{rtypeContentShow}}</text>
+            <text class="chooseContent"
                 bindtap="choose_rtype">{{rtypeContent}}</text></view>
           </view>
           <van-action-sheet show="{{ rtypeShow }}" actions="{{ rtypeList }}" cancel-text="取消" bind:close="onClose"
@@ -55,6 +56,9 @@
                   <view class="roomMaximumContent_module"><text class="roomMaximumContent">{{item.maximum}}人</text>
                   </view>
                 </view>
+                <view class="roomWindow_module">
+                    <view class="roomWindowContent_module"><text class="roomWindowContent">{{item.roomWindow}}</text></view>
+                  </view>
               </view>
             </view>
             <view class="roomPrice_module">
