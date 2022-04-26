@@ -13,7 +13,7 @@ class EmergencyOption(Model):
         total_num = self.cursor.fetchone()[0]
         if room_id is not None:
             self.cursor.execute(
-                f"SELECT * FROM accident_record ORDER BY id DESC WHERE room_id={room_id};")
+                f"SELECT * FROM accident_record WHERE room_id = {room_id} ORDER BY id DESC ;")
         else:
             self.cursor.execute(
                 f"SELECT * FROM accident_record ORDER BY id DESC LIMIT {start},{limit};")
@@ -22,22 +22,30 @@ class EmergencyOption(Model):
 
     # 更新应急事件表
     def update(self, id, room_id, abnormal_time, accident):
+        self.cursor.execute(f"SELECT * FROM room WHERE id = {room_id};")
+        data = self.cursor.fetchone()
+        if data is None:
+            return "操作失败，房间不存在"
         try:
             self.cursor.execute(
-                f"UPDATE accident_record SET room_id='{room_id}',abnormal_time='{abnormal_time}',accident='{accident}' WHERE room_id={id};")
+                f"UPDATE accident_record SET room_id='{room_id}',abnormal_time='{abnormal_time}',accident='{accident}' WHERE id={id};")
             self.db.commit()
         except Exception as e:
             print(e)
             self.db.rollback()
             self.cursor.close()
             self.db.close()
-            return False
+            return "操作失败，发生未知错误"
         self.cursor.close()
         self.db.close()
-        return True
+        return "意外事件更新成功"
 
     def add(self, room_id, abnormal_time, accident):
-        self.cursor.execute("SELECT COUNT(*) FROM room;")
+        self.cursor.execute(f"SELECT * FROM room WHERE id = {room_id};")
+        data = self.cursor.fetchone()
+        if data is None:
+            return "操作失败，房间不存在"
+        self.cursor.execute("SELECT MAX(id) FROM accident_record;")
         id = int(self.cursor.fetchone()[0]) + 1
         data = (id, room_id, str(abnormal_time), accident)
         try:
@@ -49,12 +57,12 @@ class EmergencyOption(Model):
             self.db.rollback()
             self.cursor.close()
             self.db.close()
-            return False
+            return "操作失败，发生未知错误"
         self.cursor.close()
         self.db.close()
-        return True
+        return "意外事件添加成功"
 
-    # 删除用户信息
+    # 删除信息
     def delete(self, id):
         self.cursor.execute(
             f"DELETE FROM accident_record WHERE id='{id}';")

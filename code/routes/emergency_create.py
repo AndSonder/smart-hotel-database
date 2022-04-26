@@ -35,11 +35,7 @@ def index():
     if level not in [0, 3]:
         return json.dumps({"code": 20006, "message": "权限不足"})
     db = EmergencyOption()
-    re = db.add(room_id, abnormal_time, accident)
-    if re:
-        message = "意外事件添加成功"
-    else:
-        message = "操作失败，发生未知错误"
+    message = db.add(room_id, abnormal_time, accident)
     data = {
         "code": 20000,
         "message": message

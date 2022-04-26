@@ -31,7 +31,7 @@ class UserOption(Model):
         print(wecharid)
         try:
             self.cursor.execute(
-                f"UPDATE user SET name='{name}',sex='{sex}',id_card='{id_card}',phone='{phone}',level={level} WHERE wecharid={wecharid};")
+                f"UPDATE user SET name='{name}',sex='{sex}',id_card='{id_card}',phone='{phone}',level={level} WHERE wecharid='{wecharid}';")
             self.db.commit()
         except Exception as e:
             print(e)
@@ -62,17 +62,21 @@ class UserOption(Model):
     # 删除用户信息
     def delete(self, id):
         self.cursor.execute(
-            f"DELETE FROM room WHERE wecharid='{id}';")
+            f"SELECT * FROM `order`,user where user.wecharid = `order`.wecharid AND id_status IN (0,3) AND user.wecharid='{id}';")
+        if len(self.cursor.fetchall()) != 0:
+            return "该用户正在入住中，无法删除！"
+        self.cursor.execute(
+            f"DELETE FROM user WHERE wecharid='{id}';")
         try:
             self.db.commit()
         except:
             self.db.rollback()
             self.cursor.close()
             self.db.close()
-            return False
+            return "非法操作"
         self.cursor.close()
         self.db.close()
-        return True
+        return "用户信息删除成功"
 
 
 if __name__ == '__main__':

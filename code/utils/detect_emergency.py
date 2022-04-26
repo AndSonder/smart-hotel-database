@@ -1,7 +1,10 @@
 import pymysql
 import time
 from config import *
-from SMS_sender import send_sms
+from qq import Reminder
+from code.models.emergency_option import EmergencyOption
+import datetime
+
 
 class Model:
     def __init__(self):
@@ -33,21 +36,27 @@ class Detector(Model):
 
 
 def main():
-    db = Detector()
+    reminder = Reminder()
+    reminder.register_()
+    em = EmergencyOption()
     while True:
+        print('检测中....')
         message = ''
+        db = Detector()
         data = db.detecte()
         for item in data:
             if int(item[1]) > 50:
-                message += str(item[0])
-                message += '号房间状态异常，房间温度过高：'
-                message += str(item[1])
+                room_message = f"{item[0]}号房间状态异常，房间温度过高：{item[1]}"
+                message += room_message
                 message += '\n'
+                em.add(item[0], str(datetime.datetime.now()), room_message)
         if message != '':
-            me = send_sms(message)
-            print(me.status)
+            print(message)
+            reminder.send('房间状态异常', message)
+            print('发送成功！')
             break
         time.sleep(10)
+
 
 if __name__ == '__main__':
     main()

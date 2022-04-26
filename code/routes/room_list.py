@@ -13,6 +13,7 @@ room_list = Blueprint('room_list', __name__)
 
 from ..utils.utils import catch_except
 
+
 @room_list.route('/room/list', methods=['GET'])
 @catch_except
 def index():
@@ -36,9 +37,10 @@ def index():
     if user_info is None:
         return json.dumps({"code": 20005, "message": "用户不存在"})
     level = int(user_info[-1])
+    # 身份等级验证
     if level > 2:
         return json.dumps({"code": 20006, "message": "权限不足"})
-    rooms, total_num = room_db.search_order(page, limit, sort, id, rtype)
+    rooms, total_num = room_db.search_room(page, limit, sort, id, rtype)
     data = {
         "code": 20000,
         "data": {

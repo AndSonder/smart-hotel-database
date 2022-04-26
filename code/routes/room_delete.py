@@ -12,6 +12,7 @@ room_delete = Blueprint('room_delete', __name__)
 
 from ..utils.utils import catch_except
 
+
 @room_delete.route('/room/delete', methods=['POST'])
 @catch_except
 def index():
@@ -31,11 +32,10 @@ def index():
     if level > 2:
         return json.dumps({"code": 20006, "message": "权限不足"})
     db = RoomOption()
-    re = db.delete(id)
-    if re:
-        message = "房间信息删除成功"
-    else:
-        message = "操作失败，发生未知错误"
+
+    message = db.delete(id)
+    if message != '房间信息删除成功':
+        return json.dumps({"code": 20001, "message": message})
     data = {
         "code": 20000,
         "message": message

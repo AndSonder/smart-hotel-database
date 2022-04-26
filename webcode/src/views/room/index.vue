@@ -3,9 +3,10 @@
     <div class="filter-container">
       <el-input v-model="listQuery.id" placeholder="房间号" style="width: 180px;" class="filter-item"
                 @keyup.enter.native="handleFilter"/>
-      <el-input v-model="listQuery.rtype" placeholder="房间类型" style="width: 180px; margin-left: 10px;"
-                class="filter-item"
-                @keyup.enter.native="handleFilter"/>
+      <el-select v-model="listQuery.rtype" placeholder="房间类型" clearable style="width: 140px;padding-left: 10px"
+                 class="filter-item">
+        <el-option v-for="item in roomType" :key="item" :label="item" :value="item"/>
+      </el-select>
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter"
                  style="margin-left: 10px;">
         搜索
@@ -107,10 +108,14 @@
           <el-input v-model="temp.id"/>
         </el-form-item>
         <el-form-item label="房间类型" prop="rtype">
-          <el-input v-model="temp.rtype"/>
+          <el-select v-model="temp.rtype" class="filter-item" placeholder="请选择">
+            <el-option v-for="item in roomType" :key="item" :label="item" :value="item"/>
+          </el-select>
         </el-form-item>
         <el-form-item label="房间床型" prop="bedtype">
-          <el-input v-model="temp.bedtype"/>
+          <el-select v-model="temp.bedtype" class="filter-item" placeholder="请选择">
+            <el-option v-for="item in BedType" :key="item" :label="item" :value="item"/>
+          </el-select>
         </el-form-item>
         <el-form-item label="最大人数" prop="maxnum">
           <el-input v-model="temp.maxnum"/>
@@ -177,6 +182,19 @@ const roomLock = [
   {key: 3, display_name: '没锁'},
 ]
 
+const BedType = ['大床', '单人床', '小型双床', '特大床', '三张床']
+
+const roomType = [
+  '主题特色大床房',
+  '温馨大床房',
+  '如意标准间',
+  '豪华大床房',
+  '如意三人房',
+  '团圆家庭房',
+  '情侣套房',
+  '商务套房',
+]
+
 // arr to obj, such as { CN : "China", US : "USA" }
 const calendarTypeKeyValue = calendarTypeOptions.reduce((acc, cur) => {
   acc[cur.key] = cur.display_name
@@ -213,6 +231,8 @@ export default {
         token: getToken(),
         rtype: undefined,
       },
+      roomType,
+      BedType,
       importanceOptions: [1, 2, 3],
       calendarTypeOptions,
       roomWin,
@@ -331,7 +351,7 @@ export default {
           createRoom(data).then((response) => {
             this.temp.temperature = 20
             this.temp.humidity = 20
-            this.temp.id = this.total+1
+            this.temp.id = this.total + 1
             this.list.unshift(this.temp)
             this.dialogFormVisible = false
             this.$notify({

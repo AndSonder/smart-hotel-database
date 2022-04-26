@@ -6,7 +6,7 @@ class RoomOption(Model):
     def __init__(self):
         super(RoomOption, self).__init__()
 
-    def search_order(self, page, limit, sort, id, rtype):
+    def search_room(self, page, limit, sort, id, rtype):
         start = (page - 1) * limit
         # 计算订单数量
         self.cursor.execute('SELECT count(*) FROM room;')
@@ -60,6 +60,9 @@ class RoomOption(Model):
 
     # 删除房间信息
     def delete(self, id):
+        self.cursor.execute(f"SELECT * FROM `order` where room_id = {id} and id_status IN (0,3);")
+        if len(self.cursor.fetchall()) != 0:
+            return "该房间正在被用户使用中，无法删除！"
         self.cursor.execute(
             f"DELETE FROM room WHERE id={id};")
         try:
@@ -68,14 +71,15 @@ class RoomOption(Model):
             self.db.rollback()
             self.cursor.close()
             self.db.close()
-            return False
+            return "操作实在发生未知错误"
         self.cursor.close()
         self.db.close()
-        return True
+        return "房间信息删除成功"
 
     def search_guest(self, page, limit, bedtype, start_data, end_data):
         start = (page - 1) * limit
-        print(start_data, end_data)
+        print(start_data)
+        print(end_data)
         # 查询在时间段内可以住的房间
         if start_data is not None and end_data is not None:
             if bedtype is not None:
@@ -85,9 +89,14 @@ class RoomOption(Model):
                 self.cursor.execute(
                     f"SELECT * FROM room WHERE id NOT IN (SELECT room_id FROM `order` WHERE id_status IN (0,3) AND scid >= '{start_data}' AND scid <= '{end_data}' AND sgo >= '{start_data}' AND sgo <= '{end_data}') ORDER BY id LIMIT {start},{limit};")
         else:
-            # 默认查询最近三天内可以住的房间
-            self.cursor.execute(
-                f"SELECT * FROM room WHERE id NOT IN (SELECT room_id FROM `order` WHERE id_status IN (0,3) AND scid > NOW() AND scid < DATE_ADD(NOW(),INTERVAL 3 DAY ) AND sgo > NOW() AND sgo < DATE_ADD(NOW(),INTERVAL 3 DAY )) ORDER BY id LIMIT {start},{limit};")
+            if bedtype is not None:
+                # 默认查询最近三天内可以住的房间
+                self.cursor.execute(
+                    f"SELECT * FROM room WHERE bedtype = '{bedtype}' AND id NOT IN (SELECT room_id FROM `order` WHERE id_status IN (0,3) AND scid > NOW() AND scid < DATE_ADD(NOW(),INTERVAL 3 DAY ) AND sgo > NOW() AND sgo < DATE_ADD(NOW(),INTERVAL 3 DAY )) ORDER BY id LIMIT {start},{limit};")
+            else:
+                self.cursor.execute(
+                    f"SELECT * FROM room WHERE id NOT IN (SELECT room_id FROM `order` WHERE id_status IN (0,3) AND scid > NOW() AND scid < DATE_ADD(NOW(),INTERVAL 3 DAY ) AND sgo > NOW() AND sgo < DATE_ADD(NOW(),INTERVAL 3 DAY )) ORDER BY id LIMIT {start},{limit};")
+
         data = self.cursor.fetchall()
         return data
 

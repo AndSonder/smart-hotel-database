@@ -73,9 +73,6 @@
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules[dialogStatus]" :model="temp" label-position="left" label-width="130px"
                style="width: 400px; margin-left:50px;">
-        <el-form-item label="手机号码" prop="phone">
-          <el-input v-model="temp.phone"/>
-        </el-form-item>
         <el-form-item label="建议" prop="message">
           <el-input v-model="temp.message"/>
         </el-form-item>

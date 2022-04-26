@@ -16,21 +16,21 @@ class SuggestionOption(Model):
         if message is not None:
             if start_date is not None and end_date is not None:
                 self.cursor.execute(
-                    f"SELECT feedback.id,name,feedback.wecharid,phone,message,message_time FROM feedback,user WHERE feedback.wecharid = user.wecharid AND feedback.message LIKE '%{message}%' AND feedback.message_time > '{start_date}' AND feedback.message_time < '{end_date}' LIMIT {start},{limit};")
+                    f"SELECT feedback.id,name,feedback.wecharid,phone,message,message_time FROM feedback,user WHERE feedback.wecharid = user.wecharid AND feedback.message LIKE '%{message}%' AND feedback.message_time > '{start_date}' AND feedback.message_time < '{end_date}' ORDER BY feedback.id DESC LIMIT {start},{limit};")
             else:
                 self.cursor.execute(
-                    f"SELECT feedback.id,name,feedback.wecharid,phone,message,message_time FROM feedback,user WHERE feedback.wecharid = user.wecharid AND feedback.message LIKE '%{message}%' LIMIT {start},{limit};")
+                    f"SELECT feedback.id,name,feedback.wecharid,phone,message,message_time FROM feedback,user WHERE feedback.wecharid = user.wecharid AND feedback.message LIKE '%{message}%' ORDER BY feedback.id DESC LIMIT {start},{limit};")
 
         elif start_date is not None and end_date is not None:
             if message is not None:
                 self.cursor.execute(
-                    f"SELECT feedback.id,name,feedback.wecharid,phone,message,message_time FROM feedback,user WHERE feedback.wecharid = user.wecharid AND feedback.message LIKE '%{message}%' AND feedback.message_time > '{start_date}' AND feedback.message_time < '{end_date}' LIMIT {start},{limit};")
+                    f"SELECT feedback.id,name,feedback.wecharid,phone,message,message_time FROM feedback,user WHERE feedback.wecharid = user.wecharid AND feedback.message LIKE '%{message}%' AND feedback.message_time > '{start_date}' AND feedback.message_time < '{end_date}' ORDER BY feedback.id DESC LIMIT {start},{limit};")
             else:
                 self.cursor.execute(
-                    f"SELECT feedback.id,name,feedback.wecharid,phone,message,message_time FROM feedback,user WHERE feedback.wecharid = user.wecharid AND feedback.message_time > '{start_date}' AND feedback.message_time < '{end_date}' LIMIT {start},{limit};")
+                    f"SELECT feedback.id,name,feedback.wecharid,phone,message,message_time FROM feedback,user WHERE feedback.wecharid = user.wecharid AND feedback.message_time > '{start_date}' AND feedback.message_time < '{end_date}' ORDER BY feedback.id DESC LIMIT {start},{limit};")
         else:
             self.cursor.execute(
-                f"SELECT feedback.id,name,feedback.wecharid,phone,message,message_time FROM feedback,user WHERE feedback.wecharid = user.wecharid LIMIT {start},{limit};")
+                f"SELECT feedback.id,name,feedback.wecharid,phone,message,message_time FROM feedback,user WHERE feedback.wecharid = user.wecharid ORDER BY feedback.id DESC LIMIT {start},{limit};")
         data = self.cursor.fetchall()
         return data, total_num
 

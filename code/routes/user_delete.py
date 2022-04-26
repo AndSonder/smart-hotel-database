@@ -5,12 +5,13 @@ import json
 from flask import Blueprint
 from flask import request
 
-from ..models.room_option import RoomOption
+from ..models.user_option import UserOption
 from ..models.get_info import GetInfo
 
 user_delete = Blueprint('user_delete', __name__)
 
 from ..utils.utils import catch_except
+
 
 @user_delete.route('/user/delete', methods=['POST'])
 @catch_except
@@ -30,12 +31,10 @@ def index():
     level = int(user_info[-1])
     if level > 2:
         return json.dumps({"code": 20006, "message": "权限不足"})
-    db = RoomOption()
-    re = db.delete(id)
-    if re:
-        message = "用户信息删除成功"
-    else:
-        message = "操作失败，发生未知错误"
+    db = UserOption()
+    message = db.delete(id)
+    if message != "用户信息删除成功":
+        return json.dumps({"code": 20001, "message": message})
     data = {
         "code": 20000,
         "message": message
